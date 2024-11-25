@@ -32,7 +32,7 @@ public Q_SLOTS:
 
 private:
     Ui::Learn_Window *ui;                // Pointer to UI elements
-    QProcess *process;                   // Pointer to process
+    QProcess *process;                 
 };
 
 #endif // LEARN_WINDOW_H
