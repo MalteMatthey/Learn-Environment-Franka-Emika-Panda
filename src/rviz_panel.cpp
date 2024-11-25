@@ -1,12 +1,14 @@
-#include "learn-environment/rviz_panel.hpp"
+#include "learn_environment/rviz_panel.hpp"
 #include <pluginlib/class_list_macros.hpp>
 #include <QProcess>
 #include <QFile>
+#include <QString>
 #include <QDebug>
 #include <ros/ros.h>
 #include <cstdlib>
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/Pose.h>
+#include <ros/package.h>
 
 
 Learn_Window::Learn_Window(QWidget *parent)
@@ -29,7 +31,9 @@ void Learn_Window::save(rviz::Config config) const {
 
 void Learn_Window::onExecuteButtonClicked() {}
 
-    QString scriptPath = "/catkin_ws/src/learn_environment/tasks/exercise_1.py";
+    QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
+    ROS_INFO("Package path: %s", packagePath.toStdString().c_str());
+    QString scriptPath = packagePath + "/tasks/exercise_1.py";
 
     if (!QFile::exists(scriptPath)) {
         ROS_INFO("File not found: %s", scriptPath.toStdString().c_str());
