@@ -3,6 +3,8 @@
 
 #include <rviz/panel.h>
 #include <ui_learn_panel.h>
+#include <ros/ros.h>
+#include <sensor_msgs/JointState.h>
 
 #include <QWidget>
 #include <QObject>
@@ -29,10 +31,13 @@ public:
 public Q_SLOTS:
     void onExecuteButtonClicked();            // Slot for button click
     void checkResult();
+    void jointStateCallback(const sensor_msgs::JointState::ConstPtr &msg);
 
 private:
     Ui::Learn_Window *ui;                // Pointer to UI elements
-    QProcess *process;                 
+    QProcess *process;   
+    ros::NodeHandle nh_;   
+    ros::Subscriber joint_states_sub_;           
 };
 
 #endif // LEARN_WINDOW_H

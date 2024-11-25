@@ -36,21 +36,24 @@ def exercise0():
     # set the number of planning attempts to 10
     group.set_num_planning_attempts(10)
 
-    # define a target pose with the x y z w values
-    target_pose = Pose()
-    target_pose.position.x = 0.5
-    target_pose.position.y = 0.0
-    target_pose.position.z = 0.5
-    target_pose.orientation.w = 0.5
+    # define a target joint values
+    joint_goal = group.get_current_joint_values()
+    joint_goal[0] = -1.38089706712302  # joint 1
+    joint_goal[1] = 1.7626998758091972  # joint 2
+    joint_goal[2] = 1.774931698337621  # joint 3
+    joint_goal[3] = -2.262299837416762  # joint 4
+    joint_goal[4] = 1.5498787547996722  # joint 5
+    joint_goal[5] = 1.8493953485899208  # joint 6
+    joint_goal[6] = -0.8594281783760449  # joint 7
 
-    # sets the target pose
-    group.set_pose_target(target_pose)
+    # sets the target joint values
+    group.set_joint_value_target(joint_goal)
 
     # execute the planned motion
     group.go(wait=True)
 
-    current_position = group.get_current_pose().pose
-    rospy.loginfo("Current Pose: {}".format(current_position))
+    current_joints = group.get_current_joint_values()
+    rospy.loginfo("Current Joint Values: {}".format(current_joints))
 
     # delete the ros node
     rospy.signal_shutdown("Task completed")

@@ -9,6 +9,7 @@
 #include <moveit/move_group_interface/move_group_interface.h>
 #include <geometry_msgs/Pose.h>
 #include <ros/package.h>
+#include <sensor_msgs/JointState.h>
 
 
 Learn_Window::Learn_Window(QWidget *parent)
@@ -48,51 +49,59 @@ void Learn_Window::onExecuteButtonClicked() {
         ROS_ERROR("Failed to execute script: %s", scriptPath.toStdString().c_str());
     }
 
-    ros::Duration(5.0).sleep();
-
-
     checkResult();
 }
 
 void Learn_Window::checkResult() {
-    ROS_INFO("Checking result");
+    ros::Duration(2.0).sleep();
 
-    // Create a MoveGroupInterface object for the Panda arm
-    moveit::planning_interface::MoveGroupInterface move_group("panda_arm");
-    move_group.setPlanningTime(10.0);
+    sensor_msgs::JointStateConstPtr msg = ros::topic::waitForMessage<sensor_msgs::JointState>("/joint_states", nh_, ros::Duration(5.0));
 
-    geometry_msgs::Pose target_pose;
-    target_pose.position.x = 0.5;
-    target_pose.position.y = 0.0;
-    target_pose.position.z = 0.5;
-    target_pose.orientation.x = 0.0;
-    target_pose.orientation.y = 0.0;
-    target_pose.orientation.z = 0.0;
-    target_pose.orientation.w = 1.0;
-    
-    geometry_msgs::Pose current_pose = move_group.getCurrentPose().pose;
+    if (msg) {
+        QString joint_states;
+        for (size_t i = 0; i < std::min(msg->name.size(), size_t(7)); ++i) {
+            joint_states += QString::fromStdString(msg->name[i]) + ": " + QString::number(msg->position[i]) + "\n";
+        }
+        ROS_INFO("Joint States:\n%s", joint_states.toStdString().c_str());
 
-    ROS_INFO("got current position");
+        // Compare to expected values
+        bool match = true;
 
-    // Log the current position and orientation
-    ROS_INFO("Current position: x=%f, y=%f, z=%f", current_pose.position.x, current_pose.position.y, current_pose.position.z);
-    ROS_INFO("Current orientation: x=%f, y=%f, z=%f, w=%f", current_pose.orientation.x, current_pose.orientation.y, current_pose.orientation.z, current_pose.orientation.w);
+        // Define expected values here
+        // Define expected values for each joint
+        std::vector<double> expected_positions = {
+            -1.38089706712302,  // joint 1
+            1.7626998758091972, // joint 2
+            1.774931698337621,  // joint 3
+            -2.262299837416762, // joint 4
+            1.5498787547996722, // joint 5
+            1.8493953485899208, // joint 6
+            -0.8594281783760449 // joint 7
+        };
 
-    double tolerance = 0.01;
+        double error_margin = 0.01;
 
-    bool position_match = std::abs(current_pose.position.x - target_pose.position.x) < tolerance &&
-                          std::abs(current_pose.position.y - target_pose.position.y) < tolerance &&
-                          std::abs(current_pose.position.z - target_pose.position.z) < tolerance;
+        if (msg->position.size() < 7) {
+            match = false;
 
-    bool orientation_match = std::abs(current_pose.orientation.x - target_pose.orientation.x) < tolerance &&
-                             std::abs(current_pose.orientation.y - target_pose.orientation.y) < tolerance &&
-                             std::abs(current_pose.orientation.z - target_pose.orientation.z) < tolerance &&
-                             std::abs(current_pose.orientation.w - target_pose.orientation.w) < tolerance;
+        } else {
+            for (size_t i = 0; i < 7; ++i) {
+                if (std::abs(msg->position[i] - expected_positions[i]) > error_margin) {
+                    ROS_WARN("panda_joint%lu: %f does not match expected value", i + 1, msg->position[i]);
+                    match = false;
+                    break;
+                }
+            }
+        }
 
-    if (position_match && orientation_match) {
-        ROS_INFO("The robot is in the correct position.");
+        if (match) {
+            ROS_INFO("Joint states match expected values.");
+        } else {
+            ROS_ERROR("Joint states do not match expected values.");
+        }
+
     } else {
-        ROS_INFO("The robot is NOT in the correct position.");
+        ROS_ERROR("Failed to receive joint states message.");
     }
 }
 
