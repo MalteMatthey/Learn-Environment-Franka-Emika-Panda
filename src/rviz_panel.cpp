@@ -12,10 +12,6 @@ Learn_Window::Learn_Window(QWidget *parent)
     : rviz::Panel(parent), ui(new Ui::Learn_Window), process(new QProcess(this)) {
         ui ->setupUi(this);
         connect(ui->executeButton, SIGNAL(clicked()), this, SLOT(onExecuteButtonClicked()));
-
-        // Set use_sim_time parameter to true
-        ros::NodeHandle nh("~");
-        nh.setParam("/use_sim_time", true);
     }
 
 Learn_Window::~Learn_Window() {
@@ -31,6 +27,14 @@ void Learn_Window::save(rviz::Config config) const {
 }
 
 void Learn_Window::onExecuteButtonClicked() {
+    ros::NodeHandle nh;
+
+    moveit::planning_interface::MoveGroupInterface move_group("panda_arm");
+    geometry_msgs::Pose current_pose = move_group.getCurrentPose().pose;
+
+
+    ROS_INFO("Current positions: x=%f, y=%f, z=%f", current_pose.position.x, current_pose.position.y, current_pose.position.z);
+
     QString scriptPath = "/catkin_ws/src/learn_environment/tasks/exercise_1.py";
 
     if (!QFile::exists(scriptPath)) {
