@@ -29,7 +29,7 @@ void Learn_Window::save(rviz::Config config) const {
     rviz::Panel::save(config);
 }
 
-void Learn_Window::onExecuteButtonClicked() {}
+void Learn_Window::onExecuteButtonClicked() {
 
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
     ROS_INFO("Package path: %s", packagePath.toStdString().c_str());
