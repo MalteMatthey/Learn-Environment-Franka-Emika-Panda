@@ -29,6 +29,7 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   tasks/exercise_1.py
+  tasks/exercise_1_1.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

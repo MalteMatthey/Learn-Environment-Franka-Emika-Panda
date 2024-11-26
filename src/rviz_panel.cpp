@@ -33,7 +33,6 @@ void Learn_Window::save(rviz::Config config) const {
 void Learn_Window::onExecuteButtonClicked() {
 
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
-    ROS_INFO("Package path: %s", packagePath.toStdString().c_str());
     QString scriptPath = packagePath + "/tasks/exercise_1.py";
 
     if (!QFile::exists(scriptPath)) {
@@ -47,13 +46,15 @@ void Learn_Window::onExecuteButtonClicked() {
     int result = std::system(command.c_str());
     if (result != 0) {
         ROS_ERROR("Failed to execute script: %s", scriptPath.toStdString().c_str());
+        ROS_ERROR("your script raises an exception!!!");
+        return;
     }
 
     checkResult();
 }
 
 void Learn_Window::checkResult() {
-    ros::Duration(2.0).sleep();
+    ros::Duration(1.0).sleep();
 
     sensor_msgs::JointStateConstPtr msg = ros::topic::waitForMessage<sensor_msgs::JointState>("/joint_states", nh_, ros::Duration(5.0));
 
@@ -79,7 +80,7 @@ void Learn_Window::checkResult() {
             -0.8594281783760449 // joint 7
         };
 
-        double error_margin = 0.01;
+        const double error_margin = 0.01;
 
         if (msg->position.size() < 7) {
             match = false;
@@ -97,7 +98,7 @@ void Learn_Window::checkResult() {
         if (match) {
             ROS_INFO("Joint states match expected values.");
         } else {
-            ROS_ERROR("Joint states do not match expected values.");
+            ROS_ERROR("Joint states do not match expected values. Maybe you should study Maschinenbau.");
         }
 
     } else {
