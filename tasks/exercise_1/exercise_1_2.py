@@ -33,10 +33,12 @@ point.time_from_start = rospy.Duration(2.5)  # Make the movement last 2.5 second
 # Add point to the trajectory
 joint_trajectory.points.append(point)
 
-rospy.sleep(2.5)  # Wait for initialization
+rospy.sleep(1.0)  # Wait for initialization
 
 rospy.loginfo("Publishing joint trajectory command.")
 pub.publish(joint_trajectory)
 rospy.loginfo("Joint trajectory command published.")
+
+rospy.sleep(2.5)  # Wait for the movement to finish
 
 rospy.signal_shutdown("Task completed")
