@@ -33,7 +33,7 @@ void Learn_Window::save(rviz::Config config) const {
 void Learn_Window::onExecuteButtonClicked() {
 
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
-    QString scriptPath = packagePath + "/tasks/exercise_1.py";
+    QString scriptPath = packagePath + "/tasks/exercise_1/exercise_1_1.py";
 
     if (!QFile::exists(scriptPath)) {
         ROS_INFO("File not found: %s", scriptPath.toStdString().c_str());
@@ -71,13 +71,13 @@ void Learn_Window::checkResult() {
         // Define expected values here
         // Define expected values for each joint
         std::vector<double> expected_positions = {
-            -1.38089706712302,  // joint 1
-            1.7626998758091972, // joint 2
-            1.774931698337621,  // joint 3
-            -2.262299837416762, // joint 4
-            1.5498787547996722, // joint 5
-            1.8493953485899208, // joint 6
-            -0.8594281783760449 // joint 7
+            0.0,    // joint 1
+            -0.785; // joint 2
+            0.0,    // joint 3
+            -2.355, // joint 4
+            0.0,    // joint 5
+            1.57,   // joint 6
+            0.785   // joint 7
         };
 
         const double error_margin = 0.01;
