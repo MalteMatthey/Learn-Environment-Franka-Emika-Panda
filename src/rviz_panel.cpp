@@ -72,7 +72,7 @@ void Learn_Window::checkResult() {
         // Define expected values for each joint
         std::vector<double> expected_positions = {
             0.0,    // joint 1
-            -0.785; // joint 2
+            -0.785, // joint 2
             0.0,    // joint 3
             -2.355, // joint 4
             0.0,    // joint 5

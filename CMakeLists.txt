@@ -31,6 +31,7 @@ catkin_install_python(PROGRAMS
   tasks/exercise_1/exercise_1_1.py
   tasks/exercise_1/exercise_1_2.py
   tasks/exercise_1/exercise_1_3.py
+  tasks/exercise_2/exercise_2_1.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
