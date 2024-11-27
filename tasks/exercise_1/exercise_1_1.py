@@ -7,11 +7,10 @@ from moveit_commander import MoveGroupCommander, roscpp_initialize, roscpp_shutd
 
 
 # 
-# This task starts with showing the individual methods and understanding what they do. 
-# And then the first movement is planned.
+# task: move the robot arm to a specific joint configuration while using moveit commander
 #
 
-# intialize the MoveIt! commander with command-line arguments
+# intialize the MoveIt! commander from the moveit_command package
 roscpp_initialize(sys.argv)
 
 # initialize the ros node for the communication with the robot
@@ -27,11 +26,12 @@ group.set_planner_id("RRTConnectkConfigDefault")
 group.set_num_planning_attempts(10)
 
 # define a target joint values
-# change to 160 degrees
+# get the current joint values and change the 5th joint value to 155 degrees
+# math.pi = 180 degrees
 joint_goal = group.get_current_joint_values()
 joint_goal[4] = math.pi / 180 * 155  # joint 5
 
-# sets the target joint values
+# set the joint values as target values
 group.set_joint_value_target(joint_goal)
 
 # execute the planned motion

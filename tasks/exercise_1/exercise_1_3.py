@@ -8,8 +8,10 @@ from moveit_commander import MoveGroupCommander, roscpp_initialize, roscpp_shutd
 from trajectory_msgs.msg import JointTrajectory, JointTrajectoryPoint
 
 #
-# reset to start position using the moveit or rostopics
+# task: reset the robot arm to its initial joint configuration while using moveit commander or rostopics
+# let the students decide
 #
+
 roscpp_initialize(sys.argv)
 
 rospy.init_node('exercise_1_3', anonymous=True)
