@@ -10,8 +10,6 @@
   <arg name="gazebo_gui" default="true" />
   <arg name="paused" default="false" />
 
-  <param name="use_sim_time" value="true" />
-
   <!-- Launch the gazebo simulator and spawn the robot -->
   <include file="$(find franka_gazebo)/launch/panda.launch" pass_all_args="true">
     <arg name="headless" value="$(eval not arg('gazebo_gui'))" />

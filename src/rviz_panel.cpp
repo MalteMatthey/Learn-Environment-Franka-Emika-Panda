@@ -32,7 +32,7 @@ void Learn_Window::save(rviz::Config config) const {
 
 void Learn_Window::onExecuteButtonClicked() {
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
-    QString notebookPath = packagePath + "/tasks/exercise_5/exercise_5_2.ipynb";
+    QString notebookPath = packagePath + "/tasks/exercise_1/exercise_1_1.ipynb";
     QString convertScriptPath = packagePath + "/converter/convert.py";
     QString convertedScriptPath = packagePath + "/converter/converted.py";
 
@@ -106,7 +106,7 @@ void Learn_Window::checkResult() {
             -0.785, // joint 2
             0.0,    // joint 3
             -2.355, // joint 4
-            0.0,    // joint 5
+            2.705,    // joint 5
             1.57,   // joint 6
             0.785   // joint 7
         };
