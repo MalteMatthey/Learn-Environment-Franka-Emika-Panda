@@ -22,7 +22,6 @@ group.set_max_velocity_scaling_factor(1.0)  # Set to 1.0 for maximum speed
 group.set_max_acceleration_scaling_factor(1.0)
 
 target_pose = group.get_current_pose().pose
-
 target_pose.position.x = 0.5
 target_pose.position.y = 0.1
 target_pose.position.z = 0.2
@@ -37,14 +36,12 @@ plan = group.plan()
 
 if plan:
     joint_angles = plan[1].joint_trajectory.points[-1].positions
+    group.set_joint_value_target(joint_angles)
     rospy.loginfo(f"Joint angles: {joint_angles}")
+    group.go(wait=True)
+    rospy.loginfo("pose target reached")
 else:
     rospy.loginfo("No solution found!")
-
-# execute the planned motion
-group.go(wait=True)
-
-rospy.loginfo("pose target reached")
 
 # delete the ros node
 rospy.signal_shutdown("Task completed")
