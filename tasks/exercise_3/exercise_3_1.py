@@ -7,7 +7,7 @@ from moveit_commander import MoveGroupCommander, roscpp_initialize, roscpp_shutd
 
 
 # 
-# task: move the robot arm to a specific joint configuration while using moveit commander
+# task: add a sequence of joint values to the MoveGroupCommander and execute it
 #
 
 # intialize the MoveIt! commander from the moveit_command package
