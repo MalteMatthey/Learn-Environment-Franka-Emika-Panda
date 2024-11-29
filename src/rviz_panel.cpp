@@ -106,7 +106,7 @@ void Learn_Window::checkResult() {
             -0.785, // joint 2
             0.0,    // joint 3
             -2.355, // joint 4
-            0.0,    // joint 5
+            2.705,    // joint 5
             1.57,   // joint 6
             0.785   // joint 7
         };

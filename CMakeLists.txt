@@ -27,17 +27,6 @@ include_directories(
   /usr/include/nlohmann
 )
 
-catkin_install_python(PROGRAMS
-  converter/converted.py
-  tasks/exercise_1/exercise_1_1.ipynb
-  tasks/exercise_1/exercise_1_2.py
-  tasks/exercise_1/exercise_1_3.py
-  tasks/exercise_2/exercise_2_1.py
-  tasks/exercise_2/exercise_2_2.py
-  tasks/exercise_3/exercise_3_1.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
-
 set(CMAKE_AUTOMOC ON)
 
 ## Include Qt libraries, only compatible with RViz using Qt5
