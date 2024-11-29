@@ -14,9 +14,9 @@
 
 Learn_Window::Learn_Window(QWidget *parent)
     : rviz::Panel(parent), ui(new Ui::Learn_Window), process(new QProcess(this)) {
-        ui ->setupUi(this);
-        connect(ui->executeButton, SIGNAL(clicked()), this, SLOT(onExecuteButtonClicked()));
-    }
+    ui->setupUi(this);
+    connect(ui->executeButton, SIGNAL(clicked()), this, SLOT(onExecuteButtonClicked()));
+}
 
 Learn_Window::~Learn_Window() {
     delete ui;
@@ -31,25 +31,56 @@ void Learn_Window::save(rviz::Config config) const {
 }
 
 void Learn_Window::onExecuteButtonClicked() {
-
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
-    QString scriptPath = packagePath + "/tasks/exercise_1/exercise_1_1.py";
+    QString notebookPath = packagePath + "/tasks/exercise_1/exercise_1_1.ipynb";
+    QString convertScriptPath = packagePath + "/converter/convert.py";
+    QString convertedScriptPath = packagePath + "/converter/converted.py";
 
-    if (!QFile::exists(scriptPath)) {
-        ROS_INFO("File not found: %s", scriptPath.toStdString().c_str());
+    // Überprüfen ob Skript gibt
+    if (!QFile::exists(notebookPath)) {
+        ROS_INFO("File not found: %s", notebookPath.toStdString().c_str());
         return;
     }
 
-    ROS_INFO("Starting script: %s", scriptPath.toStdString().c_str());
 
-    std::string command = "python3 " + scriptPath.toStdString();
-    int result = std::system(command.c_str());
-    if (result != 0) {
-        ROS_ERROR("Failed to execute script: %s", scriptPath.toStdString().c_str());
-        ROS_ERROR("your script raises an exception!!!");
+    // Schritt 1: Überprüfen, ob die Convert-Skript-Datei existiert
+    if (!QFile::exists(convertScriptPath)) {
+        ROS_INFO("File not found: %s", convertScriptPath.toStdString().c_str());
         return;
     }
 
+    ROS_INFO("Starting conversion script: %s", convertScriptPath.toStdString().c_str());
+
+    // Schritt 2: Ausführen der `convert`-Funktion auf dem übergebenen Jupyter-Notebook
+    std::string convertCommand = "python3 " + convertScriptPath.toStdString() + " " + notebookPath.toStdString();
+    int convertResult = std::system(convertCommand.c_str());
+    if (convertResult != 0) {
+        ROS_ERROR("Failed to execute conversion script: %s", convertScriptPath.toStdString().c_str());
+        ROS_ERROR("Conversion script raises an exception!!!");
+        return;
+    }
+
+    ROS_INFO("Conversion completed successfully.");
+
+    // Schritt 3: Überprüfen, ob die Converted-Skript-Datei existiert
+    if (!QFile::exists(convertedScriptPath)) {
+        ROS_INFO("File not found: %s", convertedScriptPath.toStdString().c_str());
+        return;
+    }
+
+    ROS_INFO("Starting converted script: %s", convertedScriptPath.toStdString().c_str());
+
+    // Schritt 4: Ausführen der Datei `converted.py`
+    std::string convertedCommand = "python3 " + convertedScriptPath.toStdString();
+    int convertedResult = std::system(convertedCommand.c_str());
+    if (convertedResult != 0) {
+        ROS_ERROR("Failed to execute converted script: %s", convertedScriptPath.toStdString().c_str());
+        ROS_ERROR("Converted script raises an exception!!!");
+        return;
+    }
+
+    ROS_INFO("Converted script executed successfully.");
+    
     checkResult();
 }
 
