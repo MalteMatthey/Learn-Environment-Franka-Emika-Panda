@@ -32,7 +32,7 @@ void Learn_Window::save(rviz::Config config) const {
 
 void Learn_Window::onExecuteButtonClicked() {
     QString packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
-    QString notebookPath = packagePath + "/tutorial/beginner/exercise_1/exercise_1_1.ipynb";
+    QString notebookPath = packagePath + "/tutorial/intermediate/pick_place.ipynb";
     QString convertScriptPath = packagePath + "/converter/convert.py";
     QString convertedScriptPath = packagePath + "/converter/converted.py";
 
