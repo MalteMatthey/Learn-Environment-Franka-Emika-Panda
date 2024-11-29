@@ -28,6 +28,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
+  converter/converted.py
   tasks/exercise_1/exercise_1_1.ipynb
   tasks/exercise_1/exercise_1_2.py
   tasks/exercise_1/exercise_1_3.py

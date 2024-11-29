@@ -1,6 +1,8 @@
+import os
 import sys
 from nbformat import read, NO_CONVERT
 from nbconvert import ScriptExporter
+
 
 def convert(notebook_path):
     """
@@ -10,7 +12,7 @@ def convert(notebook_path):
     :param output_path: Zielpfad für die konvertierte Python-Datei (Output).
     """
 
-    output_path = "/home/coder/lernplattform/catkin_ws/src/learn_environment/converter/converted.py"
+    output_path = os.path.join(os.path.dirname(__file__), "converted.py")
 
     exporter = ScriptExporter()
     
