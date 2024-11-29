@@ -29,14 +29,14 @@ include_directories(
 
 catkin_install_python(PROGRAMS
   converter/converted.py
-  tasks/exercise_1/exercise_1_1.ipynb
-  tasks/exercise_1/exercise_1_2.py
-  tasks/exercise_1/exercise_1_3.py
-  tasks/exercise_2/exercise_2_1.py
-  tasks/exercise_2/exercise_2_2.py
-  tasks/exercise_3/exercise_3_1.py
-  tasks/exercise_4/exercise_4_1.ipynb
-  tasks/exercise_5/exercise_5_1.ipynb
+  tutorial/beginner/exercise_1/exercise_1_1.ipynb
+  tutorial/beginner/exercise_1/exercise_1_2.py
+  tutorial/beginner/exercise_1/exercise_1_3.py
+  tutorial/beginner/exercise_2/exercise_2_1.py
+  tutorial/beginner/exercise_2/exercise_2_2.py
+  tutorial/beginner/exercise_3/exercise_3_1.py
+  tutorial/beginner/exercise_4/exercise_4_1.ipynb
+  tutorial/beginner/exercise_5/exercise_5_1.ipynb
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
