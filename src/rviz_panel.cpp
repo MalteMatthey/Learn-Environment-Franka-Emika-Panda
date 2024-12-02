@@ -80,8 +80,6 @@ void Learn_Window::onExecuteButtonClicked() {
     }
 
     ROS_INFO("Converted script executed successfully.");
-    
-    checkResult();
 }
 
 void Learn_Window::checkResult() {
