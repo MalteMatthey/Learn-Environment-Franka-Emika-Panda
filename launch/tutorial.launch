@@ -1,5 +1,4 @@
 <launch>
-  <!-- specify the planning pipeline -->
   <arg name="pipeline" default="ompl" />
 
   <!-- Panda specific options -->
@@ -17,11 +16,18 @@
     <arg name="controller" default="$(arg transmission)_joint_trajectory_controller" />
   </include>
 
-  <include file="$(find panda_moveit_config)/launch/demo.launch" pass_all_args="true">
-    <!-- robot description is loaded by gazebo.launch, to enable Gazebo features -->
+  <!-- Load panda demo with MTC's execution capability -->
+  <include file="$(find panda_moveit_config)/launch/demo.launch">
+    <arg name="use_rviz" value="false"/>
     <arg name="load_robot_description" value="false" />
-    <!-- MoveItSimpleControllerManager provides ros_control's JointTrajectory controllers
-         as well as GripperCommand actions -->
     <arg name="moveit_controller_manager" value="simple" />
+  </include>
+
+  <!-- Load panda demo with MTC's execution capability -->
+  <!-- <param name="move_group/capabilities" value="move_group/ExecuteTaskSolutionCapability" /> -->
+
+  <!-- Run rviz with prepared config -->
+  <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch">
+    <arg name="rviz_config" value="$(find learn_environment)/launch/config.rviz" />
   </include>
 </launch>
