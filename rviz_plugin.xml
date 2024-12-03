@@ -1,9 +1,7 @@
-<library path="lib/liblearn_panel">
-
-  <class type="Learn_Window" base_class_type="rviz::Panel">
+<library path="lib/liblearn_environment">
+  <class type="LearningPlattform" base_class_type="rviz::Panel">
     <description>
-      An learn environment panel.
+      A learning environment panel for the Franka Panda robot.
     </description>
   </class>
-
 </library>

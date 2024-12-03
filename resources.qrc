@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>resource/icons/menu.png</file>
+     <file>resource/icons/close.png</file>
+     <file>tasks/task_definitions.json</file>
+ </qresource>
+ </RCC>
