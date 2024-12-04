@@ -5,6 +5,7 @@
 #include <ui_learn_panel.h>
 #include <ros/ros.h>
 
+#include <QString>
 #include <QWidget>
 #include <QObject>
 #include <QProcess>
@@ -29,7 +30,8 @@ public:
 
 public Q_SLOTS:
     void onExecuteButtonClicked();            // Slot for button click
-    void checkResult();
+    void checkResult(QString evalScriptPath); // Check the result of the evaluation script
+    QString executePythonScript(QString path, QStringList args);
 
 private:
     Ui::Learn_Window *ui;                // Pointer to UI elements
