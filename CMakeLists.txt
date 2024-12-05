@@ -36,7 +36,9 @@ catkin_install_python(PROGRAMS
   tutorial/beginner/exercise_2/exercise_2_2.py
   tutorial/beginner/exercise_3/exercise_3_1.py
   tutorial/beginner/exercise_4/exercise_4_1.ipynb
+  tutorial/beginner/exercise_4/exercise_4_2.ipynb
   tutorial/beginner/exercise_5/exercise_5_1.ipynb
+  tutorial/beginner/exercise_6/exercise_6_1.ipynb
   tutorial/intermediate/pick_place.ipynb
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
