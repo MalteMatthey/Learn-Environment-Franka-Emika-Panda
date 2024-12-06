@@ -1,3 +1,5 @@
+// sidebar.cpp
+
 #include "learn_environment/sidebar.h"
 #include "learn_environment/custom_list_widget.h"
 #include "learn_environment/task.h"
@@ -6,7 +8,9 @@
 #include <QBrush>
 #include <QMap>
 #include <QStringList>
-#include <QObject> 
+#include <QObject>
+#include <QVBoxLayout>
+#include <QListWidgetItem>
 
 Sidebar::Sidebar(QWidget *parent)
     : QWidget(parent)
@@ -34,7 +38,7 @@ CustomListWidget* Sidebar::createList() {
     return taskListWidget;
 }
 
-void Sidebar::fillSidebarWithTasks(const std::vector<Task>& tasks) {
+void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
     // Create fonts for headers and normal text
     QFont boldFont;
     boldFont.setBold(true);
@@ -50,12 +54,12 @@ void Sidebar::fillSidebarWithTasks(const std::vector<Task>& tasks) {
     taskIndexToItemMap.clear();
 
     // Map to group tasks by difficulty
-    QMap<QString, QList<QPair<int, Task>>> tasksByDifficulty;
+    QMap<QString, QList<QPair<int, QSharedPointer<Task>>>> tasksByDifficulty;
 
     // Populate the tasksByDifficulty map
     for (int i = 0; i < static_cast<int>(tasks.size()); ++i) {
-        const Task &task = tasks[i];
-        QString difficultyKey = QString::fromStdString(task.difficulty).toLower();
+        QSharedPointer<Task> task = tasks[i];
+        QString difficultyKey = task->difficulty.toLower();
         if (difficultyKey != "beginner" && difficultyKey != "intermediate" && difficultyKey != "advanced") {
             difficultyKey = "unknown";
         }
@@ -85,12 +89,12 @@ void Sidebar::fillSidebarWithTasks(const std::vector<Task>& tasks) {
             listWidget->addItem(headerItem);
 
             // Add tasks under the header
-            const QList<QPair<int, Task>> &tasksInSection = tasksByDifficulty[difficultyKey];
-            for (const QPair<int, Task> &pair : tasksInSection) {
+            const QList<QPair<int, QSharedPointer<Task>>> &tasksInSection = tasksByDifficulty[difficultyKey];
+            for (const QPair<int, QSharedPointer<Task>> &pair : tasksInSection) {
                 int taskIndex = pair.first;
-                const Task &task = pair.second;
+                QSharedPointer<Task> task = pair.second;
 
-                QListWidgetItem *taskItem = new QListWidgetItem(QString::fromStdString(task.title));
+                QListWidgetItem *taskItem = new QListWidgetItem(task->title);
                 taskItem->setFont(normalFont);
                 taskItem->setSizeHint(marginSize);
 

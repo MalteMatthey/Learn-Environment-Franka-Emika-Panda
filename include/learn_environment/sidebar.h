@@ -5,8 +5,10 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QMap>
+#include <QListWidget>
 #include "custom_list_widget.h"
 #include "task.h"
+#include <QSharedPointer>
 
 class Sidebar : public QWidget
 {
@@ -14,7 +16,7 @@ class Sidebar : public QWidget
 
 public:
     explicit Sidebar(QWidget *parent = nullptr);
-    void fillSidebarWithTasks(const std::vector<Task>& tasks);
+    void fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks);
     void selectTask(int index);
 
 Q_SIGNALS:

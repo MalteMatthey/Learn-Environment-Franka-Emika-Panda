@@ -1,10 +1,58 @@
 #include "learn_environment/subtask_item.h"
+#include "learn_environment/task.h"
+#include "learn_environment/task_manager.h"
 #include <QLabel>
 #include <QFrame>
+#include <QDebug>
 
-SubtaskItem::SubtaskItem(QWidget *parent, const QString &headerText, const QString &linkText, const QString &bodyText)
-    : QWidget(parent) {
+SubtaskItem::SubtaskItem(QWidget *parent, const Subtask &subtask) 
+    : QWidget(parent),
+      headerText(subtask.title),
+      linkText(subtask.file),
+      bodyText(subtask.description),
+      subtask(subtask) {
+    
     setupItemUI(headerText, linkText, bodyText);
+}
+
+void SubtaskItem::updateUI()
+{
+    switch (subtask.status) {
+        case SubtaskStatus::Inactive:
+            playButton->setEnabled(true);
+            resetButton->setEnabled(false);
+            solutionButton->setEnabled(false);
+            playButton->setText("Start");
+            break;
+        case SubtaskStatus::Ready:
+            playButton->setEnabled(true);
+            resetButton->setEnabled(true);
+            solutionButton->setEnabled(true);
+            playButton->setText("Start");
+            break;
+        case SubtaskStatus::Queued:
+            playButton->setEnabled(false);
+            resetButton->setEnabled(false);
+            solutionButton->setEnabled(false);
+            playButton->setText("Queued");
+            break;
+        case SubtaskStatus::Running:
+            playButton->setEnabled(true);
+            resetButton->setEnabled(false);
+            solutionButton->setEnabled(false);
+            playButton->setText("Stop");
+            break;
+    }
+}
+
+void SubtaskItem::setTaskManager(TaskManager *manager)
+{
+    taskManager = manager;
+}
+
+void SubtaskItem::handleStartButtonClick()
+{
+    taskManager->startStopSubtask(subtask);
 }
 
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {
@@ -60,15 +108,15 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     buttonLayout->setContentsMargins(10, 0, 0, 0); 
 
     // Create buttons
-    QPushButton *playButton = new QPushButton("Execute");
-    playButton->setToolTip("Execute Script");
+    playButton = new QPushButton("Start");
+    playButton->setToolTip("Start Script");
     playButton->setCursor(Qt::PointingHandCursor);
 
-    QPushButton *resetButton = new QPushButton("Reset");
+    resetButton = new QPushButton("Reset");
     resetButton->setToolTip("Reset");
     resetButton->setCursor(Qt::PointingHandCursor);
 
-    QPushButton *solutionButton = new QPushButton("Solution");
+    solutionButton = new QPushButton("Solution");
     solutionButton->setToolTip("Show Solution");
     solutionButton->setCursor(Qt::PointingHandCursor);
 
@@ -81,20 +129,5 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     baseLayout->addLayout(buttonLayout);
 
     // Connect the execute button to the popup
-    connect(playButton, &QPushButton::clicked, this, &SubtaskItem::handleButtonClick);
-}
-
-void SubtaskItem::handleButtonClick() {
-    QWidget *popup = new QWidget();
-    popup->setWindowTitle("Popup");
-
-    QHBoxLayout *popupLayout = new QHBoxLayout(popup);
-    QLabel *popupLabel = new QLabel("Sample Text", popup);
-    QPushButton *sampleButton = new QPushButton("Sample Button", popup);
-
-    popupLayout->addWidget(popupLabel);
-    popupLayout->addWidget(sampleButton);
-
-    popup->setLayout(popupLayout);
-    popup->show();
+    connect(playButton, &QPushButton::clicked, this, &SubtaskItem::handleStartButtonClick);
 }

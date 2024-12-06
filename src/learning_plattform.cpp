@@ -1,15 +1,17 @@
-// learning_plattform.cpp
 #include "learn_environment/learning_plattform.h"
 #include <pluginlib/class_list_macros.hpp>
 #include "learn_environment/task_manager.h"
+#include "learn_environment/task_ui.h"
 #include <QMainWindow>
 #include <QSplitter>
+#include <QHBoxLayout>
 
 LearningPlattform::LearningPlattform(QWidget *parent)
-    : rviz::Panel(parent)
-    , ui(new Ui::LearningPlattform)
-    , process(new QProcess(this))
-    , taskManager(nullptr)
+    : rviz::Panel(parent),
+      ui(new Ui::LearningPlattform),
+      process(new QProcess(this)),
+      taskManager(nullptr),
+      taskUI(nullptr)
 {
     ui->setupUi(this);
     initializeUI();
@@ -18,21 +20,23 @@ LearningPlattform::LearningPlattform(QWidget *parent)
 LearningPlattform::~LearningPlattform()
 {
     delete ui;
-    delete taskManager;
     delete process;
 }
 
 void LearningPlattform::initializeUI() {
     sidebar = new Sidebar(this);
-    taskManager = new TaskManager(
-        *sidebar,
+    taskUI = new TaskUI(
         ui->subtaskListWidget,
         ui->mainTitleLabel,
         ui->difficultyLabel,
         ui->folderLabel,
         ui->nextButton,
-        ui->previousButton
+        ui->previousButton,
+        *sidebar,
+        this
     );
+    taskManager = new TaskManager(taskUI, ui->nextButton, ui->previousButton, this);
+    taskUI->setTaskManager(taskManager);
 
     setupSplitterAndLayout();
 

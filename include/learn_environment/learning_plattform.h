@@ -1,4 +1,3 @@
-// learning_plattform.h
 #ifndef LEARNING_PLATTFORM_H
 #define LEARNING_PLATTFORM_H
 
@@ -6,6 +5,7 @@
 #include <ui_learning_plattform.h>
 #include "sidebar.h"
 #include "task_manager.h"
+#include "task_ui.h"
 
 #include <QWidget>
 #include <QObject>
@@ -36,6 +36,7 @@ private:
     Ui::LearningPlattform *ui;
     Sidebar *sidebar;
     TaskManager *taskManager;
+    TaskUI *taskUI;
     QProcess *process;
 
     void initializeUI();

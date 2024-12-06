@@ -36,7 +36,7 @@ include_directories(
 )
 
 catkin_install_python(PROGRAMS
-  converter/converted.py
+  # converter/converted.py
   tutorial/beginner/exercise_1/exercise_1_1.ipynb
   tutorial/beginner/exercise_1/exercise_1_2.ipynb
   tutorial/beginner/exercise_1/exercise_1_3.ipynb
@@ -58,26 +58,33 @@ set(QT_LIBRARIES Qt5::Widgets)
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(${PROJECT_NAME}_HDRS
-  # include/${PROJECT_NAME}/rviz_panel.hpp
   include/${PROJECT_NAME}/learning_plattform.h
   include/${PROJECT_NAME}/subtask_item.h
   include/${PROJECT_NAME}/task_manager.h
   include/${PROJECT_NAME}/task.h
   include/${PROJECT_NAME}/custom_list_widget.h
   include/${PROJECT_NAME}/sidebar.h
+  include/${PROJECT_NAME}/task_parser.h
+  include/${PROJECT_NAME}/task_executor.h
+  include/${PROJECT_NAME}/script_worker.h
+  include/${PROJECT_NAME}/process_runner.h
+  include/${PROJECT_NAME}/task_ui.h
 )
 
 set(${PROJECT_NAME}_SRCS
-  # src/rviz_panel.cpp
   src/learning_plattform.cpp
   src/subtask_item.cpp
   src/task_manager.cpp
   src/custom_list_widget.cpp
   src/sidebar.cpp
+  src/task_parser.cpp
+  src/task_executor.cpp
+  src/script_worker.cpp
+  src/process_runner.cpp
+  src/task_ui.cpp
 )
 
 set(${PROJECT_NAME}_UIS
-  # resource/learn_panel.ui
   resource/learning_plattform.ui
 )
 

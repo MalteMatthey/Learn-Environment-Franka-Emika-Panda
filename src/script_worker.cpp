@@ -1,0 +1,147 @@
+#include "learn_environment/script_worker.h"
+#include "learn_environment/process_runner.h"
+#include <QDebug>
+#include <QFile>
+
+#include "learn_environment/script_worker.h"
+#include "learn_environment/process_runner.h"
+#include <QDebug>
+#include <QFile>
+
+const int CONVERT_JUPYTER_TIMEOUT_SECONDS = 30;
+
+ScriptWorker::ScriptWorker(const QString &notebookPath,
+                           const QString &convertScriptPath,
+                           const QString &convertedScriptPath,
+                           const QString &evalScriptPath,
+                           bool parallelizedEvaluation,
+                           int timeout)
+    : notebookPath(notebookPath),
+      convertScriptPath(convertScriptPath),
+      convertedScriptPath(convertedScriptPath),
+      evalScriptPath(evalScriptPath),
+      parallelizedEvaluationRequired(parallelizedEvaluation),
+      timeoutSeconds(timeout) {}
+
+void ScriptWorker::startExecution() {
+    if (!QFile::exists(notebookPath)) {
+        Q_EMIT failed("Jupyter Notebook file not found");
+        Q_EMIT finished();
+        return;
+    }
+    if (!QFile::exists(convertScriptPath)) {
+        Q_EMIT failed("Converter script not found");
+        Q_EMIT finished();
+        return;
+    }
+
+    convertAndExecuteNotebook();
+    
+    if (parallelizedEvaluationRequired) {
+        evaluateScriptInParallel();
+    }
+}
+
+void ScriptWorker::convertAndExecuteNotebook() {
+    ProcessRunner *runner = new ProcessRunner("python3",
+                                              {convertScriptPath, notebookPath},
+                                              CONVERT_JUPYTER_TIMEOUT_SECONDS,
+                                              this,
+                                              "jupyter converter");
+    processRunners.append(runner);
+
+    connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
+        if (exitCode != 0) {
+            Q_EMIT failed("Notebook conversion failed.");
+            Q_EMIT finished();
+        } else {
+            executeConvertedScript();
+        }
+    });
+
+    connect(runner, &ProcessRunner::timeout, this, [this]() {
+        Q_EMIT failed("Notebook conversion timed out.");
+        Q_EMIT finished();
+    });
+
+    runner->start();
+}
+
+void ScriptWorker::executeConvertedScript() {
+    ProcessRunner *runner = new ProcessRunner("python3",
+                                              {convertedScriptPath},
+                                              timeoutSeconds,
+                                              this,
+                                              "Robot Script");
+    processRunners.append(runner);
+
+    connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
+        if (exitCode != 0) {
+            Q_EMIT failed("Converted script execution failed.");
+            Q_EMIT finished();
+        } else if (!parallelizedEvaluationRequired) {
+            checkResult();
+        }
+    });
+
+    connect(runner, &ProcessRunner::timeout, this, [this]() {
+        Q_EMIT failed("Converted script execution timed out.");
+        Q_EMIT finished();
+    });
+
+    runner->start();
+}
+
+void ScriptWorker::evaluateScriptInParallel() {
+    qDebug() << "Evaluating in parallel to the script...";
+    ProcessRunner *runner = new ProcessRunner("python3",
+                                              {"-u", evalScriptPath},
+                                              timeoutSeconds,
+                                              this,
+                                              "Evaluation");
+    processRunners.append(runner);
+
+    connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
+        if (exitCode != 0) {
+            Q_EMIT failed("Evaluation script failed.");
+        }
+        Q_EMIT finished();
+    });
+
+    connect(runner, &ProcessRunner::timeout, this, [this]() {
+        Q_EMIT failed("Evaluation script timed out.");
+        Q_EMIT finished();
+    });
+
+    runner->start();
+}
+
+void ScriptWorker::checkResult() {
+    qDebug() << "Checking result...";
+    ProcessRunner *runner = new ProcessRunner("python3",
+                                              {evalScriptPath},
+                                              timeoutSeconds,
+                                              this,
+                                              "Evaluation");
+    processRunners.append(runner);
+
+    connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
+        if (exitCode != 0) {
+            Q_EMIT failed("Result check failed.");
+        }
+        Q_EMIT finished();
+    });
+
+    connect(runner, &ProcessRunner::timeout, this, [this]() {
+        Q_EMIT failed("Result checking timed out.");
+        Q_EMIT finished();
+    });
+
+    runner->start();
+}
+
+void ScriptWorker::forceStop() {
+    for (ProcessRunner *runner : qAsConst(processRunners)) {
+        runner->forceStop();
+    }
+}
