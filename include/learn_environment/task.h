@@ -6,6 +6,9 @@
 #include <QSharedPointer>
 #include <QWeakPointer>
 
+// Forward declaration of Task struct
+struct Task;
+
 /**
  * @enum SubtaskStatus
  * @brief Represents the status of a subtask.
