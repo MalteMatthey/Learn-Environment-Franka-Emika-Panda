@@ -23,9 +23,6 @@
     <arg name="moveit_controller_manager" value="simple" />
   </include>
 
-  <!-- Load panda demo with MTC's execution capability -->
-  <!-- <param name="move_group/capabilities" value="move_group/ExecuteTaskSolutionCapability" /> -->
-
   <!-- Run rviz with prepared config -->
   <include file="$(find panda_moveit_config)/launch/moveit_rviz.launch">
     <arg name="rviz_config" value="$(find learn_environment)/launch/config.rviz" />

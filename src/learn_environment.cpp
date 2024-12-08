@@ -1,14 +1,15 @@
-#include "learn_environment/learning_plattform.h"
+#include "learn_environment/learn_environment.h"
 #include <pluginlib/class_list_macros.hpp>
 #include "learn_environment/task_manager.h"
 #include "learn_environment/task_ui.h"
+
 #include <QMainWindow>
 #include <QSplitter>
 #include <QHBoxLayout>
 
-LearningPlattform::LearningPlattform(QWidget *parent)
+LearnEnvironment::LearnEnvironment(QWidget *parent)
     : rviz::Panel(parent),
-      ui(new Ui::LearningPlattform),
+      ui(new Ui::LearnEnvironment),
       process(new QProcess(this)),
       taskManager(nullptr),
       taskUI(nullptr)
@@ -17,13 +18,13 @@ LearningPlattform::LearningPlattform(QWidget *parent)
     initializeUI();
 }
 
-LearningPlattform::~LearningPlattform()
+LearnEnvironment::~LearnEnvironment()
 {
     delete ui;
     delete process;
 }
 
-void LearningPlattform::initializeUI() {
+void LearnEnvironment::initializeUI() {
     sidebar = new Sidebar(this);
     taskUI = new TaskUI(
         ui->subtaskListWidget,
@@ -36,16 +37,15 @@ void LearningPlattform::initializeUI() {
         this
     );
     taskManager = new TaskManager(taskUI, ui->nextButton, ui->previousButton, this);
-    taskUI->setTaskManager(taskManager);
 
     setupSplitterAndLayout();
 
     sidebar->setVisible(false);
 
-    connect(ui->menuButton, &QPushButton::clicked, this, &LearningPlattform::toggleSidebarVisibility);
+    connect(ui->menuButton, &QPushButton::clicked, this, &LearnEnvironment::toggleSidebarVisibility);
 }
 
-void LearningPlattform::setupSplitterAndLayout() {
+void LearnEnvironment::setupSplitterAndLayout() {
     QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
 
     splitter->addWidget(sidebar);
@@ -61,7 +61,7 @@ void LearningPlattform::setupSplitterAndLayout() {
     setLayout(mainLayout);
 }
 
-void LearningPlattform::toggleSidebarVisibility() {
+void LearnEnvironment::toggleSidebarVisibility() {
     bool isVisible = sidebar->isVisible();
     sidebar->setVisible(!isVisible);
 
@@ -72,12 +72,12 @@ void LearningPlattform::toggleSidebarVisibility() {
     }
 }
 
-void LearningPlattform::load(const rviz::Config &config) {
+void LearnEnvironment::load(const rviz::Config &config) {
     // Implement loading of user-specific settings
 }
 
-void LearningPlattform::save(rviz::Config config) const {
+void LearnEnvironment::save(rviz::Config config) const {
     // Implement saving of user-specific settings
 }
 
-PLUGINLIB_EXPORT_CLASS(LearningPlattform, rviz::Panel)
+PLUGINLIB_EXPORT_CLASS(LearnEnvironment, rviz::Panel)

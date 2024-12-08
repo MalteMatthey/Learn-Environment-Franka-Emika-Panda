@@ -1,5 +1,6 @@
 #include "learn_environment/task_ui.h"
 #include "learn_environment/subtask_item.h"
+
 #include <QRegExp>
 #include <QDebug>
 
@@ -93,6 +94,7 @@ void TaskUI::setFolderLabelHtml(const QString &folder)
     folderLabel->setText(folderHtml);
 }
 
+// TASK_UI.CPP
 void TaskUI::setSubtaskItems(int currentTaskIndex)
 {
     if (tasks.isEmpty() || currentTaskIndex < 0 || currentTaskIndex >= tasks.size()) {
@@ -104,20 +106,23 @@ void TaskUI::setSubtaskItems(int currentTaskIndex)
     subtaskListWidget->clear();
     int subtaskCount = currentTask->subtasks.size();
     for (int i = 0; i < subtaskCount; ++i) {
-        const Subtask& subtask = currentTask->subtasks[i];
-        
-        // Create a new SubtaskItem widget
+        Subtask* subtask = &currentTask->subtasks[i]; // Zeiger erhalten
+
+        // Erstelle ein neues SubtaskItem-Widget mit Zeiger
         SubtaskItem *itemWidget = new SubtaskItem(subtaskListWidget, subtask);
-        
-        // Create a QListWidgetItem and set its size hint
+
+        // Setze den TaskManager, falls erforderlich
+        itemWidget->setTaskManager(taskManager);
+
+        // Erstelle ein QListWidgetItem und setze die Größenvorgabe
         QListWidgetItem *listItem = new QListWidgetItem(subtaskListWidget);
         listItem->setSizeHint(itemWidget->sizeHint());
-        
-        // Add the SubtaskItem widget to the QListWidget
+
+        // Füge das SubtaskItem-Widget zur QListWidget hinzu
         subtaskListWidget->addItem(listItem);
         subtaskListWidget->setItemWidget(listItem, itemWidget);
 
-        // Add a line between widgets, except after the last item
+        // Füge eine Linie zwischen den Widgets hinzu, außer nach dem letzten Element
         if (i < subtaskCount - 1) {
             addLineBetweenWidgets();
         }

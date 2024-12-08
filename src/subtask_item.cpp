@@ -1,46 +1,55 @@
+// SUBTASK_ITEM.CPP
 #include "learn_environment/subtask_item.h"
-#include "learn_environment/task.h"
 #include "learn_environment/task_manager.h"
+
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
-#include <QDebug>
 
-SubtaskItem::SubtaskItem(QWidget *parent, const Subtask &subtask) 
+SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask) 
     : QWidget(parent),
-      headerText(subtask.title),
-      linkText(subtask.file),
-      bodyText(subtask.description),
-      subtask(subtask) {
+      headerText(subtask->title),
+      linkText(subtask->file),
+      bodyText(subtask->description),
+      subtask(subtask),
+      taskManager(nullptr) {
     
     setupItemUI(headerText, linkText, bodyText);
+    updateUI();
 }
 
 void SubtaskItem::updateUI()
 {
-    switch (subtask.status) {
+    switch (subtask->status) {
         case SubtaskStatus::Inactive:
-            playButton->setEnabled(true);
+            playButton->setEnabled(false);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
             playButton->setText("Start");
+            playButton->setToolTip("Start Script");
             break;
         case SubtaskStatus::Ready:
             playButton->setEnabled(true);
             resetButton->setEnabled(true);
             solutionButton->setEnabled(true);
             playButton->setText("Start");
+            playButton->setToolTip("Start Script");
             break;
         case SubtaskStatus::Queued:
             playButton->setEnabled(false);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
             playButton->setText("Queued");
+            playButton->setToolTip("Queued Execution");
             break;
         case SubtaskStatus::Running:
             playButton->setEnabled(true);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
             playButton->setText("Stop");
+            playButton->setToolTip("Stop Script");
             break;
     }
 }
@@ -52,7 +61,9 @@ void SubtaskItem::setTaskManager(TaskManager *manager)
 
 void SubtaskItem::handleStartButtonClick()
 {
-    taskManager->startStopSubtask(subtask);
+    if (taskManager && subtask) {
+        taskManager->startStopSubtask(*subtask);
+    }
 }
 
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {

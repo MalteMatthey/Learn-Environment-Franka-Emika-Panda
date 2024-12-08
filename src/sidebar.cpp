@@ -3,6 +3,7 @@
 #include "learn_environment/sidebar.h"
 #include "learn_environment/custom_list_widget.h"
 #include "learn_environment/task.h"
+
 #include <QFont>
 #include <QDebug>
 #include <QBrush>

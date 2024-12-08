@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LearningPlattform</class>
- <widget class="QWidget" name="LearningPlattform">
+ <class>LearnEnvironment</class>
+ <widget class="QWidget" name="LearnEnvironment">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>LearningPlattform</string>
+   <string>LearnEnvironment</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">

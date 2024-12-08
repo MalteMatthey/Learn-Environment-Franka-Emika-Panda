@@ -1,4 +1,5 @@
 #include "learn_environment/task_parser.h"
+
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
@@ -79,8 +80,8 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             subtask.title = QString::fromStdString(subtaskJson.at("title").get<std::string>());
             subtask.description = QString::fromStdString(subtaskJson.at("description").get<std::string>());
             subtask.file = QString::fromStdString(subtaskJson.at("file").get<std::string>());
-            subtask. solutionFilePath = QString::fromStdString(subtaskJson.at(" solution_file_path").get<std::string>());
-            subtask. evaluationFilePath = QString::fromStdString(subtaskJson.at("evaluation_file_path ").get<std::string>());
+            subtask.solutionFilePath = QString::fromStdString(subtaskJson.at("solution_file_path").get<std::string>());
+            subtask.evaluationFilePath = QString::fromStdString(subtaskJson.at("evaluation_file_path").get<std::string>());
             subtask.difficulty = QString::fromStdString(subtaskJson.at("difficulty").get<std::string>());
 
             // Optional fields
@@ -95,6 +96,9 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             subtask.parentTask = parentTask;
         } catch (const json::type_error& e) {
             qCritical() << "Type error in subtask:" << e.what();
+            continue;
+        } catch (const json::out_of_range& e) {
+            qCritical() << "Missing key in subtask:" << e.what();
             continue;
         }
 

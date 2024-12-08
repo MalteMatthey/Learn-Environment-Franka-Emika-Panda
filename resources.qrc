@@ -2,6 +2,6 @@
  <qresource>
      <file>resource/icons/menu.png</file>
      <file>resource/icons/close.png</file>
-     <file>tasks/task_definitions.json</file>
+     <file>task_pool/task_definitions.json</file>
  </qresource>
  </RCC>

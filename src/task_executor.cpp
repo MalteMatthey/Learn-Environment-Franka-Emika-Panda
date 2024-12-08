@@ -1,5 +1,8 @@
+// TASK_EXECUTOR.CPP
+
 #include "learn_environment/task_executor.h"
 #include "learn_environment/script_worker.h"
+
 #include <QThread>
 #include <QFile>
 #include <ros/package.h>
@@ -9,6 +12,13 @@ TaskExecutor::TaskExecutor(QObject *parent) : QObject(parent) {}
 
 void TaskExecutor::executeTask(const Subtask &subtask) {
     Q_EMIT taskExecutionStarted();
+
+    // Attempt to lock the QWeakPointer to obtain a QSharedPointer
+    QSharedPointer<Task> parentTaskPtr = subtask.parentTask.lock();
+    if (!parentTaskPtr) {
+        Q_EMIT taskExecutionFailed("Parent task is no longer available.");
+        return;
+    }
 
     QString packagePath;
     try {
@@ -20,7 +30,7 @@ void TaskExecutor::executeTask(const Subtask &subtask) {
 
     QString notebookPath, convertScriptPath, convertedScriptPath, evalScriptPath;
 
-    if (!constructPath(packagePath, subtask.parentTask->folder + subtask.file, notebookPath, "constructing the notebook path") ||
+    if (!constructPath(packagePath, parentTaskPtr->folder + subtask.file, notebookPath, "constructing the notebook path") ||
         !constructPath(packagePath, "/converter/convert.py", convertScriptPath, "constructing the convert script path") ||
         !constructPath(packagePath, "/converter/converted.py", convertedScriptPath, "constructing the converted script path", false) ||
         !constructPath(packagePath, subtask.evaluationFilePath, evalScriptPath, "constructing the evaluation script path")) {
@@ -39,7 +49,7 @@ void TaskExecutor::executeTask(const Subtask &subtask) {
     connect(worker, &ScriptWorker::finished, worker, &ScriptWorker::deleteLater);
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
-    // Forward signals from the worker to the subtask item
+    // Forward signals from the worker to handle execution status
     connect(worker, &ScriptWorker::finished, this, [this, worker]() {
         scriptWorkers.removeOne(worker);
         Q_EMIT taskExecutionFinished();

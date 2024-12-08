@@ -58,7 +58,7 @@ set(QT_LIBRARIES Qt5::Widgets)
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(${PROJECT_NAME}_HDRS
-  include/${PROJECT_NAME}/learning_plattform.h
+  include/${PROJECT_NAME}/learn_environment.h
   include/${PROJECT_NAME}/subtask_item.h
   include/${PROJECT_NAME}/task_manager.h
   include/${PROJECT_NAME}/task.h
@@ -72,7 +72,7 @@ set(${PROJECT_NAME}_HDRS
 )
 
 set(${PROJECT_NAME}_SRCS
-  src/learning_plattform.cpp
+  src/learn_environment.cpp
   src/subtask_item.cpp
   src/task_manager.cpp
   src/custom_list_widget.cpp
@@ -85,7 +85,7 @@ set(${PROJECT_NAME}_SRCS
 )
 
 set(${PROJECT_NAME}_UIS
-  resource/learning_plattform.ui
+  resource/learn_environment.ui
 )
 
 set(${PROJECT_NAME}_QRC

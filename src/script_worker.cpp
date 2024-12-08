@@ -1,10 +1,6 @@
 #include "learn_environment/script_worker.h"
 #include "learn_environment/process_runner.h"
-#include <QDebug>
-#include <QFile>
 
-#include "learn_environment/script_worker.h"
-#include "learn_environment/process_runner.h"
 #include <QDebug>
 #include <QFile>
 
@@ -21,7 +17,9 @@ ScriptWorker::ScriptWorker(const QString &notebookPath,
       convertedScriptPath(convertedScriptPath),
       evalScriptPath(evalScriptPath),
       parallelizedEvaluationRequired(parallelizedEvaluation),
-      timeoutSeconds(timeout) {}
+      timeoutSeconds(timeout),
+      mainScriptFinished(false),
+      evalScriptFinished(false) {}
 
 void ScriptWorker::startExecution() {
     if (!QFile::exists(notebookPath)) {
@@ -36,7 +34,7 @@ void ScriptWorker::startExecution() {
     }
 
     convertAndExecuteNotebook();
-    
+   
     if (parallelizedEvaluationRequired) {
         evaluateScriptInParallel();
     }
@@ -68,6 +66,7 @@ void ScriptWorker::convertAndExecuteNotebook() {
 }
 
 void ScriptWorker::executeConvertedScript() {
+    qDebug() << "Executing converted Notebook...";
     ProcessRunner *runner = new ProcessRunner("python3",
                                               {convertedScriptPath},
                                               timeoutSeconds,
@@ -79,8 +78,12 @@ void ScriptWorker::executeConvertedScript() {
         if (exitCode != 0) {
             Q_EMIT failed("Converted script execution failed.");
             Q_EMIT finished();
-        } else if (!parallelizedEvaluationRequired) {
-            checkResult();
+        } else {
+            mainScriptFinished = true;
+            if (!parallelizedEvaluationRequired) {
+                checkResult();
+            }
+            checkAndEmitFinished();
         }
     });
 
@@ -105,12 +108,14 @@ void ScriptWorker::evaluateScriptInParallel() {
         if (exitCode != 0) {
             Q_EMIT failed("Evaluation script failed.");
         }
-        Q_EMIT finished();
+        evalScriptFinished = true;
+        checkAndEmitFinished();
     });
 
     connect(runner, &ProcessRunner::timeout, this, [this]() {
         Q_EMIT failed("Evaluation script timed out.");
-        Q_EMIT finished();
+        evalScriptFinished = true;
+        checkAndEmitFinished();
     });
 
     runner->start();
@@ -138,6 +143,12 @@ void ScriptWorker::checkResult() {
     });
 
     runner->start();
+}
+
+void ScriptWorker::checkAndEmitFinished() {
+    if (mainScriptFinished && evalScriptFinished) {
+        Q_EMIT finished();
+    }
 }
 
 void ScriptWorker::forceStop() {

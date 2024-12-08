@@ -2,6 +2,7 @@
 #include "learn_environment/task_ui.h"
 #include "learn_environment/task_parser.h"
 #include "learn_environment/task_executor.h"
+
 #include <QDebug>
 
 TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QObject *parent)
@@ -13,7 +14,7 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
       currentTaskIndex(0)
 {
     TaskParser parser;
-    tasks = parser.loadTasks(":/tasks/task_definitions.json");
+    tasks = parser.loadTasks(":/task_pool/task_definitions.json");
 
     if (tasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskManager initialization.";
@@ -25,6 +26,7 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
     connect(taskExecutor, &TaskExecutor::taskExecutionFinished, this, &TaskManager::onTaskExecutionFinished);
     connect(taskExecutor, &TaskExecutor::taskExecutionFailed, this, &TaskManager::onTaskExecutionFailed);
 
+    taskUI->setTaskManager(this);
     taskUI->initializeUI(tasks);
 
     selectTask(currentTaskIndex);
@@ -38,54 +40,40 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
 
 void TaskManager::startStopSubtask(Subtask &subtask)
 {
-    qDebug() << "Start/Stop subtask in TaskManager requested:" << subtask.title;
-    if (subtask.status == SubtaskStatus::Inactive) {
-        qCritical() << "Inactive subtask cannot be started";
-        return;
-    }
-
-    // debug current status in switch case statement
-    switch (subtask.status) {
-        case SubtaskStatus::Ready:
-            qDebug() << "Subtask is ready";
-            break;
-        case SubtaskStatus::Running:
-            qDebug() << "Subtask is running";
-            break;
-        case SubtaskStatus::Queued:
-            qDebug() << "Subtask is queued";
-            break;
-        case SubtaskStatus::Inactive:
-            qDebug() << "Subtask is inactive";
-            break;
-    }
-
-
-    if (subtask.status == SubtaskStatus::Ready) {
+    if (auto parentTask = subtask.parentTask.lock()) {
         if (currentTaskIndex < 0 || currentTaskIndex >= tasks.size()) {
             qCritical() << "Invalid currentTaskIndex in startStopSubtask:" << currentTaskIndex;
             return;
         }
 
         QSharedPointer<Task> currentTask = tasks[currentTaskIndex];
-        if (subtask.parentTask != currentTask) {
+        if (parentTask != currentTask) {
             qCritical() << "Subtask to be executed does not belong to the current task";
             return;
         }
 
-        taskExecutor->executeTask(subtask);
-        subtask.status = SubtaskStatus::Running;
-        taskUI->updateSubtaskItemsUI();
-    } else if (subtask.status == SubtaskStatus::Running) {
-        taskExecutor->forceStop();
-        subtask.status = SubtaskStatus::Ready;
-        taskUI->updateSubtaskItemsUI();
-    }
+        if (subtask.status == SubtaskStatus::Inactive) {
+            qCritical() << "Inactive subtask cannot be started";
+            return;
+        }
 
+        if (subtask.status == SubtaskStatus::Ready) {
+            startSubtask(subtask, currentTask);
+        } else if (subtask.status == SubtaskStatus::Running) {
+            forceStop();
+        }
+    } else {
+        qCritical() << "Parent task is no longer available.";
+    }
 }
 
 void TaskManager::selectTask(int index)
 {
+    // check if task is currently getting executed
+    if (!queued_and_running_subtasks.isEmpty()) {
+        forceStop();
+    }
+
     if (index >= 0 && index < static_cast<int>(tasks.size())) {
         currentTaskIndex = index;
         taskUI->setTaskUI(currentTaskIndex);
@@ -97,6 +85,8 @@ void TaskManager::selectTask(int index)
                 subtask.status = (i == index) ? SubtaskStatus::Ready : SubtaskStatus::Inactive;
             }
         }
+
+        taskUI->updateSubtaskItemsUI();
     } else {
         qWarning() << "Invalid task index selected:" << index;
     }
@@ -116,6 +106,53 @@ void TaskManager::onPreviousButtonClicked()
     }
 }
 
+void TaskManager::startSubtask(Subtask &started_subtask, QSharedPointer<Task> &task)
+{
+    // Invalidate all subtasks
+    for (auto &subtask : task->subtasks) {
+        subtask.status = SubtaskStatus::Inactive;
+    }
+
+    // Add started subtask and previous subtasks if required to execution queue
+    if (task->previousSubtasksRequired) {
+        for (auto &subtask : task->subtasks) {
+            queued_and_running_subtasks.append(&subtask); // Store pointer
+            subtask.status = SubtaskStatus::Queued;
+            if (&subtask == &started_subtask) {
+                break;
+            }
+        }
+    } else {
+        queued_and_running_subtasks.append(&started_subtask); // Store pointer
+        started_subtask.status = SubtaskStatus::Queued;
+    }
+
+    // Execute first subtask
+    if (!queued_and_running_subtasks.isEmpty()) {
+        Subtask *first_subtask = queued_and_running_subtasks.first();
+        first_subtask->status = SubtaskStatus::Running;
+        taskExecutor->executeTask(*first_subtask);
+    } else {
+        qCritical() << "No subtask queued.";
+    }
+     
+    taskUI->updateSubtaskItemsUI();
+}
+
+void TaskManager::forceStop()
+{
+    if (!queued_and_running_subtasks.isEmpty()) {
+        taskExecutor->forceStop();
+        queued_and_running_subtasks.clear();
+        for (auto& task : tasks) {
+            for (Subtask& sub : task->subtasks) {
+                sub.status = SubtaskStatus::Ready;
+            }
+        }
+        taskUI->updateSubtaskItemsUI();
+    }
+}
+
 void TaskManager::onTaskExecutionStarted()
 {
     qDebug() << "Task execution started";
@@ -123,10 +160,53 @@ void TaskManager::onTaskExecutionStarted()
 
 void TaskManager::onTaskExecutionFinished()
 {
-    qDebug() << "Task execution finished";
+    if (queued_and_running_subtasks.isEmpty()) { 
+        return;
+    }
+
+    Subtask *first_subtask = queued_and_running_subtasks.first();
+    first_subtask->status = SubtaskStatus::Inactive;
+
+    if (auto parentTask = first_subtask->parentTask.lock()) {
+
+        queued_and_running_subtasks.removeFirst();
+        if (queued_and_running_subtasks.isEmpty()) { 
+            qDebug() << "Task execution finished: " << first_subtask->title;
+
+            for (auto &subtask : parentTask->subtasks) {
+                subtask.status = SubtaskStatus::Ready;
+            }
+            taskUI->updateSubtaskItemsUI();
+        } else {
+            qDebug() << "Task execution finished: " << first_subtask->title << " - Initiating next subtask.";
+                
+            Subtask *next_subtask = queued_and_running_subtasks.first();
+            next_subtask->status = SubtaskStatus::Running;
+            taskExecutor->executeTask(*next_subtask);
+            taskUI->updateSubtaskItemsUI();
+        }
+    } else {
+        qCritical() << "Parent task is no longer available.";
+    }
 }
 
 void TaskManager::onTaskExecutionFailed(const QString &error)
 {
     qDebug() << "Task execution failed:" << error;
+
+    if (queued_and_running_subtasks.isEmpty()) { 
+        return;
+    }
+
+    Subtask *first_subtask = queued_and_running_subtasks.first();
+
+    if (auto parentTask = first_subtask->parentTask.lock()) {
+        queued_and_running_subtasks.clear();
+        for (auto &subtask : parentTask->subtasks) {
+            subtask.status = SubtaskStatus::Ready;
+        }
+        taskUI->updateSubtaskItemsUI();
+    } else {
+        qCritical() << "Parent task is no longer available.";
+    }
 }
