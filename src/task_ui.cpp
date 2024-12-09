@@ -4,6 +4,24 @@
 #include <QRegExp>
 #include <QDebug>
 
+namespace {
+    const char* BEGINNER = "beginner";
+    const char* INTERMEDIATE = "intermediate";
+    const char* ADVANCED = "advanced";
+    const char* DEFAULT_COLOR = "#1d0e53";
+    const char* BEGINNER_COLOR = "#8fb935";
+    const char* INTERMEDIATE_COLOR = "#e09c3b";
+    const char* ADVANCED_COLOR = "#e64747";
+    const char* FOLDER_HTML_TEMPLATE = R"(
+        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+        <body style=" font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;">
+        <p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; 
+            -qt-block-indent:0; text-indent:0px; line-height:60%;">Folder for this task:</p>
+        <p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; 
+            -qt-block-indent:0; text-indent:0px;"><span style="font-family:'monospace'; 
+            color:'#444444';">)";
+}
+
 TaskUI::TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
                QLabel *difficultyLabel, QLabel *folderLabel,
                QPushButton *nextButton, QPushButton *previousButton,
@@ -63,14 +81,14 @@ void TaskUI::setDifficultyLabelColor(const QString &difficulty)
     QString styleSheet = difficultyLabel->styleSheet();
     QString newColor;
 
-    if (difficulty == "beginner") {
-        newColor = "#8fb935";
-    } else if (difficulty == "intermediate") {
-        newColor = "#e09c3b";
-    } else if (difficulty == "advanced") {
-        newColor = "#e64747";
+    if (difficulty == BEGINNER) {
+        newColor = BEGINNER_COLOR;
+    } else if (difficulty == INTERMEDIATE) {
+        newColor = INTERMEDIATE_COLOR;
+    } else if (difficulty == ADVANCED) {
+        newColor = ADVANCED_COLOR;
     } else {
-        newColor = "#1d0e53"; // Default color
+        newColor = DEFAULT_COLOR;
     }
 
     QRegExp colorRegex("background-color:\\s*[^;]+;");
@@ -80,21 +98,10 @@ void TaskUI::setDifficultyLabelColor(const QString &difficulty)
 
 void TaskUI::setFolderLabelHtml(const QString &folder)
 {
-    QString folderHtml = R"(
-        <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-        <body style=" font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;">
-        <p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; 
-            -qt-block-indent:0; text-indent:0px; line-height:60%;">Folder for this task:</p>
-        <p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; 
-            -qt-block-indent:0; text-indent:0px;"><span style="font-family:'monospace'; 
-            color:'#444444';">)"
-        + folder +
-        R"(</span></p></body>
-    )";
+    QString folderHtml = QString(FOLDER_HTML_TEMPLATE) + folder + R"(</span></p></body>)";
     folderLabel->setText(folderHtml);
 }
 
-// TASK_UI.CPP
 void TaskUI::setSubtaskItems(int currentTaskIndex)
 {
     if (tasks.isEmpty() || currentTaskIndex < 0 || currentTaskIndex >= tasks.size()) {
@@ -106,23 +113,23 @@ void TaskUI::setSubtaskItems(int currentTaskIndex)
     subtaskListWidget->clear();
     int subtaskCount = currentTask->subtasks.size();
     for (int i = 0; i < subtaskCount; ++i) {
-        Subtask* subtask = &currentTask->subtasks[i]; // Zeiger erhalten
+        Subtask* subtask = &currentTask->subtasks[i]; // Get pointer
 
-        // Erstelle ein neues SubtaskItem-Widget mit Zeiger
+        // Create a new SubtaskItem widget with pointer
         SubtaskItem *itemWidget = new SubtaskItem(subtaskListWidget, subtask);
 
-        // Setze den TaskManager, falls erforderlich
+        // Set the TaskManager if required
         itemWidget->setTaskManager(taskManager);
 
-        // Erstelle ein QListWidgetItem und setze die Größenvorgabe
+        // Create a QListWidgetItem and set the size hint
         QListWidgetItem *listItem = new QListWidgetItem(subtaskListWidget);
         listItem->setSizeHint(itemWidget->sizeHint());
 
-        // Füge das SubtaskItem-Widget zur QListWidget hinzu
+        // Add the SubtaskItem widget to the QListWidget
         subtaskListWidget->addItem(listItem);
         subtaskListWidget->setItemWidget(listItem, itemWidget);
 
-        // Füge eine Linie zwischen den Widgets hinzu, außer nach dem letzten Element
+        // Add a line between widgets, except after the last element
         if (i < subtaskCount - 1) {
             addLineBetweenWidgets();
         }

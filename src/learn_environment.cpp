@@ -7,6 +7,11 @@
 #include <QSplitter>
 #include <QHBoxLayout>
 
+namespace {
+    const char* CLOSE_ICON_PATH = ":/resource/icons/close.png";
+    const char* MENU_ICON_PATH = ":/resource/icons/menu.png";
+}
+
 LearnEnvironment::LearnEnvironment(QWidget *parent)
     : rviz::Panel(parent),
       ui(new Ui::LearnEnvironment),
@@ -66,9 +71,9 @@ void LearnEnvironment::toggleSidebarVisibility() {
     sidebar->setVisible(!isVisible);
 
     if (sidebar->isVisible()) {
-        ui->menuButton->setIcon(QIcon(":/resource/icons/close.png"));
+        ui->menuButton->setIcon(QIcon(CLOSE_ICON_PATH));
     } else {
-        ui->menuButton->setIcon(QIcon(":/resource/icons/menu.png"));
+        ui->menuButton->setIcon(QIcon(MENU_ICON_PATH));
     }
 }
 

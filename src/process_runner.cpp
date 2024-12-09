@@ -3,6 +3,10 @@
 #include <QDebug>
 #include <QRegularExpression>
 
+namespace {
+    const char* ANSI_REGEX_PATTERN = "\\x1B\\[[0-9;]*m";
+}
+
 ProcessRunner::ProcessRunner(const QString &program,
                              const QStringList &arguments,
                              int timeoutSeconds,
@@ -44,7 +48,7 @@ void ProcessRunner::onReadyReadStandardOutput() {
     QString output = process->readAllStandardOutput();
 
     // Strip ANSI escape codes
-    QRegularExpression ansiRegex("\\x1B\\[[0-9;]*m");
+    QRegularExpression ansiRegex(ANSI_REGEX_PATTERN);
     QString cleanOutput = output.remove(ansiRegex);
 
     Q_EMIT outputReady(cleanOutput);
@@ -56,7 +60,7 @@ void ProcessRunner::onReadyReadStandardError() {
     QString error = process->readAllStandardError();
 
     // Strip ANSI escape codes
-    QRegularExpression ansiRegex("\\x1B\\[[0-9;]*m");
+    QRegularExpression ansiRegex(ANSI_REGEX_PATTERN);
     QString cleanError = error.remove(ansiRegex);
 
     Q_EMIT errorReady(cleanError);

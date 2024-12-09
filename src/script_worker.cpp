@@ -4,7 +4,9 @@
 #include <QDebug>
 #include <QFile>
 
-const int CONVERT_JUPYTER_TIMEOUT_SECONDS = 30;
+namespace {
+    const int CONVERT_JUPYTER_TIMEOUT_SECONDS = 30;
+}
 
 ScriptWorker::ScriptWorker(const QString &notebookPath,
                            const QString &convertScriptPath,

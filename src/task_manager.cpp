@@ -5,6 +5,10 @@
 
 #include <QDebug>
 
+namespace {
+    const char* TASK_DEFINITIONS_PATH = ":/task_pool/task_definitions.json";
+}
+
 TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QObject *parent)
     : QObject(parent),
       taskUI(taskUI),
@@ -14,7 +18,7 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
       currentTaskIndex(0)
 {
     TaskParser parser;
-    tasks = parser.loadTasks(":/task_pool/task_definitions.json");
+    tasks = parser.loadTasks(TASK_DEFINITIONS_PATH);
 
     if (tasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskManager initialization.";

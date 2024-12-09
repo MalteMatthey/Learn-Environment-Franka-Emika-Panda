@@ -1,5 +1,3 @@
-// sidebar.cpp
-
 #include "learn_environment/sidebar.h"
 #include "learn_environment/custom_list_widget.h"
 #include "learn_environment/task.h"
@@ -13,11 +11,32 @@
 #include <QVBoxLayout>
 #include <QListWidgetItem>
 
+namespace {
+    const int SIDEBAR_MINIMUM_WIDTH = 100;
+    const int SIDEBAR_TITLE_FONT_SIZE = 20;
+    const char* SIDEBAR_TITLE_LABEL = "TASKS";
+
+    const QSize SIDEBAR_ITEM_MARGIN_SIZE(0, 30);
+    const int SIDEBAR_ITEM_FONT_SIZE = 12;
+
+    const char* BEGINNER_JSON = "beginner";
+    const char* INTERMEDIATE_JSON = "intermediate";
+    const char* ADVANCED_JSON = "advanced";
+    const char* UNKNOWN_JSON = "unknown";
+
+    const QStringList DIFFICULTY_ORDER = {BEGINNER_JSON, INTERMEDIATE_JSON, ADVANCED_JSON, UNKNOWN_JSON};
+
+    QString capitalize(const QString& str) {
+        if (str.isEmpty()) return str;
+        return str.at(0).toUpper() + str.mid(1);
+    }
+}
+
 Sidebar::Sidebar(QWidget *parent)
     : QWidget(parent)
 {
     listWidget = createList();
-    setMinimumWidth(100);
+    setMinimumWidth(SIDEBAR_MINIMUM_WIDTH);
 
     // Connect the itemClicked signal to the slot
     connect(listWidget, &QListWidget::itemClicked, this, &Sidebar::onTaskItemClicked);
@@ -26,8 +45,8 @@ Sidebar::Sidebar(QWidget *parent)
 CustomListWidget* Sidebar::createList() {
     QVBoxLayout *sidebarLayout = new QVBoxLayout(this);
 
-    QLabel *sidebarTitle = new QLabel(tr("TASKS"));
-    sidebarTitle->setFont(QFont("", 20));
+    QLabel *sidebarTitle = new QLabel(tr(SIDEBAR_TITLE_LABEL));
+    sidebarTitle->setFont(QFont("", SIDEBAR_TITLE_FONT_SIZE));
     sidebarLayout->addWidget(sidebarTitle);
 
     CustomListWidget *taskListWidget = new CustomListWidget();
@@ -43,12 +62,9 @@ void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
     // Create fonts for headers and normal text
     QFont boldFont;
     boldFont.setBold(true);
-    boldFont.setPointSize(12);
+    boldFont.setPointSize(SIDEBAR_ITEM_FONT_SIZE);
     QFont normalFont;
-    normalFont.setPointSize(12);
-
-    // Define margin size for spacing
-    QSize marginSize(0, 30);
+    normalFont.setPointSize(SIDEBAR_ITEM_FONT_SIZE);
 
     // Clear existing items and the index-to-item map
     listWidget->clear();
@@ -61,30 +77,19 @@ void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
     for (int i = 0; i < static_cast<int>(tasks.size()); ++i) {
         QSharedPointer<Task> task = tasks[i];
         QString difficultyKey = task->difficulty.toLower();
-        if (difficultyKey != "beginner" && difficultyKey != "intermediate" && difficultyKey != "advanced") {
-            difficultyKey = "unknown";
+        if (difficultyKey != BEGINNER_JSON && difficultyKey != INTERMEDIATE_JSON && difficultyKey != ADVANCED_JSON) {
+            difficultyKey = UNKNOWN_JSON;
         }
         tasksByDifficulty[difficultyKey].append(qMakePair(i, task));
     }
 
-    // Define the order of difficulties
-    QStringList difficultyOrder = {"beginner", "intermediate", "advanced", "unknown"};
-
-    // Map to display names for difficulties
-    QMap<QString, QString> difficultyLabels = {
-        {"beginner", "Beginner"},
-        {"intermediate", "Intermediate"},
-        {"advanced", "Advanced"},
-        {"unknown", "Unknown"}
-    };
-
     // Add tasks to the list widget in the desired order
-    for (const QString &difficultyKey : difficultyOrder) {
+    for (const QString &difficultyKey : DIFFICULTY_ORDER) {
         if (tasksByDifficulty.contains(difficultyKey)) {
             // Add header
-            QListWidgetItem *headerItem = new QListWidgetItem(difficultyLabels[difficultyKey]);
+            QListWidgetItem *headerItem = new QListWidgetItem(capitalize(difficultyKey));
             headerItem->setFont(boldFont);
-            headerItem->setSizeHint(marginSize);
+            headerItem->setSizeHint(SIDEBAR_ITEM_MARGIN_SIZE);
             headerItem->setFlags(Qt::NoItemFlags);
             headerItem->setForeground(QBrush(Qt::black));
             listWidget->addItem(headerItem);
@@ -97,7 +102,7 @@ void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
 
                 QListWidgetItem *taskItem = new QListWidgetItem(task->title);
                 taskItem->setFont(normalFont);
-                taskItem->setSizeHint(marginSize);
+                taskItem->setSizeHint(SIDEBAR_ITEM_MARGIN_SIZE);
 
                 // Store the original index of the task
                 taskItem->setData(Qt::UserRole, taskIndex);
@@ -109,7 +114,7 @@ void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
 
             // Add spacer after tasks
             QListWidgetItem *marginItem = new QListWidgetItem("");
-            marginItem->setSizeHint(marginSize);
+            marginItem->setSizeHint(SIDEBAR_ITEM_MARGIN_SIZE);
             marginItem->setFlags(Qt::NoItemFlags);
             listWidget->addItem(marginItem);
         }

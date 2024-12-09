@@ -8,6 +8,12 @@
 #include <ros/package.h>
 #include <ros/ros.h>
 
+namespace {
+    const char* PACKAGE_NAME = "learn_environment";
+    const char* CONVERT_SCRIPT_PATH = "/converter/convert.py";
+    const char* CONVERTED_SCRIPT_PATH = "/converter/converted.py";
+}
+
 TaskExecutor::TaskExecutor(QObject *parent) : QObject(parent) {}
 
 void TaskExecutor::executeTask(const Subtask &subtask) {
@@ -22,23 +28,23 @@ void TaskExecutor::executeTask(const Subtask &subtask) {
 
     QString packagePath;
     try {
-        packagePath = QString::fromStdString(ros::package::getPath("learn_environment"));
+        packagePath = QString::fromStdString(ros::package::getPath(PACKAGE_NAME));
     } catch (...) {
         Q_EMIT taskExecutionFailed("An error occurred while getting the package path");
         return;
     }
 
-    QString notebookPath, convertScriptPath, convertedScriptPath, evalScriptPath;
+    QString fullNotebookPath, fullConvertScriptPath, fullConvertedScriptPath, fullEvalScriptPath;
 
-    if (!constructPath(packagePath, parentTaskPtr->folder + subtask.file, notebookPath, "constructing the notebook path") ||
-        !constructPath(packagePath, "/converter/convert.py", convertScriptPath, "constructing the convert script path") ||
-        !constructPath(packagePath, "/converter/converted.py", convertedScriptPath, "constructing the converted script path", false) ||
-        !constructPath(packagePath, subtask.evaluationFilePath, evalScriptPath, "constructing the evaluation script path")) {
+    if (!constructPath(packagePath, parentTaskPtr->folder + subtask.file, fullNotebookPath, "constructing the notebook path") ||
+        !constructPath(packagePath, CONVERT_SCRIPT_PATH, fullConvertScriptPath, "constructing the convert script path") ||
+        !constructPath(packagePath, CONVERTED_SCRIPT_PATH, fullConvertedScriptPath, "constructing the converted script path", false) ||
+        !constructPath(packagePath, subtask.evaluationFilePath, fullEvalScriptPath, "constructing the evaluation script path")) {
         return;
     }
 
     QThread *thread = new QThread;
-    ScriptWorker *worker = new ScriptWorker(notebookPath, convertScriptPath, convertedScriptPath, evalScriptPath, subtask.parallelizedEvaluationRequired, subtask.timeoutSeconds);
+    ScriptWorker *worker = new ScriptWorker(fullNotebookPath, fullConvertScriptPath, fullConvertedScriptPath, fullEvalScriptPath, subtask.parallelizedEvaluationRequired, subtask.timeoutSeconds);
     worker->moveToThread(thread);
 
     // Track the active worker

@@ -7,6 +7,21 @@
 
 using json = nlohmann::json;
 
+namespace {
+    const char* TASKS_KEY = "tasks";
+    const char* TITLE_KEY = "title";
+    const char* DESCRIPTION_KEY = "description";
+    const char* FOLDER_KEY = "folder";
+    const char* DIFFICULTY_KEY = "difficulty";
+    const char* PREVIOUS_SUBTASKS_REQUIRED_KEY = "previous_subtasks_required";
+    const char* SUBTASKS_KEY = "subtasks";
+    const char* FILE_KEY = "file";
+    const char* SOLUTION_FILE_PATH_KEY = "solution_file_path";
+    const char* EVALUATION_FILE_PATH_KEY = "evaluation_file_path";
+    const char* TIMEOUT_SECONDS_KEY = "timeout_seconds";
+    const char* PARALLELIZED_EVALUATION_REQUIRED_KEY = "parallelized_evaluation_required";
+}
+
 QVector<QSharedPointer<Task>> TaskParser::loadTasks(const QString& filePath) {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -32,7 +47,7 @@ QVector<QSharedPointer<Task>> TaskParser::loadTasks(const QString& filePath) {
 QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& jsonData) {
     QVector<QSharedPointer<Task>> tasks;
 
-    for (const auto& taskJson : jsonData["tasks"]) {
+    for (const auto& taskJson : jsonData[TASKS_KEY]) {
         if (!taskJson.is_object()) {
             qCritical() << "Invalid task format";
             continue;
@@ -40,22 +55,22 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& jsonData) {
 
         QSharedPointer<Task> task(new Task);
         try {
-            task->title = QString::fromStdString(taskJson.at("title").get<std::string>());
-            task->description = QString::fromStdString(taskJson.at("description").get<std::string>());
-            task->folder = QString::fromStdString(taskJson.at("folder").get<std::string>());
-            task->difficulty = QString::fromStdString(taskJson.at("difficulty").get<std::string>());
+            task->title = QString::fromStdString(taskJson.at(TITLE_KEY).get<std::string>());
+            task->description = QString::fromStdString(taskJson.at(DESCRIPTION_KEY).get<std::string>());
+            task->folder = QString::fromStdString(taskJson.at(FOLDER_KEY).get<std::string>());
+            task->difficulty = QString::fromStdString(taskJson.at(DIFFICULTY_KEY).get<std::string>());
 
             // Optional fields
-            if (taskJson.contains("previous_subtasks_required")) {
-                task->previousSubtasksRequired = taskJson.at("previous_subtasks_required").get<bool>();
+            if (taskJson.contains(PREVIOUS_SUBTASKS_REQUIRED_KEY)) {
+                task->previousSubtasksRequired = taskJson.at(PREVIOUS_SUBTASKS_REQUIRED_KEY).get<bool>();
             }
         } catch (const json::type_error& e) {
             qCritical() << "Type error in task:" << e.what();
             continue;
         }
 
-        if (taskJson.contains("subtasks") && taskJson["subtasks"].is_array()) {
-            task->subtasks = parseSubtasks(taskJson["subtasks"], task);
+        if (taskJson.contains(SUBTASKS_KEY) && taskJson[SUBTASKS_KEY].is_array()) {
+            task->subtasks = parseSubtasks(taskJson[SUBTASKS_KEY], task);
         } else {
             qCritical() << "Task does not contain valid 'subtasks'";
         }
@@ -77,18 +92,18 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
 
         Subtask subtask;
         try {
-            subtask.title = QString::fromStdString(subtaskJson.at("title").get<std::string>());
-            subtask.description = QString::fromStdString(subtaskJson.at("description").get<std::string>());
-            subtask.file = QString::fromStdString(subtaskJson.at("file").get<std::string>());
-            subtask.solutionFilePath = QString::fromStdString(subtaskJson.at("solution_file_path").get<std::string>());
-            subtask.evaluationFilePath = QString::fromStdString(subtaskJson.at("evaluation_file_path").get<std::string>());
+            subtask.title = QString::fromStdString(subtaskJson.at(TITLE_KEY).get<std::string>());
+            subtask.description = QString::fromStdString(subtaskJson.at(DESCRIPTION_KEY).get<std::string>());
+            subtask.file = QString::fromStdString(subtaskJson.at(FILE_KEY).get<std::string>());
+            subtask.solutionFilePath = QString::fromStdString(subtaskJson.at(SOLUTION_FILE_PATH_KEY).get<std::string>());
+            subtask.evaluationFilePath = QString::fromStdString(subtaskJson.at(EVALUATION_FILE_PATH_KEY).get<std::string>());
 
             // Optional fields
-            if (subtaskJson.contains("timeout_seconds")) {
-                subtask.timeoutSeconds = subtaskJson.at("timeout_seconds").get<int>();
+            if (subtaskJson.contains(TIMEOUT_SECONDS_KEY)) {
+                subtask.timeoutSeconds = subtaskJson.at(TIMEOUT_SECONDS_KEY).get<int>();
             }
-            if (subtaskJson.contains("parallelized_evaluation_required")) {
-                subtask.parallelizedEvaluationRequired = subtaskJson.at("parallelized_evaluation_required").get<bool>();
+            if (subtaskJson.contains(PARALLELIZED_EVALUATION_REQUIRED_KEY)) {
+                subtask.parallelizedEvaluationRequired = subtaskJson.at(PARALLELIZED_EVALUATION_REQUIRED_KEY).get<bool>();
             }
 
             // Set the parent task for the subtask

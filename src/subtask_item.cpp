@@ -8,6 +8,24 @@
 #include <QLabel>
 #include <QFrame>
 
+namespace {
+    const int HEADER_FONT_SIZE = 14;
+    const int BODY_FONT_SIZE = 10;
+    const char* LINK_STYLE = "font-family:'monospace'; font-size:10pt; color:'#444444'; vertical-align:bottom;";
+    const char* BODY_STYLE = "color:#444444;";
+
+    const char* START_TEXT = "Start";
+    const char* START_TOOLTIP = "Start Script";
+    const char* STOP_TEXT = "Stop";
+    const char* STOP_TOOLTIP = "Stop Script";
+    const char* QUEUED_TEXT = "Queued";
+    const char* QUEUED_TOOLTIP = "Queued Execution";
+    const char* RESET_TEXT = "Reset";
+    const char* RESET_TOOLTIP = "Reset";
+    const char* SOLUTION_TEXT = "Solution";
+    const char* SOLUTION_TOOLTIP = "Show Solution";
+}
+
 SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask) 
     : QWidget(parent),
       headerText(subtask->title),
@@ -27,29 +45,29 @@ void SubtaskItem::updateUI()
             playButton->setEnabled(false);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
-            playButton->setText("Start");
-            playButton->setToolTip("Start Script");
+            playButton->setText(START_TEXT);
+            playButton->setToolTip(START_TOOLTIP);
             break;
         case SubtaskStatus::Ready:
             playButton->setEnabled(true);
             resetButton->setEnabled(true);
             solutionButton->setEnabled(true);
-            playButton->setText("Start");
-            playButton->setToolTip("Start Script");
+            playButton->setText(START_TEXT);
+            playButton->setToolTip(START_TOOLTIP);
             break;
         case SubtaskStatus::Queued:
             playButton->setEnabled(false);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
-            playButton->setText("Queued");
-            playButton->setToolTip("Queued Execution");
+            playButton->setText(QUEUED_TEXT);
+            playButton->setToolTip(QUEUED_TOOLTIP);
             break;
         case SubtaskStatus::Running:
             playButton->setEnabled(true);
             resetButton->setEnabled(false);
             solutionButton->setEnabled(false);
-            playButton->setText("Stop");
-            playButton->setToolTip("Stop Script");
+            playButton->setText(STOP_TEXT);
+            playButton->setToolTip(STOP_TOOLTIP);
             break;
     }
 }
@@ -80,7 +98,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     // Create a header label
     QLabel *headerLabel = new QLabel(headerText);
     QFont headerFont = headerLabel->font();
-    headerFont.setPointSize(14);
+    headerFont.setPointSize(HEADER_FONT_SIZE);
     headerLabel->setFont(headerFont);
 
     // Create a link label
@@ -88,7 +106,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     linkLabel->setTextFormat(Qt::RichText);
     linkLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     linkLabel->setOpenExternalLinks(true);
-    linkLabel->setStyleSheet("font-family:'monospace'; font-size:10pt; color:'#444444'; vertical-align:bottom;");
+    linkLabel->setStyleSheet(LINK_STYLE);
 
     // Add header and link labels to the horizontal layout
     headerLinkLayout->addWidget(headerLabel);
@@ -101,9 +119,9 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     loremLabel->setWordWrap(true); // Enable word wrap
     loremLabel->setTextFormat(Qt::RichText);
     QFont loremFont = loremLabel->font();
-    loremFont.setPointSize(10);
+    loremFont.setPointSize(BODY_FONT_SIZE);
     loremLabel->setFont(loremFont);
-    loremLabel->setStyleSheet("color:#444444;");
+    loremLabel->setStyleSheet(BODY_STYLE);
 
     // Add headerLinkLayout and loremLabel to the vertical layout
     textLayout->addLayout(headerLinkLayout);
@@ -119,16 +137,16 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     buttonLayout->setContentsMargins(10, 0, 0, 0); 
 
     // Create buttons
-    playButton = new QPushButton("Start");
-    playButton->setToolTip("Start Script");
+    playButton = new QPushButton(START_TEXT);
+    playButton->setToolTip(START_TOOLTIP);
     playButton->setCursor(Qt::PointingHandCursor);
 
-    resetButton = new QPushButton("Reset");
-    resetButton->setToolTip("Reset");
+    resetButton = new QPushButton(RESET_TEXT);
+    resetButton->setToolTip(RESET_TOOLTIP);
     resetButton->setCursor(Qt::PointingHandCursor);
 
-    solutionButton = new QPushButton("Solution");
-    solutionButton->setToolTip("Show Solution");
+    solutionButton = new QPushButton(SOLUTION_TEXT);
+    solutionButton->setToolTip(SOLUTION_TOOLTIP);
     solutionButton->setCursor(Qt::PointingHandCursor);
 
     // Add buttons to the button layout
