@@ -32,7 +32,6 @@ struct Subtask {
     QString title; ///< The title of the subtask.
     QString description; ///< The description of the subtask.
     QString file; ///< The file path of the subtask.
-    QString difficulty; ///< The difficulty level of the subtask.
     QString solutionFilePath; ///< The file path to the solution of the subtask.
     QString evaluationFilePath; ///< The file path to the evaluation script of the subtask.
 

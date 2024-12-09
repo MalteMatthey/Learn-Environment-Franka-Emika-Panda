@@ -82,7 +82,6 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             subtask.file = QString::fromStdString(subtaskJson.at("file").get<std::string>());
             subtask.solutionFilePath = QString::fromStdString(subtaskJson.at("solution_file_path").get<std::string>());
             subtask.evaluationFilePath = QString::fromStdString(subtaskJson.at("evaluation_file_path").get<std::string>());
-            subtask.difficulty = QString::fromStdString(subtaskJson.at("difficulty").get<std::string>());
 
             // Optional fields
             if (subtaskJson.contains("timeout_seconds")) {
