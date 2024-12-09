@@ -5,7 +5,7 @@
       "description": "TODO: Add Description.",
       "folder": "/task_pool/solution_scripts/beginner/exercise_1",
       "difficulty": "beginner",
-      "previous_subtasks_required": false,
+      "previous_subtasks_required": true,
       "subtasks": [
         {
           "title": "Subtask 1.1 (TODO: Rename)",
@@ -65,7 +65,8 @@
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_3_1.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_3/exercise_3_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_3/exercise_3_1_eval.py"
+          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_3/exercise_3_1_eval.py",
+          "parallelized_evaluation_required": true
         }
       ]
     },
