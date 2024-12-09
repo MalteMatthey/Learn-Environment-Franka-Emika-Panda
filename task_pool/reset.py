@@ -26,13 +26,13 @@ def reset_robot():
 
 def remove_objects():
     scene = PlanningSceneInterface(synchronous=True)
-    rospy.sleep(2)  # Allow some time for the scene to initialize
+    rospy.sleep(2)
     objects = scene.get_known_object_names()
 
     for object_name in objects:
         scene.remove_world_object(object_name)
 
-    rospy.sleep(2)  # Allow some time for the objects to be removed
+    rospy.sleep(2)
 
 
 rospy.init_node('reset', anonymous=True)
