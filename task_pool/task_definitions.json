@@ -143,6 +143,30 @@
           "evaluation_file_path": "/task_pool/evaluation_scripts/intermediate/exercise_1/exercise_1_1_eval.py"
         }
       ]
+    },
+    {
+      "title": "ROS BASICS Task 1 (TODO: Rename)",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/ros_basics/exercise_1",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Subtask 1.1 (TODO: Rename)",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_1_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros_basics/exercise_1/exercise_1_1.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_1_eval.py",
+          "parallelized_evaluation_required": true
+        },
+        {
+          "title": "Subtask 1.2 (TODO: Rename)",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_1_2.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros_basics/exercise_1/exercise_1_2.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_2_eval.py",
+          "parallelized_evaluation_required": true
+        }
+      ]
     }
   ]
 }
