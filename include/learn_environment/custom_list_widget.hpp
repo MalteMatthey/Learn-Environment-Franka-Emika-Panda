@@ -1,5 +1,5 @@
-#ifndef CUSTOMLISTWIDGET_H
-#define CUSTOMLISTWIDGET_H
+#ifndef CUSTOMLISTWIDGET_HPP
+#define CUSTOMLISTWIDGET_HPP
 
 #include <QListWidget>
 #include <QMouseEvent>
@@ -41,4 +41,4 @@ private:
 
 };
 
-#endif // CUSTOMLISTWIDGET_H
+#endif // CUSTOMLISTWIDGET_HPP

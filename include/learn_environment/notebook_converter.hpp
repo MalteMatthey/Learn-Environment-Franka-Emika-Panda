@@ -1,0 +1,67 @@
+#ifndef NOTEBOOK_CONVERTER_HPP
+#define NOTEBOOK_CONVERTER_HPP
+
+#include <QObject>
+#include <QString>
+#include <QDir>
+#include <QByteArray>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+class NotebookConverter : public QObject {
+    Q_OBJECT
+public:
+    explicit NotebookConverter(QObject *parent = nullptr);
+
+    /**
+     * @brief Converts a Jupyter notebook to a Python script. Ignoring code cells with "solution" tag.
+     * @param notebookPath Path to the notebook file.
+     * @return True if conversion is successful, else False.
+     */
+    bool convertNotebook(const QString &notebookPath);
+
+    /**
+     * @brief Modifies and copies all notebooks from task_pool to /tasks.
+     */
+    void processTaskPool();
+
+    /**
+     * @brief Gets the converted script path.
+     * @return The path to the converted script.
+     */
+    static QString getPackagePath();
+
+    /**
+     * @brief Gets the converted script path.
+     * @return The path to the converted script.
+     */
+    static QString getConvertedScriptPath();
+
+private:
+    /**
+     * @brief Removes solution code from a Jupyter notebook.
+     * 
+     * This method processes a Jupyter notebook to remove any solution code 
+     * that is marked with specific markers ("#### YOUR CODE HERE ####"). 
+     * It reads the notebook file, parses its JSON content, processes each 
+     * cell to remove the solution code, and then writes the modified content 
+     * back to the notebook file. The method ensures that the notebook's 
+     * structure is preserved and adds metadata tags to indicate which cells 
+     * have had their solutions removed.
+     * 
+     * @param notebookPath Path to the notebook file.
+     */
+    void removeSolutionFromNotebook(const QString &notebookPath);
+
+    QByteArray readFile(const QString &notebookPath);
+    json parseJson(const QByteArray &data, const QString &notebookPath);
+    void processCells(json &notebook, const QString &notebookPath);
+    void processCell(json &cell, const QString &notebookPath, int i);
+    void writeFile(const json &notebook, const QString &notebookPath);
+    void copyAndModifyNotebooks(const QDir &sourceDir, const QDir &destDir);
+
+    static const QString CONVERTED_SCRIPT_PATH;
+};
+
+#endif // NOTEBOOK_CONVERTER_HPP

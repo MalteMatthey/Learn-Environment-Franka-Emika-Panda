@@ -1,9 +1,9 @@
-#ifndef TASKUI_H
-#define TASKUI_H
+#ifndef TASKUI_HPP
+#define TASKUI_HPP
 
-#include "sidebar.h"
-#include "task.h"
-#include "task_manager.h"
+#include "sidebar.hpp"
+#include "task.hpp"
+#include "task_manager.hpp"
 
 #include <QObject>
 #include <QListWidget>
@@ -104,4 +104,4 @@ private:
     void addLineBetweenWidgets();
 };
 
-#endif // TASKUI_H
+#endif // TASKUI_HPP

@@ -1,7 +1,7 @@
-#include "learn_environment/learn_environment.h"
+#include "learn_environment/learn_environment.hpp"
+#include "learn_environment/task_manager.hpp"
+#include "learn_environment/task_ui.hpp"
 #include <pluginlib/class_list_macros.hpp>
-#include "learn_environment/task_manager.h"
-#include "learn_environment/task_ui.h"
 
 #include <QMainWindow>
 #include <QSplitter>
@@ -17,19 +17,25 @@ LearnEnvironment::LearnEnvironment(QWidget *parent)
       ui(new Ui::LearnEnvironment),
       process(new QProcess(this)),
       taskManager(nullptr),
-      taskUI(nullptr)
+      taskUI(nullptr),
+      notebookConverter(new NotebookConverter()),
+      notebookThread(new QThread())
 {
     ui->setupUi(this);
-    initializeUI();
+    initialize();
 }
 
 LearnEnvironment::~LearnEnvironment()
 {
+    notebookThread->quit();
+    notebookThread->wait();
+    delete notebookConverter;
+    delete notebookThread;
     delete ui;
     delete process;
 }
 
-void LearnEnvironment::initializeUI() {
+void LearnEnvironment::initialize() {
     sidebar = new Sidebar(this);
     taskUI = new TaskUI(
         ui->subtaskListWidget,
@@ -48,6 +54,16 @@ void LearnEnvironment::initializeUI() {
     sidebar->setVisible(false);
 
     connect(ui->menuButton, &QPushButton::clicked, this, &LearnEnvironment::toggleSidebarVisibility);
+
+    notebookConverter->moveToThread(notebookThread);
+    connect(notebookThread, &QThread::started, notebookConverter, &NotebookConverter::processTaskPool);
+
+    // Optional: Handle thread finished
+    // connect(notebookConverter, &NotebookConverter::finished, notebookThread, &QThread::quit);
+    // connect(notebookThread, &QThread::finished, notebookConverter, &NotebookConverter::deleteLater);
+    // connect(notebookThread, &QThread::finished, notebookThread, &QThread::deleteLater);
+
+    notebookThread->start();
 }
 
 void LearnEnvironment::setupSplitterAndLayout() {

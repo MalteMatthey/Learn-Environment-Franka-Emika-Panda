@@ -1,5 +1,5 @@
-#ifndef TASK_H
-#define TASK_H
+#ifndef TASK_HPP
+#define TASK_HPP
 
 #include <QString>
 #include <QVector>
@@ -60,4 +60,4 @@ struct Task {
     bool previousSubtasksRequired = false; ///< Whether previous subtasks are required.
 };
 
-#endif // TASK_H
+#endif // TASK_HPP

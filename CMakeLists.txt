@@ -44,17 +44,18 @@ set(QT_LIBRARIES Qt5::Widgets)
 add_definitions(-DQT_NO_KEYWORDS)
 
 set(${PROJECT_NAME}_HDRS
-  include/${PROJECT_NAME}/learn_environment.h
-  include/${PROJECT_NAME}/subtask_item.h
-  include/${PROJECT_NAME}/task_manager.h
-  include/${PROJECT_NAME}/task.h
-  include/${PROJECT_NAME}/custom_list_widget.h
-  include/${PROJECT_NAME}/sidebar.h
-  include/${PROJECT_NAME}/task_parser.h
-  include/${PROJECT_NAME}/task_executor.h
-  include/${PROJECT_NAME}/script_worker.h
-  include/${PROJECT_NAME}/process_runner.h
-  include/${PROJECT_NAME}/task_ui.h
+  include/${PROJECT_NAME}/learn_environment.hpp
+  include/${PROJECT_NAME}/subtask_item.hpp
+  include/${PROJECT_NAME}/task_manager.hpp
+  include/${PROJECT_NAME}/task.hpp
+  include/${PROJECT_NAME}/custom_list_widget.hpp
+  include/${PROJECT_NAME}/sidebar.hpp
+  include/${PROJECT_NAME}/task_parser.hpp
+  include/${PROJECT_NAME}/task_executor.hpp
+  include/${PROJECT_NAME}/script_worker.hpp
+  include/${PROJECT_NAME}/process_runner.hpp
+  include/${PROJECT_NAME}/task_ui.hpp
+  include/${PROJECT_NAME}/notebook_converter.hpp
 )
 
 set(${PROJECT_NAME}_SRCS
@@ -68,6 +69,7 @@ set(${PROJECT_NAME}_SRCS
   src/script_worker.cpp
   src/process_runner.cpp
   src/task_ui.cpp
+  src/notebook_converter.cpp
 )
 
 set(${PROJECT_NAME}_UIS

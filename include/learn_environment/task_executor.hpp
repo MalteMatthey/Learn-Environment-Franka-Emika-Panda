@@ -1,7 +1,7 @@
-#ifndef TASK_EXECUTOR_H
-#define TASK_EXECUTOR_H
+#ifndef TASK_EXECUTOR_HPP
+#define TASK_EXECUTOR_HPP
 
-#include "task.h"
+#include "task.hpp"
 
 #include <QObject>
 #include <QString>
@@ -69,4 +69,4 @@ private:
     QList<ScriptWorker*> scriptWorkers; ///< List of active ScriptWorker objects.
 };
 
-#endif // TASK_EXECUTOR_H
+#endif // TASK_EXECUTOR_HPP

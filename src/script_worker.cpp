@@ -1,5 +1,5 @@
-#include "learn_environment/script_worker.h"
-#include "learn_environment/process_runner.h"
+#include "learn_environment/script_worker.hpp"
+#include "learn_environment/process_runner.hpp"
 
 #include <QDebug>
 #include <QFile>
@@ -9,28 +9,22 @@ namespace {
 }
 
 ScriptWorker::ScriptWorker(const QString &notebookPath,
-                           const QString &convertScriptPath,
                            const QString &convertedScriptPath,
                            const QString &evalScriptPath,
                            bool parallelizedEvaluation,
                            int timeout)
     : notebookPath(notebookPath),
-      convertScriptPath(convertScriptPath),
       convertedScriptPath(convertedScriptPath),
       evalScriptPath(evalScriptPath),
       parallelizedEvaluationRequired(parallelizedEvaluation),
       timeoutSeconds(timeout),
       mainScriptFinished(false),
-      evalScriptFinished(false) {}
+      evalScriptFinished(false),
+      converter(this) {}
 
 void ScriptWorker::startExecution() {
     if (!QFile::exists(notebookPath)) {
         Q_EMIT failed("Jupyter Notebook file not found");
-        Q_EMIT finished();
-        return;
-    }
-    if (!QFile::exists(convertScriptPath)) {
-        Q_EMIT failed("Converter script not found");
         Q_EMIT finished();
         return;
     }
@@ -43,28 +37,14 @@ void ScriptWorker::startExecution() {
 }
 
 void ScriptWorker::convertAndExecuteNotebook() {
-    ProcessRunner *runner = new ProcessRunner("python3",
-                                              {convertScriptPath, notebookPath},
-                                              CONVERT_JUPYTER_TIMEOUT_SECONDS,
-                                              this,
-                                              "jupyter converter");
-    processRunners.append(runner);
-
-    connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
-        if (exitCode != 0) {
-            Q_EMIT failed("Notebook conversion failed.");
-            Q_EMIT finished();
-        } else {
-            executeConvertedScript();
-        }
-    });
-
-    connect(runner, &ProcessRunner::timeout, this, [this]() {
-        Q_EMIT failed("Notebook conversion timed out.");
+    qDebug() << "Converting notebook:" << notebookPath;
+    bool success = converter.convertNotebook(notebookPath);
+    if (!success) {
+        Q_EMIT failed("Notebook conversion failed.");
         Q_EMIT finished();
-    });
-
-    runner->start();
+        return;
+    }
+    executeConvertedScript();
 }
 
 void ScriptWorker::executeConvertedScript() {

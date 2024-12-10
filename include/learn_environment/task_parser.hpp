@@ -1,7 +1,7 @@
-#ifndef TASK_PARSER_H
-#define TASK_PARSER_H
+#ifndef TASK_PARSER_HPP
+#define TASK_PARSER_HPP
 
-#include "task.h"
+#include "task.hpp"
 
 #include <QVector>
 #include <QString>
@@ -43,4 +43,4 @@ private:
     QVector<Subtask> parseSubtasks(const json& subtasksJson, QSharedPointer<Task> parentTask);
 };
 
-#endif // TASK_PARSER_H
+#endif // TASK_PARSER_HPP

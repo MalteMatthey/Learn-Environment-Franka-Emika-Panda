@@ -1,8 +1,8 @@
-#ifndef TASKMANAGER_H
-#define TASKMANAGER_H
+#ifndef TASKMANAGER_HPP
+#define TASKMANAGER_HPP
 
-#include "task.h"
-#include "task_executor.h"
+#include "task.hpp"
+#include "task_executor.hpp"
 
 #include <QObject>
 #include <QPushButton>
@@ -100,4 +100,4 @@ private:
     void forceStop();
 };
 
-#endif // TASKMANAGER_H
+#endif // TASKMANAGER_HPP

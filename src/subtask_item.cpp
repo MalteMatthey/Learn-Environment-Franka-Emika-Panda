@@ -1,6 +1,6 @@
 // SUBTASK_ITEM.CPP
-#include "learn_environment/subtask_item.h"
-#include "learn_environment/task_manager.h"
+#include "learn_environment/subtask_item.hpp"
+#include "learn_environment/task_manager.hpp"
 
 #include <QPushButton>
 #include <QHBoxLayout>

@@ -1,8 +1,8 @@
-#ifndef SIDEBAR_H
-#define SIDEBAR_H
+#ifndef SIDEBAR_HPP
+#define SIDEBAR_HPP
 
-#include "custom_list_widget.h"
-#include "task.h"
+#include "custom_list_widget.hpp"
+#include "task.hpp"
 
 #include <QWidget>
 #include <QVBoxLayout>
@@ -67,4 +67,4 @@ private:
     QMap<int, QListWidgetItem*> taskIndexToItemMap; ///< Map from task index to QListWidgetItem.
 };
 
-#endif // SIDEBAR_H
+#endif // SIDEBAR_HPP

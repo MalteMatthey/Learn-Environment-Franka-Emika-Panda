@@ -1,5 +1,5 @@
-#include "learn_environment/task_ui.h"
-#include "learn_environment/subtask_item.h"
+#include "learn_environment/task_ui.hpp"
+#include "learn_environment/subtask_item.hpp"
 
 #include <QRegExp>
 #include <QDebug>

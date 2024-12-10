@@ -1,8 +1,8 @@
-#ifndef SUBTASK_ITEM_H
-#define SUBTASK_ITEM_H
+#ifndef SUBTASK_ITEM_HPP
+#define SUBTASK_ITEM_HPP
 
-#include "task.h"
-#include "task_manager.h"
+#include "task.hpp"
+#include "task_manager.hpp"
 
 #include <QWidget>
 #include <QPushButton>
@@ -73,4 +73,4 @@ private:
     QPushButton *solutionButton; ///< Button to show the solution for the subtask.
 };
 
-#endif // SUBTASK_ITEM_H
+#endif // SUBTASK_ITEM_HPP

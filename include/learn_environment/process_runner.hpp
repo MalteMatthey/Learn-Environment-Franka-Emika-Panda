@@ -1,5 +1,5 @@
-#ifndef PROCESS_RUNNER_H
-#define PROCESS_RUNNER_H
+#ifndef PROCESS_RUNNER_HPP
+#define PROCESS_RUNNER_HPP
 
 #include <QObject>
 #include <QProcess>
@@ -98,4 +98,4 @@ private:
     QString processName; ///< The name of the process (for logging purposes).
 };
 
-#endif // PROCESS_RUNNER_H
+#endif // PROCESS_RUNNER_HPP

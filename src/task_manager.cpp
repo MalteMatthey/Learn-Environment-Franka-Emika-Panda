@@ -1,7 +1,7 @@
-#include "learn_environment/task_manager.h"
-#include "learn_environment/task_ui.h"
-#include "learn_environment/task_parser.h"
-#include "learn_environment/task_executor.h"
+#include "learn_environment/task_manager.hpp"
+#include "learn_environment/task_ui.hpp"
+#include "learn_environment/task_parser.hpp"
+#include "learn_environment/task_executor.hpp"
 
 #include <QDebug>
 
