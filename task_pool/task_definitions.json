@@ -110,6 +110,13 @@
           "file": "/exercise_5_2.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_5/exercise_5_2.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_5/exercise_5_2_eval.py"
+        },
+        {
+          "title": "Subtask 5.3 (TODO: Rename)",
+          "description": "TODO: Add Subtask Description Subtask 3.",
+          "file": "/exercise_5_3.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_5/exercise_5_3.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_5/exercise_5_3_eval.py"
         }
       ]
     },
@@ -140,6 +147,22 @@
           "file": "/exercise_1_1.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/intermediate/exercise_1/exercise_1_1.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/intermediate/exercise_1/exercise_1_1_eval.py"
+        }
+      ]
+    },
+    {
+      "title": "Task Controller",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/controller",
+      "difficulty": "beginner",
+      "previous_subtasks_required": false,
+      "subtasks": [
+        {
+          "title": "Trajectory Controller",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/trajectory_controller.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/controller/trajectory_controller.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/controller/trajectory_controller.py"
         }
       ]
     }
