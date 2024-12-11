@@ -12,10 +12,13 @@ pub = rospy.Publisher('/notification', String, queue_size=10)
 t = time.time()
 rate = rospy.Rate(10)
 
-while time.time() - t < 60:
+while time.time() - t < 30:
 
-    msg = 'HI'
+    msg = str(random.randint(1, 100))
     pub.publish(msg)
+
     rate.sleep()
+
+print('true')
 
 rospy.signal_shutdown('evaluation done')
