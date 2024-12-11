@@ -1,0 +1,16 @@
+{
+    "difficulty_levels": [
+        {
+            "name": "beginner",
+            "hex-color": "#8fb935"
+        },
+        {
+            "name": "intermediate",
+            "hex-color": "#e09c3b"
+        },
+        {
+            "name": "advanced",
+            "hex-color": "#e64747"
+        }
+    ]
+}

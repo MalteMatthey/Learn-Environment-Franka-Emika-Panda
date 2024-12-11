@@ -18,24 +18,37 @@
 class TaskParser {
 public:
     /**
-     * @brief Loads tasks from a JSON file.
-     * @param filePath The path to the JSON file containing the tasks.
+     * @brief Loads tasks with all configuration JSON files.
+     * 
+     * This function reads the tasks, difficulty levels, and topic definitions from the specified JSON files.
+     * It parses the JSON data and constructs a vector of shared pointers to Task objects.
+     * The tasks are sorted based on the defined topic order from the topic definition JSON file.
+     * If any of the files cannot be opened or if there is a JSON parsing error, an empty vector is returned.
+     * 
+     * @param taskPath The path to the JSON file containing the tasks.
+     * @param difficultyPath The path to the JSON file containing the difficulty levels.
+     * @param topicPath The path to the JSON file containing the topic definitions.
      * @return A vector of shared pointers to the loaded tasks.
      */
-    QVector<QSharedPointer<Task>> loadTasks(const QString& filePath);
+    QVector<QSharedPointer<Task>> loadTasks(const QString& taskPath, const QString& difficultyPath, const QString& topicPath);
+
 
 private:
     using json = nlohmann::json;
 
     /**
      * @brief Parses tasks from JSON data.
-     * @param jsonData The JSON data containing the tasks.
+     * 
+     * @param taskJsonData The JSON data containing the tasks.
+     * @param difficultyJsonData The JSON data containing the difficulty levels.
+     * @param topicJsonData The JSON data containing the topic definitions.
      * @return A vector of shared pointers to the parsed tasks.
      */
-    QVector<QSharedPointer<Task>> parseTasks(const json& jsonData);
+    QVector<QSharedPointer<Task>> parseTasks(const json& taskJsonData, const json& difficultyJsonData, const json& topicJsonData);
 
     /**
      * @brief Parses subtasks from JSON data.
+     * 
      * @param subtasksJson The JSON data containing the subtasks.
      * @param parentTask A shared pointer to the parent task.
      * @return A vector of parsed subtasks.

@@ -8,6 +8,8 @@
 
 namespace {
     const char* TASK_DEFINITIONS_PATH = ":/task_pool/task_definitions.json";
+    const char* TOPIC_DEFINITIONS_PATH = ":/task_pool/topic_definitions.json";
+    const char* DIFFICULTY_LEVELS_DEFINITION_PATH = ":/task_pool/difficulty_levels.json";
 }
 
 TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QObject *parent)
@@ -19,7 +21,11 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
       currentTaskIndex(0)
 {
     TaskParser parser;
-    tasks = parser.loadTasks(TASK_DEFINITIONS_PATH);
+    tasks = parser.loadTasks(TASK_DEFINITIONS_PATH, DIFFICULTY_LEVELS_DEFINITION_PATH, TOPIC_DEFINITIONS_PATH);
+
+    for (const auto& task : tasks) {
+        qDebug() << task->title;
+    }
 
     if (tasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskManager initialization.";

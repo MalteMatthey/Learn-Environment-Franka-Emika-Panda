@@ -4,6 +4,7 @@
       "title": "Task 1 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_1",
+      "topic": "ROS Basics",
       "difficulty": "beginner",
       "previous_subtasks_required": false,
       "subtasks": [
@@ -36,6 +37,7 @@
       "title": "Task 2 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_2",
+      "topic": "ROS Basics",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -58,7 +60,8 @@
       "title": "Task 3 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_3",
-      "difficulty": "beginner",
+      "topic": "ROS Basics",
+      "difficulty": "strange_difficulty",
       "subtasks": [
         {
           "title": "Subtask 3.1 (TODO: Rename)",
@@ -73,6 +76,7 @@
       "title": "Task 4 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_4",
+      "topic": "Topic 3",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -95,6 +99,7 @@
       "title": "Task 5 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_5",
+      "topic": "Topic 2",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -117,6 +122,7 @@
       "title": "Task 6 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_6",
+      "topic": "Topic 2",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -132,6 +138,7 @@
       "title": "Task 7 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/intermediate/exercise_1",
+      "topic": "fjdsfkl",
       "difficulty": "intermediate",
       "subtasks": [
         {

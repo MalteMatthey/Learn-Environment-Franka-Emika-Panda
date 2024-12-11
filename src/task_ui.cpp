@@ -5,13 +5,6 @@
 #include <QDebug>
 
 namespace {
-    const char* BEGINNER = "beginner";
-    const char* INTERMEDIATE = "intermediate";
-    const char* ADVANCED = "advanced";
-    const char* DEFAULT_COLOR = "#1d0e53";
-    const char* BEGINNER_COLOR = "#8fb935";
-    const char* INTERMEDIATE_COLOR = "#e09c3b";
-    const char* ADVANCED_COLOR = "#e64747";
     const char* FOLDER_HTML_TEMPLATE = R"(
         <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
         <body style=" font-family:'Ubuntu'; font-size:11pt; font-weight:400; font-style:normal;">
@@ -64,9 +57,12 @@ void TaskUI::setTaskUI(int currentTaskIndex)
     QSharedPointer<Task> currentTask = tasks[currentTaskIndex];
     mainTitleLabel->setText(currentTask->title);
     difficultyLabel->setText(currentTask->difficulty);
+    QString styleSheet = difficultyLabel->styleSheet();
+    QRegExp colorRegex("background-color:\\s*[^;]+;");
+    styleSheet.replace(colorRegex, "background-color: " + currentTask->difficultyHexColor + ";");
+    difficultyLabel->setStyleSheet(styleSheet);
 
-    setDifficultyLabelColor(currentTask->difficulty);
-    setFolderLabelHtml(currentTask->folder);
+    folderLabel->setText(QString(FOLDER_HTML_TEMPLATE) + currentTask->folder + R"(</span></p></body>)");
 
     nextButton->setEnabled(currentTaskIndex < tasks.size() - 1);
     previousButton->setEnabled(currentTaskIndex > 0);
@@ -74,32 +70,6 @@ void TaskUI::setTaskUI(int currentTaskIndex)
     setSubtaskItems(currentTaskIndex);
 
     sidebar.selectTask(currentTaskIndex);
-}
-
-void TaskUI::setDifficultyLabelColor(const QString &difficulty)
-{
-    QString styleSheet = difficultyLabel->styleSheet();
-    QString newColor;
-
-    if (difficulty == BEGINNER) {
-        newColor = BEGINNER_COLOR;
-    } else if (difficulty == INTERMEDIATE) {
-        newColor = INTERMEDIATE_COLOR;
-    } else if (difficulty == ADVANCED) {
-        newColor = ADVANCED_COLOR;
-    } else {
-        newColor = DEFAULT_COLOR;
-    }
-
-    QRegExp colorRegex("background-color:\\s*[^;]+;");
-    styleSheet.replace(colorRegex, "background-color: " + newColor + ";");
-    difficultyLabel->setStyleSheet(styleSheet);
-}
-
-void TaskUI::setFolderLabelHtml(const QString &folder)
-{
-    QString folderHtml = QString(FOLDER_HTML_TEMPLATE) + folder + R"(</span></p></body>)";
-    folderLabel->setText(folderHtml);
 }
 
 void TaskUI::setSubtaskItems(int currentTaskIndex)

@@ -35,9 +35,11 @@ struct Subtask {
     QString solutionFilePath; ///< The file path to the solution of the subtask.
     QString evaluationFilePath; ///< The file path to the evaluation script of the subtask.
 
+    // optional field
     int timeoutSeconds = 60; ///< The timeout for the subtask execution in seconds.
     bool parallelizedEvaluationRequired = false; ///< Whether parallelized evaluation is required.
 
+    // internal fields
     QWeakPointer<Task> parentTask; ///< Weak pointer to the parent task.
     SubtaskStatus status = SubtaskStatus::Inactive; ///< The status of the subtask.
 };
@@ -55,9 +57,14 @@ struct Task {
     QString description; ///< The description of the task.
     QString folder; ///< The folder path of the task.
     QString difficulty; ///< The difficulty level of the task.
+    QString topic; ///< The topic of the task.
     QVector<Subtask> subtasks; ///< The list of subtasks within the task.
 
+    // optional field
     bool previousSubtasksRequired = false; ///< Whether previous subtasks are required.
+
+    // internal fields
+    QString difficultyHexColor; ///< The hex color associated with the difficulty level.
 };
 
 #endif // TASK_HPP

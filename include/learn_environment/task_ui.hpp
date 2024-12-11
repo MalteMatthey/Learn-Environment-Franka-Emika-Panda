@@ -81,18 +81,6 @@ private:
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
 
     /**
-     * @brief Sets the color of the difficulty label based on the difficulty level.
-     * @param difficulty The difficulty level.
-     */
-    void setDifficultyLabelColor(const QString &difficulty);
-
-    /**
-     * @brief Sets the HTML content of the folder label.
-     * @param folder The folder information.
-     */
-    void setFolderLabelHtml(const QString &folder);
-
-    /**
      * @brief Sets the subtask items in the QListWidget.
      * @param currentTaskIndex Index of the current task.
      */
