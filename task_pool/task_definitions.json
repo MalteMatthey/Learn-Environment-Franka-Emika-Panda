@@ -145,34 +145,33 @@
       ]
     },
     {
-      "title": "ROS BASICS Task 1 (TODO: Rename)",
+      "title": "ROS BASICS",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros_basics/exercise_1",
-      "difficulty": "beginner",
+      "folder": "/task_pool/solution_scripts/ros/ros_basics",
+      "difficulty": "ros",
       "subtasks": [
         {
-          "title": "Subtask 1.1 (TODO: Rename)",
+          "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros_basics/exercise_1/exercise_1_1.ipynb",
+          "file": "/exercise_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_1.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_1_eval.py",
           "parallelized_evaluation_required": true
         },
         {
-          "title": "Subtask 1.2 (TODO: Rename)",
+          "title": "Task 2",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros_basics/exercise_1/exercise_1_2.ipynb",
+          "file": "/exercise_2.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_2.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_2_eval.py",
           "parallelized_evaluation_required": true
         },
         {
-          "title": "Subtask 1.3 (TODO: Rename)",
+          "title": "Task 3",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1_3.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros_basics/exercise_1/exercise_1_3.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_3_eval.py",
-          "parallelized_evaluation_required": false
+          "file": "/exercise_3.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_3.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros_basics/exercise_1/exercise_1_3_eval.py"
         }
       ]
     }
