@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
+#include <unordered_map>
 #include <nlohmann/json.hpp>
 #include <ros/package.h>
 #include <ros/ros.h>
@@ -14,7 +15,15 @@ const QString SOLUTION_SCRIPTS_SOURCE_PATH = "/task_pool/solution_scripts";
 const QString USER_WORKSPACE = "/tasks";
 const QString TASK_CELL_TAG = "task_cell";
 const QString SOLUTION_REMOVED_CELL_TAG = "solution_removed_cell";
-const QString MARKER = "#### YOUR CODE HERE ####";
+const QString SOLUTION_CELL_TAG = "solution_cell";
+const QString WRITE_CODE_MARKER = "#### YOUR CODE HERE ####";
+const QString SOLUTION_CELL_HEADER = "##############################################################\n"
+                                     "####     THIS IS A SOLUTION CELL. IT WILL NOT EXECUTE.    ####\n"
+                                     "#### YOU CAN RUN THE SOLUTION DIRECTLY WITHIN THE PLUGIN. ####\n"
+                                     "####    USE THIS CELL AS INSPIRATION FOR YOUR OWN CODE.   ####\n"
+                                     "##############################################################\n";
+const QString SOLUTION_CODE_PLACEHOLDER_START = "# ↓↓↓↓ SOLUTION CODE HERE ↓↓↓↓ #";
+const QString SOLUTION_CODE_PLACEHOLDER_END = "# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ #";
 
 QString NotebookConverter::getConvertedScriptPath() {
     return CONVERTED_SCRIPT_PATH;
@@ -102,7 +111,7 @@ bool NotebookConverter::convertNotebook(const QString &notebookPath) {
 void NotebookConverter::processTaskPool() {
     qDebug() << "Processing task pool...";
     QDir sourceDir(getPackagePath() + SOLUTION_SCRIPTS_SOURCE_PATH);
-    QDir destDir(USER_WORKSPACE);
+    QDir destDir(getPackagePath() + USER_WORKSPACE);
 
     // Recursively copy and modify notebooks
     copyAndModifyNotebooks(sourceDir, destDir);
@@ -193,7 +202,7 @@ void NotebookConverter::processCell(json &cell, const QString &notebookPath, int
     int markerCount = 0;
     for (const auto &line : cell["source"]) {
         std::string lineStr = line.get<std::string>();
-        if (lineStr.find(MARKER.toStdString()) != std::string::npos) {
+        if (lineStr.find(WRITE_CODE_MARKER.toStdString()) != std::string::npos) {
             markerCount++;
         }
     }
@@ -209,7 +218,7 @@ void NotebookConverter::processCell(json &cell, const QString &notebookPath, int
     for (const auto &line : cell["source"]) {
         std::string lineStr = line.get<std::string>();
 
-        if (lineStr.find(MARKER.toStdString()) != std::string::npos) {
+        if (lineStr.find(WRITE_CODE_MARKER.toStdString()) != std::string::npos) {
             if (!insideMarkerBlock) {
                 // Start of marker block
                 insideMarkerBlock = true;
@@ -252,3 +261,169 @@ void NotebookConverter::writeFile(const json &notebook, const QString &notebookP
     out << QString::fromStdString(notebook.dump(4));
     file.close();
 }
+
+
+void NotebookConverter::toggleSolution(const QString &filePath, const QString &solutionFilePath) {
+    QString fullFilePath = getPackagePath() + filePath;
+    QString fullSolutionFilePath = getPackagePath() + solutionFilePath;
+    if (!QFile::exists(fullFilePath) || !QFile::exists(fullSolutionFilePath)) {
+        qCritical() << "File not found:" << fullFilePath << "or" << fullSolutionFilePath;
+        return;
+    }
+
+    QByteArray data = readFile(fullFilePath);
+    if (data.isEmpty()) return;
+
+    json notebook = parseJson(data, fullFilePath);
+    if (notebook.is_null()) return;
+
+    bool hasSolution = false;
+    for (const auto &cell : notebook["cells"]) {
+        if (cell["metadata"].contains("tags")) {
+            const auto &tags = cell["metadata"]["tags"];
+            if (std::find(tags.begin(), tags.end(), SOLUTION_CELL_TAG.toStdString()) != tags.end()) {
+                hasSolution = true;
+                break;
+            }
+        }
+    }
+
+    if (hasSolution) {
+        qDebug() << "Removing solution cells from:" << fullFilePath;
+        removeSolutionCells(fullFilePath);
+    } else {
+        qDebug() << "Adding solution cells to:" << fullFilePath;
+        addSolutionCells(fullFilePath, fullSolutionFilePath);
+    }
+}
+
+void NotebookConverter::addSolutionCells(const QString &notebookPath, const QString &solutionPath) {
+    // Read and parse the target notebook
+    QByteArray notebookData = readFile(notebookPath);
+    if (notebookData.isEmpty()) return;
+    json notebook = parseJson(notebookData, notebookPath);
+    if (notebook.is_null()) return;
+
+    // Read and parse the solution notebook
+    QByteArray solutionData = readFile(solutionPath);
+    if (solutionData.isEmpty()) return;
+    json solutionNotebook = parseJson(solutionData, solutionPath);
+    if (solutionNotebook.is_null()) return;
+
+    if (!notebook.contains("cells")) return;
+
+    // Iterate with index to allow insertion
+    for (size_t i = 0; i < notebook["cells"].size(); ++i) {
+        auto &cell = notebook["cells"][i];
+        if (cell.contains("metadata") && cell["metadata"].contains("tags")) {
+            const auto &tags = cell["metadata"]["tags"];
+            // Find numberedTag
+            std::string numberedTag;
+            for (const auto &tag : tags) {
+                if (tag.get<std::string>().find(TASK_CELL_TAG.toStdString()) != std::string::npos) {
+                    numberedTag = tag.get<std::string>();
+                    break;
+                }
+            }
+            if (numberedTag.empty()) continue;
+
+            // Check for SOLUTION_REMOVED_CELL_TAG
+            bool hasSolutionRemoved = false;
+            for (const auto &tag : tags) {
+                if (tag.get<std::string>() == SOLUTION_REMOVED_CELL_TAG.toStdString()) {
+                    hasSolutionRemoved = true;
+                    break;
+                }
+            }
+            if (!hasSolutionRemoved) continue;
+
+            // Extract index from numberedTag using rfind
+            size_t underscorePos = numberedTag.rfind('_');
+            if (underscorePos == std::string::npos) continue;
+            int index = 0;
+            try {
+                std::string indexStr = numberedTag.substr(underscorePos + 1);
+                index = std::stoi(indexStr);
+            } catch (...) {
+                continue;
+            }
+
+            // Find the i-th code cell in the solution notebook
+            int codeCellCount = 0;
+            json solutionCell;
+            for (const auto &solCell : solutionNotebook["cells"]) {
+                if (solCell["cell_type"] == "code") {
+                    if (codeCellCount == index - 1) {
+                        solutionCell = solCell;
+                        break;
+                    }
+                    codeCellCount++;
+                }
+            }
+
+            if (!solutionCell.is_null()) {
+                // Add SOLUTION_CELL_TAG
+                if (!solutionCell["metadata"].contains("tags")) {
+                    solutionCell["metadata"]["tags"] = json::array();
+                }
+                solutionCell["metadata"]["tags"].push_back(SOLUTION_CELL_TAG.toStdString());
+
+                manipulateSolutionCellContent(solutionCell);
+
+                // Insert solution cell right after the current task cell
+                notebook["cells"].insert(notebook["cells"].begin() + i + 1, solutionCell);
+                i++; // Skip the inserted solution cell
+            }
+        }
+    }
+
+    // Write the updated notebook back to file
+    writeFile(notebook, notebookPath);
+}
+
+void NotebookConverter::manipulateSolutionCellContent(json &solutionCell) {
+    std::vector<std::string> source = solutionCell["source"].get<std::vector<std::string>>();
+
+    // Insert the header at the beginning of the source
+    source.insert(source.begin(), SOLUTION_CELL_HEADER.toStdString() + "\n");
+
+    // Replace WRITE_CODE_MARKER with SOLUTION_CODE_PLACEHOLDER
+    bool isStart = true;
+    for (auto &line : source) {
+        size_t pos = line.find(WRITE_CODE_MARKER.toStdString());
+        while (pos != std::string::npos) {
+            if (isStart) {
+                line.replace(pos, WRITE_CODE_MARKER.length(), SOLUTION_CODE_PLACEHOLDER_START.toStdString());
+                isStart = false;
+            } else {
+                line.replace(pos, WRITE_CODE_MARKER.length(), SOLUTION_CODE_PLACEHOLDER_END.toStdString());
+                isStart = true;
+            }
+            pos = line.find(WRITE_CODE_MARKER.toStdString(), pos + SOLUTION_CODE_PLACEHOLDER_START.length());
+        }
+    }
+
+    solutionCell["source"] = source;
+}
+
+void NotebookConverter::removeSolutionCells(const QString &notebookPath) {
+    QByteArray data = readFile(notebookPath);
+    if (data.isEmpty()) return;
+
+    json notebook = parseJson(data, notebookPath);
+    if (notebook.is_null()) return;
+
+    // Iterate in reverse to safely remove cells
+    for (int i = notebook["cells"].size() - 1; i >= 0; --i) {
+        auto &cell = notebook["cells"][i];
+        if (cell["metadata"].contains("tags")) {
+            const auto &tags = cell["metadata"]["tags"];
+            if (std::find(tags.begin(), tags.end(), SOLUTION_CELL_TAG.toStdString()) != tags.end()) {
+                notebook["cells"].erase(notebook["cells"].begin() + i);
+            }
+        }
+    }
+
+    writeFile(notebook, notebookPath);
+}
+

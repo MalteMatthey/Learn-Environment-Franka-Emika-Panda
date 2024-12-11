@@ -38,6 +38,12 @@ public:
      */
     void startStopSubtask(Subtask &subtask);
 
+    /**
+     * @brief Show or hide the solution of a subtask.
+     * @param subtask Reference to the subtask.
+     */
+    void toggleSolution(Subtask &subtask);
+
 public Q_SLOTS:
     /**
      * @brief Starts or stops a subtask.

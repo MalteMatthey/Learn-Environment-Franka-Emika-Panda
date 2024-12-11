@@ -9,6 +9,17 @@
 
 using json = nlohmann::json;
 
+/**
+ * @class NotebookConverter
+ * @brief A class for converting Jupyter notebooks to Python scripts and processing task pools.
+ * 
+ * The NotebookConverter class provides functionality to convert Jupyter notebooks into Python scripts,
+ * ignoring code cells with a "solution" tag. It also processes and modifies notebooks from a task pool,
+ * removing solution code and adding metadata tags to indicate modified cells.
+ * 
+ * The class includes methods for reading and writing files, parsing JSON content, and processing notebook cells.
+ * It ensures that the structure of the notebook is preserved while removing solution code and adding necessary metadata.
+ */
 class NotebookConverter : public QObject {
     Q_OBJECT
 public:
@@ -25,6 +36,9 @@ public:
      * @brief Modifies and copies all notebooks from task_pool to /tasks.
      */
     void processTaskPool();
+
+    void toggleSolution(const QString &filePath, const QString &solutionFilePath);
+
 
     /**
      * @brief Gets the converted script path.
@@ -60,6 +74,10 @@ private:
     void processCell(json &cell, const QString &notebookPath, int i);
     void writeFile(const json &notebook, const QString &notebookPath);
     void copyAndModifyNotebooks(const QDir &sourceDir, const QDir &destDir);
+
+    void removeSolutionCells(const QString &notebookPath);
+    void addSolutionCells(const QString &notebookPath, const QString &solutionPath);
+    void manipulateSolutionCellContent(json &solutionCell);
 
     static const QString CONVERTED_SCRIPT_PATH;
 };

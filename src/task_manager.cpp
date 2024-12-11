@@ -2,6 +2,7 @@
 #include "learn_environment/task_ui.hpp"
 #include "learn_environment/task_parser.hpp"
 #include "learn_environment/task_executor.hpp"
+#include "learn_environment/notebook_converter.hpp"
 
 #include <QDebug>
 
@@ -69,6 +70,19 @@ void TaskManager::startStopSubtask(Subtask &subtask)
     } else {
         qCritical() << "Parent task is no longer available.";
     }
+}
+
+void TaskManager::toggleSolution(Subtask &subtask)
+{
+    qDebug() << "Toggling solution for subtask:" << subtask.title;
+    QSharedPointer<Task> parentTaskPtr = subtask.parentTask.lock();
+    if (!parentTaskPtr) {
+        qCritical() << "Parent task is no longer available.";
+        return;
+    }
+
+    NotebookConverter converter;
+    converter.toggleSolution(parentTaskPtr->folder + subtask.file, subtask.solutionFilePath);
 }
 
 void TaskManager::selectTask(int index)

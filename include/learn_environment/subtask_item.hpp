@@ -53,6 +53,7 @@ private Q_SLOTS:
      * @brief Handles the start button click event.
      */
     void handleStartButtonClick();
+    void handleSolutionButtonClick();
 
 private:
     /**

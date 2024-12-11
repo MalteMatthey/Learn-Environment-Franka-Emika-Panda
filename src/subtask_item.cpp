@@ -84,6 +84,13 @@ void SubtaskItem::handleStartButtonClick()
     }
 }
 
+void SubtaskItem::handleSolutionButtonClick()
+{
+    if (taskManager && subtask) {
+        taskManager->toggleSolution(*subtask);
+    }
+}
+
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {
     // Create the main widget
     QHBoxLayout *baseLayout = new QHBoxLayout(this);
@@ -159,4 +166,6 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
 
     // Connect the execute button to the popup
     connect(playButton, &QPushButton::clicked, this, &SubtaskItem::handleStartButtonClick);
+    // connect(resetButton, &QPushButton::clicked, this, &SubtaskItem::handleResetButtonClick);
+    connect(solutionButton, &QPushButton::clicked, this, &SubtaskItem::handleSolutionButtonClick);
 }

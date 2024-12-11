@@ -3,7 +3,7 @@
     {
       "title": "Task 1 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_1",
+      "folder": "/tasks/beginner/exercise_1",
       "difficulty": "beginner",
       "previous_subtasks_required": false,
       "subtasks": [
@@ -35,7 +35,7 @@
     {
       "title": "Task 2 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_2",
+      "folder": "/tasks/beginner/exercise_2",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -57,7 +57,7 @@
     {
       "title": "Task 3 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_3",
+      "folder": "/tasks/beginner/exercise_3",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -72,7 +72,7 @@
     {
       "title": "Task 4 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_4",
+      "folder": "/tasks/beginner/exercise_4",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -94,7 +94,7 @@
     {
       "title": "Task 5 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_5",
+      "folder": "/tasks/beginner/exercise_5",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -116,7 +116,7 @@
     {
       "title": "Task 6 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/beginner/exercise_6",
+      "folder": "/tasks/beginner/exercise_6",
       "difficulty": "beginner",
       "subtasks": [
         {
@@ -131,7 +131,7 @@
     {
       "title": "Task 7 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/intermediate/exercise_1",
+      "folder": "/tasks/intermediate/exercise_1",
       "difficulty": "intermediate",
       "subtasks": [
         {
