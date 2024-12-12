@@ -35,7 +35,7 @@ public:
      * @param parent Pointer to the parent QObject.
      */
     TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
-           QLabel *difficultyLabel, QLabel *folderLabel,
+           QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel,
            QPushButton *nextButton, QPushButton *previousButton,
            Sidebar &sidebar, QObject *parent = nullptr);
 
@@ -75,6 +75,7 @@ private:
     QLabel *mainTitleLabel; ///< Pointer to the QLabel for displaying the main title.
     QLabel *difficultyLabel; ///< Pointer to the QLabel for displaying the difficulty level.
     QLabel *folderLabel; ///< Pointer to the QLabel for displaying the folder information.
+    QLabel *topicLabel; ///< Pointer to the QLabel for displaying the topic of the task.
     QPushButton *nextButton; ///< Pointer to the QPushButton for navigating to the next task.
     QPushButton *previousButton; ///< Pointer to the QPushButton for navigating to the previous task.
     QVector<QSharedPointer<Task>> tasks; ///< Vector of loaded tasks.

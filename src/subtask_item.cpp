@@ -92,17 +92,14 @@ void SubtaskItem::handleSolutionButtonClick()
 }
 
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {
-    // Create the main widget
+// Create the main widget
     QHBoxLayout *baseLayout = new QHBoxLayout(this);
     baseLayout->setContentsMargins(10, 10, 10, 10);
 
     // Create a vertical layout for the text
     QVBoxLayout *textLayout = new QVBoxLayout();
 
-    // Create a horizontal layout for the header and link
-    QHBoxLayout *headerLinkLayout = new QHBoxLayout();
-
-    // Create a header label
+    // Create the header label
     QLabel *headerLabel = new QLabel(headerText);
     QFont headerFont = headerLabel->font();
     headerFont.setPointSize(HEADER_FONT_SIZE);
@@ -115,12 +112,6 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     linkLabel->setOpenExternalLinks(true);
     linkLabel->setStyleSheet(LINK_STYLE);
 
-    // Add header and link labels to the horizontal layout
-    headerLinkLayout->addWidget(headerLabel);
-    headerLinkLayout->addWidget(linkLabel);
-    headerLinkLayout->addStretch();
-    headerLinkLayout->setAlignment(linkLabel, Qt::AlignBottom);
-
     // Create the text label with automatic line breaks
     QLabel *loremLabel = new QLabel(bodyText);
     loremLabel->setWordWrap(true); // Enable word wrap
@@ -130,8 +121,9 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     loremLabel->setFont(loremFont);
     loremLabel->setStyleSheet(BODY_STYLE);
 
-    // Add headerLinkLayout and loremLabel to the vertical layout
-    textLayout->addLayout(headerLinkLayout);
+    // Add header, link, and text labels to the vertical layout
+    textLayout->addWidget(headerLabel);
+    textLayout->addWidget(linkLabel);
     textLayout->addWidget(loremLabel);
     textLayout->addStretch();
 
@@ -141,7 +133,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     // Create a vertical layout for the buttons
     QVBoxLayout *buttonLayout = new QVBoxLayout();
     buttonLayout->setAlignment(Qt::AlignRight);
-    buttonLayout->setContentsMargins(10, 0, 0, 0); 
+    buttonLayout->setContentsMargins(10, 0, 0, 0);
 
     // Create buttons
     playButton = new QPushButton(START_TEXT);

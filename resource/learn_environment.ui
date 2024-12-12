@@ -219,6 +219,26 @@ text-transform: uppercase;</string>
              </spacer>
             </item>
             <item>
+             <widget class="QLabel" name="topicLabel">
+              <property name="text">
+               <string>TopicName</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="bottomNavSpacer2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QPushButton" name="nextButton">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>

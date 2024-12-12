@@ -16,7 +16,7 @@ namespace {
 }
 
 TaskUI::TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
-               QLabel *difficultyLabel, QLabel *folderLabel,
+               QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel,
                QPushButton *nextButton, QPushButton *previousButton,
                Sidebar &sidebar, QObject *parent)
     : QObject(parent),
@@ -25,6 +25,7 @@ TaskUI::TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
       mainTitleLabel(mainTitleLabel),
       difficultyLabel(difficultyLabel),
       folderLabel(folderLabel),
+      topicLabel(topicLabel),
       nextButton(nextButton),
       previousButton(previousButton)
 { }
@@ -63,6 +64,8 @@ void TaskUI::setTaskUI(int currentTaskIndex)
     difficultyLabel->setStyleSheet(styleSheet);
 
     folderLabel->setText(QString(FOLDER_HTML_TEMPLATE) + currentTask->folder + R"(</span></p></body>)");
+
+    topicLabel->setText(currentTask->topic);
 
     nextButton->setEnabled(currentTaskIndex < tasks.size() - 1);
     previousButton->setEnabled(currentTaskIndex > 0);

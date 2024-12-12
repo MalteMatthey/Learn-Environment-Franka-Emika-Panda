@@ -19,7 +19,7 @@
         },
         {
           "title": "Subtask 1.2 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 2.",
+          "description": "TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2.",
           "file": "/exercise_1_2.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_1/exercise_1_2.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_1/exercise_1_2_eval.py"

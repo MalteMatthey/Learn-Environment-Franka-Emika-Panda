@@ -23,10 +23,6 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
     TaskParser parser;
     tasks = parser.loadTasks(TASK_DEFINITIONS_PATH, DIFFICULTY_LEVELS_DEFINITION_PATH, TOPIC_DEFINITIONS_PATH);
 
-    for (const auto& task : tasks) {
-        qDebug() << task->title;
-    }
-
     if (tasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskManager initialization.";
         return;

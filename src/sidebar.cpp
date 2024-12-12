@@ -17,6 +17,9 @@ namespace {
     const char* SIDEBAR_TITLE_LABEL = "TASKS";
 
     const QSize SIDEBAR_ITEM_MARGIN_SIZE(0, 30);
+    const QSize SIDEBAR_TITLE_ITEM_MARGINS(0, 20);
+    const QSize MARGIN_ITEM_SIDEBAR_ITEM_MARGIN_SIZE(0, 10);
+    const int SIDEBAR_ITEM_TOPIC_FONT_SIZE = 10;
     const int SIDEBAR_ITEM_FONT_SIZE = 12;
 
     const char* BEGINNER_JSON = "beginner";
@@ -61,7 +64,7 @@ CustomListWidget* Sidebar::createList() {
 void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
     QFont boldFont;
     boldFont.setBold(true);
-    boldFont.setPointSize(SIDEBAR_ITEM_FONT_SIZE);
+    boldFont.setPointSize(SIDEBAR_ITEM_TOPIC_FONT_SIZE);
     QFont normalFont;
     normalFont.setPointSize(SIDEBAR_ITEM_FONT_SIZE);
 
@@ -69,14 +72,22 @@ void Sidebar::fillSidebarWithTasks(const QVector<QSharedPointer<Task>>& tasks) {
     taskIndexToItemMap.clear();
 
     QString currentTopic;
+    bool firstTopic = true;
 
     for (int i = 0; i < tasks.size(); ++i) {
         QSharedPointer<Task> task = tasks[i];
         if (task->topic != currentTopic) {
+            if (!firstTopic) {
+                QListWidgetItem *marginItem = new QListWidgetItem("");
+                marginItem->setSizeHint(MARGIN_ITEM_SIDEBAR_ITEM_MARGIN_SIZE);
+                marginItem->setFlags(Qt::NoItemFlags);
+                listWidget->addItem(marginItem);
+            }
+            firstTopic = false;
             currentTopic = task->topic;
             QListWidgetItem *topicItem = new QListWidgetItem(capitalize(currentTopic));
             topicItem->setFont(boldFont);
-            topicItem->setSizeHint(SIDEBAR_ITEM_MARGIN_SIZE);
+            topicItem->setSizeHint(SIDEBAR_TITLE_ITEM_MARGINS);
             topicItem->setFlags(Qt::NoItemFlags);
             topicItem->setForeground(QBrush(Qt::black));
             listWidget->addItem(topicItem);

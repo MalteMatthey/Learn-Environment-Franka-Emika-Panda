@@ -42,6 +42,7 @@ void LearnEnvironment::initialize() {
         ui->mainTitleLabel,
         ui->difficultyLabel,
         ui->folderLabel,
+        ui->topicLabel,
         ui->nextButton,
         ui->previousButton,
         *sidebar,
