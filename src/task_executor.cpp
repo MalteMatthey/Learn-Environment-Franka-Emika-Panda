@@ -1,5 +1,6 @@
 #include "learn_environment/task_executor.hpp"
 #include "learn_environment/script_worker.hpp"
+#include "learn_environment/folder_structure_constants.hpp"
 
 #include <QThread>
 #include <QFile>
@@ -17,16 +18,16 @@ void TaskExecutor::executeTask(const Subtask &subtask) {
 
     QString fullNotebookPath, fullConvertScriptPath, fullConvertedScriptPath, fullEvalScriptPath;
 
-    if (!constructPath(NotebookConverter::getPackagePath(),
+    if (!constructPath(FolderStructureConstants::getPackagePath(),
                        parentTaskPtr->folder + subtask.file, 
                        fullNotebookPath, 
                        "constructing the notebook path") ||
-        !constructPath(NotebookConverter::getPackagePath(),
-                       NotebookConverter::getConvertedScriptPath(), 
+        !constructPath(FolderStructureConstants::getPackagePath(),
+                       FolderStructureConstants::CONVERTED_SCRIPT_PATH,
                        fullConvertedScriptPath, 
                        "constructing the converted script path", 
                        false) ||
-        !constructPath(NotebookConverter::getPackagePath(),
+        !constructPath(FolderStructureConstants::getPackagePath(),
                        subtask.evaluationFilePath,
                        fullEvalScriptPath, 
                        "constructing the evaluation script path")) {

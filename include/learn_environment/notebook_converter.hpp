@@ -33,24 +33,11 @@ public:
     bool convertNotebook(const QString &notebookPath);
 
     /**
-     * @brief Modifies and copies all notebooks from task_pool to /tasks.
+     * @brief Modifies and copies all notebooks from task_pool to users workspace.
      */
     void processTaskPool();
 
     void toggleSolution(const QString &filePath, const QString &solutionFilePath);
-
-
-    /**
-     * @brief Gets the converted script path.
-     * @return The path to the converted script.
-     */
-    static QString getPackagePath();
-
-    /**
-     * @brief Gets the converted script path.
-     * @return The path to the converted script.
-     */
-    static QString getConvertedScriptPath();
 
 private:
     /**

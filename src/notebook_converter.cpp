@@ -4,15 +4,12 @@
 #include <QDebug>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
+#include "learn_environment/folder_structure_constants.hpp"
 #include <ros/package.h>
 #include <ros/ros.h>
 
 using json = nlohmann::json;
 
-const QString NotebookConverter::CONVERTED_SCRIPT_PATH = "/converter/converted.py";
-const QString PACKAGE_NAME = "learn_environment";
-const QString SOLUTION_SCRIPTS_SOURCE_PATH = "/task_pool/solution_scripts";
-const QString USER_WORKSPACE = "/tasks";
 const QString TASK_CELL_TAG = "task_cell";
 const QString SOLUTION_REMOVED_CELL_TAG = "solution_removed_cell";
 const QString SOLUTION_CELL_TAG = "solution_cell";
@@ -25,21 +22,6 @@ const QString SOLUTION_CELL_HEADER = "##########################################
                                      "##############################################################\n";
 const QString SOLUTION_CODE_PLACEHOLDER_START = "# ↓↓↓↓ SOLUTION CODE HERE ↓↓↓↓ #";
 const QString SOLUTION_CODE_PLACEHOLDER_END = "# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ #";
-
-QString NotebookConverter::getConvertedScriptPath() {
-    return CONVERTED_SCRIPT_PATH;
-}
-
-QString NotebookConverter::getPackagePath() {
-    QString packagePath;
-    try {
-        packagePath = QString::fromStdString(ros::package::getPath(PACKAGE_NAME.toStdString()));
-    } catch (...) {
-        qCritical() << "An error occurred while getting the package path of" << PACKAGE_NAME;
-        return QString();
-    }
-    return packagePath;
-}
 
 NotebookConverter::NotebookConverter(QObject *parent) : QObject(parent) {}
 
@@ -66,12 +48,12 @@ bool NotebookConverter::convertNotebook(const QString &notebookPath) {
         return false;
     }
     
-    QString packagePath = getPackagePath();
+    QString packagePath = FolderStructureConstants::getPackagePath();
     if (packagePath.isEmpty()) {
         return false;
     }
 
-    QString outputPath = packagePath + CONVERTED_SCRIPT_PATH;
+    QString outputPath = packagePath + FolderStructureConstants::CONVERTED_SCRIPT_PATH;
     QFile outputFile(outputPath);
     QDir().mkpath(QFileInfo(outputPath).dir().path());
 
@@ -111,8 +93,8 @@ bool NotebookConverter::convertNotebook(const QString &notebookPath) {
 
 void NotebookConverter::processTaskPool() {
     qDebug() << "Processing task pool...";
-    QDir sourceDir(getPackagePath() + SOLUTION_SCRIPTS_SOURCE_PATH);
-    QDir destDir(getPackagePath() + USER_WORKSPACE);
+    QDir sourceDir(FolderStructureConstants::getPackagePath() + FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH);
+    QDir destDir(FolderStructureConstants::getPackagePath() + FolderStructureConstants::USER_WORKSPACE);
 
     // Recursively copy and modify notebooks
     copyAndModifyNotebooks(sourceDir, destDir);
@@ -269,8 +251,8 @@ void NotebookConverter::writeFile(const json &notebook, const QString &notebookP
 
 
 void NotebookConverter::toggleSolution(const QString &filePath, const QString &solutionFilePath) {
-    QString fullFilePath = getPackagePath() + filePath;
-    QString fullSolutionFilePath = getPackagePath() + solutionFilePath;
+    QString fullFilePath = FolderStructureConstants::getPackagePath() + filePath;
+    QString fullSolutionFilePath = FolderStructureConstants::getPackagePath() + solutionFilePath;
     if (!QFile::exists(fullFilePath) || !QFile::exists(fullSolutionFilePath)) {
         qCritical() << "File not found:" << fullFilePath << "or" << fullSolutionFilePath;
         return;

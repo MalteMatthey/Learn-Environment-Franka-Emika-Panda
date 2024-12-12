@@ -56,6 +56,7 @@ set(${PROJECT_NAME}_HDRS
   include/${PROJECT_NAME}/process_runner.hpp
   include/${PROJECT_NAME}/task_ui.hpp
   include/${PROJECT_NAME}/notebook_converter.hpp
+  include/${PROJECT_NAME}/folder_structure_constants.hpp
 )
 
 set(${PROJECT_NAME}_SRCS

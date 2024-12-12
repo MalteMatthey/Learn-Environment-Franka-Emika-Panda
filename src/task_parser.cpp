@@ -1,4 +1,5 @@
 #include "learn_environment/task_parser.hpp"
+#include "learn_environment/folder_structure_constants.hpp"
 
 #include <QFile>
 #include <QTextStream>
@@ -88,7 +89,6 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& taskJsonData, c
         try {
             task->title = QString::fromStdString(taskJson.at(TITLE_KEY).get<std::string>());
             task->description = QString::fromStdString(taskJson.at(DESCRIPTION_KEY).get<std::string>());
-            task->folder = QString::fromStdString(taskJson.at(FOLDER_KEY).get<std::string>());
             task->difficulty = QString::fromStdString(taskJson.at(DIFFICULTY_KEY).get<std::string>());
 
             // Set topic if defined in topic_definitions.json, else set to unknown
@@ -130,6 +130,16 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& taskJsonData, c
 
         if (taskJson.contains(SUBTASKS_KEY) && taskJson[SUBTASKS_KEY].is_array()) {
             task->subtasks = parseSubtasks(taskJson[SUBTASKS_KEY], task);
+
+            // Set the folder based on the solution file path
+            QString solutionFilePath = task->subtasks[0].solutionFilePath;
+            solutionFilePath.replace(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH, FolderStructureConstants::USER_WORKSPACE);
+            int lastSlashIndex = solutionFilePath.lastIndexOf('/');
+            if (lastSlashIndex != -1) {
+                task->folder = solutionFilePath.left(lastSlashIndex);
+            } else {
+                qCritical() << "Invalid solution file path format:" << solutionFilePath;
+            }
         } else {
             qCritical() << "Task does not contain valid 'subtasks'";
         }
@@ -176,8 +186,8 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             subtask.title = QString::fromStdString(subtaskJson.at(TITLE_KEY).get<std::string>());
             subtask.description = QString::fromStdString(subtaskJson.at(DESCRIPTION_KEY).get<std::string>());
             subtask.file = QString::fromStdString(subtaskJson.at(FILE_KEY).get<std::string>());
-            subtask.solutionFilePath = QString::fromStdString(subtaskJson.at(SOLUTION_FILE_PATH_KEY).get<std::string>());
-            subtask.evaluationFilePath = QString::fromStdString(subtaskJson.at(EVALUATION_FILE_PATH_KEY).get<std::string>());
+            subtask.solutionFilePath = FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_PATH_KEY).get<std::string>());
+            subtask.evaluationFilePath = FolderStructureConstants::EVALUATION_SCRIPTS_SOURCE_PATH + QString::fromStdString(subtaskJson.at(EVALUATION_FILE_PATH_KEY).get<std::string>());
 
             // Optional fields
             if (subtaskJson.contains(TIMEOUT_SECONDS_KEY)) {

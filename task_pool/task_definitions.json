@@ -3,7 +3,6 @@
     {
       "title": "ROS Basics",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros/ros_basics",
       "topic": "ROS",
       "difficulty": "beginner",
       "subtasks": [
@@ -11,31 +10,30 @@
           "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_1_eval.py",
+          "solution_file_path": "/ros/ros_basics/exercise_1.ipynb",
+          "evaluation_file_path": "/ros/ros_basics/exercise_1_eval.py",
           "parallelized_evaluation_required": true
         },
         {
           "title": "Task 2",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_2_eval.py",
+          "solution_file_path": "/ros/ros_basics/exercise_2.ipynb",
+          "evaluation_file_path": "/ros/ros_basics/exercise_2_eval.py",
           "parallelized_evaluation_required": true
         },
         {
           "title": "Task 3",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_3.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_3.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_3_eval.py"
+          "solution_file_path": "/ros/ros_basics/exercise_3.ipynb",
+          "evaluation_file_path": "/ros/ros_basics/exercise_3_eval.py"
         }
       ]
     },
     {
       "title": "ROS Intermediate",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros/ros_advanced",
       "topic": "ROS",
       "difficulty": "intermediate",
       "subtasks": [
@@ -43,15 +41,14 @@
           "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_advanced/exercise_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_advanced/exercise_1_eval.py"
+          "solution_file_path": "/ros/ros_advanced/exercise_1.ipynb",
+          "evaluation_file_path": "/ros/ros_advanced/exercise_1_eval.py"
         }
       ]
     },
     {
       "title": "Task 1 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_1",
       "topic": "ROS Basics",
       "difficulty": "beginner",
       "previous_subtasks_required": true,
@@ -60,8 +57,8 @@
           "title": "Subtask 1.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_1_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_1/exercise_1_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_1/exercise_1_1_eval.py",
+          "solution_file_path": "/beginner/exercise_1/exercise_1_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_1/exercise_1_1_eval.py",
           "timeout_seconds": 60,
           "parallelized_evaluation_required": false
         },
@@ -69,22 +66,21 @@
           "title": "Subtask 1.2 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2. TODO: Add Subtask Description Subtask 2.",
           "file": "/exercise_1_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_1/exercise_1_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_1/exercise_1_2_eval.py"
+          "solution_file_path": "/beginner/exercise_1/exercise_1_2.ipynb",
+          "evaluation_file_path": "/beginner/exercise_1/exercise_1_2_eval.py"
         },
         {
           "title": "Subtask 1.3 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 3.",
           "file": "/exercise_1_3.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_1/exercise_1_3.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_1/exercise_1_3_eval.py"
+          "solution_file_path": "/beginner/exercise_1/exercise_1_3.ipynb",
+          "evaluation_file_path": "/beginner/exercise_1/exercise_1_3_eval.py"
         }
       ]
     },
     {
       "title": "Task 2 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_2",
       "topic": "ROS Basics",
       "difficulty": "beginner",
       "subtasks": [
@@ -92,22 +88,21 @@
           "title": "Subtask 2.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_2_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_2/exercise_2_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_2/exercise_2_1_eval.py"
+          "solution_file_path": "/beginner/exercise_2/exercise_2_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_2/exercise_2_1_eval.py"
         },
         {
           "title": "Subtask 2.2 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 2.",
           "file": "/exercise_2_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_2/exercise_2_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_2/exercise_2_2_eval.py"
+          "solution_file_path": "/beginner/exercise_2/exercise_2_2.ipynb",
+          "evaluation_file_path": "/beginner/exercise_2/exercise_2_2_eval.py"
         }
       ]
     },
     {
       "title": "Task 3 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_3",
       "topic": "ROS Basics",
       "difficulty": "strange_difficulty",
       "subtasks": [
@@ -115,8 +110,8 @@
           "title": "Subtask 3.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_3_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_3/exercise_3_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_3/exercise_3_1_eval.py",
+          "solution_file_path": "/beginner/exercise_3/exercise_3_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_3/exercise_3_1_eval.py",
           "parallelized_evaluation_required": true
         }
       ]
@@ -124,7 +119,6 @@
     {
       "title": "Task 4 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_4",
       "topic": "Topic 3",
       "difficulty": "beginner",
       "subtasks": [
@@ -132,22 +126,21 @@
           "title": "Subtask 4.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_4_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_4/exercise_4_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_4/exercise_4_1_eval.py"
+          "solution_file_path": "/beginner/exercise_4/exercise_4_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_4/exercise_4_1_eval.py"
         },
         {
           "title": "Subtask 4.2 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 2.",
           "file": "/exercise_4_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_4/exercise_4_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_4/exercise_4_2_eval.py"
+          "solution_file_path": "/beginner/exercise_4/exercise_4_2.ipynb",
+          "evaluation_file_path": "/beginner/exercise_4/exercise_4_2_eval.py"
         }
       ]
     },
     {
       "title": "Task 5 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_5",
       "topic": "Topic 2",
       "difficulty": "beginner",
       "subtasks": [
@@ -155,22 +148,21 @@
           "title": "Subtask 5.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_5_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_5/exercise_5_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_5/exercise_5_1_eval.py"
+          "solution_file_path": "/beginner/exercise_5/exercise_5_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_5/exercise_5_1_eval.py"
         },
         {
           "title": "Subtask 5.2 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 2.",
           "file": "/exercise_5_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_5/exercise_5_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_5/exercise_5_2_eval.py"
+          "solution_file_path": "/beginner/exercise_5/exercise_5_2.ipynb",
+          "evaluation_file_path": "/beginner/exercise_5/exercise_5_2_eval.py"
         }
       ]
     },
     {
       "title": "Task 6 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/beginner/exercise_6",
       "topic": "Topic 2",
       "difficulty": "beginner",
       "subtasks": [
@@ -178,15 +170,14 @@
           "title": "Subtask 6.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_6_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/beginner/exercise_6/exercise_6_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/beginner/exercise_6/exercise_6_1_eval.py"
+          "solution_file_path": "/beginner/exercise_6/exercise_6_1.ipynb",
+          "evaluation_file_path": "/beginner/exercise_6/exercise_6_1_eval.py"
         }
       ]
     },
     {
       "title": "Task 7 (TODO: Rename)",
       "description": "TODO: Add Description.",
-      "folder": "/tasks/intermediate/exercise_1",
       "topic": "fjdsfkl",
       "difficulty": "intermediate",
       "subtasks": [
@@ -194,8 +185,8 @@
           "title": "Subtask 1.1 (TODO: Rename)",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "file": "/exercise_1_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/intermediate/exercise_1/exercise_1_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/intermediate/exercise_1/exercise_1_1_eval.py"
+          "solution_file_path": "/intermediate/exercise_1/exercise_1_1.ipynb",
+          "evaluation_file_path": "/intermediate/exercise_1/exercise_1_1_eval.py"
         }
       ]
     }
