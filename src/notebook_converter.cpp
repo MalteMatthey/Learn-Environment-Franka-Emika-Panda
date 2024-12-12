@@ -17,6 +17,7 @@ const QString TASK_CELL_TAG = "task_cell";
 const QString SOLUTION_REMOVED_CELL_TAG = "solution_removed_cell";
 const QString SOLUTION_CELL_TAG = "solution_cell";
 const QString WRITE_CODE_MARKER = "#### YOUR CODE HERE ####";
+const QString NOT_IMPLEMENTED_ERROR = "raise NotImplementedError()";
 const QString SOLUTION_CELL_HEADER = "##############################################################\n"
                                      "####     THIS IS A SOLUTION CELL. IT WILL NOT EXECUTE.    ####\n"
                                      "#### YOU CAN RUN THE SOLUTION DIRECTLY WITHIN THE PLUGIN. ####\n"
@@ -223,7 +224,11 @@ void NotebookConverter::processCell(json &cell, const QString &notebookPath, int
                 // Start of marker block
                 insideMarkerBlock = true;
                 newSource.push_back(lineStr); // add the marker in the modified notebook
-                newSource.push_back("raise NotImplementedError()");
+
+                // Determine indentation
+                size_t pos = lineStr.find_first_not_of(" ");
+                std::string indentation = lineStr.substr(0, pos);
+                newSource.push_back(indentation + NOT_IMPLEMENTED_ERROR.toStdString());
             } else {
                 // End of marker block
                 insideMarkerBlock = false;
