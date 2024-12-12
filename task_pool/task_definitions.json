@@ -35,16 +35,23 @@
     {
       "title": "ROS Intermediate",
       "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros/ros_advanced",
+      "folder": "/task_pool/solution_scripts/ros/ros_intermediate",
       "topic": "ROS",
       "difficulty": "intermediate",
       "subtasks": [
         {
           "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_advanced/exercise_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_advanced/exercise_1_eval.py"
+          "file": "/ros_intermediate_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_intermediate/ros_intermediate_1.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_intermediate/ros_intermediate_1_eval.py"
+        },
+        {
+          "title": "Task 2",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/ros_intermediate_2.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_intermediate/ros_intermediate_2.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_intermediate/ros_intermediate_2_eval.py"
         }
       ]
     },

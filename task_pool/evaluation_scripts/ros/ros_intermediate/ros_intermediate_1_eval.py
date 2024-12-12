@@ -6,7 +6,7 @@ from moveit_commander import MoveGroupCommander, roscpp_initialize, roscpp_shutd
 
 
 roscpp_initialize(sys.argv)
-rospy.init_node('exercise_1_evaluation', anonymous=True)
+rospy.init_node('ros_intermediate_1_eval', anonymous=True)
 
 group = MoveGroupCommander("panda_arm")
 
