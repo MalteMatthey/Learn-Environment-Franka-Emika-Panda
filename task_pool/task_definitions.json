@@ -1,6 +1,54 @@
 {
   "tasks": [
     {
+      "title": "ROS Basics",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/ros/ros_basics",
+      "topic": "ROS",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Task 1",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_1.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_1_eval.py",
+          "parallelized_evaluation_required": true
+        },
+        {
+          "title": "Task 2",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_2.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_2.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_2_eval.py",
+          "parallelized_evaluation_required": true
+        },
+        {
+          "title": "Task 3",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_3.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_3.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_3_eval.py"
+        }
+      ]
+    },
+    {
+      "title": "ROS Intermediate",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/ros/ros_advanced",
+      "topic": "ROS",
+      "difficulty": "intermediate",
+      "subtasks": [
+        {
+          "title": "Task 1",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/exercise_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_advanced/exercise_1.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_advanced/exercise_1_eval.py"
+        }
+      ]
+    },
+    {
       "title": "Task 1 (TODO: Rename)",
       "description": "TODO: Add Description.",
       "folder": "/tasks/beginner/exercise_1",
@@ -148,52 +196,6 @@
           "file": "/exercise_1_1.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/intermediate/exercise_1/exercise_1_1.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/intermediate/exercise_1/exercise_1_1_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "ROS BASICS",
-      "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros/ros_basics",
-      "difficulty": "ros",
-      "subtasks": [
-        {
-          "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_1_eval.py",
-          "parallelized_evaluation_required": true
-        },
-        {
-          "title": "Task 2",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_2.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_2.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_2_eval.py",
-          "parallelized_evaluation_required": true
-        },
-        {
-          "title": "Task 3",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_3.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_3.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_3_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "ROS ADVANCED",
-      "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/ros/ros_advanced",
-      "difficulty": "ros",
-      "subtasks": [
-        {
-          "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_1.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_advanced/exercise_1.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_advanced/exercise_1_eval.py"
         }
       ]
     }
