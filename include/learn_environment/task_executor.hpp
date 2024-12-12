@@ -37,6 +37,11 @@ public:
      */
     void forceStop();
 
+    /**
+     * @brief Triggers python script to reset the robot to its initial state and removes all objects from the scene.
+     */
+    void resetRobot();
+
 Q_SIGNALS:
     /**
      * @brief Signal emitted when task execution starts.
@@ -53,6 +58,17 @@ Q_SIGNALS:
      * @param error The error message.
      */
     void taskExecutionFailed(const QString &error);
+
+    /**
+     * @brief Signal emitted when robot reset finishes.
+     */
+    void resetRobotFinished();
+
+    /**
+     * @brief Signal emitted when robot reset fails.
+     * @param error The error message.
+     */
+    void resetRobotFailed(const QString &error);
 
 private:
     /**

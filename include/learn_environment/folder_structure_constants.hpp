@@ -21,6 +21,12 @@ namespace FolderStructureConstants {
     inline const QString CONVERTED_SCRIPT_PATH = "/converter/converted.py";
 
     /**
+     * @var FolderStructureConstants::RESET_ROBOT_SCRIPT_PATH
+     * @brief Path to the reset robot script.
+     */
+    inline const QString RESET_ROBOT_SCRIPT_PATH = "/task_pool/reset_robot.py";
+
+    /**
      * @var FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH
      * @brief Path to the solution scripts source directory.
      */

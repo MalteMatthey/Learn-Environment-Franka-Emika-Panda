@@ -53,7 +53,9 @@ void ProcessRunner::onReadyReadStandardOutput() {
 
     Q_EMIT outputReady(cleanOutput);
 
-    qDebug().noquote() << "Output of" << processName + ":" << cleanOutput.trimmed();
+    if (!cleanOutput.isEmpty()) {
+        qDebug().noquote() << "Output of" << processName + ":" << cleanOutput.trimmed();
+    }
 }
 
 void ProcessRunner::onReadyReadStandardError() {

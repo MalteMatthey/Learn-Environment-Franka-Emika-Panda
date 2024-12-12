@@ -65,7 +65,41 @@ void TaskExecutor::forceStop() {
     }
 }
 
-bool TaskExecutor::constructPath(const QString& basePath, const QString& addition, QString& result, const QString& errorMsg, bool checkExists) {
+void TaskExecutor::resetRobot() {
+    QString resetRobotScriptPath;
+    if (!constructPath(FolderStructureConstants::getPackagePath(),
+                       FolderStructureConstants::RESET_ROBOT_SCRIPT_PATH,
+                       resetRobotScriptPath,
+                       "constructing the reset robot script path")) {
+        return;
+    }
+
+    QThread *thread = new QThread;
+    ScriptWorker *worker = new ScriptWorker("", "", "", false, 30);
+    worker->moveToThread(thread);
+
+    connect(thread, &QThread::started, worker, [worker, resetRobotScriptPath]() {
+        worker->executePythonScript(resetRobotScriptPath, "Reset Robot Script");
+    });
+    connect(worker, &ScriptWorker::finished, thread, &QThread::quit);
+    connect(worker, &ScriptWorker::finished, worker, &ScriptWorker::deleteLater);
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+
+    // Forward signals from the worker to handle reset status
+    connect(worker, &ScriptWorker::finished, this, [this, worker]() {
+        scriptWorkers.removeOne(worker);
+        Q_EMIT resetRobotFinished();
+    });
+    connect(worker, &ScriptWorker::failed, this, [this, worker](const QString &error) {
+        scriptWorkers.removeOne(worker);
+        Q_EMIT resetRobotFailed(error);
+    });
+
+    thread->start();
+}
+
+bool TaskExecutor::constructPath(const QString &basePath, const QString &addition, QString &result, const QString &errorMsg, bool checkExists)
+{
     try {
         result = basePath + addition;
         if (!QFile::exists(result) && checkExists) {

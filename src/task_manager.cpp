@@ -33,6 +33,9 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
     connect(taskExecutor, &TaskExecutor::taskExecutionFinished, this, &TaskManager::onTaskExecutionFinished);
     connect(taskExecutor, &TaskExecutor::taskExecutionFailed, this, &TaskManager::onTaskExecutionFailed);
 
+    connect(taskExecutor, &TaskExecutor::resetRobotFinished, this, &TaskManager::onResetRobotFinished);
+    connect(taskExecutor, &TaskExecutor::resetRobotFailed, this, &TaskManager::onResetRobotFailed);
+
     taskUI->setTaskManager(this);
     taskUI->initializeUI(tasks);
 
@@ -76,7 +79,6 @@ void TaskManager::startStopSubtask(Subtask &subtask)
 
 void TaskManager::toggleSolution(Subtask &subtask)
 {
-    qDebug() << "Toggling solution for subtask:" << subtask.title;
     QSharedPointer<Task> parentTaskPtr = subtask.parentTask.lock();
     if (!parentTaskPtr) {
         qCritical() << "Parent task is no longer available.";
@@ -147,11 +149,14 @@ void TaskManager::startSubtask(Subtask &started_subtask, QSharedPointer<Task> &t
         started_subtask.status = SubtaskStatus::Queued;
     }
 
-    // Execute first subtask
+    // reset Robot and start subtasks
     if (!queued_and_running_subtasks.isEmpty()) {
-        Subtask *first_subtask = queued_and_running_subtasks.first();
-        first_subtask->status = SubtaskStatus::Running;
-        taskExecutor->executeTask(*first_subtask);
+        if (started_subtask.reset_robot_before_executing) {
+        taskExecutor->resetRobot();
+        } else {
+            qDebug() << "Robot reset not required for this subtask.";
+            onResetRobotFinished();
+        }
     } else {
         qCritical() << "No subtask queued.";
     }
@@ -229,4 +234,18 @@ void TaskManager::onTaskExecutionFailed(const QString &error)
     } else {
         qCritical() << "Parent task is no longer available.";
     }
+}
+
+void TaskManager::onResetRobotFinished()
+{
+    Subtask *first_subtask = queued_and_running_subtasks.first();
+    first_subtask->status = SubtaskStatus::Running;
+    taskExecutor->executeTask(*first_subtask);
+    taskUI->updateSubtaskItemsUI();
+}
+
+void TaskManager::onResetRobotFailed(const QString &error)
+{
+    qCritical() << "Robot reset failed:" << error;
+    onTaskExecutionFailed(error);
 }

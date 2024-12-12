@@ -84,6 +84,17 @@ private Q_SLOTS:
      */
     void onTaskExecutionFailed(const QString &error);
 
+    /**
+     * @brief Slot for handling the reset robot finished event.
+     */
+    void onResetRobotFinished();
+
+    /**
+     * @brief Slot for handling the reset robot failed event.
+     * @param error The error message.
+     */
+    void onResetRobotFailed(const QString &error);
+
 private:
     TaskUI *taskUI; ///< Pointer to the TaskUI object.
     TaskExecutor *taskExecutor; ///< Pointer to the TaskExecutor object.

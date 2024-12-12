@@ -12,7 +12,8 @@
           "file": "/exercise_1.ipynb",
           "solution_file_path": "/ros/ros_basics/exercise_1.ipynb",
           "evaluation_file_path": "/ros/ros_basics/exercise_1_eval.py",
-          "parallelized_evaluation_required": true
+          "parallelized_evaluation_required": true,
+          "reset_robot_before_executing": false
         },
         {
           "title": "Task 2",

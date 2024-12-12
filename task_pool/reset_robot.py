@@ -43,4 +43,4 @@ remove_objects()
 
 roscpp_shutdown()
 
-print("resetting finised")
+print("Successfully reset the robot and removed all objects.")

@@ -22,6 +22,7 @@ namespace {
     const char* EVALUATION_FILE_PATH_KEY = "evaluation_file_path";
     const char* TIMEOUT_SECONDS_KEY = "timeout_seconds";
     const char* PARALLELIZED_EVALUATION_REQUIRED_KEY = "parallelized_evaluation_required";
+    const char* RESET_ROBOT_BEFORE_EXECUTING_KEY = "reset_robot_before_executing";
     const char* DIFFICULTY_LEVELS_KEY = "difficulty_levels";
     const char* DIFFICULTY_LEVELS_NAME_KEY = "name";
     const char* DIFFICULTY_LEVELS_HEX_COLOR_KEY = "hex-color";
@@ -195,6 +196,9 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             }
             if (subtaskJson.contains(PARALLELIZED_EVALUATION_REQUIRED_KEY)) {
                 subtask.parallelizedEvaluationRequired = subtaskJson.at(PARALLELIZED_EVALUATION_REQUIRED_KEY).get<bool>();
+            }
+            if (subtaskJson.contains(RESET_ROBOT_BEFORE_EXECUTING_KEY)) {
+                subtask.reset_robot_before_executing = subtaskJson.at(RESET_ROBOT_BEFORE_EXECUTING_KEY).get<bool>();
             }
 
             // Set the parent task for the subtask

@@ -38,6 +38,7 @@ struct Subtask {
     // optional field
     int timeoutSeconds = 60; ///< The timeout for the subtask execution in seconds.
     bool parallelizedEvaluationRequired = false; ///< Whether parallelized evaluation is required.
+    bool reset_robot_before_executing = true; ///< Whether to reset the robot before executing the subtask.
 
     // internal fields
     QWeakPointer<Task> parentTask; ///< Weak pointer to the parent task.

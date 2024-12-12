@@ -47,6 +47,11 @@ public Q_SLOTS:
      */
     void forceStop();
 
+    /**
+     * @brief Executes a given Python script.
+     */
+    void executePythonScript(const QString &scriptPath, const QString &name);
+
 Q_SIGNALS:
     /**
      * @brief Signal emitted when the script execution finishes.
