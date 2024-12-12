@@ -50,7 +50,7 @@ void ScriptWorker::convertAndExecuteNotebook() {
 void ScriptWorker::executeConvertedScript() {
     qDebug() << "Executing converted Notebook...";
     ProcessRunner *runner = new ProcessRunner("python3",
-                                              {convertedScriptPath},
+                                              {"-u", convertedScriptPath},
                                               timeoutSeconds,
                                               this,
                                               "Robot Script");
@@ -106,7 +106,7 @@ void ScriptWorker::evaluateScriptInParallel() {
 void ScriptWorker::checkResult() {
     qDebug() << "Checking result...";
     ProcessRunner *runner = new ProcessRunner("python3",
-                                              {evalScriptPath},
+                                              {"-u", evalScriptPath},
                                               timeoutSeconds,
                                               this,
                                               "Evaluation");
