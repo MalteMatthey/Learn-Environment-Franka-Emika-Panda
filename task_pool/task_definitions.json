@@ -26,9 +26,9 @@
         {
           "title": "Task 3",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/exercise_3.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/exercise_3.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/exercise_3_eval.py"
+          "file": "/ros_basics_3.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/ros_basics_3.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/ros_basics_3_eval.py"
         }
       ]
     },
