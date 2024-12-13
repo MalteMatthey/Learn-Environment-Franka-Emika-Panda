@@ -48,7 +48,7 @@ public:
      * @brief Removes solution code from a Jupyter notebook.
      * @param notebookPath Path to the notebook file.
      */
-    void resetNotebook(const QString &notebookSolutionPath);
+    void resetNotebook(const QString &notebookPath, const QString &notebookSolutionPath);
 
     /**
      * @brief Checks if the notebook contains any solution cells.

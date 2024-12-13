@@ -17,9 +17,8 @@ namespace {
     const char* TOPIC_KEY = "topic";
     const char* PREVIOUS_SUBTASKS_REQUIRED_KEY = "previous_subtasks_required";
     const char* SUBTASKS_KEY = "subtasks";
-    const char* FILE_KEY = "file";
-    const char* SOLUTION_FILE_PATH_KEY = "solution_file_path";
-    const char* EVALUATION_FILE_PATH_KEY = "evaluation_file_path";
+    const char* SOLUTION_FILE_KEY = "solution_file";
+    const char* EVALUATION_FILE_KEY = "evaluation_file";
     const char* TIMEOUT_SECONDS_KEY = "timeout_seconds";
     const char* PARALLELIZED_EVALUATION_REQUIRED_KEY = "parallelized_evaluation_required";
     const char* RESET_ROBOT_BEFORE_EXECUTING_KEY = "reset_robot_before_executing";
@@ -91,6 +90,7 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& taskJsonData, c
             task->title = QString::fromStdString(taskJson.at(TITLE_KEY).get<std::string>());
             task->description = QString::fromStdString(taskJson.at(DESCRIPTION_KEY).get<std::string>());
             task->difficulty = QString::fromStdString(taskJson.at(DIFFICULTY_KEY).get<std::string>());
+            task->folder = QString::fromStdString(taskJson.at(FOLDER_KEY).get<std::string>());
 
             // Set topic if defined in topic_definitions.json, else set to unknown
             QString topic = QString::fromStdString(taskJson.at(TOPIC_KEY).get<std::string>());
@@ -131,16 +131,6 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& taskJsonData, c
 
         if (taskJson.contains(SUBTASKS_KEY) && taskJson[SUBTASKS_KEY].is_array()) {
             task->subtasks = parseSubtasks(taskJson[SUBTASKS_KEY], task);
-
-            // Set the folder based on the solution file path
-            QString solutionFilePath = task->subtasks[0].solutionFilePath;
-            solutionFilePath.replace(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH, FolderStructureConstants::USER_WORKSPACE);
-            int lastSlashIndex = solutionFilePath.lastIndexOf('/');
-            if (lastSlashIndex != -1) {
-                task->folder = solutionFilePath.left(lastSlashIndex);
-            } else {
-                qCritical() << "Invalid solution file path format:" << solutionFilePath;
-            }
         } else {
             qCritical() << "Task does not contain valid 'subtasks'";
         }
@@ -184,12 +174,15 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
 
         Subtask subtask;
         try {
+            // Set the parent task for the subtask
+            subtask.parentTask = parentTask;
+
             subtask.title = QString::fromStdString(subtaskJson.at(TITLE_KEY).get<std::string>());
             subtask.description = QString::fromStdString(subtaskJson.at(DESCRIPTION_KEY).get<std::string>());
-            subtask.file = QString::fromStdString(subtaskJson.at(FILE_KEY).get<std::string>());
-            subtask.solutionFilePath = FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_PATH_KEY).get<std::string>());
-            subtask.evaluationFilePath = FolderStructureConstants::EVALUATION_SCRIPTS_SOURCE_PATH + QString::fromStdString(subtaskJson.at(EVALUATION_FILE_PATH_KEY).get<std::string>());
-
+            subtask.file = QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
+            subtask.filePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::USER_WORKSPACE + parentTask->folder + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
+            subtask.solutionFilePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH + parentTask->folder + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
+            subtask.evaluationFilePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::EVALUATION_SCRIPTS_SOURCE_PATH + parentTask->folder + QString::fromStdString(subtaskJson.at(EVALUATION_FILE_KEY).get<std::string>());
             // Optional fields
             if (subtaskJson.contains(TIMEOUT_SECONDS_KEY)) {
                 subtask.timeoutSeconds = subtaskJson.at(TIMEOUT_SECONDS_KEY).get<int>();
@@ -200,9 +193,6 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             if (subtaskJson.contains(RESET_ROBOT_BEFORE_EXECUTING_KEY)) {
                 subtask.reset_robot_before_executing = subtaskJson.at(RESET_ROBOT_BEFORE_EXECUTING_KEY).get<bool>();
             }
-
-            // Set the parent task for the subtask
-            subtask.parentTask = parentTask;
         } catch (const json::type_error& e) {
             qCritical() << "Type error in subtask:" << e.what();
             continue;

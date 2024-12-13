@@ -100,19 +100,14 @@ void NotebookConverter::processTaskPool() {
     copyAndModifyNotebooks(sourceDir, destDir);
 }
 
-void NotebookConverter::resetNotebook(const QString &notebookSolutionPath) {
-    QString notebookSolutionPathStrip = notebookSolutionPath;
-    if (notebookSolutionPath.startsWith(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH)) {
-        notebookSolutionPathStrip = notebookSolutionPath.mid(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH.length());
+void NotebookConverter::resetNotebook(const QString &notebookPath, const QString &notebookSolutionPath) {
+    if (QFile::exists(notebookPath)) {
+        QFile::remove(notebookPath);
     }
-    QString userWorkspacePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::USER_WORKSPACE + notebookSolutionPathStrip;
-    if (QFile::exists(userWorkspacePath)) {
-        QFile::remove(userWorkspacePath);
-    }
-    if (QFile::copy(FolderStructureConstants::getPackagePath() + notebookSolutionPath, userWorkspacePath)) {
-        removeSolutionFromNotebook(userWorkspacePath);
+    if (QFile::copy(notebookSolutionPath, notebookPath)) {
+        removeSolutionFromNotebook(notebookPath);
     } else {
-        qWarning() << "Failed to copy solution notebook to user workspace:" << FolderStructureConstants::getPackagePath() + notebookSolutionPath << "->" << userWorkspacePath;
+        qWarning() << "Failed to copy solution notebook to user workspace:" << notebookSolutionPath << "->" << notebookPath;
     }
 }
 
@@ -224,8 +219,8 @@ void NotebookConverter::processCell(json &cell, const QString &notebookPath, int
                 insideMarkerBlock = true;
                 newSource.push_back(lineStr); // add the marker in the modified notebook
 
-                // Determine indentation
-                size_t pos = lineStr.find_first_not_of(" ");
+                // Determine indentation including tabs
+                size_t pos = lineStr.find_first_not_of(" \t");
                 std::string indentation = lineStr.substr(0, pos);
                 newSource.push_back(indentation + NOT_IMPLEMENTED_ERROR.toStdString());
             } else {
@@ -268,17 +263,15 @@ void NotebookConverter::writeFile(const json &notebook, const QString &notebookP
 
 
 void NotebookConverter::toggleSolution(const QString &filePath, const QString &solutionFilePath) {
-    QString fullFilePath = FolderStructureConstants::getPackagePath() + filePath;
-    QString fullSolutionFilePath = FolderStructureConstants::getPackagePath() + solutionFilePath;
-    if (!QFile::exists(fullFilePath) || !QFile::exists(fullSolutionFilePath)) {
-        qCritical() << "File not found:" << fullFilePath << "or" << fullSolutionFilePath;
+    if (!QFile::exists(filePath) || !QFile::exists(solutionFilePath)) {
+        qCritical() << "File not found:" << filePath << "or" << solutionFilePath;
         return;
     }
 
-    QByteArray data = readFile(fullFilePath);
+    QByteArray data = readFile(filePath);
     if (data.isEmpty()) return;
 
-    json notebook = parseJson(data, fullFilePath);
+    json notebook = parseJson(data, filePath);
     if (notebook.is_null()) return;
 
     bool hasSolution = false;
@@ -293,11 +286,11 @@ void NotebookConverter::toggleSolution(const QString &filePath, const QString &s
     }
 
     if (hasSolution) {
-        qDebug() << "Removing solution cells from:" << fullFilePath;
-        removeSolutionCells(fullFilePath);
+        qDebug() << "Removing solution cells from:" << filePath;
+        removeSolutionCells(filePath);
     } else {
-        qDebug() << "Adding solution cells to:" << fullFilePath;
-        addSolutionCells(fullFilePath, fullSolutionFilePath);
+        qDebug() << "Adding solution cells to:" << filePath;
+        addSolutionCells(filePath, solutionFilePath);
     }
 }
 
@@ -432,11 +425,9 @@ void NotebookConverter::removeSolutionCells(const QString &notebookPath) {
 }
 
 bool NotebookConverter::hasSolutionCells(const QString &notebookPath) {
-    QString fullFilePath = FolderStructureConstants::getPackagePath() + notebookPath;
-
-    QFile inputFile(fullFilePath);
+    QFile inputFile(notebookPath);
     if (!inputFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qCritical() << "Failed to open notebook:" << fullFilePath;
+        qCritical() << "Failed to open notebook:" << notebookPath;
         return false;
     }
 
@@ -447,12 +438,12 @@ bool NotebookConverter::hasSolutionCells(const QString &notebookPath) {
     try {
         notebook = json::parse(data.constData());
     } catch (json::parse_error &e) {
-        qCritical() << "JSON parse error in file:" << fullFilePath << "-" << e.what();
+        qCritical() << "JSON parse error in file:" << notebookPath << "-" << e.what();
         return false;
     }
 
     if (!notebook.contains("cells")) {
-        qWarning() << "No cells found in notebook:" << fullFilePath;
+        qWarning() << "No cells found in notebook:" << notebookPath;
         return false;
     }
 

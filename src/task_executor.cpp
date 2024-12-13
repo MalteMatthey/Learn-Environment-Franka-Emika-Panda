@@ -18,8 +18,8 @@ void TaskExecutor::executeTask(const Subtask &subtask, bool startSolution) {
 
     QString fullNotebookPath, fullConvertScriptPath, fullConvertedScriptPath, fullEvalScriptPath;
 
-    if (!constructPath(FolderStructureConstants::getPackagePath(),
-                       startSolution ? subtask.solutionFilePath : parentTaskPtr->folder + subtask.file,
+    if (!constructPath("", // subtask paths are already absolute
+                       startSolution ? subtask.solutionFilePath : subtask.filePath,
                        fullNotebookPath,
                        "constructing the notebook path") ||
         !constructPath(FolderStructureConstants::getPackagePath(),
@@ -27,7 +27,7 @@ void TaskExecutor::executeTask(const Subtask &subtask, bool startSolution) {
                        fullConvertedScriptPath,
                        "constructing the converted script path", 
                        false) ||
-        !constructPath(FolderStructureConstants::getPackagePath(),
+        !constructPath("", // subtask paths are already absolute
                        subtask.evaluationFilePath,
                        fullEvalScriptPath, 
                        "constructing the evaluation script path")) {

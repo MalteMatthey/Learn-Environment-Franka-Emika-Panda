@@ -90,7 +90,10 @@ void SubtaskItem::updateUI(bool constructorCall)
         return;
     }
 
-    QString notebookPath = subtask->parentTask.lock()->folder + subtask->file;
+    QString notebookPath = subtask->filePath;
+    if (!QFile::exists(notebookPath)) {
+        return;
+    }
     if (NotebookConverter::hasSolutionCells(notebookPath)) {
         menuToggleSolutionBtn->setText(HIDE_SOLUTION_TEXT);
     } else {
@@ -105,8 +108,8 @@ void SubtaskItem::setTaskManager(TaskManager *manager)
 
 void SubtaskItem::handleStartButtonClick()
 {
-    QString notebookPath = subtask->parentTask.lock()->folder + subtask->file;
-    if (NotebookConverter::hasSolutionCells(notebookPath)) {
+    QString notebookPath = subtask->filePath;
+    if (NotebookConverter::hasSolutionCells(notebookPath) && subtask->status == SubtaskStatus::Ready) {
         if (startMenu) {
             startMenu->adjustSize();
             QPoint pos = startButton->mapToGlobal(QPoint(startButton->width() - startMenu->width(), startButton->height()));
@@ -169,13 +172,14 @@ void SubtaskItem::handleResetNotebook() {
     if (ret == QMessageBox::Yes) {
         if (taskManager && subtask) {
             NotebookConverter* converter = new NotebookConverter();
-            converter->resetNotebook(subtask->solutionFilePath);
+            converter->resetNotebook(subtask->filePath, subtask->solutionFilePath);
         }
     }
     QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
     if (menu) {
         menu->close();
     }
+    updateUI();
 }
 
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {

@@ -86,7 +86,7 @@ void TaskManager::toggleSolution(Subtask &subtask)
     }
 
     NotebookConverter converter;
-    converter.toggleSolution(parentTaskPtr->folder + subtask.file, subtask.solutionFilePath);
+    converter.toggleSolution(subtask.filePath, subtask.solutionFilePath);
 
     taskUI->updateSubtaskItemsUI();
 }
