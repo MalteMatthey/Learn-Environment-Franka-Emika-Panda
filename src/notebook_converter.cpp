@@ -87,7 +87,7 @@ bool NotebookConverter::convertNotebook(const QString &notebookPath) {
     }
 
     outputFile.close();
-    qDebug() << "Conversion successful for:" << notebookPath;
+    // qDebug() << "Conversion successful for:" << notebookPath;
     return true;
 }
 
@@ -99,6 +99,24 @@ void NotebookConverter::processTaskPool() {
     // Recursively copy and modify notebooks
     copyAndModifyNotebooks(sourceDir, destDir);
 }
+
+void NotebookConverter::resetNotebook(const QString &notebookSolutionPath) {
+    QString notebookSolutionPathStrip = notebookSolutionPath;
+    if (notebookSolutionPath.startsWith(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH)) {
+        notebookSolutionPathStrip = notebookSolutionPath.mid(FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH.length());
+    }
+    QString userWorkspacePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::USER_WORKSPACE + notebookSolutionPathStrip;
+    if (QFile::exists(userWorkspacePath)) {
+        QFile::remove(userWorkspacePath);
+    }
+    if (QFile::copy(FolderStructureConstants::getPackagePath() + notebookSolutionPath, userWorkspacePath)) {
+        qDebug() << "Copied solution notebook to user workspace:" << userWorkspacePath;
+        removeSolutionFromNotebook(userWorkspacePath);
+    } else {
+        qWarning() << "Failed to copy solution notebook to user workspace:" << FolderStructureConstants::getPackagePath() + notebookSolutionPath << "->" << userWorkspacePath;
+    }
+}
+
 
 void NotebookConverter::copyAndModifyNotebooks(const QDir &sourceDir, const QDir &destDir) {
     // Ensure the destination directory exists
@@ -414,3 +432,39 @@ void NotebookConverter::removeSolutionCells(const QString &notebookPath) {
     writeFile(notebook, notebookPath);
 }
 
+bool NotebookConverter::hasSolutionCells(const QString &notebookPath) {
+    QString fullFilePath = FolderStructureConstants::getPackagePath() + notebookPath;
+
+    QFile inputFile(fullFilePath);
+    if (!inputFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qCritical() << "Failed to open notebook:" << fullFilePath;
+        return false;
+    }
+
+    QByteArray data = inputFile.readAll();
+    inputFile.close();
+
+    json notebook;
+    try {
+        notebook = json::parse(data.constData());
+    } catch (json::parse_error &e) {
+        qCritical() << "JSON parse error in file:" << fullFilePath << "-" << e.what();
+        return false;
+    }
+
+    if (!notebook.contains("cells")) {
+        qWarning() << "No cells found in notebook:" << fullFilePath;
+        return false;
+    }
+
+    for (const auto &cell : notebook["cells"]) {
+        if (cell["metadata"].contains("tags")) {
+            const auto &tags = cell["metadata"]["tags"];
+            if (std::find(tags.begin(), tags.end(), SOLUTION_CELL_TAG.toStdString()) != tags.end()) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}

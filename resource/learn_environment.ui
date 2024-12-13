@@ -57,11 +57,12 @@
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
               </property>
+              <property name="toolTip">
+               <string/>
+              </property>
               <property name="styleSheet">
-               <string notr="true"> border: none;
-background: transparent;
-padding: 0;
-  </string>
+               <string notr="true">QToolButton { border: 0; padding: 4; }
+QToolButton:hover { background: white; border-radius: 8px; }</string>
               </property>
               <property name="text">
                <string>...</string>
@@ -101,17 +102,52 @@ padding: 0;
              </widget>
             </item>
             <item>
-             <spacer name="titleBarSpacer">
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
+             <widget class="QToolButton" name="resetRobotButton">
+              <property name="baseSize">
                <size>
-                <width>30</width>
-                <height>30</height>
+                <width>0</width>
+                <height>0</height>
                </size>
               </property>
-             </spacer>
+              <property name="cursor">
+               <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="toolTip">
+               <string>Reset Robot</string>
+              </property>
+              <property name="toolTipDuration">
+               <number>-1</number>
+              </property>
+              <property name="layoutDirection">
+               <enum>Qt::LayoutDirection::LeftToRight</enum>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QToolButton { border: 0; padding: 4; }
+QToolButton:hover { background: white; border-radius: 8px; }</string>
+              </property>
+              <property name="text">
+               <string>...</string>
+              </property>
+              <property name="icon">
+               <iconset resource="resources.qrc">
+                <normaloff>:/resource/icons/robot.png</normaloff>:/resource/icons/robot.png</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>25</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <property name="autoRaise">
+               <bool>false</bool>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -180,7 +216,7 @@ text-transform: uppercase;</string>
              <enum>Qt::FocusPolicy::NoFocus</enum>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">QListView {background: white; border-radius: 8px;}</string>
             </property>
             <property name="selectionMode">
              <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
@@ -197,8 +233,24 @@ text-transform: uppercase;</string>
            <layout class="QHBoxLayout" name="bottomNavHLayout">
             <item>
              <widget class="QPushButton" name="previousButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { border: 2; padding-top: 5px; padding-bottom: 5px; background: white; border-radius: 8px; width:110px }
+QPushButton:hover { background: #fafafa; border-radius: 8px; }</string>
               </property>
               <property name="text">
                <string>previous</string>
@@ -242,6 +294,11 @@ text-transform: uppercase;</string>
              <widget class="QPushButton" name="nextButton">
               <property name="cursor">
                <cursorShape>PointingHandCursor</cursorShape>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton { border: 2; padding-top: 5px; padding-bottom: 5px; background: #284387; color: white; border-radius: 8px; width: 110px}
+QPushButton:hover { background: #465e9c; border-radius: 8px; }
+QPushButton:disabled { background: #8f9fc7; border-radius: 8px; }</string>
               </property>
               <property name="text">
                <string>next</string>

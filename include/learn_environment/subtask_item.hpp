@@ -6,6 +6,7 @@
 
 #include <QWidget>
 #include <QPushButton>
+#include <QToolButton>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
@@ -33,7 +34,7 @@ public:
     /**
      * @brief Updates the UI elements based on the subtask's status.
      */
-    void updateUI();
+    void updateUI(bool constructorCall = false);
 
     /**
      * @brief Sets the TaskManager object.
@@ -53,7 +54,11 @@ private Q_SLOTS:
      * @brief Handles the start button click event.
      */
     void handleStartButtonClick();
-    void handleSolutionButtonClick();
+    void handleHelpButtonClick();
+    void handleStartOwnScript();
+    void handleStartSolution();
+    void handleToggleSolution();
+    void handleResetNotebook();    
 
 private:
     /**
@@ -63,15 +68,25 @@ private:
      * @param bodyText The body text for the subtask.
      */
     void setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText);
+    void initializeHelpMenu();
+    void initializeStartMenu();
 
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
     Subtask *subtask; ///< Pointer to the subtask object.
     QString headerText; ///< The header text for the subtask.
     QString linkText; ///< The link text for the subtask.
     QString bodyText; ///< The body text for the subtask.
-    QPushButton *playButton; ///< Button to start/stop the subtask.
-    QPushButton *resetButton; ///< Button to reset the subtask.
-    QPushButton *solutionButton; ///< Button to show the solution for the subtask.
+    QToolButton *startButton; ///< Button to start/stop the subtask.
+    QToolButton *helpButton; ///< Button to show the help menu for the subtask.
+
+    QPushButton *menuStartOwnBtn;
+    QPushButton *menuStartSolutionBtn;
+
+    QPushButton *menuToggleSolutionBtn;
+    QPushButton *menuResetNotebookBtn;
+
+    QMenu* startMenu;
+    QMenu* helpMenu;
 };
 
 #endif // SUBTASK_ITEM_HPP

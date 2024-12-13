@@ -1,12 +1,13 @@
-// SUBTASK_ITEM.CPP
 #include "learn_environment/subtask_item.hpp"
 #include "learn_environment/task_manager.hpp"
+#include "learn_environment/notebook_converter.hpp"
 
-#include <QPushButton>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QFrame>
+#include <QMenu>
+#include <QWidgetAction>
 
 namespace {
     const int HEADER_FONT_SIZE = 14;
@@ -14,16 +15,28 @@ namespace {
     const char* LINK_STYLE = "font-family:'monospace'; font-size:10pt; color:'#444444'; vertical-align:bottom;";
     const char* BODY_STYLE = "color:#444444;";
 
-    const char* START_TEXT = "Start";
+    const char* START_ICON_PATH = ":/resource/icons/play.png";
+    const char* STOP_ICON_PATH = ":/resource/icons/stop.png";
+    const char* HELP_ICON_PATH = ":/resource/icons/help.png";
+
+    const char* ICON_BUTTON_STYLE = 
+        "QToolButton { border: 0; padding: 0; }"
+        "QToolButton:hover { background: #e6e6e6; border-radius: 8px; }";
+    const char* MENU_BUTTON_STYLE = 
+        "QPushButton { border: 2; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px; background: white; border-radius: 8px; }"
+        "QPushButton:hover { background: #fafafa; }";
+
     const char* START_TOOLTIP = "Start Script";
-    const char* STOP_TEXT = "Stop";
     const char* STOP_TOOLTIP = "Stop Script";
-    const char* QUEUED_TEXT = "Queued";
     const char* QUEUED_TOOLTIP = "Queued Execution";
-    const char* RESET_TEXT = "Reset";
-    const char* RESET_TOOLTIP = "Reset";
-    const char* SOLUTION_TEXT = "Solution";
-    const char* SOLUTION_TOOLTIP = "Show Solution";
+    const char* HELP_TOOLTIP = "Get Help";
+
+    const char* START_OWN_SCRIPT_TEXT = "Start your own Script";
+    const char* START_SOLUTION_TEXT = "Start the Solution";
+
+    const char* SHOW_SOLUTION_TEXT = "Show Solution";
+    const char* HIDE_SOLUTION_TEXT = "Hide Solution";
+    const char* RESET_NOTEBOOK_TEXT = "Reset Notebook";
 }
 
 SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask) 
@@ -35,40 +48,50 @@ SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask)
       taskManager(nullptr) {
     
     setupItemUI(headerText, linkText, bodyText);
-    updateUI();
+    updateUI(true);
+    initializeHelpMenu();
+    initializeStartMenu();
 }
 
-void SubtaskItem::updateUI()
+void SubtaskItem::updateUI(bool constructorCall)
 {
     switch (subtask->status) {
         case SubtaskStatus::Inactive:
-            playButton->setEnabled(false);
-            resetButton->setEnabled(false);
-            solutionButton->setEnabled(false);
-            playButton->setText(START_TEXT);
-            playButton->setToolTip(START_TOOLTIP);
+            startButton->setEnabled(false);
+            helpButton->setEnabled(false);
+            startButton->setIcon(QIcon(START_ICON_PATH));
+            startButton->setToolTip(START_TOOLTIP);
             break;
         case SubtaskStatus::Ready:
-            playButton->setEnabled(true);
-            resetButton->setEnabled(true);
-            solutionButton->setEnabled(true);
-            playButton->setText(START_TEXT);
-            playButton->setToolTip(START_TOOLTIP);
+            startButton->setEnabled(true);
+            helpButton->setEnabled(true);
+            startButton->setIcon(QIcon(START_ICON_PATH));
+            startButton->setToolTip(START_TOOLTIP);
             break;
         case SubtaskStatus::Queued:
-            playButton->setEnabled(false);
-            resetButton->setEnabled(false);
-            solutionButton->setEnabled(false);
-            playButton->setText(QUEUED_TEXT);
-            playButton->setToolTip(QUEUED_TOOLTIP);
+            startButton->setEnabled(false);
+            helpButton->setEnabled(false);
+            startButton->setIcon(QIcon(START_ICON_PATH));
+            startButton->setToolTip(QUEUED_TOOLTIP);
             break;
         case SubtaskStatus::Running:
-            playButton->setEnabled(true);
-            resetButton->setEnabled(false);
-            solutionButton->setEnabled(false);
-            playButton->setText(STOP_TEXT);
-            playButton->setToolTip(STOP_TOOLTIP);
+            startButton->setEnabled(true);
+            helpButton->setEnabled(false);
+            startButton->setIcon(QIcon(STOP_ICON_PATH));
+            startButton->setToolTip(STOP_TOOLTIP);
             break;
+    }
+
+    if (constructorCall) {
+        // menu items are not initialized yet
+        return;
+    }
+
+    QString notebookPath = subtask->parentTask.lock()->folder + subtask->file;
+    if (NotebookConverter::hasSolutionCells(notebookPath)) {
+        menuToggleSolutionBtn->setText(HIDE_SOLUTION_TEXT);
+    } else {
+        menuToggleSolutionBtn->setText(SHOW_SOLUTION_TEXT);
     }
 }
 
@@ -79,20 +102,73 @@ void SubtaskItem::setTaskManager(TaskManager *manager)
 
 void SubtaskItem::handleStartButtonClick()
 {
-    if (taskManager && subtask) {
-        taskManager->startStopSubtask(*subtask);
+    QString notebookPath = subtask->parentTask.lock()->folder + subtask->file;
+    if (NotebookConverter::hasSolutionCells(notebookPath)) {
+        if (startMenu) {
+            startMenu->adjustSize();
+            QPoint pos = startButton->mapToGlobal(QPoint(startButton->width() - startMenu->width(), startButton->height()));
+            startMenu->popup(pos);
+        }
+    } else {
+        if (taskManager && subtask) {
+            taskManager->startStopSubtask(*subtask);
+        }
     }
 }
 
-void SubtaskItem::handleSolutionButtonClick()
+void SubtaskItem::handleHelpButtonClick()
 {
+    if (helpMenu) {
+        helpMenu->adjustSize();
+        QPoint pos = helpButton->mapToGlobal(QPoint(helpButton->width() - helpMenu->width(), helpButton->height()));
+        helpMenu->popup(pos);
+    }
+}
+
+
+void SubtaskItem::handleStartOwnScript() {
+    if (taskManager && subtask) {
+        taskManager->startStopSubtask(*subtask);
+    }
+    QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
+    if (menu) {
+        menu->close();
+    }
+}
+
+void SubtaskItem::handleStartSolution() {
+    if (taskManager && subtask) {
+        taskManager->startStopSubtask(*subtask, true);
+    }
+    QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
+    if (menu) {
+        menu->close();
+    }
+}
+
+void SubtaskItem::handleToggleSolution() {
     if (taskManager && subtask) {
         taskManager->toggleSolution(*subtask);
+    }
+    QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
+    if (menu) {
+        menu->close();
+    }
+}
+
+void SubtaskItem::handleResetNotebook() {
+    if (taskManager && subtask) {
+        NotebookConverter* converter = new NotebookConverter();
+        converter->resetNotebook(subtask->solutionFilePath);
+    }
+    QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
+    if (menu) {
+        menu->close();
     }
 }
 
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {
-// Create the main widget
+    // Create the main widget
     QHBoxLayout *baseLayout = new QHBoxLayout(this);
     baseLayout->setContentsMargins(10, 10, 10, 10);
 
@@ -135,29 +211,123 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     buttonLayout->setAlignment(Qt::AlignRight);
     buttonLayout->setContentsMargins(10, 0, 0, 0);
 
-    // Create buttons
-    playButton = new QPushButton(START_TEXT);
-    playButton->setToolTip(START_TOOLTIP);
-    playButton->setCursor(Qt::PointingHandCursor);
+    // Create start button
+    startButton = new QToolButton(this);
+    startButton->setToolTip(START_TOOLTIP);
+    startButton->setCursor(Qt::PointingHandCursor);
+    startButton->setStyleSheet(ICON_BUTTON_STYLE);
+    startButton->setIcon(QIcon(START_ICON_PATH));
+    startButton->setIconSize(QSize(35, 35));
 
-    resetButton = new QPushButton(RESET_TEXT);
-    resetButton->setToolTip(RESET_TOOLTIP);
-    resetButton->setCursor(Qt::PointingHandCursor);
-
-    solutionButton = new QPushButton(SOLUTION_TEXT);
-    solutionButton->setToolTip(SOLUTION_TOOLTIP);
-    solutionButton->setCursor(Qt::PointingHandCursor);
+    // Create help button
+    helpButton = new QToolButton(this);
+    helpButton->setToolTip(HELP_TOOLTIP);
+    helpButton->setCursor(Qt::PointingHandCursor);
+    helpButton->setStyleSheet(ICON_BUTTON_STYLE);
+    helpButton->setIcon(QIcon(HELP_ICON_PATH));
+    helpButton->setIconSize(QSize(35, 35));
 
     // Add buttons to the button layout
-    buttonLayout->addWidget(playButton);
-    buttonLayout->addWidget(resetButton);
-    buttonLayout->addWidget(solutionButton);
+    buttonLayout->addWidget(startButton);
+    buttonLayout->addWidget(helpButton);
 
     // Add the button layout to the base layout
     baseLayout->addLayout(buttonLayout);
 
     // Connect the execute button to the popup
-    connect(playButton, &QPushButton::clicked, this, &SubtaskItem::handleStartButtonClick);
+    connect(startButton, &QPushButton::clicked, this, &SubtaskItem::handleStartButtonClick);
     // connect(resetButton, &QPushButton::clicked, this, &SubtaskItem::handleResetButtonClick);
-    connect(solutionButton, &QPushButton::clicked, this, &SubtaskItem::handleSolutionButtonClick);
+    connect(helpButton, &QPushButton::clicked, this, &SubtaskItem::handleHelpButtonClick);
+}
+
+void SubtaskItem::initializeHelpMenu() {
+    helpButton->setPopupMode(QToolButton::InstantPopup);
+
+    QString existingStyle = helpButton->styleSheet();
+    helpButton->setStyleSheet(existingStyle + " QToolButton::menu-indicator { image: none; }");
+
+    helpMenu = new QMenu(helpButton);
+    helpMenu->setAttribute(Qt::WA_TranslucentBackground);
+    helpMenu->setWindowFlags(helpMenu->windowFlags() | Qt::FramelessWindowHint);
+    helpMenu->setStyleSheet("QMenu { background-color: #efefef; border-radius: 12px; }");
+
+    auto menuWidget = new QWidget();
+    auto menuLayout = new QVBoxLayout(menuWidget);
+    menuLayout->setContentsMargins(10, 10, 10, 10);
+
+    menuToggleSolutionBtn = new QPushButton(SHOW_SOLUTION_TEXT);
+    menuResetNotebookBtn = new QPushButton(RESET_NOTEBOOK_TEXT);
+    
+    menuToggleSolutionBtn->setStyleSheet(MENU_BUTTON_STYLE);
+    menuResetNotebookBtn->setStyleSheet(MENU_BUTTON_STYLE);
+
+    menuToggleSolutionBtn->setCursor(Qt::PointingHandCursor);
+    menuResetNotebookBtn->setCursor(Qt::PointingHandCursor);
+
+    menuToggleSolutionBtn->setFlat(true);
+    menuResetNotebookBtn->setFlat(true);
+
+    menuLayout->addWidget(menuToggleSolutionBtn);
+    menuLayout->addWidget(menuResetNotebookBtn);
+
+    auto menuAction = new QWidgetAction(helpMenu);
+    menuAction->setDefaultWidget(menuWidget);
+
+    helpMenu->addAction(menuAction);
+
+    // Reset the button state when the menu hides
+    connect(helpMenu, &QMenu::aboutToHide, [this]() {
+        helpButton->setDown(false);
+        helpButton->update();
+    });
+
+    // Connect the new menu buttons to their handlers
+    connect(menuToggleSolutionBtn, &QPushButton::clicked, this, &SubtaskItem::handleToggleSolution);
+    connect(menuResetNotebookBtn, &QPushButton::clicked, this, &SubtaskItem::handleResetNotebook);
+}
+
+void SubtaskItem::initializeStartMenu() {
+    startButton->setPopupMode(QToolButton::InstantPopup);
+
+    QString existingStyle = startButton->styleSheet();
+    startButton->setStyleSheet(existingStyle + " QToolButton::menu-indicator { image: none; }");
+
+    startMenu = new QMenu(startButton);
+    startMenu->setAttribute(Qt::WA_TranslucentBackground);
+    startMenu->setWindowFlags(startMenu->windowFlags() | Qt::FramelessWindowHint);
+    startMenu->setStyleSheet("QMenu { background-color: #efefef; border-radius: 12px; }");
+
+    auto menuWidget = new QWidget();
+    auto menuLayout = new QVBoxLayout(menuWidget);
+    menuLayout->setContentsMargins(10, 10, 10, 10);
+
+    menuStartOwnBtn = new QPushButton(START_OWN_SCRIPT_TEXT);
+    menuStartSolutionBtn = new QPushButton(START_SOLUTION_TEXT);
+    
+    menuStartOwnBtn->setStyleSheet(MENU_BUTTON_STYLE);
+    menuStartSolutionBtn->setStyleSheet(MENU_BUTTON_STYLE);
+
+    menuStartOwnBtn->setCursor(Qt::PointingHandCursor);
+    menuStartSolutionBtn->setCursor(Qt::PointingHandCursor);
+
+    menuStartOwnBtn->setFlat(true);
+    menuStartSolutionBtn->setFlat(true);
+
+    menuLayout->addWidget(menuStartOwnBtn);
+    menuLayout->addWidget(menuStartSolutionBtn);
+
+    auto menuAction = new QWidgetAction(startMenu);
+    menuAction->setDefaultWidget(menuWidget);
+
+    startMenu->addAction(menuAction);
+
+    // Reset the button state when the menu hides
+    connect(startMenu, &QMenu::aboutToHide, [this]() {
+        startButton->setDown(false);
+        startButton->update();
+    });
+
+    // Connect the new menu buttons to their handlers
+    connect(menuStartOwnBtn, &QPushButton::clicked, this, &SubtaskItem::handleStartOwnScript);
+    connect(menuStartSolutionBtn, &QPushButton::clicked, this, &SubtaskItem::handleStartSolution);
 }

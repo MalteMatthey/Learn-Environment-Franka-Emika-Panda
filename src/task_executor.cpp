@@ -7,7 +7,7 @@
 
 TaskExecutor::TaskExecutor(QObject *parent) : QObject(parent) {}
 
-void TaskExecutor::executeTask(const Subtask &subtask) {
+void TaskExecutor::executeTask(const Subtask &subtask, bool startSolution) {
     Q_EMIT taskExecutionStarted();
 
     QSharedPointer<Task> parentTaskPtr = subtask.parentTask.lock();
@@ -19,12 +19,12 @@ void TaskExecutor::executeTask(const Subtask &subtask) {
     QString fullNotebookPath, fullConvertScriptPath, fullConvertedScriptPath, fullEvalScriptPath;
 
     if (!constructPath(FolderStructureConstants::getPackagePath(),
-                       parentTaskPtr->folder + subtask.file, 
-                       fullNotebookPath, 
+                       startSolution ? subtask.solutionFilePath : parentTaskPtr->folder + subtask.file,
+                       fullNotebookPath,
                        "constructing the notebook path") ||
         !constructPath(FolderStructureConstants::getPackagePath(),
                        FolderStructureConstants::CONVERTED_SCRIPT_PATH,
-                       fullConvertedScriptPath, 
+                       fullConvertedScriptPath,
                        "constructing the converted script path", 
                        false) ||
         !constructPath(FolderStructureConstants::getPackagePath(),

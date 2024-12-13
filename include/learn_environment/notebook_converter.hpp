@@ -37,7 +37,25 @@ public:
      */
     void processTaskPool();
 
+    /**
+     * @brief Toggles the solution code in a Jupyter notebook.
+     * @param filePath Path to the notebook file.
+     * @param solutionFilePath Path to the solution notebook file.
+     */
     void toggleSolution(const QString &filePath, const QString &solutionFilePath);
+
+    /**
+     * @brief Removes solution code from a Jupyter notebook.
+     * @param notebookPath Path to the notebook file.
+     */
+    void resetNotebook(const QString &notebookSolutionPath);
+
+    /**
+     * @brief Checks if the notebook contains any solution cells.
+     * @param notebookPath Path to the notebook file.
+     * @return True if solution cells are present, else False.
+     */
+    static bool hasSolutionCells(const QString &notebookPath);
 
 private:
     /**
@@ -65,8 +83,6 @@ private:
     void removeSolutionCells(const QString &notebookPath);
     void addSolutionCells(const QString &notebookPath, const QString &solutionPath);
     void manipulateSolutionCellContent(json &solutionCell);
-
-    static const QString CONVERTED_SCRIPT_PATH;
 };
 
 #endif // NOTEBOOK_CONVERTER_HPP

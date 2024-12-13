@@ -35,8 +35,9 @@ public:
     /**
      * @brief Starts or stops a subtask.
      * @param subtask Reference to the subtask to be started or stopped.
+     * @param startSolution Flag indicating whether to start the solution or the users script.
      */
-    void startStopSubtask(Subtask &subtask);
+    void startStopSubtask(Subtask &subtask, bool startSolution = false);
 
     /**
      * @brief Show or hide the solution of a subtask.
@@ -50,6 +51,11 @@ public Q_SLOTS:
      * @param subtask Reference to the subtask to be started or stopped.
      */
     void startStopSubtask(const Subtask &subtask);
+
+    /**
+     * @brief Forces the reset of the robot to its initial state.
+     */
+    void forceResetRobot();
 
 private Q_SLOTS:
     /**
@@ -102,6 +108,7 @@ private:
     QPushButton *previousButton; ///< Pointer to the previous button.
     QVector<QSharedPointer<Task>> tasks; ///< Vector of tasks.
     QVector<Subtask*> queued_and_running_subtasks; ///< Vector of queued and running subtasks.
+    int currentQueueStartSolution = false; ///< Flag indicating whether to start the solution or the users script.
     int currentTaskIndex; ///< Index of the current task.
 
     /**
@@ -109,7 +116,7 @@ private:
      * @param started_subtask Reference to the subtask to be started.
      * @param task Shared pointer to the task containing the subtask.
      */
-    void startSubtask(Subtask &started_subtask, QSharedPointer<Task> &task);
+    void startSubtask(Subtask &started_subtask, QSharedPointer<Task> &task, bool startSolution = false);
 
     /**
      * @brief Forces the stop of the current task execution.

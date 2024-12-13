@@ -30,7 +30,7 @@ public:
      * @brief Executes a given subtask.
      * @param subtask The subtask to be executed.
      */
-    void executeTask(const Subtask &subtask);
+    void executeTask(const Subtask &subtask, bool startSolution = false);
 
     /**
      * @brief Forces the stop of all currently running tasks.

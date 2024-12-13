@@ -2,6 +2,10 @@
  <qresource>
      <file>resource/icons/menu.png</file>
      <file>resource/icons/close.png</file>
+     <file>resource/icons/help.png</file>
+     <file>resource/icons/play.png</file>
+     <file>resource/icons/stop.png</file>
+     <file>resource/icons/robot.png</file>
      
      <file>task_pool/task_definitions.json</file>
      <file>task_pool/difficulty_levels.json</file>

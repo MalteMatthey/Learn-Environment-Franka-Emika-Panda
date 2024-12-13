@@ -55,6 +55,7 @@ void LearnEnvironment::initialize() {
     sidebar->setVisible(false);
 
     connect(ui->menuButton, &QPushButton::clicked, this, &LearnEnvironment::toggleSidebarVisibility);
+    connect(ui->resetRobotButton, &QPushButton::clicked, taskManager, &TaskManager::forceResetRobot);
 
     notebookConverter->moveToThread(notebookThread);
     connect(notebookThread, &QThread::started, notebookConverter, &NotebookConverter::processTaskPool);

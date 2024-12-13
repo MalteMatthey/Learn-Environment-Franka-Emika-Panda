@@ -7,7 +7,11 @@ CustomListWidget::CustomListWidget(QWidget *parent)
 }
 
 void CustomListWidget::formatListWidget() {
-    setStyleSheet("background: transparent;");
+    setStyleSheet("QListView {background: transparent}"
+                  "QListView::item {padding: 0 6px; border-radius: 8px;}"
+                  "QListView::item:hover {background: white;}"
+                  "QListView::item:selected {background: #284387; border-radius: 8px;}"
+                  "QListView::item:selected:hover {background: #465e9c; border-radius: 8px;}");
     setSelectionMode(QAbstractItemView::SingleSelection);
     setFocusPolicy(Qt::StrongFocus);
     setAttribute(Qt::WA_TranslucentBackground);
