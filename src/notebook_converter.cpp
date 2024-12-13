@@ -110,7 +110,6 @@ void NotebookConverter::resetNotebook(const QString &notebookSolutionPath) {
         QFile::remove(userWorkspacePath);
     }
     if (QFile::copy(FolderStructureConstants::getPackagePath() + notebookSolutionPath, userWorkspacePath)) {
-        qDebug() << "Copied solution notebook to user workspace:" << userWorkspacePath;
         removeSolutionFromNotebook(userWorkspacePath);
     } else {
         qWarning() << "Failed to copy solution notebook to user workspace:" << FolderStructureConstants::getPackagePath() + notebookSolutionPath << "->" << userWorkspacePath;

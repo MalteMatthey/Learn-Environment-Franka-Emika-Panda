@@ -8,6 +8,7 @@
 #include <QFrame>
 #include <QMenu>
 #include <QWidgetAction>
+#include <QMessageBox>
 
 namespace {
     const int HEADER_FONT_SIZE = 14;
@@ -37,6 +38,8 @@ namespace {
     const char* SHOW_SOLUTION_TEXT = "Show Solution";
     const char* HIDE_SOLUTION_TEXT = "Hide Solution";
     const char* RESET_NOTEBOOK_TEXT = "Reset Notebook";
+
+    const char* RESET_NOTEBOOK_CONFIRMATION_TEXT = "This will remove all changes made to the notebook and can't be undone. Are you sure you want to proceed?";
 }
 
 SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask) 
@@ -157,9 +160,17 @@ void SubtaskItem::handleToggleSolution() {
 }
 
 void SubtaskItem::handleResetNotebook() {
-    if (taskManager && subtask) {
-        NotebookConverter* converter = new NotebookConverter();
-        converter->resetNotebook(subtask->solutionFilePath);
+    QMessageBox msgBox;
+    msgBox.setText(RESET_NOTEBOOK_CONFIRMATION_TEXT);
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+    int ret = msgBox.exec();
+
+    if (ret == QMessageBox::Yes) {
+        if (taskManager && subtask) {
+            NotebookConverter* converter = new NotebookConverter();
+            converter->resetNotebook(subtask->solutionFilePath);
+        }
     }
     QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
     if (menu) {
