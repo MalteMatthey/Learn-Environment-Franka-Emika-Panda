@@ -2,14 +2,14 @@
   "tasks": [
     {
       "title": "ROS Basics",
-      "description": "TODO: Add Description.",
+      "description": "understand the basics of ROS",
       "folder": "/task_pool/solution_scripts/ros/ros_basics",
       "topic": "ROS",
       "difficulty": "beginner",
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "Understand the ROS Enviroment and implement a simple publisher",
           "file": "/ros_basics_1.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/ros_basics_1.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/ros_basics_1_eval.py",
@@ -17,7 +17,7 @@
         },
         {
           "title": "Task 2",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "implement a simple subscriber",
           "file": "/ros_basics_2.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/ros_basics_2.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/ros_basics_2_eval.py",
@@ -25,7 +25,7 @@
         },
         {
           "title": "Task 3",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "learn useful tools for working with ROS",
           "file": "/ros_basics_3.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/ros/ros_basics/ros_basics_3.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_basics/ros_basics_3_eval.py"
@@ -41,18 +41,34 @@
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "use ROS topics to control the robot",
           "file": "/ros_intermediate_1.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/ros/ros_intermediate/ros_intermediate_1.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_intermediate/ros_intermediate_1_eval.py"
         },
         {
           "title": "Task 2",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "execute a sequence of movements",
           "file": "/ros_intermediate_2.ipynb",
           "solution_file_path": "/task_pool/solution_scripts/ros/ros_intermediate/ros_intermediate_2.ipynb",
           "evaluation_file_path": "/task_pool/evaluation_scripts/ros/ros_intermediate/ros_intermediate_2_eval.py",
           "parallelized_evaluation_required": true
+        }
+      ]
+    },
+    {
+      "title": "MoveIt Basics",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/move_it/move_it_basics",
+      "topic": "MoveIt",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Task 1",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/move_it_basics_1.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/move_it/move_it_basics/move_it_basics_1.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/move_it/move_it_basics/move_it_basics_1_eval.py"
         }
       ]
     },
