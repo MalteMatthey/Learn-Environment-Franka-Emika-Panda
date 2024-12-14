@@ -70,6 +70,7 @@ private:
     void setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText);
     void initializeHelpMenu();
     void initializeStartMenu();
+    void setExecutionFrame(const QString& imagePath, const QString& text);
 
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
     Subtask *subtask; ///< Pointer to the subtask object.
@@ -78,6 +79,8 @@ private:
     QString bodyText; ///< The body text for the subtask.
     QToolButton *startButton; ///< Button to start/stop the subtask.
     QToolButton *helpButton; ///< Button to show the help menu for the subtask.
+    QVBoxLayout *baseLayout; ///< Layout for the subtask item.
+    ExecuteFrame *executeSubtaskFrame; ///< Pointer to the execute subtask frame.
 
     QPushButton *menuStartOwnBtn;
     QPushButton *menuStartSolutionBtn;

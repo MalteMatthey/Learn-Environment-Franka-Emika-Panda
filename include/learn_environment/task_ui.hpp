@@ -6,7 +6,7 @@
 #include "task_manager.hpp"
 
 #include <QObject>
-#include <QListWidget>
+#include <QVBoxLayout>
 #include <QLabel>
 #include <QPushButton>
 
@@ -25,7 +25,7 @@ class TaskUI : public QObject
 public:
     /**
      * @brief Constructs a TaskUI object.
-     * @param subtaskListWidget Pointer to the QListWidget for displaying subtasks.
+     * @param subtaskListLayout Pointer to the vertical layout for displaying subtasks.
      * @param mainTitleLabel Pointer to the QLabel for displaying the main title.
      * @param difficultyLabel Pointer to the QLabel for displaying the difficulty level.
      * @param folderLabel Pointer to the QLabel for displaying the folder information.
@@ -34,7 +34,7 @@ public:
      * @param sidebar Reference to the Sidebar object.
      * @param parent Pointer to the parent QObject.
      */
-    TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
+    TaskUI(QVBoxLayout *subtaskListLayout, QLabel *mainTitleLabel,
            QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel,
            QPushButton *nextButton, QPushButton *previousButton,
            Sidebar &sidebar, QObject *parent = nullptr);
@@ -71,7 +71,7 @@ Q_SIGNALS:
 
 private:
     Sidebar &sidebar; ///< Reference to the Sidebar object.
-    QListWidget *subtaskListWidget; ///< Pointer to the QListWidget for displaying subtasks.
+    QVBoxLayout *subtaskListLayout; ///< Pointer to the QVBoxLayout for displaying subtasks.
     QLabel *mainTitleLabel; ///< Pointer to the QLabel for displaying the main title.
     QLabel *difficultyLabel; ///< Pointer to the QLabel for displaying the difficulty level.
     QLabel *folderLabel; ///< Pointer to the QLabel for displaying the folder information.

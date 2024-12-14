@@ -9,6 +9,7 @@
 #include <QMenu>
 #include <QWidgetAction>
 #include <QMessageBox>
+#include <QDebug>
 
 namespace {
     const int HEADER_FONT_SIZE = 12;
@@ -49,7 +50,8 @@ SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask)
       linkText(subtask->file),
       bodyText(subtask->description),
       subtask(subtask),
-      taskManager(nullptr) {
+      taskManager(nullptr),
+      executeSubtaskFrame(nullptr) {
     
     setupItemUI(headerText, linkText, bodyText);
     updateUI(true);
@@ -183,10 +185,55 @@ void SubtaskItem::handleResetNotebook() {
     updateUI();
 }
 
+void SubtaskItem::setExecutionFrame(const QString& imagePath, const QString& text) {
+    if (!baseLayout) {
+        qDebug() << "Error: baseLayout is null";
+        return;
+    }
+
+    // Only update and return if frame already exists
+    if (executeSubtaskFrame) {
+        executeSubtaskFrame->setImage(imagePath);
+        executeSubtaskFrame->setText(text);
+        return;
+    }
+
+    // Create new ExecuteFrame
+    executeSubtaskFrame = new ExecuteFrame(this);
+    if (!executeSubtaskFrame) {
+        qDebug() << "Error: Failed to create ExecuteFrame";
+        return;
+    }
+
+    // Create or retrieve verticalContainer
+    QWidget *verticalContainer = new QWidget(this);
+    QVBoxLayout *containerLayout = qobject_cast<QVBoxLayout*>(verticalContainer->layout());
+    if (!containerLayout) {
+        containerLayout = new QVBoxLayout(verticalContainer);
+        containerLayout->setContentsMargins(0, 0, 0, 0);
+        verticalContainer->setLayout(containerLayout);
+    }
+
+    containerLayout->addWidget(executeSubtaskFrame);
+
+    baseLayout->addWidget(verticalContainer, 0);
+
+    // Set initial state
+    executeSubtaskFrame->setImage(imagePath);
+    executeSubtaskFrame->setText(text);
+}
+
+
 void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText, const QString &bodyText) {
-    // Create the main widget
-    QHBoxLayout *baseLayout = new QHBoxLayout(this);
-    baseLayout->setContentsMargins(10, 10, 10, 10);
+    // Create the main vertical layout
+    baseLayout = new QVBoxLayout(this);
+    baseLayout->setContentsMargins(0, 0, 0, 0);
+    baseLayout->setAlignment(Qt::AlignTop);
+
+    // Create an inner horizontal layout
+    QHBoxLayout *innerLayout = new QHBoxLayout();
+    innerLayout->setContentsMargins(10, 10, 10, 10);
+    innerLayout->setAlignment(Qt::AlignTop);
 
     // Create a vertical layout for the text
     QVBoxLayout *textLayout = new QVBoxLayout();
@@ -196,6 +243,8 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     QFont headerFont = headerLabel->font();
     headerFont.setPointSize(HEADER_FONT_SIZE);
     headerLabel->setFont(headerFont);
+    headerLabel->setAlignment(Qt::AlignLeft); // Align to left
+    headerLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create a link label
     QLabel *linkLabel = new QLabel(linkText);
@@ -203,28 +252,31 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     linkLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     linkLabel->setOpenExternalLinks(true);
     linkLabel->setStyleSheet(LINK_STYLE);
+    linkLabel->setAlignment(Qt::AlignLeft); // Align to left
+    linkLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create the text label with automatic line breaks
     QLabel *loremLabel = new QLabel(bodyText);
-    loremLabel->setWordWrap(true); // Enable word wrap
+    loremLabel->setWordWrap(true);
     loremLabel->setTextFormat(Qt::RichText);
     QFont loremFont = loremLabel->font();
     loremFont.setPointSize(BODY_FONT_SIZE);
     loremLabel->setFont(loremFont);
     loremLabel->setStyleSheet(BODY_STYLE);
+    loremLabel->setAlignment(Qt::AlignLeft); // Align to left
+    loremLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
     // Add header, link, and text labels to the vertical layout
     textLayout->addWidget(headerLabel);
     textLayout->addWidget(linkLabel);
     textLayout->addWidget(loremLabel);
-    textLayout->addStretch();
 
-    // Add the text layout to the base layout
-    baseLayout->addLayout(textLayout, 1);
+    // Add the text layout to the inner horizontal layout
+    innerLayout->addLayout(textLayout, 1);
 
     // Create a vertical layout for the buttons
     QVBoxLayout *buttonLayout = new QVBoxLayout();
-    buttonLayout->setAlignment(Qt::AlignRight);
+    buttonLayout->setAlignment(Qt::AlignTop); // Align buttons to the top
     buttonLayout->setContentsMargins(10, 0, 0, 0);
 
     // Create start button
@@ -234,6 +286,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     startButton->setStyleSheet(ICON_BUTTON_STYLE);
     startButton->setIcon(QIcon(START_ICON_PATH));
     startButton->setIconSize(QSize(35, 35));
+    startButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     // Create help button
     helpButton = new QToolButton(this);
@@ -242,17 +295,20 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     helpButton->setStyleSheet(ICON_BUTTON_STYLE);
     helpButton->setIcon(QIcon(HELP_ICON_PATH));
     helpButton->setIconSize(QSize(35, 35));
+    helpButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     // Add buttons to the button layout
     buttonLayout->addWidget(startButton);
     buttonLayout->addWidget(helpButton);
 
-    // Add the button layout to the base layout
-    baseLayout->addLayout(buttonLayout);
+    // Add the button layout to the inner horizontal layout
+    innerLayout->addLayout(buttonLayout);
+
+    // Add the inner horizontal layout to the base vertical layout
+    baseLayout->addLayout(innerLayout);
 
     // Connect the execute button to the popup
     connect(startButton, &QPushButton::clicked, this, &SubtaskItem::handleStartButtonClick);
-    // connect(resetButton, &QPushButton::clicked, this, &SubtaskItem::handleResetButtonClick);
     connect(helpButton, &QPushButton::clicked, this, &SubtaskItem::handleHelpButtonClick);
 }
 
@@ -265,15 +321,15 @@ void SubtaskItem::initializeHelpMenu() {
     helpMenu = new QMenu(helpButton);
     helpMenu->setAttribute(Qt::WA_TranslucentBackground);
     helpMenu->setWindowFlags(helpMenu->windowFlags() | Qt::FramelessWindowHint);
-    helpMenu->setStyleSheet("QMenu { background-color: #efefef; border-radius: 12px; }");
 
     auto menuWidget = new QWidget();
+    menuWidget->setStyleSheet("background-color: #efefef; border-radius: 12px;");
     auto menuLayout = new QVBoxLayout(menuWidget);
     menuLayout->setContentsMargins(10, 10, 10, 10);
 
     menuToggleSolutionBtn = new QPushButton(SHOW_SOLUTION_TEXT);
     menuResetNotebookBtn = new QPushButton(RESET_NOTEBOOK_TEXT);
-    
+
     menuToggleSolutionBtn->setStyleSheet(MENU_BUTTON_STYLE);
     menuResetNotebookBtn->setStyleSheet(MENU_BUTTON_STYLE);
 
@@ -297,7 +353,7 @@ void SubtaskItem::initializeHelpMenu() {
         helpButton->update();
     });
 
-    // Connect the new menu buttons to their handlers
+    // Connect the menu buttons to their handlers
     connect(menuToggleSolutionBtn, &QPushButton::clicked, this, &SubtaskItem::handleToggleSolution);
     connect(menuResetNotebookBtn, &QPushButton::clicked, this, &SubtaskItem::handleResetNotebook);
 }
@@ -311,9 +367,9 @@ void SubtaskItem::initializeStartMenu() {
     startMenu = new QMenu(startButton);
     startMenu->setAttribute(Qt::WA_TranslucentBackground);
     startMenu->setWindowFlags(startMenu->windowFlags() | Qt::FramelessWindowHint);
-    startMenu->setStyleSheet("QMenu { background-color: #efefef; border-radius: 12px; }");
 
     auto menuWidget = new QWidget();
+    menuWidget->setStyleSheet("background-color: #efefef; border-radius: 12px;");
     auto menuLayout = new QVBoxLayout(menuWidget);
     menuLayout->setContentsMargins(10, 10, 10, 10);
 

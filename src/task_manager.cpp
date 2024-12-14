@@ -32,6 +32,7 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
       nextButton(nextButton),
       previousButton(previousButton),
       resetRobotFrame(resetRobotFrame),
+      executeResetRobotFrame(nullptr),
       currentTaskIndex(0)
 {
     TaskParser parser;
@@ -315,6 +316,10 @@ void TaskManager::onResetRobotStarted()
         if (!resetLayout) {
             resetLayout = new QVBoxLayout(resetRobotFrame);
             resetRobotFrame->setLayout(resetLayout);
+        }
+        if (!resetLayout) {
+            qCritical() << "Reset layout not found.";
+            return;
         }
         resetLayout->addWidget(executeResetRobotFrame);
     }

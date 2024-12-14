@@ -38,7 +38,7 @@ LearnEnvironment::~LearnEnvironment()
 void LearnEnvironment::initialize() {
     sidebar = new Sidebar(this);
     taskUI = new TaskUI(
-        ui->subtaskListWidget,
+        ui->subtaskListVLayout,
         ui->mainTitleLabel,
         ui->difficultyLabel,
         ui->folderLabel,

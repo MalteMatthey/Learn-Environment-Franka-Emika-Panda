@@ -15,13 +15,13 @@ namespace {
             color:'#444444';">)";
 }
 
-TaskUI::TaskUI(QListWidget *subtaskListWidget, QLabel *mainTitleLabel,
+TaskUI::TaskUI(QVBoxLayout *subtaskListLayout, QLabel *mainTitleLabel,
                QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel,
                QPushButton *nextButton, QPushButton *previousButton,
                Sidebar &sidebar, QObject *parent)
     : QObject(parent),
       sidebar(sidebar),
-      subtaskListWidget(subtaskListWidget),
+      subtaskListLayout(subtaskListLayout),
       mainTitleLabel(mainTitleLabel),
       difficultyLabel(difficultyLabel),
       folderLabel(folderLabel),
@@ -83,37 +83,40 @@ void TaskUI::setSubtaskItems(int currentTaskIndex)
     }
 
     QSharedPointer<Task> currentTask = tasks[currentTaskIndex];
-    subtaskListWidget->clear();
+    QLayoutItem *child;
+    while ((child = subtaskListLayout->takeAt(0)) != nullptr) {
+        if (child->widget()) {
+            child->widget()->deleteLater();
+        }
+        delete child;
+    }
     int subtaskCount = currentTask->subtasks.size();
     for (int i = 0; i < subtaskCount; ++i) {
-        Subtask* subtask = &currentTask->subtasks[i]; // Get pointer
+        Subtask* subtask = &currentTask->subtasks[i];
 
         // Create a new SubtaskItem widget with pointer
-        SubtaskItem *itemWidget = new SubtaskItem(subtaskListWidget, subtask);
-
-        // Set the TaskManager if required
+        SubtaskItem *itemWidget = new SubtaskItem(subtaskListLayout->parentWidget(), subtask);
         itemWidget->setTaskManager(taskManager);
+        itemWidget->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum); // Set minimal vertical size
 
-        // Create a QListWidgetItem and set the size hint
-        QListWidgetItem *listItem = new QListWidgetItem(subtaskListWidget);
-        listItem->setSizeHint(itemWidget->sizeHint());
-
-        // Add the SubtaskItem widget to the QListWidget
-        subtaskListWidget->addItem(listItem);
-        subtaskListWidget->setItemWidget(listItem, itemWidget);
+        // Add the SubtaskItem widget to the QVBoxLayout
+        subtaskListLayout->addWidget(itemWidget);
 
         // Add a line between widgets, except after the last element
         if (i < subtaskCount - 1) {
             addLineBetweenWidgets();
         }
     }
+
+    // Add spacer at the bottom to push items to the top
+    subtaskListLayout->addStretch();
 }
 
 void TaskUI::updateSubtaskItemsUI()
 {
-    for (int i = 0; i < subtaskListWidget->count(); ++i) {
-        QListWidgetItem *item = subtaskListWidget->item(i);
-        SubtaskItem *subtaskItem = qobject_cast<SubtaskItem*>(subtaskListWidget->itemWidget(item));
+    for (int i = 0; i < subtaskListLayout->count(); ++i) {
+        QWidget *widget = subtaskListLayout->itemAt(i)->widget();
+        SubtaskItem *subtaskItem = qobject_cast<SubtaskItem*>(widget);
         if (subtaskItem) {
             subtaskItem->updateUI();
         }
@@ -122,20 +125,16 @@ void TaskUI::updateSubtaskItemsUI()
 
 void TaskUI::addLineBetweenWidgets()
 {
-    QWidget *container = new QWidget();
-    QVBoxLayout *layout = new QVBoxLayout(container);
-    layout->setContentsMargins(10, 2, 10, 0);
-
     QFrame *line = new QFrame();
     line->setFrameShape(QFrame::HLine);
     line->setFrameShadow(QFrame::Sunken);
     line->setStyleSheet("border: none; border-top: 1px solid #DDDDDD;");
 
-    layout->addWidget(line);
+    QVBoxLayout *layout = new QVBoxLayout();
+    layout->setContentsMargins(10, 2, 10, 0);
+    QWidget *container = new QWidget();
     container->setLayout(layout);
+    layout->addWidget(line);
 
-    QListWidgetItem *item = new QListWidgetItem();
-    item->setSizeHint(container->sizeHint());
-    subtaskListWidget->addItem(item);
-    subtaskListWidget->setItemWidget(item, container);
+    subtaskListLayout->addWidget(container);
 }

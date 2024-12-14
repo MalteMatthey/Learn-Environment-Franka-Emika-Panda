@@ -29,6 +29,76 @@
     </property>
     <item row="0" column="0">
      <widget class="QScrollArea" name="scrollArea">
+      <property name="styleSheet">
+       <string notr="true">/* HORIZONTAL */
+QScrollBar:horizontal {
+    border: none;
+    background: none;
+    height: 24px;
+    margin: 3px 3px 3px 3px;
+}
+
+QScrollBar::handle:horizontal {
+    background: lightgray;
+    min-width: 16px;
+    margin: 3px 3px;
+    border-radius: 4px;
+}
+
+QScrollBar::add-line:horizontal {
+    background: none;
+    width: 16px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+    background: none;
+    width: 16px;
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none;
+}
+
+/* VERTICAL */
+QScrollBar:vertical {
+    border: none;
+    background: none;
+    width: 24px;
+    margin: 3px 3px 3px 3px;
+}
+
+QScrollBar::handle:vertical {
+    background: lightgray;
+    min-height: 16px;
+    margin: 3px 3px;
+    border-radius: 4px; 
+}
+
+QScrollBar::add-line:vertical {
+    background: none;
+    height: 16px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+    background: none;
+    height: 16px;
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+</string>
+      </property>
       <property name="widgetResizable">
        <bool>true</bool>
       </property>
@@ -282,28 +352,111 @@ QToolButton:hover { background: #e6e6e6; border-radius: 8px; }</string>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="subtaskListWidget">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="focusPolicy">
-             <enum>Qt::FocusPolicy::NoFocus</enum>
-            </property>
+           <widget class="QScrollArea" name="subtaskListScrollArea">
             <property name="styleSheet">
-             <string notr="true">QListView {background: white; border-radius: 8px;}</string>
+             <string notr="true">QWidget {background: white; border-radius: 8px;}
+/* HORIZONTAL */
+QScrollBar:horizontal {
+    border: none;
+    background: none;
+    height: 24px;
+    margin: 3px 3px 3px 3px;
+}
+
+QScrollBar::handle:horizontal {
+    background: lightgray;
+    min-width: 16px;
+    margin: 3px 3px;
+    border-radius: 4px;
+}
+
+QScrollBar::add-line:horizontal {
+    background: none;
+    width: 16px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:horizontal {
+    background: none;
+    width: 16px;
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+}
+
+QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal {
+    background: none;
+}
+
+/* VERTICAL */
+QScrollBar:vertical {
+    border: none;
+    background: none;
+    width: 24px;
+    margin: 3px 3px 3px 3px;
+}
+
+QScrollBar::handle:vertical {
+    background: lightgray;
+    min-height: 16px;
+    margin: 3px 3px;
+    border-radius: 4px; 
+}
+
+QScrollBar::add-line:vertical {
+    background: none;
+    height: 16px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+
+QScrollBar::sub-line:vertical {
+    background: none;
+    height: 16px;
+    subcontrol-position: top left;
+    subcontrol-origin: margin;
+    position: absolute;
+}
+QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+}
+
+</string>
             </property>
-            <property name="selectionMode">
-             <enum>QAbstractItemView::SelectionMode::NoSelection</enum>
+            <property name="widgetResizable">
+             <bool>true</bool>
             </property>
-            <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
-            </property>
-            <property name="horizontalScrollMode">
-             <enum>QAbstractItemView::ScrollMode::ScrollPerPixel</enum>
-            </property>
+            <widget class="QWidget" name="subtaskListScrollAreaContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>0</y>
+               <width>778</width>
+               <height>395</height>
+              </rect>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout">
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <layout class="QVBoxLayout" name="subtaskListVLayout"/>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
           <item>
