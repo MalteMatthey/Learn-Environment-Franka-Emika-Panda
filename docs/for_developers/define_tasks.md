@@ -86,9 +86,9 @@ The user can decide to show the solution. A new code cell will be added directly
 
 ```python
 ##############################################################
-#### THIS IS A SOLUTION CELL. IT WILL NOT EXECUTE. ####
+####     THIS IS A SOLUTION CELL. IT WILL NOT EXECUTE.    ####
 #### YOU CAN RUN THE SOLUTION DIRECTLY WITHIN THE PLUGIN. ####
-#### USE THIS CELL AS INSPIRATION FOR YOUR OWN CODE. ####
+####    USE THIS CELL AS INSPIRATION FOR YOUR OWN CODE.   ####
 ##############################################################
 
 print("This is given code that won't be replaced")

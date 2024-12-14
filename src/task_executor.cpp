@@ -66,6 +66,8 @@ void TaskExecutor::forceStop() {
 }
 
 void TaskExecutor::resetRobot() {
+    Q_EMIT resetRobotStarted();
+
     QString resetRobotScriptPath;
     if (!constructPath(FolderStructureConstants::getPackagePath(),
                        FolderStructureConstants::RESET_ROBOT_SCRIPT_PATH,
@@ -78,6 +80,8 @@ void TaskExecutor::resetRobot() {
     ScriptWorker *worker = new ScriptWorker("", "", "", false, 30);
     worker->moveToThread(thread);
 
+    scriptWorkers.append(worker);
+
     connect(thread, &QThread::started, worker, [worker, resetRobotScriptPath]() {
         worker->executePythonScript(resetRobotScriptPath, "Reset Robot Script");
     });
@@ -86,6 +90,7 @@ void TaskExecutor::resetRobot() {
     connect(thread, &QThread::finished, thread, &QThread::deleteLater);
 
     // Forward signals from the worker to handle reset status
+    
     connect(worker, &ScriptWorker::finished, this, [this, worker]() {
         scriptWorkers.removeOne(worker);
         Q_EMIT resetRobotFinished();

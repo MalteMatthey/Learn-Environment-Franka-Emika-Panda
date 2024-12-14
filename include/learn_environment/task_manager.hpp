@@ -3,9 +3,11 @@
 
 #include "task.hpp"
 #include "task_executor.hpp"
+#include "execute_frame.hpp"
 
 #include <QObject>
 #include <QPushButton>
+#include <QFrame>
 #include <QVector>
 #include <QSharedPointer>
 
@@ -30,7 +32,7 @@ public:
      * @param previousButton Pointer to the previous button.
      * @param parent Pointer to the parent QObject.
      */
-    TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QObject *parent = nullptr);
+    TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QFrame *resetRobotFrame, QObject *parent = nullptr);
 
     /**
      * @brief Starts or stops a subtask.
@@ -91,6 +93,11 @@ private Q_SLOTS:
     void onTaskExecutionFailed(const QString &error);
 
     /**
+     * @brief Slot for handling the reset robot started event.
+     */
+    void onResetRobotStarted();
+
+    /**
      * @brief Slot for handling the reset robot finished event.
      */
     void onResetRobotFinished();
@@ -106,10 +113,13 @@ private:
     TaskExecutor *taskExecutor; ///< Pointer to the TaskExecutor object.
     QPushButton *nextButton; ///< Pointer to the next button.
     QPushButton *previousButton; ///< Pointer to the previous button.
+    QFrame *resetRobotFrame; ///< Pointer to the reset robot frame.
+    ExecuteFrame *executeResetRobotFrame; ///< Pointer to the execute reset robot frame.
     QVector<QSharedPointer<Task>> tasks; ///< Vector of tasks.
     QVector<Subtask*> queued_and_running_subtasks; ///< Vector of queued and running subtasks.
     int currentQueueStartSolution = false; ///< Flag indicating whether to start the solution or the users script.
     int currentTaskIndex; ///< Index of the current task.
+    bool resetRobotInProgress = false; ///< Flag indicating whether the robot reset is in progress.
 
     /**
      * @brief Starts a subtask.
@@ -119,9 +129,20 @@ private:
     void startSubtask(Subtask &started_subtask, QSharedPointer<Task> &task, bool startSolution = false);
 
     /**
+     * @brief Starts the first subtask and logs a message.
+     */
+    void initiateFirstSubtask();
+
+    /**
      * @brief Forces the stop of the current task execution.
      */
     void forceStop();
+
+    /**
+     * @brief Logs a message surrounded by hashes.
+     * @param message The message to be logged.
+     */
+    void logWithHashes(const QString &message);
 };
 
 #endif // TASKMANAGER_HPP

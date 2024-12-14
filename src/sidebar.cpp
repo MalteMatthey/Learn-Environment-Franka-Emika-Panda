@@ -12,9 +12,9 @@
 #include <QListWidgetItem>
 
 namespace {
-    const int SIDEBAR_MINIMUM_WIDTH = 100;
-    const int SIDEBAR_TITLE_FONT_SIZE = 20;
-    const char* SIDEBAR_TITLE_LABEL = "TASKS";
+    const int SIDEBAR_MINIMUM_WIDTH = 120;
+    const int SIDEBAR_TITLE_FONT_SIZE = 16;
+    const char* SIDEBAR_TITLE_LABEL = "Tasks";
 
     const QSize SIDEBAR_ITEM_MARGIN_SIZE(0, 30);
     const QSize SIDEBAR_TITLE_ITEM_MARGINS(0, 20);

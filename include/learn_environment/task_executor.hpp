@@ -60,6 +60,11 @@ Q_SIGNALS:
     void taskExecutionFailed(const QString &error);
 
     /**
+     * @brief Signal emitted when robot reset starts.
+     */
+    void resetRobotStarted();
+
+    /**
      * @brief Signal emitted when robot reset finishes.
      */
     void resetRobotFinished();

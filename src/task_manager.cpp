@@ -5,19 +5,33 @@
 #include "learn_environment/notebook_converter.hpp"
 
 #include <QDebug>
+#include <QToolButton>
 
 namespace {
     const char* TASK_DEFINITIONS_PATH = ":/task_pool/task_definitions.json";
     const char* TOPIC_DEFINITIONS_PATH = ":/task_pool/topic_definitions.json";
     const char* DIFFICULTY_LEVELS_DEFINITION_PATH = ":/task_pool/difficulty_levels.json";
+    const char* LOADING_GIF_PATH = ":/resource/icons/loading.gif";
+    const char* START_ICON_PATH = ":/resource/icons/play.png";
+    const char* STOP_ICON_PATH = ":/resource/icons/stop.png";
+    const char* FAILED_ICON_PATH = ":/resource/icons/failed.png";
+    const char* SUCCEEDED_ICON_PATH = ":/resource/icons/succeeded.png";
+    const char* RESET_ROBOT_TEXT = "Resetting the robot to its default state...";
+    const char* RESET_ROBOT_TEXT_SCRIPTS = "Resetting the robot before script execution...";
+    const char* RESET_ROBOT_TEXT_SUCCESS = "Robot successfully reset!";
+    const char* RESET_ROBOT_TEXT_FAILED = "Robot reset failed!";
+    const char* STOP_RESET_ROBOT_TOOLTIP = "Cancel reset process";
+    const char* RESET_ROBOT_TOOLTIP = "Reset robot to default state";
+    const char* RESET_ROBOT_START_BUTTON_NAME = "resetRobotStartButton";
 }
 
-TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QObject *parent)
+TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QFrame *resetRobotFrame, QObject *parent)
     : QObject(parent),
       taskUI(taskUI),
       taskExecutor(new TaskExecutor(this)),
       nextButton(nextButton),
       previousButton(previousButton),
+      resetRobotFrame(resetRobotFrame),
       currentTaskIndex(0)
 {
     TaskParser parser;
@@ -33,6 +47,7 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
     connect(taskExecutor, &TaskExecutor::taskExecutionFinished, this, &TaskManager::onTaskExecutionFinished);
     connect(taskExecutor, &TaskExecutor::taskExecutionFailed, this, &TaskManager::onTaskExecutionFailed);
 
+    connect(taskExecutor, &TaskExecutor::resetRobotStarted, this, &TaskManager::onResetRobotStarted);
     connect(taskExecutor, &TaskExecutor::resetRobotFinished, this, &TaskManager::onResetRobotFinished);
     connect(taskExecutor, &TaskExecutor::resetRobotFailed, this, &TaskManager::onResetRobotFailed);
 
@@ -156,10 +171,11 @@ void TaskManager::startSubtask(Subtask &started_subtask, QSharedPointer<Task> &t
         currentQueueStartSolution = startSolution;
 
         if (started_subtask.reset_robot_before_executing) {
-        taskExecutor->resetRobot();
+            qDebug() << "Resetting the robot before executing the subtask.";
+            taskExecutor->resetRobot();
         } else {
             qDebug() << "Robot reset not required for this subtask.";
-            onResetRobotFinished();
+            initiateFirstSubtask();
         }
     } else {
         qCritical() << "No subtask queued.";
@@ -170,6 +186,11 @@ void TaskManager::startSubtask(Subtask &started_subtask, QSharedPointer<Task> &t
 
 void TaskManager::forceResetRobot()
 {
+    if (resetRobotInProgress) {
+        qWarning() << "Robot reset already in progress.";
+        forceStop();
+        return;
+    }
     qDebug() << "Forcing reset of the robot.";
     forceStop();
     taskExecutor->resetRobot();
@@ -177,8 +198,8 @@ void TaskManager::forceResetRobot()
 
 void TaskManager::forceStop()
 {
+    taskExecutor->forceStop();
     if (!queued_and_running_subtasks.isEmpty()) {
-        taskExecutor->forceStop();
         queued_and_running_subtasks.clear();
         for (auto& task : tasks) {
             for (Subtask& sub : task->subtasks) {
@@ -188,8 +209,19 @@ void TaskManager::forceStop()
         taskUI->updateSubtaskItemsUI();
     }
     currentQueueStartSolution = false;
-
 }
+
+void TaskManager::initiateFirstSubtask()
+{
+    if (!queued_and_running_subtasks.isEmpty()) {        
+        // start subtasks
+        Subtask *first_subtask = queued_and_running_subtasks.first();
+        first_subtask->status = SubtaskStatus::Running;
+        taskExecutor->executeTask(*first_subtask, currentQueueStartSolution);
+    }
+    taskUI->updateSubtaskItemsUI();
+}
+
 void TaskManager::onTaskExecutionStarted()
 {
     if (queued_and_running_subtasks.isEmpty()) { 
@@ -200,13 +232,7 @@ void TaskManager::onTaskExecutionStarted()
     QString message = currentQueueStartSolution 
         ? QString("Solution for subtask \"%1\" started").arg(title)
         : QString("Subtask \"%1\" started").arg(title);
-    int hashCount = message.length();
-    QString hashes(hashCount + 2, '#');
-    QString initial_hashes(4, '#');
-    qDebug().noquote().nospace()
-        << initial_hashes << hashes << initial_hashes << "\n"
-        << initial_hashes << " " << message << " " << initial_hashes << "\n"
-        << initial_hashes << hashes << initial_hashes;
+    logWithHashes(message);
 }
 
 void TaskManager::onTaskExecutionFinished()
@@ -264,18 +290,91 @@ void TaskManager::onTaskExecutionFailed(const QString &error)
     }
 }
 
-void TaskManager::onResetRobotFinished()
+void TaskManager::onResetRobotStarted()
 {
-    if (!queued_and_running_subtasks.isEmpty()) { 
-        Subtask *first_subtask = queued_and_running_subtasks.first();
-        first_subtask->status = SubtaskStatus::Running;
-        taskExecutor->executeTask(*first_subtask, currentQueueStartSolution);
+    if (resetRobotInProgress) {
+        qWarning() << "Robot reset already in progress.";
+        forceStop();
+        return;
     }
-    taskUI->updateSubtaskItemsUI();
+
+    QString message = "Robot reset started.";
+    resetRobotInProgress = true;
+    
+    QToolButton* resetRobotStartButton = resetRobotFrame->findChild<QToolButton*>(RESET_ROBOT_START_BUTTON_NAME);
+    if (resetRobotStartButton) {
+        resetRobotStartButton->setIcon(QIcon(STOP_ICON_PATH));
+        resetRobotStartButton->setToolTip(STOP_RESET_ROBOT_TOOLTIP);
+    } else {
+        qCritical() << "Reset robot start button not found.";
+    }
+
+    if (!executeResetRobotFrame) {
+        executeResetRobotFrame = new ExecuteFrame(resetRobotFrame);
+        QVBoxLayout *resetLayout = qobject_cast<QVBoxLayout*>(resetRobotFrame->layout());
+        if (!resetLayout) {
+            resetLayout = new QVBoxLayout(resetRobotFrame);
+            resetRobotFrame->setLayout(resetLayout);
+        }
+        resetLayout->addWidget(executeResetRobotFrame);
+    }
+    if (!executeResetRobotFrame) {
+        qCritical() << "Execute reset robot frame not found.";
+        return;
+    }
+    executeResetRobotFrame->setImage(LOADING_GIF_PATH);
+    if (queued_and_running_subtasks.isEmpty()) {
+        executeResetRobotFrame->setText(RESET_ROBOT_TEXT);
+    } else {
+        executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SCRIPTS);
+    }
+    logWithHashes(message);
 }
 
+void TaskManager::onResetRobotFinished()
+{
+    if (resetRobotInProgress) {
+        logWithHashes("Robot reset finished.");
+    }
+
+    resetRobotInProgress = false;
+    // update UI
+    QToolButton* resetRobotStartButton = resetRobotFrame->findChild<QToolButton*>(RESET_ROBOT_START_BUTTON_NAME);
+    if (resetRobotStartButton) {
+        resetRobotStartButton->setIcon(QIcon(START_ICON_PATH));
+        resetRobotStartButton->setToolTip(RESET_ROBOT_TOOLTIP);
+    }
+    if (executeResetRobotFrame) {
+        if (!executeResetRobotFrame->getText().contains(RESET_ROBOT_TEXT_FAILED)) {
+            executeResetRobotFrame->setImage(SUCCEEDED_ICON_PATH);
+            executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SUCCESS);
+        }
+    }
+
+    initiateFirstSubtask();
+}
+    
 void TaskManager::onResetRobotFailed(const QString &error)
 {
     qCritical() << "Robot reset failed:" << error;
+
+    resetRobotInProgress = false;
+
+    if (executeResetRobotFrame) {
+        executeResetRobotFrame->setImage(FAILED_ICON_PATH);
+        executeResetRobotFrame->setText(QString(RESET_ROBOT_TEXT_FAILED) + "\n" + error);
+    }
+
     onTaskExecutionFailed(error);
+}
+
+void TaskManager::logWithHashes(const QString &message)
+{
+    int hashCount = message.length();
+    QString hashes(hashCount + 2, '#');
+    QString initial_hashes(4, '#');
+    qDebug().noquote().nospace()
+        << initial_hashes << hashes << initial_hashes << "\n"
+        << initial_hashes << " " << message << " " << initial_hashes << "\n"
+        << initial_hashes << hashes << initial_hashes;
 }

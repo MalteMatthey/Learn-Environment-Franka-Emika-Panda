@@ -48,22 +48,17 @@ void LearnEnvironment::initialize() {
         *sidebar,
         this
     );
-    taskManager = new TaskManager(taskUI, ui->nextButton, ui->previousButton, this);
+    taskManager = new TaskManager(taskUI, ui->nextButton, ui->previousButton, ui->resetRobotFrame, this);
 
     setupSplitterAndLayout();
 
     sidebar->setVisible(false);
 
     connect(ui->menuButton, &QPushButton::clicked, this, &LearnEnvironment::toggleSidebarVisibility);
-    connect(ui->resetRobotButton, &QPushButton::clicked, taskManager, &TaskManager::forceResetRobot);
+    connect(ui->resetRobotStartButton, &QToolButton::clicked, taskManager, &TaskManager::forceResetRobot);
 
     notebookConverter->moveToThread(notebookThread);
     connect(notebookThread, &QThread::started, notebookConverter, &NotebookConverter::processTaskPool);
-
-    // Optional: Handle thread finished
-    // connect(notebookConverter, &NotebookConverter::finished, notebookThread, &QThread::quit);
-    // connect(notebookThread, &QThread::finished, notebookConverter, &NotebookConverter::deleteLater);
-    // connect(notebookThread, &QThread::finished, notebookThread, &QThread::deleteLater);
 
     notebookThread->start();
 }

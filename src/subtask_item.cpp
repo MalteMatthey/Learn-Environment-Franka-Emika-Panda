@@ -11,7 +11,7 @@
 #include <QMessageBox>
 
 namespace {
-    const int HEADER_FONT_SIZE = 14;
+    const int HEADER_FONT_SIZE = 12;
     const int BODY_FONT_SIZE = 10;
     const char* LINK_STYLE = "font-family:'monospace'; font-size:10pt; color:'#444444'; vertical-align:bottom;";
     const char* BODY_STYLE = "color:#444444;";
@@ -30,7 +30,8 @@ namespace {
     const char* START_TOOLTIP = "Start Script";
     const char* STOP_TOOLTIP = "Stop Script";
     const char* QUEUED_TOOLTIP = "Queued Execution";
-    const char* HELP_TOOLTIP = "Get Help";
+    const char* INACTIVE_TOOLTIP = "Inactive";
+    const char* HELP_TOOLTIP = "Help";
 
     const char* START_OWN_SCRIPT_TEXT = "Start your own Script";
     const char* START_SOLUTION_TEXT = "Start the Solution";
@@ -63,7 +64,7 @@ void SubtaskItem::updateUI(bool constructorCall)
             startButton->setEnabled(false);
             helpButton->setEnabled(false);
             startButton->setIcon(QIcon(START_ICON_PATH));
-            startButton->setToolTip(START_TOOLTIP);
+            startButton->setToolTip(INACTIVE_TOOLTIP);
             break;
         case SubtaskStatus::Ready:
             startButton->setEnabled(true);

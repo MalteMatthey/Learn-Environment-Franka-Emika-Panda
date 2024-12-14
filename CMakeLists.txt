@@ -57,6 +57,7 @@ set(${PROJECT_NAME}_HDRS
   include/${PROJECT_NAME}/task_ui.hpp
   include/${PROJECT_NAME}/notebook_converter.hpp
   include/${PROJECT_NAME}/folder_structure_constants.hpp
+  include/${PROJECT_NAME}/execute_frame.hpp
 )
 
 set(${PROJECT_NAME}_SRCS
@@ -71,6 +72,7 @@ set(${PROJECT_NAME}_SRCS
   src/process_runner.cpp
   src/task_ui.cpp
   src/notebook_converter.cpp
+  src/execute_frame.cpp
 )
 
 set(${PROJECT_NAME}_UIS

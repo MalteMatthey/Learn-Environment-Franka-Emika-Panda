@@ -138,7 +138,11 @@ void ScriptWorker::executePythonScript(const QString &scriptPath, const QString 
 
     connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
         if (exitCode != 0) {
-            Q_EMIT failed("Python script execution failed.");
+            if (exitCode == 9) {
+                Q_EMIT failed("Python script execution was killed by the user.");
+            } else {
+                Q_EMIT failed(QString("Python script execution failed with exit code %1.").arg(exitCode));
+            }
         }
         Q_EMIT finished();
     });
