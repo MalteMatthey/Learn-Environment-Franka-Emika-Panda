@@ -64,10 +64,12 @@ if node_exists and msg_received:
     print('true')
 
 elif not node_exists:
-    print('false: Node not found')
+    print('Node not found')
+    print('false')
 
 else:
-    print('false: Message not received')
+    print('Messages not received')
+    print('false')
 
 
 rospy.signal_shutdown('evaluation done')
