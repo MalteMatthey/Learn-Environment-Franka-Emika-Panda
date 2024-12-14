@@ -82,14 +82,14 @@ private:
     QVBoxLayout *baseLayout; ///< Layout for the subtask item.
     ExecuteFrame *executeSubtaskFrame; ///< Pointer to the execute subtask frame.
 
-    QPushButton *menuStartOwnBtn;
-    QPushButton *menuStartSolutionBtn;
+    QPushButton *menuStartOwnBtn; ///< Button to start the user's script.
+    QPushButton *menuStartSolutionBtn; ///< Button to start the solution.
 
-    QPushButton *menuToggleSolutionBtn;
-    QPushButton *menuResetNotebookBtn;
+    QPushButton *menuToggleSolutionBtn; ///< Button to toggle the solution.
+    QPushButton *menuResetNotebookBtn; ///< Button to reset the notebook.
 
-    QMenu* startMenu;
-    QMenu* helpMenu;
+    QMenu* startMenu; ///< Menu for starting the subtask.
+    QMenu* helpMenu; ///< Menu for showing the help options.
 };
 
 #endif // SUBTASK_ITEM_HPP

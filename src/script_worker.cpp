@@ -6,6 +6,20 @@
 
 namespace {
     const int CONVERT_JUPYTER_TIMEOUT_SECONDS = 30;
+    const QString JUPYTER_NOTEBOOK_NOT_FOUND = "<b>Jupyter Notebook file not found</b>";
+    const QString NOTEBOOK_CONVERSION_FAILED = "<b>Notebook conversion failed.</b>";
+    const QString ROBOT_SCRIPT_EXECUTION_FAILED = "<b>Robot script execution failed.</b>";
+    const QString ROBOT_SCRIPT_FAILED_WITH_ERRORS = "<b>Your robot script failed with errors:</b><br>";
+    const QString ROBOT_SCRIPT_EXECUTION_TIMED_OUT = "<b>Robot script execution timed out.</b>";
+    const QString EVALUATION_SCRIPT_FAILED = "<b>Evaluation script failed.</b>";
+    const QString EVALUATION_ERRORS = "<b>Evaluation errors. Contact the authors of the task:</b><br>";
+    const QString SCRIPT_ERROR_MESSAGE = "<b>It looks like something is wrong in your script:</b><br>";
+    const QString EVALUATION_SCRIPT_TIMED_OUT = "<b>Evaluation script timed out.</b>";
+    const QString RESULT_CHECK_FAILED = "<b>Result check failed.</b>";
+    const QString RESULT_CHECK_TIMED_OUT = "<b>Result checking timed out.</b>";
+    const QString PYTHON_SCRIPT_EXECUTION_KILLED = "Python script execution was killed by the user.";
+    const QString PYTHON_SCRIPT_EXECUTION_FAILED = "Python script execution failed with exit code %1.";
+    const QString EVALUATION_FAILED_KEYWORD = "false";
 }
 
 ScriptWorker::ScriptWorker(const QString &notebookPath,
@@ -24,7 +38,7 @@ ScriptWorker::ScriptWorker(const QString &notebookPath,
 
 void ScriptWorker::startExecution() {
     if (!QFile::exists(notebookPath)) {
-        Q_EMIT failed("Jupyter Notebook file not found");
+        Q_EMIT failed(JUPYTER_NOTEBOOK_NOT_FOUND);
         Q_EMIT finished();
         return;
     }
@@ -40,7 +54,7 @@ void ScriptWorker::convertAndExecuteNotebook() {
     // qDebug() << "Converting notebook:" << notebookPath;
     bool success = converter.convertNotebook(notebookPath);
     if (!success) {
-        Q_EMIT failed("Notebook conversion failed.");
+        Q_EMIT failed(NOTEBOOK_CONVERSION_FAILED);
         Q_EMIT finished();
         return;
     }
@@ -62,7 +76,7 @@ void ScriptWorker::executeConvertedScript() {
     connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
         if (exitCode != 0) {
             QString formattedError = formatMessage(errorOutput.trimmed());
-            Q_EMIT failed(formattedError.isEmpty() ? "<b>Robot script execution failed.</b>" : "<b>Your robot script failed with errors:</b><br>" + formattedError);
+            Q_EMIT failed(formattedError.isEmpty() ? ROBOT_SCRIPT_EXECUTION_FAILED : ROBOT_SCRIPT_FAILED_WITH_ERRORS + formattedError);
             Q_EMIT finished();
         } else {
             mainScriptFinished = true;
@@ -74,7 +88,7 @@ void ScriptWorker::executeConvertedScript() {
     });
 
     connect(runner, &ProcessRunner::timeout, this, [this]() {
-        Q_EMIT failed("Robot script execution timed out.");
+        Q_EMIT failed(ROBOT_SCRIPT_EXECUTION_TIMED_OUT);
         Q_EMIT finished();
     });
 
@@ -100,10 +114,10 @@ void ScriptWorker::evaluateScriptInParallel() {
     connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
         if (exitCode != 0) {
             QString formattedError = formatMessage(errorOutput.trimmed());
-            Q_EMIT failed(formattedError.isEmpty() ? "<b>Evaluation script failed.</b>" : "<b>Evaluation errors. Contact the authors of the task:</b><br>" + formattedError);
+            Q_EMIT failed(formattedError.isEmpty() ? EVALUATION_SCRIPT_FAILED : EVALUATION_ERRORS + formattedError);
         }
-        if (evaluationOutput.trimmed().split('\n').contains("false")) {
-            QString formattedOutput = "<b>It looks like something is wrong in your script:</b><br>" + formatMessage(evaluationOutput.trimmed(), true);
+        if (evaluationOutput.trimmed().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
+            QString formattedOutput = SCRIPT_ERROR_MESSAGE + formatMessage(evaluationOutput.trimmed(), true);
             Q_EMIT failed(formattedOutput);
         }
         evalScriptFinished = true;
@@ -111,7 +125,7 @@ void ScriptWorker::evaluateScriptInParallel() {
     });
 
     connect(runner, &ProcessRunner::timeout, this, [this]() {
-        Q_EMIT failed("Evaluation script timed out.");
+        Q_EMIT failed(EVALUATION_SCRIPT_TIMED_OUT);
         evalScriptFinished = true;
         checkAndEmitFinished();
     });
@@ -138,17 +152,17 @@ void ScriptWorker::checkResult() {
     connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
         if (exitCode != 0) {
             QString formattedError = formatMessage(errorOutput.trimmed());
-            Q_EMIT failed(formattedError.isEmpty() ? "<b>Result check failed.</b>" : "</b>Evaluation errors. Contact the authors of the task:</b><br>" + formattedError);
+            Q_EMIT failed(formattedError.isEmpty() ? RESULT_CHECK_FAILED : EVALUATION_ERRORS + formattedError);
         }
-        if (evaluationOutput.trimmed().split('\n').contains("false")) {
-            QString formattedOutput = "<b>It looks like something is wrong in your script:</b><br>" + formatMessage(evaluationOutput.trimmed(), true);
+        if (evaluationOutput.trimmed().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
+            QString formattedOutput = SCRIPT_ERROR_MESSAGE + formatMessage(evaluationOutput.trimmed(), true);
             Q_EMIT failed(formattedOutput);
         }
         Q_EMIT finished();
     });
 
     connect(runner, &ProcessRunner::timeout, this, [this]() {
-        Q_EMIT failed("Result checking timed out.");
+        Q_EMIT failed(RESULT_CHECK_TIMED_OUT);
         Q_EMIT finished();
     });
 
@@ -167,9 +181,9 @@ void ScriptWorker::executePythonScript(const QString &scriptPath, const QString 
     connect(runner, &ProcessRunner::finished, this, [this](int exitCode, QProcess::ExitStatus) {
         if (exitCode != 0) {
             if (exitCode == 9) {
-                Q_EMIT failed("Python script execution was killed by the user.");
+                Q_EMIT failed(PYTHON_SCRIPT_EXECUTION_KILLED);
             } else {
-                Q_EMIT failed(QString("Python script execution failed with exit code %1.").arg(exitCode));
+                Q_EMIT failed(QString(PYTHON_SCRIPT_EXECUTION_FAILED).arg(exitCode));
             }
         }
         Q_EMIT finished();
@@ -209,7 +223,7 @@ QString ScriptWorker::formatMessage(const QString &msg, bool fromEval) {
             continue;
         }
         if (fromEval && (trimmedLine == "true" 
-                      || trimmedLine == "false" 
+                      || trimmedLine == EVALUATION_FAILED_KEYWORD 
                       || trimmedLine.startsWith("[ INFO]") 
                       || trimmedLine.startsWith("[ WARN]"))) {
             continue;

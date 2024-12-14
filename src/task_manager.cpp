@@ -356,10 +356,6 @@ void TaskManager::onResetRobotStarted()
 
 void TaskManager::onResetRobotFinished()
 {
-    if (resetRobotInProgress) {
-        logWithHashes("Robot reset finished.");
-    }
-
     resetRobotInProgress = false;
     // update UI
     QToolButton* resetRobotStartButton = resetRobotFrame->findChild<QToolButton*>(RESET_ROBOT_START_BUTTON_NAME);

@@ -31,6 +31,8 @@ namespace {
     const char* MENU_BUTTON_STYLE = 
         "QPushButton { border: 2; padding-left: 25px; padding-right: 25px; padding-top: 5px; padding-bottom: 5px; background: white; border-radius: 8px; }"
         "QPushButton:hover { background: #fafafa; }";
+    const char* MENU_WIDGET_STYLE = "background-color: #efefef; border-radius: 12px;";
+    const char* MENU_INDICATOR_STYLE = " QToolButton::menu-indicator { image: none; }";
 
     const char* START_TOOLTIP = "Start Script";
     const char* STOP_TOOLTIP = "Stop Script";
@@ -269,7 +271,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     QFont headerFont = headerLabel->font();
     headerFont.setPointSize(HEADER_FONT_SIZE);
     headerLabel->setFont(headerFont);
-    headerLabel->setAlignment(Qt::AlignLeft); // Align to left
+    headerLabel->setAlignment(Qt::AlignLeft);
     headerLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create a link label
@@ -278,7 +280,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     linkLabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     linkLabel->setOpenExternalLinks(true);
     linkLabel->setStyleSheet(LINK_STYLE);
-    linkLabel->setAlignment(Qt::AlignLeft); // Align to left
+    linkLabel->setAlignment(Qt::AlignLeft);
     linkLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 
     // Create the text label with automatic line breaks
@@ -289,7 +291,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
     loremFont.setPointSize(BODY_FONT_SIZE);
     loremLabel->setFont(loremFont);
     loremLabel->setStyleSheet(BODY_STYLE);
-    loremLabel->setAlignment(Qt::AlignLeft); // Align to left
+    loremLabel->setAlignment(Qt::AlignLeft);
     loremLabel->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Minimum);
 
     // Add header, link, and text labels to the vertical layout
@@ -302,7 +304,7 @@ void SubtaskItem::setupItemUI(const QString &headerText, const QString &linkText
 
     // Create a vertical layout for the buttons
     QVBoxLayout *buttonLayout = new QVBoxLayout();
-    buttonLayout->setAlignment(Qt::AlignTop); // Align buttons to the top
+    buttonLayout->setAlignment(Qt::AlignTop);
     buttonLayout->setContentsMargins(10, 0, 0, 0);
 
     // Create start button
@@ -342,14 +344,14 @@ void SubtaskItem::initializeHelpMenu() {
     helpButton->setPopupMode(QToolButton::InstantPopup);
 
     QString existingStyle = helpButton->styleSheet();
-    helpButton->setStyleSheet(existingStyle + " QToolButton::menu-indicator { image: none; }");
+    helpButton->setStyleSheet(existingStyle + MENU_INDICATOR_STYLE);
 
     helpMenu = new QMenu(helpButton);
     helpMenu->setAttribute(Qt::WA_TranslucentBackground);
     helpMenu->setWindowFlags(helpMenu->windowFlags() | Qt::FramelessWindowHint);
 
     auto menuWidget = new QWidget();
-    menuWidget->setStyleSheet("background-color: #efefef; border-radius: 12px;");
+    menuWidget->setStyleSheet(MENU_WIDGET_STYLE);
     auto menuLayout = new QVBoxLayout(menuWidget);
     menuLayout->setContentsMargins(10, 10, 10, 10);
 
@@ -388,14 +390,14 @@ void SubtaskItem::initializeStartMenu() {
     startButton->setPopupMode(QToolButton::InstantPopup);
 
     QString existingStyle = startButton->styleSheet();
-    startButton->setStyleSheet(existingStyle + " QToolButton::menu-indicator { image: none; }");
+    startButton->setStyleSheet(existingStyle + MENU_INDICATOR_STYLE);
 
     startMenu = new QMenu(startButton);
     startMenu->setAttribute(Qt::WA_TranslucentBackground);
     startMenu->setWindowFlags(startMenu->windowFlags() | Qt::FramelessWindowHint);
 
     auto menuWidget = new QWidget();
-    menuWidget->setStyleSheet("background-color: #efefef; border-radius: 12px;");
+    menuWidget->setStyleSheet(MENU_WIDGET_STYLE);
     auto menuLayout = new QVBoxLayout(menuWidget);
     menuLayout->setContentsMargins(10, 10, 10, 10);
 
