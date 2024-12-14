@@ -1,6 +1,7 @@
 {
     "topics": [
         "ROS",
-        "MoveIt"
+        "MoveIt",
+        "Controller"
     ]
 }

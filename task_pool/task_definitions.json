@@ -10,23 +10,23 @@
         {
           "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_1.ipynb",
-          "evaluation_file": "/exercise_1_eval.py",
+          "solution_file": "/ros_basics_1.ipynb",
+          "evaluation_file": "/ros_basics_1_eval.py",
           "parallelized_evaluation_required": true,
           "reset_robot_before_executing": false
         },
         {
           "title": "Task 2",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_2.ipynb",
-          "evaluation_file": "/exercise_2_eval.py",
+          "solution_file": "/ros_basics_2.ipynb",
+          "evaluation_file": "/ros_basics_2_eval.py",
           "parallelized_evaluation_required": true
         },
         {
           "title": "Task 3",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_3.ipynb",
-          "evaluation_file": "/exercise_3_eval.py"
+          "solution_file": "/ros_basics_3.ipynb",
+          "evaluation_file": "/ros_basics_3_eval.py"
         }
       ]
     },
@@ -35,13 +35,49 @@
       "description": "TODO: Add Description.",
       "topic": "ROS",
       "difficulty": "intermediate",
-      "folder": "/ros/ros_advanced",
+      "folder": "/ros/ros_intermediate",
       "subtasks": [
         {
           "title": "Task 1",
           "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_1.ipynb",
-          "evaluation_file": "/exercise_1_eval.py"
+          "solution_file": "/ros_intermediate_1.ipynb",
+          "evaluation_file": "/ros_intermediate_1_eval.py"
+        },
+        {
+          "title": "Task 2",
+          "description": "TODO: Add Subtask Description Subtask 2.",
+          "solution_file": "/ros_intermediate_2.ipynb",
+          "evaluation_file": "/ros_intermediate_2_eval.py"
+        }
+      ]
+    },
+    {
+      "title": "MoveIt Basics",
+      "description": "TODO: Add Description.",
+      "folder": "/move_it/move_it_basics",
+      "topic": "MoveIt",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Task 1",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "solution_file": "/move_it_basics_1.ipynb",
+          "evaluation_file": "/move_it_basics_1_eval.py"
+        }
+      ]
+    },
+    {
+      "title": "Trajectory Controller",
+      "description": "TODO: Add Description.",
+      "folder": "/controller/controller_task",
+      "topic": "Controller",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Task 1",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "solution_file": "/trajectory_controller.ipynb",
+          "evaluation_file": "/trajectory_controller.py"
         }
       ]
     },
@@ -181,22 +217,6 @@
           "description": "TODO: Add Subtask Description Subtask 1.",
           "solution_file": "/exercise_1_1.ipynb",
           "evaluation_file": "/exercise_1_1_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "Task Controller",
-      "description": "TODO: Add Description.",
-      "folder": "/task_pool/solution_scripts/controller",
-      "difficulty": "beginner",
-      "previous_subtasks_required": false,
-      "subtasks": [
-        {
-          "title": "Trajectory Controller",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "file": "/trajectory_controller.ipynb",
-          "solution_file_path": "/task_pool/solution_scripts/controller/trajectory_controller.ipynb",
-          "evaluation_file_path": "/task_pool/evaluation_scripts/controller/trajectory_controller.py"
         }
       ]
     }
