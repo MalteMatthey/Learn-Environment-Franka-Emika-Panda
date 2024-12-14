@@ -20,6 +20,10 @@ namespace {
     const char* START_ICON_PATH = ":/resource/icons/play.png";
     const char* STOP_ICON_PATH = ":/resource/icons/stop.png";
     const char* HELP_ICON_PATH = ":/resource/icons/help.png";
+    const char* LOADING_GIF_PATH = ":/resource/icons/loading.gif";
+    const char* QUEUED_GIF_PATH = ":/resource/icons/queued.gif";
+    const char* FAILED_ICON_PATH = ":/resource/icons/failed.png";
+    const char* SUCCEEDED_ICON_PATH = ":/resource/icons/succeeded.png";
 
     const char* ICON_BUTTON_STYLE = 
         "QToolButton { border: 0; padding: 0; }"
@@ -36,6 +40,10 @@ namespace {
 
     const char* START_OWN_SCRIPT_TEXT = "Start your own Script";
     const char* START_SOLUTION_TEXT = "Start the Solution";
+
+    const char* EXECUTION_SUCCESSFUL_TEXT = "Last Execution completed successfully!";
+    const char* EXECUTION_QUEUED_TEXT = "Queued, wait for other processes to finish...";
+    const char* EXECUTING_TEXT = "Executing... View logs in terminal.";
 
     const char* SHOW_SOLUTION_TEXT = "Show Solution";
     const char* HIDE_SOLUTION_TEXT = "Hide Solution";
@@ -67,24 +75,42 @@ void SubtaskItem::updateUI(bool constructorCall)
             helpButton->setEnabled(false);
             startButton->setIcon(QIcon(START_ICON_PATH));
             startButton->setToolTip(INACTIVE_TOOLTIP);
+            if (!subtask->hasBeenExecuted) {
+                break;
+            }
+            if (subtask->lastExecutionError.isEmpty()) {
+                setExecutionFrame(SUCCEEDED_ICON_PATH, EXECUTION_SUCCESSFUL_TEXT);
+            } else {
+                setExecutionFrame(FAILED_ICON_PATH, subtask->lastExecutionError);
+            }
             break;
         case SubtaskStatus::Ready:
             startButton->setEnabled(true);
             helpButton->setEnabled(true);
             startButton->setIcon(QIcon(START_ICON_PATH));
             startButton->setToolTip(START_TOOLTIP);
+            if (!subtask->hasBeenExecuted) {
+                break;
+            }
+            if (subtask->lastExecutionError.isEmpty()) {
+                setExecutionFrame(SUCCEEDED_ICON_PATH, EXECUTION_SUCCESSFUL_TEXT);
+            } else {
+                setExecutionFrame(FAILED_ICON_PATH, subtask->lastExecutionError);
+            }
             break;
         case SubtaskStatus::Queued:
             startButton->setEnabled(false);
             helpButton->setEnabled(false);
             startButton->setIcon(QIcon(START_ICON_PATH));
             startButton->setToolTip(QUEUED_TOOLTIP);
+            setExecutionFrame(QUEUED_GIF_PATH, EXECUTION_QUEUED_TEXT);
             break;
         case SubtaskStatus::Running:
             startButton->setEnabled(true);
             helpButton->setEnabled(false);
             startButton->setIcon(QIcon(STOP_ICON_PATH));
             startButton->setToolTip(STOP_TOOLTIP);
+            setExecutionFrame(LOADING_GIF_PATH, EXECUTING_TEXT);
             break;
     }
 

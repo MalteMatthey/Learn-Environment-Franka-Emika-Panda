@@ -90,6 +90,13 @@ private:
      */
     void checkAndEmitFinished();
 
+    /**
+     * @brief Formats an error message for display.
+     * @param error The error message.
+     * @return The formatted error message.
+     */
+    QString formatMessage(const QString &msg, bool fromEval = false);
+
     QString notebookPath; ///< Path to the Jupyter notebook file.
     QString convertedScriptPath; ///< Path to the converted script.
     QString evalScriptPath; ///< Path to the evaluation script.
@@ -101,6 +108,9 @@ private:
 
     QList<ProcessRunner*> processRunners; ///< List of active ProcessRunner objects.
     NotebookConverter converter; ///< Instance of NotebookConverter.
+
+    QString errorOutput; ///< Error output from the script execution.
+    QString evaluationOutput; ///< Collected output from checkResult and evaluateScriptInParallel.
 };
 
 #endif // SCRIPT_WORKER_HPP

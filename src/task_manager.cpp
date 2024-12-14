@@ -19,7 +19,7 @@ namespace {
     const char* RESET_ROBOT_TEXT = "Resetting the robot to its default state...";
     const char* RESET_ROBOT_TEXT_SCRIPTS = "Resetting the robot before script execution...";
     const char* RESET_ROBOT_TEXT_SUCCESS = "Robot successfully reset!";
-    const char* RESET_ROBOT_TEXT_FAILED = "Robot reset failed!";
+    const char* RESET_ROBOT_TEXT_FAILED = "<b>Robot reset failed!</b>";
     const char* STOP_RESET_ROBOT_TOOLTIP = "Cancel reset process";
     const char* RESET_ROBOT_TOOLTIP = "Reset robot to default state";
     const char* RESET_ROBOT_START_BUTTON_NAME = "resetRobotStartButton";
@@ -169,6 +169,10 @@ void TaskManager::startSubtask(Subtask &started_subtask, QSharedPointer<Task> &t
 
     // reset Robot and start subtasks
     if (!queued_and_running_subtasks.isEmpty()) {
+        for (auto &subtask : queued_and_running_subtasks) {
+            subtask->hasBeenExecuted = true;
+        }
+        
         currentQueueStartSolution = startSolution;
 
         if (started_subtask.reset_robot_before_executing) {
@@ -201,6 +205,10 @@ void TaskManager::forceStop()
 {
     taskExecutor->forceStop();
     if (!queued_and_running_subtasks.isEmpty()) {
+        for (auto &subtask : queued_and_running_subtasks) {
+            subtask->lastExecutionFailed = true;
+            subtask->lastExecutionError = "<b>Execution stopped by user.</b>";
+        }
         queued_and_running_subtasks.clear();
         for (auto& task : tasks) {
             for (Subtask& sub : task->subtasks) {
@@ -227,6 +235,10 @@ void TaskManager::onTaskExecutionStarted()
 {
     if (queued_and_running_subtasks.isEmpty()) { 
         return;
+    }
+    for (int i = 0; i < queued_and_running_subtasks.size(); ++i) {
+        queued_and_running_subtasks[i]->lastExecutionError = "";
+        queued_and_running_subtasks[i]->lastExecutionFailed = false;
     }
     Subtask *first_subtask = queued_and_running_subtasks.first();
     QString title = first_subtask->title;
@@ -271,13 +283,19 @@ void TaskManager::onTaskExecutionFinished()
 
 void TaskManager::onTaskExecutionFailed(const QString &error)
 {
-    qDebug() << "Task execution failed:" << error;
-
     if (queued_and_running_subtasks.isEmpty()) { 
         return;
     }
 
     Subtask *first_subtask = queued_and_running_subtasks.first();
+
+    first_subtask->lastExecutionError = error;
+    first_subtask->lastExecutionFailed = true;
+
+    for (int i = 1; i < queued_and_running_subtasks.size(); ++i) {
+        queued_and_running_subtasks[i]->lastExecutionError = "<b>This subtask was not executed due to failure of the previous subtask.</b>";
+        queued_and_running_subtasks[i]->lastExecutionFailed = true;
+    }
 
     if (auto parentTask = first_subtask->parentTask.lock()) {
         queued_and_running_subtasks.clear();
@@ -367,7 +385,7 @@ void TaskManager::onResetRobotFailed(const QString &error)
 
     if (executeResetRobotFrame) {
         executeResetRobotFrame->setImage(FAILED_ICON_PATH);
-        executeResetRobotFrame->setText(QString(RESET_ROBOT_TEXT_FAILED) + "\n" + error);
+        executeResetRobotFrame->setText(QString(RESET_ROBOT_TEXT_FAILED) + "<br>" + error);
     }
 
     onTaskExecutionFailed(error);

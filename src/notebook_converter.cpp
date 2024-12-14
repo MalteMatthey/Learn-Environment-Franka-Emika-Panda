@@ -69,7 +69,7 @@ bool NotebookConverter::convertNotebook(const QString &notebookPath) {
             bool hasSolutionTag = false;
             if (cell["metadata"].contains("tags")) {
                 for (const auto &tag : cell["metadata"]["tags"]) {
-                    if (tag.get<std::string>() == "solution") {
+                    if (tag.get<std::string>() == SOLUTION_CELL_TAG.toStdString()) {
                         hasSolutionTag = true;
                         break;
                     }

@@ -8,6 +8,7 @@
      <file>resource/icons/failed.png</file>
      <file>resource/icons/succeeded.png</file>
      <file>resource/icons/loading.gif</file>
+     <file>resource/icons/queued.gif</file>
      
      <file>task_pool/task_definitions.json</file>
      <file>task_pool/difficulty_levels.json</file>

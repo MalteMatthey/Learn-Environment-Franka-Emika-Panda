@@ -44,6 +44,10 @@ struct Subtask {
     // internal fields
     QWeakPointer<Task> parentTask; ///< Weak pointer to the parent task.
     SubtaskStatus status = SubtaskStatus::Inactive; ///< The status of the subtask.
+
+    bool hasBeenExecuted = false; ///< Whether the subtask has been executed at least once.
+    bool lastExecutionFailed = false; ///< Whether the subtask has been executed at least once.
+    QString lastExecutionError; ///< The error message from the last execution of the subtask.
 };
 
 /**
