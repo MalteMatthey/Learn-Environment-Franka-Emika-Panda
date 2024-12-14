@@ -123,7 +123,7 @@ The first option is easier to implement. However, for certain tasks, continuous 
 ### Requirements
 - At the end of the evaluation, the script must print either `true` or `false` (this should be the final output of the script).
 - Before printing `false`, it is recommended to display a helpful error message explaining the failure.
-
+- (Printing `true` is optional. If the script finishes without printing `false`, it will be evaluated as `true`.)
 
 ### Minimal Example:
 ```python
