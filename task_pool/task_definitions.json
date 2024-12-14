@@ -183,6 +183,22 @@
           "evaluation_file": "/exercise_1_1_eval.py"
         }
       ]
+    },
+    {
+      "title": "Task Controller",
+      "description": "TODO: Add Description.",
+      "folder": "/task_pool/solution_scripts/controller",
+      "difficulty": "beginner",
+      "previous_subtasks_required": false,
+      "subtasks": [
+        {
+          "title": "Trajectory Controller",
+          "description": "TODO: Add Subtask Description Subtask 1.",
+          "file": "/trajectory_controller.ipynb",
+          "solution_file_path": "/task_pool/solution_scripts/controller/trajectory_controller.ipynb",
+          "evaluation_file_path": "/task_pool/evaluation_scripts/controller/trajectory_controller.py"
+        }
+      ]
     }
   ]
 }

@@ -10,43 +10,21 @@ scene = PlanningSceneInterface()
 rospy.sleep(2)  # Allow time for the planning scene interface to initialize
 
 
-# Define the expected pose of the cylinder object
-def expected_cylinder_pose():
+# Define the expected pose of the target object
+def expected_target_pose():
     """
-    Creates and returns the expected pose of the cylinder object.
+    Creates and returns the expected pose of the target object.
     The pose is defined relative to the "panda_link0" frame with
     specific position and orientation values.
 
     Returns:
-        PoseStamped: The expected pose of the cylinder.
+        PoseStamped: The expected pose of the target.
     """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
-    pose.pose.position.x = 2.0
+    pose.pose.position.x = 0.5
     pose.pose.position.y = 0.0
-    pose.pose.position.z = 4.0
-    pose.pose.orientation.x = 0.0
-    pose.pose.orientation.y = 0.7071
-    pose.pose.orientation.z = 0.0
-    pose.pose.orientation.w = 0.7071
-    return pose
-
-
-# Define the expected pose of box_1
-def expected_box_1_pose():
-    """
-    Creates and returns the expected pose of box_1.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of box_1.
-    """
-    pose = PoseStamped()
-    pose.header.frame_id = "panda_link0"
-    pose.pose.position.x = 0.4
-    pose.pose.position.y = 0.0
-    pose.pose.position.z = 0.1
+    pose.pose.position.z = 0.5
     pose.pose.orientation.x = 0.0
     pose.pose.orientation.y = 0.0
     pose.pose.orientation.z = 0.0
@@ -54,21 +32,43 @@ def expected_box_1_pose():
     return pose
 
 
-# Define the expected pose of box_2
-def expected_box_2_pose():
+# Define the expected pose of rectangle_1
+def expected_rectangle_1_pose():
     """
-    Creates and returns the expected pose of box_2.
+    Creates and returns the expected pose of rectangle_1.
     The pose is defined relative to the "panda_link0" frame with
     specific position and orientation values.
 
     Returns:
-        PoseStamped: The expected pose of box_2.
+        PoseStamped: The expected pose of rectangle_1.
     """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
-    pose.pose.position.x = 1.0
-    pose.pose.position.y = 1.0
-    pose.pose.position.z = 1.0
+    pose.pose.position.x = 0.5
+    pose.pose.position.y = 0.0
+    pose.pose.position.z = 0.2
+    pose.pose.orientation.x = 0.0
+    pose.pose.orientation.y = 0.0
+    pose.pose.orientation.z = 0.0
+    pose.pose.orientation.w = 1.0
+    return pose
+
+
+# Define the expected pose of rectangle_2
+def expected_rectangle_2_pose():
+    """
+    Creates and returns the expected pose of rectangle_2.
+    The pose is defined relative to the "panda_link0" frame with
+    specific position and orientation values.
+
+    Returns:
+        PoseStamped: The expected pose of rectangle_2.
+    """
+    pose = PoseStamped()
+    pose.header.frame_id = "panda_link0"
+    pose.pose.position.x = 0.0
+    pose.pose.position.y = 0.5
+    pose.pose.position.z = 0.2
     pose.pose.orientation.x = 0.0
     pose.pose.orientation.y = 0.0
     pose.pose.orientation.z = 0.0
@@ -124,18 +124,18 @@ def verify_object(object_name, expected_pose, tolerance=0.1):
 
 
 # Verify the positions and orientations of the expected objects
-cylinder_pose = expected_cylinder_pose()
-box_1_pose = expected_box_1_pose()
-box_2_pose = expected_box_2_pose()
+target_pose = expected_target_pose()
+rectangle_1_pose = expected_rectangle_1_pose()
+rectangle_2_pose = expected_rectangle_2_pose()
 
-# Check if the cylinder is correctly placed in the scene
-verify_object("cylinder", cylinder_pose)
+# Check if the target is correctly placed in the scene
+verify_object("target", target_pose)
 
-# Check if box_1 is correctly placed in the scene
-verify_object("box_1", box_1_pose)
+# Check if rectangle_1 is correctly placed in the scene
+verify_object("rectangle_1", rectangle_1_pose)
 
-# Check if box_2 is correctly placed in the scene
-verify_object("box_2", box_2_pose)
+# Check if rectangle_2 is correctly placed in the scene
+verify_object("rectangle_2", rectangle_2_pose)
 
 # Additional objects can be added for verification as needed
 # Example:
