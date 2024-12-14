@@ -11,7 +11,7 @@ class Eval():
     def __init__(self):
         self.received_msg = None
 
-        rospy.init_node('exercise_1_1_eval', anonymous=True)
+        rospy.init_node('ros_basics_1_eval', anonymous=True)
 
         rospy.Subscriber("/chatter", String, self.callback)
 
@@ -48,25 +48,28 @@ t = time.time()
 
 while time.time() - t < 25:
 
-    if not node_exists:
-        if x.check_node():
-            node_exists = True
-
-    else:
+    if x.check_node():
+        node_exists = True
 
         if x.checkPublished():
 
             msg_received = True
             break
 
+    else:
+        node_exists = False
+        
+
 if node_exists and msg_received:
-    print('true: Evaluation Success')
+    print('true')
 
 elif not node_exists:
-    print('false: Node not found')
+    print('Node not found')
+    print('false')
 
 else:
-    print('false: Message not received')
+    print('Messages not received')
+    print('false')
 
 
 rospy.signal_shutdown('evaluation done')
