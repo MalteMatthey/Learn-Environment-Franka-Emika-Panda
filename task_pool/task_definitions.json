@@ -20,13 +20,15 @@
           "description": "TODO: Add Subtask Description Subtask 1.",
           "solution_file": "/ros_basics_2.ipynb",
           "evaluation_file": "/ros_basics_2_eval.py",
-          "parallelized_evaluation_required": true
+          "parallelized_evaluation_required": true,
+          "reset_robot_before_executing": false
         },
         {
           "title": "Task 3",
           "description": "TODO: Add Subtask Description Subtask 1.",
           "solution_file": "/ros_basics_3.ipynb",
-          "evaluation_file": "/ros_basics_3_eval.py"
+          "evaluation_file": "/ros_basics_3_eval.py",
+          "reset_robot_before_executing": false
         }
       ]
     },
@@ -47,7 +49,8 @@
           "title": "Task 2",
           "description": "TODO: Add Subtask Description Subtask 2.",
           "solution_file": "/ros_intermediate_2.ipynb",
-          "evaluation_file": "/ros_intermediate_2_eval.py"
+          "evaluation_file": "/ros_intermediate_2_eval.py",
+          "parallelized_evaluation_required": true
         }
       ]
     },
