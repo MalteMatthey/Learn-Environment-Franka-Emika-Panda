@@ -5,8 +5,16 @@ import sys
 from moveit_commander import MoveGroupCommander, PlanningSceneInterface, roscpp_initialize, roscpp_shutdown
 
 
-def reset_robot():
-    group = MoveGroupCommander("panda_arm")
+def robot_already_in_default_position(group, robot_default_position):
+    current_joint_values = group.get_current_joint_values()
+
+    for i in range(7):
+        if abs(current_joint_values[i] - robot_default_position[i]) > 0.01:
+            return False
+
+    return True
+
+def reset_robot(group):
     group.set_max_velocity_scaling_factor(1.0)
     group.set_max_acceleration_scaling_factor(1.0)
 
@@ -24,9 +32,7 @@ def reset_robot():
     group.go(wait=True)
 
 
-def remove_objects():
-    scene = PlanningSceneInterface(synchronous=True)
-    rospy.sleep(2)
+def remove_objects(scene):
     objects = scene.get_known_object_names()
 
     for object_name in objects:
@@ -37,10 +43,19 @@ def remove_objects():
 
 rospy.init_node('reset', anonymous=True)
 roscpp_initialize(sys.argv)
+group = MoveGroupCommander("panda_arm")
 
-reset_robot()
-remove_objects()
+robot_default_position = [0.0, -math.pi / 4, 0.0, -math.pi * 3 / 4, 0.0, math.pi / 2, math.pi / 4]
+
+if not robot_already_in_default_position(group, robot_default_position):
+    reset_robot(group)
+
+scene = PlanningSceneInterface(synchronous=True)
+
+if len(scene.get_known_object_names()) > 0:
+    remove_objects(scene)
 
 roscpp_shutdown()
+rospy.signal_shutdown("Task completed.")
 
 print("Successfully reset the robot and removed all objects.")
