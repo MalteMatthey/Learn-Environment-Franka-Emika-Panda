@@ -56,16 +56,22 @@
     },
     {
       "title": "MoveIt Basics",
-      "description": "TODO: Add Description.",
+      "description": "Basic Task for learning MoveIt.",
       "folder": "/move_it/move_it_basics",
       "topic": "MoveIt",
       "difficulty": "beginner",
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
+          "description": "Implement a simple movement with MoveIt.",
           "solution_file": "/move_it_basics_1.ipynb",
           "evaluation_file": "/move_it_basics_1_eval.py"
+        },
+        {
+          "title": "Task 2",
+          "description": "Implement a simple movement with MoveIt.",
+          "solution_file": "/move_it_basics_2.ipynb",
+          "evaluation_file": "/move_it_basics_2_eval.py"
         }
       ]
     },
