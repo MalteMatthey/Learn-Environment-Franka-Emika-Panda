@@ -1,0 +1,16 @@
+<map id="sidebar.hpp" name="sidebar.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="120,5,208,32"/>
+<area shape="rect" id="Node000002" href="$sidebar_8cpp.html" title=" " alt="" coords="64,80,152,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,46,120,81,116,78,143,43"/>
+<area shape="rect" id="Node000003" href="$task__ui_8hpp.html" title=" " alt="" coords="176,80,264,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,43,213,78,208,81,181,46"/>
+<area shape="rect" id="Node000004" href="$learn__environment_8cpp.html" title=" " alt="" coords="5,229,158,256"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="162,111,95,131,69,143,53,156,48,174,52,193,73,228,68,231,47,195,42,174,49,153,66,139,94,126,160,105"/>
+<area shape="rect" id="Node000005" href="$learn__environment_8hpp.html" title=" " alt="" coords="63,155,215,181"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="197,119,155,156,151,152,193,115"/>
+<area shape="rect" id="Node000006" href="$task__manager_8cpp.html" title=" " alt="" coords="239,155,367,181"/>
+<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="248,115,290,152,287,156,244,119"/>
+<area shape="rect" id="Node000007" href="$task__ui_8cpp.html" title=" " alt="" coords="391,155,479,181"/>
+<area shape="poly" id="edge7_Node000003_Node000007" title=" " alt="" coords="272,109,398,151,396,157,271,114"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="122,195,93,231,89,227,117,192"/>
+</map>

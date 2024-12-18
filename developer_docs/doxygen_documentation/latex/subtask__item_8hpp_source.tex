@@ -1,0 +1,68 @@
+\doxysection{subtask\+\_\+item.\+hpp}
+\hypertarget{subtask__item_8hpp_source}{}\label{subtask__item_8hpp_source}\index{subtask\_item.hpp@{subtask\_item.hpp}}
+\mbox{\hyperlink{subtask__item_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SUBTASK\_ITEM\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SUBTASK\_ITEM\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task__manager_8hpp}{task\_manager.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{execute__frame_8hpp}{execute\_frame.hpp}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QToolButton>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QHBoxLayout>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSubtaskItem}{SubtaskItem}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQWidget}{QWidget}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{classSubtaskItem_a63e6bb32b434cf04705924c3e2cdd0db}{SubtaskItem}}(\mbox{\hyperlink{classQWidget}{QWidget}}\ *parent,\ \mbox{\hyperlink{structSubtask}{Subtask}}\ *subtask);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSubtaskItem_a005df51b50001f3e9c95652e845cf424}{updateUI}}(\textcolor{keywordtype}{bool}\ constructorCall\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSubtaskItem_aebba84aaef3c06a0c3079cea7fcd4ba6}{setTaskManager}}(\mbox{\hyperlink{classTaskManager}{TaskManager}}\ *manager);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ Q\_SIGNALS:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSubtaskItem_a9a41e7bf314df5a4297c68509d531423}{subtaskStartStopRequested}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structSubtask}{Subtask}}\ \&subtask);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{private}\ Q\_SLOTS:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ handleStartButtonClick();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ handleHelpButtonClick();}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ handleStartOwnScript();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ handleStartSolution();}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ handleToggleSolution();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ handleResetNotebook();\ \ \ \ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{void}\ setupItemUI(\textcolor{keyword}{const}\ QString\ \&headerText,\ \textcolor{keyword}{const}\ QString\ \&linkText,\ \textcolor{keyword}{const}\ QString\ \&bodyText);}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeHelpMenu();}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeStartMenu();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ setExecutionFrame(\textcolor{keyword}{const}\ QString\&\ imagePath,\ \textcolor{keyword}{const}\ QString\&\ text);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classTaskManager}{TaskManager}}\ *taskManager;\ }
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{structSubtask}{Subtask}}\ *subtask;\ }
+\DoxyCodeLine{00078\ \ \ \ \ QString\ headerText;\ }
+\DoxyCodeLine{00079\ \ \ \ \ QString\ linkText;\ }
+\DoxyCodeLine{00080\ \ \ \ \ QString\ bodyText;\ }
+\DoxyCodeLine{00081\ \ \ \ \ QToolButton\ *startButton;\ }
+\DoxyCodeLine{00082\ \ \ \ \ QToolButton\ *helpButton;\ }
+\DoxyCodeLine{00083\ \ \ \ \ QVBoxLayout\ *baseLayout;\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classExecuteFrame}{ExecuteFrame}}\ *executeSubtaskFrame;\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ QPushButton\ *menuStartOwnBtn;\ }
+\DoxyCodeLine{00087\ \ \ \ \ QPushButton\ *menuStartSolutionBtn;\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ QPushButton\ *menuToggleSolutionBtn;\ }
+\DoxyCodeLine{00090\ \ \ \ \ QPushButton\ *menuResetNotebookBtn;\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ QMenu*\ startMenu;\ }
+\DoxyCodeLine{00093\ \ \ \ \ QMenu*\ helpMenu;\ }
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SUBTASK\_ITEM\_HPP}}
+
+\end{DoxyCode}

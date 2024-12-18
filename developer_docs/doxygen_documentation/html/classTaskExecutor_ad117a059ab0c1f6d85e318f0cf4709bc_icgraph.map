@@ -1,0 +1,5 @@
+<map id="TaskExecutor::resetRobot" name="TaskExecutor::resetRobot">
+<area shape="rect" id="Node000001" title="Triggers python script to reset the robot to its initial state and removes all objects from the scene..." alt="" coords="260,5,433,32"/>
+<area shape="rect" id="Node000002" href="$classTaskManager.html#a9a858cb5aae71b691204c8561322677e" title="Forces the reset of the robot to its initial state." alt="" coords="5,5,212,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,21,212,21,212,16,244,16"/>
+</map>

@@ -1,0 +1,30 @@
+\doxysection{task\+\_\+parser.\+hpp}
+\hypertarget{task__parser_8hpp_source}{}\label{task__parser_8hpp_source}\index{task\_parser.hpp@{task\_parser.hpp}}
+\mbox{\hyperlink{task__parser_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TASK\_PARSER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TASK\_PARSER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QSharedPointer>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTaskParser}{TaskParser}}\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ QVector<QSharedPointer<Task>>\ \mbox{\hyperlink{classTaskParser_a86f40497d6666a02307886ed3a4056f3}{loadTasks}}(\textcolor{keyword}{const}\ QString\&\ taskPath,\ \textcolor{keyword}{const}\ QString\&\ difficultyPath,\ \textcolor{keyword}{const}\ QString\&\ topicPath);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{using\ }json\ =\ nlohmann::json;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00047\ \ \ \ \ QVector<QSharedPointer<Task>>\ parseTasks(\textcolor{keyword}{const}\ json\&\ taskJsonData,\ \textcolor{keyword}{const}\ json\&\ difficultyJsonData,\ \textcolor{keyword}{const}\ json\&\ topicJsonData);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00056\ \ \ \ \ QVector<Subtask>\ parseSubtasks(\textcolor{keyword}{const}\ json\&\ subtasksJson,\ QSharedPointer<Task>\ parentTask);}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TASK\_PARSER\_HPP}}
+
+\end{DoxyCode}

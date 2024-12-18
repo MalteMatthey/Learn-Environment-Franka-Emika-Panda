@@ -1,0 +1,7 @@
+<map id="TaskExecutor::taskExecutionStarted" name="TaskExecutor::taskExecutionStarted">
+<area shape="rect" id="Node000001" title="Signal emitted when task execution starts." alt="" coords="239,23,431,65"/>
+<area shape="rect" id="Node000002" href="$classTaskExecutor.html#ac8eb8ba8a66de4a3ed3ead3ad7abab5d" title="Executes a given subtask." alt="" coords="6,5,190,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,35,190,31,191,26,224,29"/>
+<area shape="rect" id="Node000003" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="5,56,191,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,59,191,62,191,57,223,53"/>
+</map>

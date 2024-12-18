@@ -1,0 +1,184 @@
+\doxysection{Task\+Manager Class Reference}
+\hypertarget{classTaskManager}{}\label{classTaskManager}\index{TaskManager@{TaskManager}}
+
+
+Manages tasks and their execution within the application.  
+
+
+
+
+{\ttfamily \#include $<$task\+\_\+manager.\+hpp$>$}
+
+
+
+Inheritance diagram for Task\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classTaskManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Task\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classTaskManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTaskManager_a327677e3a17f1a707095119328a96179}{next\+Task}} ()
+\begin{DoxyCompactList}\small\item\em Slot for changing to the next task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_a844a6313afed60e7def0f79eaeae7b9e}{previous\+Task}} ()
+\begin{DoxyCompactList}\small\item\em Slot for changing to the previous task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_a51989e6fb895fd817286153750f07d75}{select\+Task}} (int index)
+\begin{DoxyCompactList}\small\item\em Selects a task by its index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_a36aa4b88ce92147fc2bfe7b222e8d984}{start\+Stop\+Subtask}} (const \mbox{\hyperlink{structSubtask}{Subtask}} \&subtask)
+\begin{DoxyCompactList}\small\item\em Starts or stops a subtask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_a9a858cb5aae71b691204c8561322677e}{force\+Reset\+Robot}} ()
+\begin{DoxyCompactList}\small\item\em Forces the reset of the robot to its initial state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTaskManager_a9c906455542360f6760169599f2640a3}{Task\+Manager}} (\mbox{\hyperlink{classTaskUI}{Task\+UI}} \texorpdfstring{$\ast$}{*}task\+UI, \mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classTaskManager}{Task\+Manager} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_ac4c5170435b505415f49e40906888743}{start\+Stop\+Subtask}} (\mbox{\hyperlink{structSubtask}{Subtask}} \&subtask, bool start\+Solution=false)
+\begin{DoxyCompactList}\small\item\em Starts or stops a subtask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskManager_a9f3de937346f77e565d555a59a8a0da0}{toggle\+Solution}} (\mbox{\hyperlink{structSubtask}{Subtask}} \&subtask)
+\begin{DoxyCompactList}\small\item\em Show or hide the solution of a subtask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages tasks and their execution within the application. 
+
+The \doxylink{classTaskManager}{Task\+Manager} class is responsible for loading tasks, managing their execution, and handling user interactions through the UI. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTaskManager_a9c906455542360f6760169599f2640a3}\index{TaskManager@{TaskManager}!TaskManager@{TaskManager}}
+\index{TaskManager@{TaskManager}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{TaskManager()}{TaskManager()}}
+{\footnotesize\ttfamily \label{classTaskManager_a9c906455542360f6760169599f2640a3} 
+Task\+Manager\+::\+Task\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTaskUI}{Task\+UI}} \texorpdfstring{$\ast$}{*}}]{task\+UI}{, }\item[{\mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classTaskManager}{Task\+Manager} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+UI} & Pointer to the \doxylink{classTaskUI}{Task\+UI} object. \\
+\hline
+{\em parent} & Pointer to the parent \doxylink{classQObject}{QObject}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTaskManager_a9a858cb5aae71b691204c8561322677e}\index{TaskManager@{TaskManager}!forceResetRobot@{forceResetRobot}}
+\index{forceResetRobot@{forceResetRobot}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{forceResetRobot}{forceResetRobot}}
+{\footnotesize\ttfamily \label{classTaskManager_a9a858cb5aae71b691204c8561322677e} 
+void Task\+Manager\+::force\+Reset\+Robot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Forces the reset of the robot to its initial state. 
+
+\Hypertarget{classTaskManager_a327677e3a17f1a707095119328a96179}\index{TaskManager@{TaskManager}!nextTask@{nextTask}}
+\index{nextTask@{nextTask}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{nextTask}{nextTask}}
+{\footnotesize\ttfamily \label{classTaskManager_a327677e3a17f1a707095119328a96179} 
+void Task\+Manager\+::next\+Task (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot for changing to the next task. 
+
+\Hypertarget{classTaskManager_a844a6313afed60e7def0f79eaeae7b9e}\index{TaskManager@{TaskManager}!previousTask@{previousTask}}
+\index{previousTask@{previousTask}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{previousTask}{previousTask}}
+{\footnotesize\ttfamily \label{classTaskManager_a844a6313afed60e7def0f79eaeae7b9e} 
+void Task\+Manager\+::previous\+Task (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot for changing to the previous task. 
+
+\Hypertarget{classTaskManager_a51989e6fb895fd817286153750f07d75}\index{TaskManager@{TaskManager}!selectTask@{selectTask}}
+\index{selectTask@{selectTask}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{selectTask}{selectTask}}
+{\footnotesize\ttfamily \label{classTaskManager_a51989e6fb895fd817286153750f07d75} 
+void Task\+Manager\+::select\+Task (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Selects a task by its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the task to be selected. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskManager_a51989e6fb895fd817286153750f07d75_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskManager_a36aa4b88ce92147fc2bfe7b222e8d984}\index{TaskManager@{TaskManager}!startStopSubtask@{startStopSubtask}}
+\index{startStopSubtask@{startStopSubtask}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{startStopSubtask}{startStopSubtask}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{classTaskManager_a36aa4b88ce92147fc2bfe7b222e8d984} 
+void Task\+Manager\+::start\+Stop\+Subtask (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structSubtask}{Subtask}} \&}]{subtask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Starts or stops a subtask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask} & Reference to the subtask to be started or stopped. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskManager_ac4c5170435b505415f49e40906888743}\index{TaskManager@{TaskManager}!startStopSubtask@{startStopSubtask}}
+\index{startStopSubtask@{startStopSubtask}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{startStopSubtask()}{startStopSubtask()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{classTaskManager_ac4c5170435b505415f49e40906888743} 
+void Task\+Manager\+::start\+Stop\+Subtask (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSubtask}{Subtask}} \&}]{subtask}{, }\item[{bool}]{start\+Solution}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Starts or stops a subtask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask} & Reference to the subtask to be started or stopped. \\
+\hline
+{\em start\+Solution} & Flag indicating whether to start the solution or the users script. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskManager_a9f3de937346f77e565d555a59a8a0da0}\index{TaskManager@{TaskManager}!toggleSolution@{toggleSolution}}
+\index{toggleSolution@{toggleSolution}!TaskManager@{TaskManager}}
+\doxysubsubsection{\texorpdfstring{toggleSolution()}{toggleSolution()}}
+{\footnotesize\ttfamily \label{classTaskManager_a9f3de937346f77e565d555a59a8a0da0} 
+void Task\+Manager\+::toggle\+Solution (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSubtask}{Subtask}} \&}]{subtask}{}\end{DoxyParamCaption})}
+
+
+
+Show or hide the solution of a subtask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask} & Reference to the subtask. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task__manager_8hpp}{task\+\_\+manager.\+hpp}}\item 
+\mbox{\hyperlink{task__manager_8cpp}{task\+\_\+manager.\+cpp}}\end{DoxyCompactItemize}

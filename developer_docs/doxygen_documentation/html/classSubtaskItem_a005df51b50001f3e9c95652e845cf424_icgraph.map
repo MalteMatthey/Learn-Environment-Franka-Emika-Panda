@@ -1,0 +1,5 @@
+<map id="SubtaskItem::updateUI" name="SubtaskItem::updateUI">
+<area shape="rect" id="Node000001" title="Updates the UI elements based on the subtask&#39;s status." alt="" coords="231,5,387,32"/>
+<area shape="rect" id="Node000002" href="$classSubtaskItem.html#a63e6bb32b434cf04705924c3e2cdd0db" title="Constructs a SubtaskItem object." alt="" coords="5,5,183,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,21,183,21,183,16,215,16"/>
+</map>

@@ -1,0 +1,120 @@
+\doxysection{Sidebar Class Reference}
+\hypertarget{classSidebar}{}\label{classSidebar}\index{Sidebar@{Sidebar}}
+
+
+Represents the sidebar UI component for displaying tasks.  
+
+
+
+
+{\ttfamily \#include $<$sidebar.\+hpp$>$}
+
+
+
+Inheritance diagram for Sidebar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classSidebar__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sidebar\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{classSidebar__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSidebar_ad4d587292c62ad30ac9f1feac5d39499}{task\+Selected}} (int index)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a task is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSidebar_a874f7f7907a44517ee9cf9ac2c1888d7}{Sidebar}} (\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSidebar}{Sidebar} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSidebar_abf817c38465f3382b90d409e9cf87777}{fill\+Sidebar\+With\+Tasks}} (const QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \&tasks)
+\begin{DoxyCompactList}\small\item\em Populates the sidebar with tasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSidebar_a9b621329888b135c42333a7ce8a4cad4}{select\+Task}} (int index)
+\begin{DoxyCompactList}\small\item\em Selects a task in the sidebar by its index. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the sidebar UI component for displaying tasks. 
+
+The \doxylink{classSidebar}{Sidebar} class is responsible for displaying a list of tasks in a sidebar. It provides functionalities to populate the sidebar with tasks, handle user interactions, and select tasks programmatically. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSidebar_a874f7f7907a44517ee9cf9ac2c1888d7}\index{Sidebar@{Sidebar}!Sidebar@{Sidebar}}
+\index{Sidebar@{Sidebar}!Sidebar@{Sidebar}}
+\doxysubsubsection{\texorpdfstring{Sidebar()}{Sidebar()}}
+{\footnotesize\ttfamily \label{classSidebar_a874f7f7907a44517ee9cf9ac2c1888d7} 
+Sidebar\+::\+Sidebar (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{classSidebar}{Sidebar} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSidebar_abf817c38465f3382b90d409e9cf87777}\index{Sidebar@{Sidebar}!fillSidebarWithTasks@{fillSidebarWithTasks}}
+\index{fillSidebarWithTasks@{fillSidebarWithTasks}!Sidebar@{Sidebar}}
+\doxysubsubsection{\texorpdfstring{fillSidebarWithTasks()}{fillSidebarWithTasks()}}
+{\footnotesize\ttfamily \label{classSidebar_abf817c38465f3382b90d409e9cf87777} 
+void Sidebar\+::fill\+Sidebar\+With\+Tasks (\begin{DoxyParamCaption}\item[{const QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \&}]{tasks}{}\end{DoxyParamCaption})}
+
+
+
+Populates the sidebar with tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tasks} & Vector of shared pointers to the tasks to be displayed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSidebar_a9b621329888b135c42333a7ce8a4cad4}\index{Sidebar@{Sidebar}!selectTask@{selectTask}}
+\index{selectTask@{selectTask}!Sidebar@{Sidebar}}
+\doxysubsubsection{\texorpdfstring{selectTask()}{selectTask()}}
+{\footnotesize\ttfamily \label{classSidebar_a9b621329888b135c42333a7ce8a4cad4} 
+void Sidebar\+::select\+Task (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})}
+
+
+
+Selects a task in the sidebar by its index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the task to be selected. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSidebar_ad4d587292c62ad30ac9f1feac5d39499}\index{Sidebar@{Sidebar}!taskSelected@{taskSelected}}
+\index{taskSelected@{taskSelected}!Sidebar@{Sidebar}}
+\doxysubsubsection{\texorpdfstring{taskSelected}{taskSelected}}
+{\footnotesize\ttfamily \label{classSidebar_ad4d587292c62ad30ac9f1feac5d39499} 
+void Sidebar\+::task\+Selected (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when a task is selected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & The index of the selected task. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{sidebar_8hpp}{sidebar.\+hpp}}\item 
+\mbox{\hyperlink{sidebar_8cpp}{sidebar.\+cpp}}\end{DoxyCompactItemize}

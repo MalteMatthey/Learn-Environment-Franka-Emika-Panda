@@ -1,0 +1,67 @@
+\doxysection{task.\+hpp File Reference}
+\hypertarget{task_8hpp}{}\label{task_8hpp}\index{task.hpp@{task.hpp}}
+{\ttfamily \#include $<$QString$>$}\newline
+{\ttfamily \#include $<$QVector$>$}\newline
+{\ttfamily \#include $<$QShared\+Pointer$>$}\newline
+{\ttfamily \#include $<$QWeak\+Pointer$>$}\newline
+Include dependency graph for task.\+hpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{task_8hpp__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{task_8hpp__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structSubtask}{Subtask}}
+\begin{DoxyCompactList}\small\item\em Represents a subtask within a task. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structTask}{Task}}
+\begin{DoxyCompactList}\small\item\em Represents a task containing multiple subtasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{Subtask\+Status}} \{ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}{Inactive}}
+, \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0ae7d31fc0602fb2ede144d18cdffd816b}{Ready}}
+, \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a7b2f31b90fe1c2cc33a52233c1925df3}{Queued}}
+, \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a5bda814c4aedb126839228f1a3d92f09}{Running}}
+ \}
+\begin{DoxyCompactList}\small\item\em Represents the status of a subtask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}\index{task.hpp@{task.hpp}!SubtaskStatus@{SubtaskStatus}}
+\index{SubtaskStatus@{SubtaskStatus}!task.hpp@{task.hpp}}
+\doxysubsubsection{\texorpdfstring{SubtaskStatus}{SubtaskStatus}}
+{\footnotesize\ttfamily \label{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0} 
+enum class \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{Subtask\+Status}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Represents the status of a subtask. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Inactive@{Inactive}!task.hpp@{task.hpp}}\index{task.hpp@{task.hpp}!Inactive@{Inactive}}}\Hypertarget{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}\label{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0} 
+Inactive&The subtask is inactive (state where it can\textquotesingle{}t be executed). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Ready@{Ready}!task.hpp@{task.hpp}}\index{task.hpp@{task.hpp}!Ready@{Ready}}}\Hypertarget{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0ae7d31fc0602fb2ede144d18cdffd816b}\label{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0} 
+Ready&The subtask is ready to be executed. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Queued@{Queued}!task.hpp@{task.hpp}}\index{task.hpp@{task.hpp}!Queued@{Queued}}}\Hypertarget{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a7b2f31b90fe1c2cc33a52233c1925df3}\label{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0} 
+Queued&The subtask is queued for execution. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Running@{Running}!task.hpp@{task.hpp}}\index{task.hpp@{task.hpp}!Running@{Running}}}\Hypertarget{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a5bda814c4aedb126839228f1a3d92f09}\label{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0} 
+Running&The subtask is currently being executed. \\
+\hline
+
+\end{DoxyEnumFields}

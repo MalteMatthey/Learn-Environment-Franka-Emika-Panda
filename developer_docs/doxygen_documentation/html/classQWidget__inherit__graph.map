@@ -1,0 +1,9 @@
+<map id="QWidget" name="QWidget">
+<area shape="rect" id="Node000001" title=" " alt="" coords="214,5,276,75"/>
+<area shape="rect" id="Node000002" href="$classSidebar.html" title="Represents the sidebar UI component for displaying tasks." alt="" coords="5,176,156,288"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,86,171,124,126,178,122,175,167,121,202,82"/>
+<area shape="rect" id="Node000003" href="$classSubtaskItem.html" title="Represents a UI item for a subtask." alt="" coords="181,176,309,288"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,89,248,176,242,176,242,89"/>
+<area shape="rect" id="Node000004" href="$classTaskUI.html" title="Manages the user interface for tasks and subtasks." alt="" coords="332,123,498,341"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="288,83,323,121,335,134,331,137,319,124,284,86"/>
+</map>

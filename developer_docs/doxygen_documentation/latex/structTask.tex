@@ -1,0 +1,120 @@
+\doxysection{Task Struct Reference}
+\hypertarget{structTask}{}\label{structTask}\index{Task@{Task}}
+
+
+Represents a task containing multiple subtasks.  
+
+
+
+
+{\ttfamily \#include $<$task.\+hpp$>$}
+
+
+
+Collaboration diagram for Task\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structTask__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QString \mbox{\hyperlink{structTask_a0ab070dbbe73ff2a4306fe20ab75400f}{title}}
+\begin{DoxyCompactList}\small\item\em The title of the task. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structTask_a470ace63434687116684f003a27dc439}{folder}}
+\begin{DoxyCompactList}\small\item\em The folder path of the task. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structTask_a92a16f5ec66f7511f0d0ce0fd759bf9e}{difficulty}}
+\begin{DoxyCompactList}\small\item\em The difficulty level of the task. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structTask_a8c37303702dbbb22f7430a73f9a3ed08}{topic}}
+\begin{DoxyCompactList}\small\item\em The topic of the task. \end{DoxyCompactList}\item 
+QVector$<$ \mbox{\hyperlink{structSubtask}{Subtask}} $>$ \mbox{\hyperlink{structTask_a7486a61c7f0eb8a952260ffe9c2a1af3}{subtasks}}
+\begin{DoxyCompactList}\small\item\em The list of subtasks within the task. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structTask_add2905e57d8e714693b24cc8a9148a82}{previous\+Subtasks\+Required}} = false
+\begin{DoxyCompactList}\small\item\em Whether previous subtasks are required. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structTask_a6fe956adc87191ee794c5bccf68c292b}{difficulty\+Hex\+Color}}
+\begin{DoxyCompactList}\small\item\em The hex color associated with the difficulty level. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a task containing multiple subtasks. 
+
+The \doxylink{structTask}{Task} struct contains information about a task, including its title, description, folder, difficulty, and a list of subtasks. It also includes an optional field indicating whether previous subtasks are required. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structTask_a92a16f5ec66f7511f0d0ce0fd759bf9e}\index{Task@{Task}!difficulty@{difficulty}}
+\index{difficulty@{difficulty}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{difficulty}{difficulty}}
+{\footnotesize\ttfamily \label{structTask_a92a16f5ec66f7511f0d0ce0fd759bf9e} 
+QString Task\+::difficulty}
+
+
+
+The difficulty level of the task. 
+
+\Hypertarget{structTask_a6fe956adc87191ee794c5bccf68c292b}\index{Task@{Task}!difficultyHexColor@{difficultyHexColor}}
+\index{difficultyHexColor@{difficultyHexColor}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{difficultyHexColor}{difficultyHexColor}}
+{\footnotesize\ttfamily \label{structTask_a6fe956adc87191ee794c5bccf68c292b} 
+QString Task\+::difficulty\+Hex\+Color}
+
+
+
+The hex color associated with the difficulty level. 
+
+\Hypertarget{structTask_a470ace63434687116684f003a27dc439}\index{Task@{Task}!folder@{folder}}
+\index{folder@{folder}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{folder}{folder}}
+{\footnotesize\ttfamily \label{structTask_a470ace63434687116684f003a27dc439} 
+QString Task\+::folder}
+
+
+
+The folder path of the task. 
+
+\Hypertarget{structTask_add2905e57d8e714693b24cc8a9148a82}\index{Task@{Task}!previousSubtasksRequired@{previousSubtasksRequired}}
+\index{previousSubtasksRequired@{previousSubtasksRequired}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{previousSubtasksRequired}{previousSubtasksRequired}}
+{\footnotesize\ttfamily \label{structTask_add2905e57d8e714693b24cc8a9148a82} 
+bool Task\+::previous\+Subtasks\+Required = false}
+
+
+
+Whether previous subtasks are required. 
+
+\Hypertarget{structTask_a7486a61c7f0eb8a952260ffe9c2a1af3}\index{Task@{Task}!subtasks@{subtasks}}
+\index{subtasks@{subtasks}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{subtasks}{subtasks}}
+{\footnotesize\ttfamily \label{structTask_a7486a61c7f0eb8a952260ffe9c2a1af3} 
+QVector$<$\mbox{\hyperlink{structSubtask}{Subtask}}$>$ Task\+::subtasks}
+
+
+
+The list of subtasks within the task. 
+
+\Hypertarget{structTask_a0ab070dbbe73ff2a4306fe20ab75400f}\index{Task@{Task}!title@{title}}
+\index{title@{title}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily \label{structTask_a0ab070dbbe73ff2a4306fe20ab75400f} 
+QString Task\+::title}
+
+
+
+The title of the task. 
+
+\Hypertarget{structTask_a8c37303702dbbb22f7430a73f9a3ed08}\index{Task@{Task}!topic@{topic}}
+\index{topic@{topic}!Task@{Task}}
+\doxysubsubsection{\texorpdfstring{topic}{topic}}
+{\footnotesize\ttfamily \label{structTask_a8c37303702dbbb22f7430a73f9a3ed08} 
+QString Task\+::topic}
+
+
+
+The topic of the task. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task_8hpp}{task.\+hpp}}\end{DoxyCompactItemize}

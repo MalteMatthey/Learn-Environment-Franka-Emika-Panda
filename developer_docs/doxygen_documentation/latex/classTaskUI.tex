@@ -1,0 +1,242 @@
+\doxysection{Task\+UI Class Reference}
+\hypertarget{classTaskUI}{}\label{classTaskUI}\index{TaskUI@{TaskUI}}
+
+
+Manages the user interface for tasks and subtasks.  
+
+
+
+
+{\ttfamily \#include $<$task\+\_\+ui.\+hpp$>$}
+
+
+
+Inheritance diagram for Task\+UI\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classTaskUI__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Task\+UI\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{classTaskUI__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTaskUI_af43308f1438155bd927357ac93c7b9db}{task\+Selected}} (int index)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a task is selected. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTaskUI_a86f09b07fe3b4fd956f8c4ab02b8fae2}{Task\+UI}} (QVBox\+Layout \texorpdfstring{$\ast$}{*}subtask\+List\+Layout, QLabel \texorpdfstring{$\ast$}{*}main\+Title\+Label, QLabel \texorpdfstring{$\ast$}{*}difficulty\+Label, QLabel \texorpdfstring{$\ast$}{*}folder\+Label, QLabel \texorpdfstring{$\ast$}{*}topic\+Label, QPush\+Button \texorpdfstring{$\ast$}{*}next\+Button, QPush\+Button \texorpdfstring{$\ast$}{*}previous\+Button, QTool\+Button \texorpdfstring{$\ast$}{*}menu\+Button, QTool\+Button \texorpdfstring{$\ast$}{*}reset\+Robot\+Start\+Button, \mbox{\hyperlink{classQFrame}{QFrame}} \texorpdfstring{$\ast$}{*}reset\+Robot\+Frame, \mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}centralwidget, \mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classTaskUI}{Task\+UI} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a62690c3b7147c20980da5c2323314025}{initialize\+UI}} (const QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \&tasks)
+\begin{DoxyCompactList}\small\item\em Initializes the UI with the loaded tasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}{set\+Task\+UI}} (int current\+Task\+Index)
+\begin{DoxyCompactList}\small\item\em Sets the UI elements for the current task. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e}{update\+Subtask\+Items\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI elements for the subtasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a53f64716c6328b25e37d822e687886cf}{set\+Task\+Manager}} (\mbox{\hyperlink{classTaskManager}{Task\+Manager}} \texorpdfstring{$\ast$}{*}manager)
+\begin{DoxyCompactList}\small\item\em Sets the \doxylink{classTaskManager}{Task\+Manager} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a11f88e4482442899fa19adf1f66fa030}{started\+Robot\+Reset\+UI}} (bool no\+Subtasks\+Left)
+\begin{DoxyCompactList}\small\item\em Update the UI to show that the robot reset has been started. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a6c2ca067880d519ab255a7608a268c8f}{finished\+Robot\+Reset\+UI}} ()
+\begin{DoxyCompactList}\small\item\em Update the UI to show that the robot reset has finished. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskUI_a8cb2994522ad6b1b59383515edddead3}{failed\+Robot\+Reset\+UI}} (const QString \&error)
+\begin{DoxyCompactList}\small\item\em Update the UI to show that the robot reset has failed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the user interface for tasks and subtasks. 
+
+The \doxylink{classTaskUI}{Task\+UI} class is responsible for initializing and updating the UI elements related to tasks and subtasks. It interacts with the \doxylink{classTaskManager}{Task\+Manager} and \doxylink{classSidebar}{Sidebar} to provide a cohesive user experience. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTaskUI_a86f09b07fe3b4fd956f8c4ab02b8fae2}\index{TaskUI@{TaskUI}!TaskUI@{TaskUI}}
+\index{TaskUI@{TaskUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{TaskUI()}{TaskUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a86f09b07fe3b4fd956f8c4ab02b8fae2} 
+Task\+UI\+::\+Task\+UI (\begin{DoxyParamCaption}\item[{QVBox\+Layout \texorpdfstring{$\ast$}{*}}]{subtask\+List\+Layout}{, }\item[{QLabel \texorpdfstring{$\ast$}{*}}]{main\+Title\+Label}{, }\item[{QLabel \texorpdfstring{$\ast$}{*}}]{difficulty\+Label}{, }\item[{QLabel \texorpdfstring{$\ast$}{*}}]{folder\+Label}{, }\item[{QLabel \texorpdfstring{$\ast$}{*}}]{topic\+Label}{, }\item[{QPush\+Button \texorpdfstring{$\ast$}{*}}]{next\+Button}{, }\item[{QPush\+Button \texorpdfstring{$\ast$}{*}}]{previous\+Button}{, }\item[{QTool\+Button \texorpdfstring{$\ast$}{*}}]{menu\+Button}{, }\item[{QTool\+Button \texorpdfstring{$\ast$}{*}}]{reset\+Robot\+Start\+Button}{, }\item[{\mbox{\hyperlink{classQFrame}{QFrame}} \texorpdfstring{$\ast$}{*}}]{reset\+Robot\+Frame}{, }\item[{\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}}]{centralwidget}{, }\item[{\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classTaskUI}{Task\+UI} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask\+List\+Layout} & Pointer to the vertical layout for displaying subtasks. \\
+\hline
+{\em main\+Title\+Label} & Pointer to the QLabel for displaying the main title. \\
+\hline
+{\em difficulty\+Label} & Pointer to the QLabel for displaying the difficulty level. \\
+\hline
+{\em folder\+Label} & Pointer to the QLabel for displaying the folder information. \\
+\hline
+{\em next\+Button} & Pointer to the QPush\+Button for navigating to the next task. \\
+\hline
+{\em previous\+Button} & Pointer to the QPush\+Button for navigating to the previous task. \\
+\hline
+{\em menu\+Button} & Pointer to the QTool\+Button for opening the sidebar. \\
+\hline
+{\em reset\+Robot\+Start\+Button} & Pointer to the QTool\+Button for resetting the robot. \\
+\hline
+{\em reset\+Robot\+Frame} & Pointer to the \doxylink{classQFrame}{QFrame} displaying the reset of the robot. \\
+\hline
+{\em central\+Widget} & Pointer to the central \doxylink{classQWidget}{QWidget} for the plugin. \\
+\hline
+{\em parent} & Pointer to the parent \doxylink{classQObject}{QObject}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTaskUI_a8cb2994522ad6b1b59383515edddead3}\index{TaskUI@{TaskUI}!failedRobotResetUI@{failedRobotResetUI}}
+\index{failedRobotResetUI@{failedRobotResetUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{failedRobotResetUI()}{failedRobotResetUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a8cb2994522ad6b1b59383515edddead3} 
+void Task\+UI\+::failed\+Robot\+Reset\+UI (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})}
+
+
+
+Update the UI to show that the robot reset has failed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & the error that occured while resetting the robot. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskUI_a6c2ca067880d519ab255a7608a268c8f}\index{TaskUI@{TaskUI}!finishedRobotResetUI@{finishedRobotResetUI}}
+\index{finishedRobotResetUI@{finishedRobotResetUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{finishedRobotResetUI()}{finishedRobotResetUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a6c2ca067880d519ab255a7608a268c8f} 
+void Task\+UI\+::finished\+Robot\+Reset\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Update the UI to show that the robot reset has finished. 
+
+\Hypertarget{classTaskUI_a62690c3b7147c20980da5c2323314025}\index{TaskUI@{TaskUI}!initializeUI@{initializeUI}}
+\index{initializeUI@{initializeUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{initializeUI()}{initializeUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a62690c3b7147c20980da5c2323314025} 
+void Task\+UI\+::initialize\+UI (\begin{DoxyParamCaption}\item[{const QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \&}]{tasks}{}\end{DoxyParamCaption})}
+
+
+
+Initializes the UI with the loaded tasks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tasks} & Vector of loaded tasks. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskUI_a62690c3b7147c20980da5c2323314025_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskUI_a53f64716c6328b25e37d822e687886cf}\index{TaskUI@{TaskUI}!setTaskManager@{setTaskManager}}
+\index{setTaskManager@{setTaskManager}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{setTaskManager()}{setTaskManager()}}
+{\footnotesize\ttfamily \label{classTaskUI_a53f64716c6328b25e37d822e687886cf} 
+void Task\+UI\+::set\+Task\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTaskManager}{Task\+Manager}} \texorpdfstring{$\ast$}{*}}]{manager}{}\end{DoxyParamCaption})}
+
+
+
+Sets the \doxylink{classTaskManager}{Task\+Manager} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the \doxylink{classTaskManager}{Task\+Manager} object. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskUI_a53f64716c6328b25e37d822e687886cf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}\index{TaskUI@{TaskUI}!setTaskUI@{setTaskUI}}
+\index{setTaskUI@{setTaskUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{setTaskUI()}{setTaskUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4} 
+void Task\+UI\+::set\+Task\+UI (\begin{DoxyParamCaption}\item[{int}]{current\+Task\+Index}{}\end{DoxyParamCaption})}
+
+
+
+Sets the UI elements for the current task. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Task\+Index} & Index of the current task. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskUI_a11f88e4482442899fa19adf1f66fa030}\index{TaskUI@{TaskUI}!startedRobotResetUI@{startedRobotResetUI}}
+\index{startedRobotResetUI@{startedRobotResetUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{startedRobotResetUI()}{startedRobotResetUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a11f88e4482442899fa19adf1f66fa030} 
+void Task\+UI\+::started\+Robot\+Reset\+UI (\begin{DoxyParamCaption}\item[{bool}]{no\+Subtasks\+Left}{}\end{DoxyParamCaption})}
+
+
+
+Update the UI to show that the robot reset has been started. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em no\+Subtasks\+Left} & indicator, if subtasks are running after the rest or not. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskUI_af43308f1438155bd927357ac93c7b9db}\index{TaskUI@{TaskUI}!taskSelected@{taskSelected}}
+\index{taskSelected@{taskSelected}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{taskSelected}{taskSelected}}
+{\footnotesize\ttfamily \label{classTaskUI_af43308f1438155bd927357ac93c7b9db} 
+void Task\+UI\+::task\+Selected (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when a task is selected. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of the selected task. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e}\index{TaskUI@{TaskUI}!updateSubtaskItemsUI@{updateSubtaskItemsUI}}
+\index{updateSubtaskItemsUI@{updateSubtaskItemsUI}!TaskUI@{TaskUI}}
+\doxysubsubsection{\texorpdfstring{updateSubtaskItemsUI()}{updateSubtaskItemsUI()}}
+{\footnotesize\ttfamily \label{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e} 
+void Task\+UI\+::update\+Subtask\+Items\+UI (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Updates the UI elements for the subtasks. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task__ui_8hpp}{task\+\_\+ui.\+hpp}}\end{DoxyCompactItemize}

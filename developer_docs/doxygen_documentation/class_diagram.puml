@@ -1,0 +1,63 @@
+@startuml
+top to bottom direction
+
+/' Objects '/
+class LearnEnvironment
+
+package "Task Management" {
+    class TaskManager
+    class Task
+    class Subtask
+    enum SubtaskStatus
+    class TaskParser
+}
+
+package "Script Execution" {
+    class TaskExecutor
+    class ScriptWorker
+    class ProcessRunner
+}
+
+package "UI Components" {
+	class SubtaskItem
+    class TaskUI
+    class ExecuteFrame
+    class Sidebar
+    class CustomListWidget
+}
+
+package "Utility" {
+    class NotebookConverter
+    class FolderStructureConstants
+}
+
+/' Relationships '/
+LearnEnvironment o-- NotebookConverter
+LearnEnvironment o-- TaskManager
+LearnEnvironment o-- TaskUI
+ScriptWorker *-- NotebookConverter
+ScriptWorker o-- ProcessRunner
+Sidebar o-- CustomListWidget
+Subtask *-- SubtaskStatus
+Subtask *-- Task
+SubtaskItem o-- ExecuteFrame
+SubtaskItem o-- Subtask
+SubtaskItem o-- TaskManager
+Task *-- Subtask
+TaskExecutor o-- ScriptWorker
+TaskManager o-- Subtask
+TaskManager *-- Task
+TaskManager o-- TaskExecutor
+TaskManager o-- TaskUI
+TaskUI o-- ExecuteFrame
+TaskUI o-- Sidebar
+TaskUI *-- Task
+TaskUI o-- TaskManager
+
+/' Uses relationships '/
+TaskManager ..> TaskParser : uses
+
+/' Layout hints '/
+TaskUI -[hidden]-> SubtaskItem
+
+@enduml

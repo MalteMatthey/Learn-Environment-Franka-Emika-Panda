@@ -1,0 +1,11 @@
+<map id="TaskUI::setTaskUI" name="TaskUI::setTaskUI">
+<area shape="rect" id="Node000001" title="Sets the UI elements for the current task." alt="" coords="457,56,588,83"/>
+<area shape="rect" id="Node000002" href="$classTaskManager.html#a51989e6fb895fd817286153750f07d75" title="Selects a task by its index." alt="" coords="239,56,409,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="441,72,409,72,409,67,441,67"/>
+<area shape="rect" id="Node000003" href="$classTaskManager.html#a327677e3a17f1a707095119328a96179" title="Slot for changing to the next task." alt="" coords="18,5,178,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="246,55,160,35,161,30,247,49"/>
+<area shape="rect" id="Node000004" href="$classTaskManager.html#a844a6313afed60e7def0f79eaeae7b9e" title="Slot for changing to the previous task." alt="" coords="6,56,190,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="223,72,191,72,191,67,223,67"/>
+<area shape="rect" id="Node000005" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="5,107,191,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="247,89,161,109,160,103,246,84"/>
+</map>

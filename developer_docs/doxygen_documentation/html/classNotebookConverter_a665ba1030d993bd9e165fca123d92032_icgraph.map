@@ -1,0 +1,5 @@
+<map id="NotebookConverter::toggleSolution" name="NotebookConverter::toggleSolution">
+<area shape="rect" id="Node000001" title="Toggles the solution code in a Jupyter notebook." alt="" coords="243,5,385,48"/>
+<area shape="rect" id="Node000002" href="$classTaskManager.html#a9f3de937346f77e565d555a59a8a0da0" title="Show or hide the solution of a subtask." alt="" coords="5,13,195,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,29,195,29,195,24,227,24"/>
+</map>

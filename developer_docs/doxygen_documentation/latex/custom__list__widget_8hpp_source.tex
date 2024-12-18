@@ -1,0 +1,30 @@
+\doxysection{custom\+\_\+list\+\_\+widget.\+hpp}
+\hypertarget{custom__list__widget_8hpp_source}{}\label{custom__list__widget_8hpp_source}\index{custom\_list\_widget.hpp@{custom\_list\_widget.hpp}}
+\mbox{\hyperlink{custom__list__widget_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CUSTOM\_LIST\_WIDGET\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CUSTOM\_LIST\_WIDGET\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QListWidget>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QMouseEvent>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QApplication>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCustomListWidget}{CustomListWidget}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQListWidget}{QListWidget}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classCustomListWidget_ab37ab040c9872e60767fff8d1525ccad}{CustomListWidget}}(\mbox{\hyperlink{classQWidget}{QWidget}}\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCustomListWidget_adc3f7462d5db3e7c9fe4c5fd59076331}{mouseMoveEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCustomListWidget_a5d487b35f9dc9cd601b962e68b142e0b}{leaveEvent}}(QEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ formatListWidget();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ CUSTOM\_LIST\_WIDGET\_HPP}}
+
+\end{DoxyCode}

@@ -1,0 +1,56 @@
+\doxysection{process\+\_\+runner.\+hpp}
+\hypertarget{process__runner_8hpp_source}{}\label{process__runner_8hpp_source}\index{process\_runner.hpp@{process\_runner.hpp}}
+\mbox{\hyperlink{process__runner_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PROCESS\_RUNNER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PROCESS\_RUNNER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QProcess>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QTimer>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classProcessRunner}{ProcessRunner}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQObject}{QObject}}\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}{ProcessRunner}}(\textcolor{keyword}{const}\ QString\ \&program,}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QStringList\ \&arguments,}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ timeoutSeconds,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classQObject}{QObject}}\ *parent\ =\ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ QString\ processName\ =\ \textcolor{stringliteral}{"{}process"{}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}{start}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ Q\_SIGNALS:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}{finished}}(\textcolor{keywordtype}{int}\ exitCode,\ QProcess::ExitStatus\ exitStatus);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}{outputReady}}(\textcolor{keyword}{const}\ QString\ \&output);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_a9ad2c856469a7129c905721309620e05}{errorReady}}(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3}{timeout}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}\ Q\_SLOTS:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6}{forceStop}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}\ Q\_SLOTS:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ onProcessFinished(\textcolor{keywordtype}{int}\ exitCode,\ QProcess::ExitStatus\ exitStatus);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ onReadyReadStandardOutput();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ onReadyReadStandardError();}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ onTimeout();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \ \ QProcess\ *process;\ }
+\DoxyCodeLine{00094\ \ \ \ \ QTimer\ *timer;\ }
+\DoxyCodeLine{00095\ \ \ \ \ QString\ program;\ }
+\DoxyCodeLine{00096\ \ \ \ \ QStringList\ arguments;\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{int}\ timeoutSeconds;\ }
+\DoxyCodeLine{00098\ \ \ \ \ QString\ processName;\ }
+\DoxyCodeLine{00099\ \};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ PROCESS\_RUNNER\_HPP}}
+
+\end{DoxyCode}

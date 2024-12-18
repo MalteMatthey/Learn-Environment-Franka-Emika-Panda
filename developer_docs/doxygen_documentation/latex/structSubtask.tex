@@ -1,0 +1,204 @@
+\doxysection{Subtask Struct Reference}
+\hypertarget{structSubtask}{}\label{structSubtask}\index{Subtask@{Subtask}}
+
+
+Represents a subtask within a task.  
+
+
+
+
+{\ttfamily \#include $<$task.\+hpp$>$}
+
+
+
+Collaboration diagram for Subtask\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structSubtask__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+QString \mbox{\hyperlink{structSubtask_a4fc46ff8e54ab67641df5ff45e7e0cb4}{title}}
+\begin{DoxyCompactList}\small\item\em The title of the subtask. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_a9b2edd425425878f6e57a2f213b1211a}{description}}
+\begin{DoxyCompactList}\small\item\em The description of the subtask. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_a905ed579cc13759a257c37d261141281}{file}}
+\begin{DoxyCompactList}\small\item\em The file name of the subtask. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_adc3ab0bdda7c565666095845a3e4567f}{file\+Path}}
+\begin{DoxyCompactList}\small\item\em The file path of the subtask. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_ad6350ae5d46df3d006f4f0787915ea9f}{solution\+File\+Path}}
+\begin{DoxyCompactList}\small\item\em The file path to the solution of the subtask. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_ae73daaeeae0fa09de92ef428be2fdab3}{evaluation\+File\+Path}}
+\begin{DoxyCompactList}\small\item\em The file path to the evaluation script of the subtask. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{structSubtask_a69b5b90686d9e1c75b0f071a7b9dc31b}{timeout\+Seconds}} = 60
+\begin{DoxyCompactList}\small\item\em The timeout for the subtask execution in seconds. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSubtask_ae0c283c25316796864e9ef0d766acb60}{parallelized\+Evaluation\+Required}} = false
+\begin{DoxyCompactList}\small\item\em Whether parallelized evaluation is required. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSubtask_ae869bad678ab4835b24aeb56176c21aa}{reset\+\_\+robot\+\_\+before\+\_\+executing}} = true
+\begin{DoxyCompactList}\small\item\em Whether to reset the robot before executing the subtask. \end{DoxyCompactList}\item 
+QWeak\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ \mbox{\hyperlink{structSubtask_a4cdfbab855cd65277e17c8975bb0d730}{parent\+Task}}
+\begin{DoxyCompactList}\small\item\em Weak pointer to the parent task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{Subtask\+Status}} \mbox{\hyperlink{structSubtask_a293ddda988cb5fe92fcb5e5189b86850}{status}} = \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}{Subtask\+Status\+::\+Inactive}}
+\begin{DoxyCompactList}\small\item\em The status of the subtask. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSubtask_a0e3d8e77e26cdb58b2e9faa8ec2e1707}{has\+Been\+Executed}} = false
+\begin{DoxyCompactList}\small\item\em Whether the subtask has been executed at least once. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{structSubtask_ab1e1bff66e7464efa54419b36006f1a8}{last\+Execution\+Failed}} = false
+\begin{DoxyCompactList}\small\item\em Whether the subtask has been executed at least once. \end{DoxyCompactList}\item 
+QString \mbox{\hyperlink{structSubtask_a2c4bcefd1e42773c5e23abd9ba0b30f2}{last\+Execution\+Error}}
+\begin{DoxyCompactList}\small\item\em The error message from the last execution of the subtask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a subtask within a task. 
+
+The \doxylink{structSubtask}{Subtask} struct contains information about a subtask, including its title, description, file paths, difficulty, and status. It also includes optional fields for timeout and parallelized evaluation. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structSubtask_a9b2edd425425878f6e57a2f213b1211a}\index{Subtask@{Subtask}!description@{description}}
+\index{description@{description}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{structSubtask_a9b2edd425425878f6e57a2f213b1211a} 
+QString Subtask\+::description}
+
+
+
+The description of the subtask. 
+
+\Hypertarget{structSubtask_ae73daaeeae0fa09de92ef428be2fdab3}\index{Subtask@{Subtask}!evaluationFilePath@{evaluationFilePath}}
+\index{evaluationFilePath@{evaluationFilePath}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{evaluationFilePath}{evaluationFilePath}}
+{\footnotesize\ttfamily \label{structSubtask_ae73daaeeae0fa09de92ef428be2fdab3} 
+QString Subtask\+::evaluation\+File\+Path}
+
+
+
+The file path to the evaluation script of the subtask. 
+
+\Hypertarget{structSubtask_a905ed579cc13759a257c37d261141281}\index{Subtask@{Subtask}!file@{file}}
+\index{file@{file}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily \label{structSubtask_a905ed579cc13759a257c37d261141281} 
+QString Subtask\+::file}
+
+
+
+The file name of the subtask. 
+
+\Hypertarget{structSubtask_adc3ab0bdda7c565666095845a3e4567f}\index{Subtask@{Subtask}!filePath@{filePath}}
+\index{filePath@{filePath}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{filePath}{filePath}}
+{\footnotesize\ttfamily \label{structSubtask_adc3ab0bdda7c565666095845a3e4567f} 
+QString Subtask\+::file\+Path}
+
+
+
+The file path of the subtask. 
+
+\Hypertarget{structSubtask_a0e3d8e77e26cdb58b2e9faa8ec2e1707}\index{Subtask@{Subtask}!hasBeenExecuted@{hasBeenExecuted}}
+\index{hasBeenExecuted@{hasBeenExecuted}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{hasBeenExecuted}{hasBeenExecuted}}
+{\footnotesize\ttfamily \label{structSubtask_a0e3d8e77e26cdb58b2e9faa8ec2e1707} 
+bool Subtask\+::has\+Been\+Executed = false}
+
+
+
+Whether the subtask has been executed at least once. 
+
+\Hypertarget{structSubtask_a2c4bcefd1e42773c5e23abd9ba0b30f2}\index{Subtask@{Subtask}!lastExecutionError@{lastExecutionError}}
+\index{lastExecutionError@{lastExecutionError}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{lastExecutionError}{lastExecutionError}}
+{\footnotesize\ttfamily \label{structSubtask_a2c4bcefd1e42773c5e23abd9ba0b30f2} 
+QString Subtask\+::last\+Execution\+Error}
+
+
+
+The error message from the last execution of the subtask. 
+
+\Hypertarget{structSubtask_ab1e1bff66e7464efa54419b36006f1a8}\index{Subtask@{Subtask}!lastExecutionFailed@{lastExecutionFailed}}
+\index{lastExecutionFailed@{lastExecutionFailed}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{lastExecutionFailed}{lastExecutionFailed}}
+{\footnotesize\ttfamily \label{structSubtask_ab1e1bff66e7464efa54419b36006f1a8} 
+bool Subtask\+::last\+Execution\+Failed = false}
+
+
+
+Whether the subtask has been executed at least once. 
+
+\Hypertarget{structSubtask_ae0c283c25316796864e9ef0d766acb60}\index{Subtask@{Subtask}!parallelizedEvaluationRequired@{parallelizedEvaluationRequired}}
+\index{parallelizedEvaluationRequired@{parallelizedEvaluationRequired}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{parallelizedEvaluationRequired}{parallelizedEvaluationRequired}}
+{\footnotesize\ttfamily \label{structSubtask_ae0c283c25316796864e9ef0d766acb60} 
+bool Subtask\+::parallelized\+Evaluation\+Required = false}
+
+
+
+Whether parallelized evaluation is required. 
+
+\Hypertarget{structSubtask_a4cdfbab855cd65277e17c8975bb0d730}\index{Subtask@{Subtask}!parentTask@{parentTask}}
+\index{parentTask@{parentTask}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{parentTask}{parentTask}}
+{\footnotesize\ttfamily \label{structSubtask_a4cdfbab855cd65277e17c8975bb0d730} 
+QWeak\+Pointer$<$\mbox{\hyperlink{structTask}{Task}}$>$ Subtask\+::parent\+Task}
+
+
+
+Weak pointer to the parent task. 
+
+\Hypertarget{structSubtask_ae869bad678ab4835b24aeb56176c21aa}\index{Subtask@{Subtask}!reset\_robot\_before\_executing@{reset\_robot\_before\_executing}}
+\index{reset\_robot\_before\_executing@{reset\_robot\_before\_executing}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{reset\_robot\_before\_executing}{reset\_robot\_before\_executing}}
+{\footnotesize\ttfamily \label{structSubtask_ae869bad678ab4835b24aeb56176c21aa} 
+bool Subtask\+::reset\+\_\+robot\+\_\+before\+\_\+executing = true}
+
+
+
+Whether to reset the robot before executing the subtask. 
+
+\Hypertarget{structSubtask_ad6350ae5d46df3d006f4f0787915ea9f}\index{Subtask@{Subtask}!solutionFilePath@{solutionFilePath}}
+\index{solutionFilePath@{solutionFilePath}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{solutionFilePath}{solutionFilePath}}
+{\footnotesize\ttfamily \label{structSubtask_ad6350ae5d46df3d006f4f0787915ea9f} 
+QString Subtask\+::solution\+File\+Path}
+
+
+
+The file path to the solution of the subtask. 
+
+\Hypertarget{structSubtask_a293ddda988cb5fe92fcb5e5189b86850}\index{Subtask@{Subtask}!status@{status}}
+\index{status@{status}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structSubtask_a293ddda988cb5fe92fcb5e5189b86850} 
+\mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{Subtask\+Status}} Subtask\+::status = \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}{Subtask\+Status\+::\+Inactive}}}
+
+
+
+The status of the subtask. 
+
+\Hypertarget{structSubtask_a69b5b90686d9e1c75b0f071a7b9dc31b}\index{Subtask@{Subtask}!timeoutSeconds@{timeoutSeconds}}
+\index{timeoutSeconds@{timeoutSeconds}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{timeoutSeconds}{timeoutSeconds}}
+{\footnotesize\ttfamily \label{structSubtask_a69b5b90686d9e1c75b0f071a7b9dc31b} 
+int Subtask\+::timeout\+Seconds = 60}
+
+
+
+The timeout for the subtask execution in seconds. 
+
+\Hypertarget{structSubtask_a4fc46ff8e54ab67641df5ff45e7e0cb4}\index{Subtask@{Subtask}!title@{title}}
+\index{title@{title}!Subtask@{Subtask}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily \label{structSubtask_a4fc46ff8e54ab67641df5ff45e7e0cb4} 
+QString Subtask\+::title}
+
+
+
+The title of the subtask. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task_8hpp}{task.\+hpp}}\end{DoxyCompactItemize}

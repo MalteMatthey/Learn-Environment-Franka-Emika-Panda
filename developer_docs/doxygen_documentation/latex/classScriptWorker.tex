@@ -1,0 +1,173 @@
+\doxysection{Script\+Worker Class Reference}
+\hypertarget{classScriptWorker}{}\label{classScriptWorker}\index{ScriptWorker@{ScriptWorker}}
+
+
+Manages the execution of scripts for tasks.  
+
+
+
+
+{\ttfamily \#include $<$script\+\_\+worker.\+hpp$>$}
+
+
+
+Inheritance diagram for Script\+Worker\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classScriptWorker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Script\+Worker\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=195pt]{classScriptWorker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classScriptWorker_a501653e756b40c33f4bd37957b398de3}{start\+Execution}} ()
+\begin{DoxyCompactList}\small\item\em Starts the execution of the scripts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScriptWorker_aafadef7996317ca83dcb2605777affe2}{force\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Forces the stop of all running scripts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScriptWorker_aebb9b3a7fe906be08a8ced46d1a5f523}{execute\+Python\+Script}} (const QString \&script\+Path, const QString \&name)
+\begin{DoxyCompactList}\small\item\em Executes a given Python script. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classScriptWorker_ac33ab3bb0d1e7e9e0070ac3b7f33b633}{finished}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted when the script execution finishes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classScriptWorker_a5f0a6e5095c8e55559045d7d9d2e2e1a}{failed}} (const QString \&error)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the script execution fails. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classScriptWorker_a1eb9773d50b730f913bb60149515aef5}{Script\+Worker}} (const QString \&notebook\+Path, const QString \&converted\+Script\+Path, const QString \&eval\+Script\+Path, bool parallelized\+Evaluation, int timeout\+Seconds)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classScriptWorker}{Script\+Worker} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the execution of scripts for tasks. 
+
+The \doxylink{classScriptWorker}{Script\+Worker} class is responsible for converting and executing Jupyter notebooks, as well as evaluating the results. It handles the execution state and emits signals based on the success or failure of the scripts. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classScriptWorker_a1eb9773d50b730f913bb60149515aef5}\index{ScriptWorker@{ScriptWorker}!ScriptWorker@{ScriptWorker}}
+\index{ScriptWorker@{ScriptWorker}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{ScriptWorker()}{ScriptWorker()}}
+{\footnotesize\ttfamily \label{classScriptWorker_a1eb9773d50b730f913bb60149515aef5} 
+Script\+Worker\+::\+Script\+Worker (\begin{DoxyParamCaption}\item[{const QString \&}]{notebook\+Path}{, }\item[{const QString \&}]{converted\+Script\+Path}{, }\item[{const QString \&}]{eval\+Script\+Path}{, }\item[{bool}]{parallelized\+Evaluation}{, }\item[{int}]{timeout\+Seconds}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classScriptWorker}{Script\+Worker} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em notebook\+Path} & Path to the Jupyter notebook file. \\
+\hline
+{\em converted\+Script\+Path} & Path to the converted script. \\
+\hline
+{\em eval\+Script\+Path} & Path to the evaluation script. \\
+\hline
+{\em parallelized\+Evaluation} & Whether the evaluation should run in parallel to the main script. \\
+\hline
+{\em timeout\+Seconds} & Timeout for script execution in seconds. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classScriptWorker_aebb9b3a7fe906be08a8ced46d1a5f523}\index{ScriptWorker@{ScriptWorker}!executePythonScript@{executePythonScript}}
+\index{executePythonScript@{executePythonScript}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{executePythonScript}{executePythonScript}}
+{\footnotesize\ttfamily \label{classScriptWorker_aebb9b3a7fe906be08a8ced46d1a5f523} 
+void Script\+Worker\+::execute\+Python\+Script (\begin{DoxyParamCaption}\item[{const QString \&}]{script\+Path}{, }\item[{const QString \&}]{name}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Executes a given Python script. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScriptWorker_aebb9b3a7fe906be08a8ced46d1a5f523_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classScriptWorker_a5f0a6e5095c8e55559045d7d9d2e2e1a}\index{ScriptWorker@{ScriptWorker}!failed@{failed}}
+\index{failed@{failed}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{failed}{failed}}
+{\footnotesize\ttfamily \label{classScriptWorker_a5f0a6e5095c8e55559045d7d9d2e2e1a} 
+void Script\+Worker\+::failed (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the script execution fails. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error message. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScriptWorker_a5f0a6e5095c8e55559045d7d9d2e2e1a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classScriptWorker_ac33ab3bb0d1e7e9e0070ac3b7f33b633}\index{ScriptWorker@{ScriptWorker}!finished@{finished}}
+\index{finished@{finished}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{finished}{finished}}
+{\footnotesize\ttfamily \label{classScriptWorker_ac33ab3bb0d1e7e9e0070ac3b7f33b633} 
+void Script\+Worker\+::finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the script execution finishes. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScriptWorker_ac33ab3bb0d1e7e9e0070ac3b7f33b633_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classScriptWorker_aafadef7996317ca83dcb2605777affe2}\index{ScriptWorker@{ScriptWorker}!forceStop@{forceStop}}
+\index{forceStop@{forceStop}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{forceStop}{forceStop}}
+{\footnotesize\ttfamily \label{classScriptWorker_aafadef7996317ca83dcb2605777affe2} 
+void Script\+Worker\+::force\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Forces the stop of all running scripts. 
+
+\Hypertarget{classScriptWorker_a501653e756b40c33f4bd37957b398de3}\index{ScriptWorker@{ScriptWorker}!startExecution@{startExecution}}
+\index{startExecution@{startExecution}!ScriptWorker@{ScriptWorker}}
+\doxysubsubsection{\texorpdfstring{startExecution}{startExecution}}
+{\footnotesize\ttfamily \label{classScriptWorker_a501653e756b40c33f4bd37957b398de3} 
+void Script\+Worker\+::start\+Execution (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Starts the execution of the scripts. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classScriptWorker_a501653e756b40c33f4bd37957b398de3_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{script__worker_8hpp}{script\+\_\+worker.\+hpp}}\item 
+\mbox{\hyperlink{script__worker_8cpp}{script\+\_\+worker.\+cpp}}\end{DoxyCompactItemize}

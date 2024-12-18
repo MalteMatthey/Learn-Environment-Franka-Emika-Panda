@@ -1,0 +1,13 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$classQObject.html" title=" " alt="" coords="5,107,75,133"/>
+<area shape="rect" id="Node000001" href="$classNotebookConverter.html" title="A class for converting Jupyter notebooks to Python scripts and processing task pools." alt="" coords="123,5,257,32"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="61,94,88,67,121,42,144,30,146,35,124,46,92,71,65,98"/>
+<area shape="rect" id="Node000002" href="$classProcessRunner.html" title="Manages the execution of an external process with a timeout." alt="" coords="134,56,246,83"/>
+<area shape="poly" id="edge4_Node000000_Node000002" title=" " alt="" coords="88,101,147,81,149,86,90,106"/>
+<area shape="rect" id="Node000003" href="$classScriptWorker.html" title="Manages the execution of scripts for tasks." alt="" coords="142,107,238,133"/>
+<area shape="poly" id="edge5_Node000000_Node000003" title=" " alt="" coords="90,117,142,117,142,123,90,123"/>
+<area shape="rect" id="Node000004" href="$classTaskExecutor.html" title="Executes tasks and manages their execution state." alt="" coords="139,157,240,184"/>
+<area shape="poly" id="edge6_Node000000_Node000004" title=" " alt="" coords="90,134,149,154,147,159,88,139"/>
+<area shape="rect" id="Node000005" href="$classTaskManager.html" title="Manages tasks and their execution within the application." alt="" coords="140,208,240,235"/>
+<area shape="poly" id="edge7_Node000000_Node000005" title=" " alt="" coords="65,142,92,169,124,194,146,205,144,210,121,198,88,173,61,146"/>
+</map>

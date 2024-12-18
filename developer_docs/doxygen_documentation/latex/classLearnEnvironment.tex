@@ -1,0 +1,112 @@
+\doxysection{Learn\+Environment Class Reference}
+\hypertarget{classLearnEnvironment}{}\label{classLearnEnvironment}\index{LearnEnvironment@{LearnEnvironment}}
+
+
+A custom RViz panel for managing the learning environment.  
+
+
+
+
+{\ttfamily \#include $<$learn\+\_\+environment.\+hpp$>$}
+
+
+
+Inheritance diagram for Learn\+Environment\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classLearnEnvironment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Learn\+Environment\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classLearnEnvironment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classLearnEnvironment_a25d7b0bd7b4270c7c2feeab3a9450d39}{Learn\+Environment}} (\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}parent=0)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classLearnEnvironment}{Learn\+Environment} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classLearnEnvironment_ad2086d08e20cef426a861e1093cfc987}{\texorpdfstring{$\sim$}{\string~}\+Learn\+Environment}} ()
+\begin{DoxyCompactList}\small\item\em Destroys the \doxylink{classLearnEnvironment}{Learn\+Environment} object. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classLearnEnvironment_af0c2b95f5853116a09c795d33eb47d52}{load}} (const rviz\+::\+Config \&config) override
+\begin{DoxyCompactList}\small\item\em Loads user-\/specific settings. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classLearnEnvironment_aa684f56e6ba08652e1ddfa47304eb449}{save}} (rviz\+::\+Config config) const override
+\begin{DoxyCompactList}\small\item\em Saves user-\/specific settings. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A custom RViz panel for managing the learning environment. 
+
+The \doxylink{classLearnEnvironment}{Learn\+Environment} class provides a user interface for managing tasks and their execution and evaluation within the learning environment. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classLearnEnvironment_a25d7b0bd7b4270c7c2feeab3a9450d39}\index{LearnEnvironment@{LearnEnvironment}!LearnEnvironment@{LearnEnvironment}}
+\index{LearnEnvironment@{LearnEnvironment}!LearnEnvironment@{LearnEnvironment}}
+\doxysubsubsection{\texorpdfstring{LearnEnvironment()}{LearnEnvironment()}}
+{\footnotesize\ttfamily \label{classLearnEnvironment_a25d7b0bd7b4270c7c2feeab3a9450d39} 
+Learn\+Environment\+::\+Learn\+Environment (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily 0}}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classLearnEnvironment}{Learn\+Environment} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classLearnEnvironment_ad2086d08e20cef426a861e1093cfc987}\index{LearnEnvironment@{LearnEnvironment}!````~LearnEnvironment@{\texorpdfstring{$\sim$}{\string~}LearnEnvironment}}
+\index{````~LearnEnvironment@{\texorpdfstring{$\sim$}{\string~}LearnEnvironment}!LearnEnvironment@{LearnEnvironment}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}LearnEnvironment()}{\string~LearnEnvironment()}}
+{\footnotesize\ttfamily \label{classLearnEnvironment_ad2086d08e20cef426a861e1093cfc987} 
+Learn\+Environment\+::\texorpdfstring{$\sim$}{\string~}\+Learn\+Environment (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destroys the \doxylink{classLearnEnvironment}{Learn\+Environment} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classLearnEnvironment_af0c2b95f5853116a09c795d33eb47d52}\index{LearnEnvironment@{LearnEnvironment}!load@{load}}
+\index{load@{load}!LearnEnvironment@{LearnEnvironment}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{classLearnEnvironment_af0c2b95f5853116a09c795d33eb47d52} 
+void Learn\+Environment\+::load (\begin{DoxyParamCaption}\item[{const rviz\+::\+Config \&}]{config}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Loads user-\/specific settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & The RViz configuration object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classLearnEnvironment_aa684f56e6ba08652e1ddfa47304eb449}\index{LearnEnvironment@{LearnEnvironment}!save@{save}}
+\index{save@{save}!LearnEnvironment@{LearnEnvironment}}
+\doxysubsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily \label{classLearnEnvironment_aa684f56e6ba08652e1ddfa47304eb449} 
+void Learn\+Environment\+::save (\begin{DoxyParamCaption}\item[{rviz\+::\+Config}]{config}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves user-\/specific settings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & The RViz configuration object. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{learn__environment_8hpp}{learn\+\_\+environment.\+hpp}}\item 
+\mbox{\hyperlink{learn__environment_8cpp}{learn\+\_\+environment.\+cpp}}\end{DoxyCompactItemize}

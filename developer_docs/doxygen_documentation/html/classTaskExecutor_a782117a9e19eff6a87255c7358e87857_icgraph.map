@@ -1,0 +1,9 @@
+<map id="TaskExecutor::resetRobotFailed" name="TaskExecutor::resetRobotFailed">
+<area shape="rect" id="Node000001" title="Signal emitted when robot reset fails." alt="" coords="493,23,666,65"/>
+<area shape="rect" id="Node000002" href="$classTaskExecutor.html#ad117a059ab0c1f6d85e318f0cf4709bc" title="Triggers python script to reset the robot to its initial state and removes all objects from the scene..." alt="" coords="266,5,439,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="478,35,439,31,440,26,478,30"/>
+<area shape="rect" id="Node000004" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="260,56,445,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="478,58,446,62,445,56,477,53"/>
+<area shape="rect" id="Node000003" href="$classTaskManager.html#a9a858cb5aae71b691204c8561322677e" title="Forces the reset of the robot to its initial state." alt="" coords="5,5,212,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,21,212,21,212,16,250,16"/>
+</map>

@@ -1,0 +1,44 @@
+\doxysection{folder\+\_\+structure\+\_\+constants.\+hpp}
+\hypertarget{folder__structure__constants_8hpp_source}{}\label{folder__structure__constants_8hpp_source}\index{folder\_structure\_constants.hpp@{folder\_structure\_constants.hpp}}
+\mbox{\hyperlink{folder__structure__constants_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FOLDER\_STRUCTURE\_CONSTANTS\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FOLDER\_STRUCTURE\_CONSTANTS\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <ros/package.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <ros/ros.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespaceFolderStructureConstants}{FolderStructureConstants}}\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_a82483c09d34f6dbea6451b921b231c5a}{CONVERTED\_SCRIPT\_PATH}}\ =\ \textcolor{stringliteral}{"{}/converter/converted.py"{}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_a97e2abd38a09653e626ba46a5e5e10bd}{RESET\_ROBOT\_SCRIPT\_PATH}}\ =\ \textcolor{stringliteral}{"{}/task\_pool/reset\_robot.py"{}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_a84dc4e92b3d05fcef00c9abb99f9f9da}{TASK\_DEFINITIONS\_PATH}}\ =\ \textcolor{stringliteral}{"{}:/task\_pool/task\_definitions.json"{}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_adc8fa9eae998a60723424421756bd65b}{TOPIC\_DEFINITIONS\_PATH}}\ =\ \textcolor{stringliteral}{"{}:/task\_pool/topic\_definitions.json"{}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_a4a34d956c5883529b64e6bb183d768a7}{DIFFICULTY\_LEVELS\_DEFINITION\_PATH}}\ =\ \textcolor{stringliteral}{"{}:/task\_pool/difficulty\_levels.json"{}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_ae963e238a7326dd80a2401eae27c252a}{SOLUTION\_SCRIPTS\_SOURCE\_PATH}}\ =\ \textcolor{stringliteral}{"{}/task\_pool/solution\_scripts"{}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_afbae3ede611451504507436474ae482e}{EVALUATION\_SCRIPTS\_SOURCE\_PATH}}\ =\ \textcolor{stringliteral}{"{}/task\_pool/evaluation\_scripts"{}};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_ac7bdb4609b31965b63ac7d3ce2b197c3}{USER\_WORKSPACE}}\ =\ \textcolor{stringliteral}{"{}/tasks"{}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9}{PACKAGE\_NAME}}\ =\ \textcolor{stringliteral}{"{}learn\_environment"{}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{inline}\ QString\ \mbox{\hyperlink{namespaceFolderStructureConstants_aa49dbebb86fde82b617e7db1193bd720}{getPackagePath}}()\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ QString::fromStdString(ros::package::getPath(\mbox{\hyperlink{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9}{PACKAGE\_NAME}}.toStdString()));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}\ (...)\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ qCritical()\ <<\ \textcolor{stringliteral}{"{}An\ error\ occurred\ while\ retrieving\ the\ package\ path\ for"{}}\ <<\ \mbox{\hyperlink{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9}{PACKAGE\_NAME}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ QString();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ FOLDER\_STRUCTURE\_CONSTANTS\_HPP}}
+
+\end{DoxyCode}

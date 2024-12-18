@@ -1,0 +1,5 @@
+<map id="ProcessRunner::forceStop" name="ProcessRunner::forceStop">
+<area shape="rect" id="Node000001" title="Forces the stop of the running process." alt="" coords="214,5,389,32"/>
+<area shape="rect" id="Node000002" href="$classScriptWorker.html#aafadef7996317ca83dcb2605777affe2" title="Forces the stop of all running scripts." alt="" coords="5,5,166,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="198,21,166,21,166,16,198,16"/>
+</map>

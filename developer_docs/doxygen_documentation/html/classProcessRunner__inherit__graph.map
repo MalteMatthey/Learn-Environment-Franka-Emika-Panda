@@ -1,0 +1,5 @@
+<map id="ProcessRunner" name="ProcessRunner">
+<area shape="rect" id="Node000001" title="Manages the execution of an external process with a timeout." alt="" coords="5,123,127,235"/>
+<area shape="rect" id="Node000002" href="$classQObject.html" title=" " alt="" coords="37,5,96,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="69,90,69,123,64,123,64,90"/>
+</map>

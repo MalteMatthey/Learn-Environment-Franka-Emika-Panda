@@ -1,0 +1,49 @@
+\doxysection{task\+\_\+executor.\+hpp}
+\hypertarget{task__executor_8hpp_source}{}\label{task__executor_8hpp_source}\index{task\_executor.hpp@{task\_executor.hpp}}
+\mbox{\hyperlink{task__executor_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TASK\_EXECUTOR\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TASK\_EXECUTOR\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QSharedPointer>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classScriptWorker}{ScriptWorker}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTaskExecutor}{TaskExecutor}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQObject}{QObject}}\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classTaskExecutor_ac6783ed16b392507bfaabd21422ee140}{TaskExecutor}}(\mbox{\hyperlink{classQObject}{QObject}}\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_ac8eb8ba8a66de4a3ed3ead3ad7abab5d}{executeTask}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structSubtask}{Subtask}}\ \&subtask,\ \textcolor{keywordtype}{bool}\ startSolution\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_a0a0c76bf999aea855cb83a6051864e09}{forceStop}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_ad117a059ab0c1f6d85e318f0cf4709bc}{resetRobot}}();}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ Q\_SIGNALS:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_a2b22d6b9fa450f3471de4359b6f3b131}{taskExecutionStarted}}();}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_ad2f2dd7e0d22d7b3bb2ec532f158bddc}{taskExecutionFinished}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_adeffddd301a31fe1891712d30096a468}{taskExecutionFailed}}(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_a9d92d24d74615c594a578eafb6d48799}{resetRobotStarted}}();}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_a7fb6bb2e760b08c4816f5c48902d6498}{resetRobotFinished}}();}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskExecutor_a782117a9e19eff6a87255c7358e87857}{resetRobotFailed}}(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{bool}\ constructPath(\textcolor{keyword}{const}\ QString\ \&basePath,\ \textcolor{keyword}{const}\ QString\ \&addition,\ QString\ \&result,\ \textcolor{keyword}{const}\ QString\ \&errorMsg,\ \textcolor{keywordtype}{bool}\ checkExists\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ QList<ScriptWorker*>\ scriptWorkers;\ }
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TASK\_EXECUTOR\_HPP}}
+
+\end{DoxyCode}

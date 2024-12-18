@@ -1,0 +1,75 @@
+\doxysection{task\+\_\+ui.\+hpp}
+\hypertarget{task__ui_8hpp_source}{}\label{task__ui_8hpp_source}\index{task\_ui.hpp@{task\_ui.hpp}}
+\mbox{\hyperlink{task__ui_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TASKUI\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TASKUI\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sidebar_8hpp}{sidebar.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task__manager_8hpp}{task\_manager.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{execute__frame_8hpp}{execute\_frame.hpp}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QToolButton>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QFrame>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classTaskUI}{TaskUI}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQWidget}{QWidget}}\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{classTaskUI_a86f09b07fe3b4fd956f8c4ab02b8fae2}{TaskUI}}(QVBoxLayout\ *subtaskListLayout,\ QLabel\ *mainTitleLabel,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ QLabel\ *difficultyLabel,\ QLabel\ *folderLabel,\ QLabel\ *topicLabel,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ QPushButton\ *nextButton,\ QPushButton\ *previousButton,\ QToolButton\ *menuButton,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ QToolButton\ *resetRobotStartButton,\ \mbox{\hyperlink{classQFrame}{QFrame}}\ *resetRobotFrame,\ \mbox{\hyperlink{classQWidget}{QWidget}}\ *centralwidget,\ \mbox{\hyperlink{classQWidget}{QWidget}}\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a62690c3b7147c20980da5c2323314025}{initializeUI}}(\textcolor{keyword}{const}\ QVector<QSharedPointer<Task>>\ \&tasks);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}{setTaskUI}}(\textcolor{keywordtype}{int}\ currentTaskIndex);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e}{updateSubtaskItemsUI}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a53f64716c6328b25e37d822e687886cf}{setTaskManager}}(\mbox{\hyperlink{classTaskManager}{TaskManager}}\ *manager);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a11f88e4482442899fa19adf1f66fa030}{startedRobotResetUI}}(\textcolor{keywordtype}{bool}\ noSubtasksLeft);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a6c2ca067880d519ab255a7608a268c8f}{finishedRobotResetUI}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_a8cb2994522ad6b1b59383515edddead3}{failedRobotResetUI}}(\textcolor{keyword}{const}\ QString\ \&error);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ Q\_SIGNALS:}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classTaskUI_af43308f1438155bd927357ac93c7b9db}{taskSelected}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{private}\ Q\_SLOTS:}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleSidebarVisibility();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classSidebar}{Sidebar}}\ *sidebar;\ }
+\DoxyCodeLine{00102\ \ \ \ \ QVBoxLayout\ *subtaskListLayout;\ }
+\DoxyCodeLine{00103\ \ \ \ \ QLabel\ *mainTitleLabel;\ }
+\DoxyCodeLine{00104\ \ \ \ \ QLabel\ *difficultyLabel;\ }
+\DoxyCodeLine{00105\ \ \ \ \ QLabel\ *folderLabel;\ }
+\DoxyCodeLine{00106\ \ \ \ \ QLabel\ *topicLabel;\ }
+\DoxyCodeLine{00107\ \ \ \ \ QPushButton\ *nextButton;\ }
+\DoxyCodeLine{00108\ \ \ \ \ QPushButton\ *previousButton;\ }
+\DoxyCodeLine{00109\ \ \ \ \ QToolButton\ *menuButton;\ }
+\DoxyCodeLine{00110\ \ \ \ \ QToolButton\ *resetRobotStartButton;\ }
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classQFrame}{QFrame}}\ *resetRobotFrame;\ }
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classExecuteFrame}{ExecuteFrame}}\ *executeResetRobotFrame;\ }
+\DoxyCodeLine{00113\ \ \ \ \ \mbox{\hyperlink{classQWidget}{QWidget}}\ *centralwidget;\ }
+\DoxyCodeLine{00114\ \ \ \ \ QVector<QSharedPointer<Task>>\ tasks;\ }
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classTaskManager}{TaskManager}}\ *taskManager;\ }
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ setSubtaskItems(\textcolor{keywordtype}{int}\ currentTaskIndex);}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordtype}{void}\ addLineBetweenWidgets();}
+\DoxyCodeLine{00127\ \ \ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ setupSplitterAndLayout();}
+\DoxyCodeLine{00132\ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TASKUI\_HPP}}
+
+\end{DoxyCode}

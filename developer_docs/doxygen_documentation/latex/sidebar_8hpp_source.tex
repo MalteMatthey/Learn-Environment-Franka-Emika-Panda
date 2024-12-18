@@ -1,0 +1,44 @@
+\doxysection{sidebar.\+hpp}
+\hypertarget{sidebar_8hpp_source}{}\label{sidebar_8hpp_source}\index{sidebar.hpp@{sidebar.hpp}}
+\mbox{\hyperlink{sidebar_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SIDEBAR\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SIDEBAR\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{custom__list__widget_8hpp}{custom\_list\_widget.hpp}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{task_8hpp}{task.hpp}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QMap>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QListWidget>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QSharedPointer>}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSidebar}{Sidebar}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQWidget}{QWidget}}}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classSidebar_a874f7f7907a44517ee9cf9ac2c1888d7}{Sidebar}}(\mbox{\hyperlink{classQWidget}{QWidget}}\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSidebar_abf817c38465f3382b90d409e9cf87777}{fillSidebarWithTasks}}(\textcolor{keyword}{const}\ QVector<QSharedPointer<Task>>\&\ tasks);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSidebar_a9b621329888b135c42333a7ce8a4cad4}{selectTask}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ Q\_SIGNALS:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSidebar_ad4d587292c62ad30ac9f1feac5d39499}{taskSelected}}(\textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{private}\ Q\_SLOTS:}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ onTaskItemClicked(QListWidgetItem\ *item);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classCustomListWidget}{CustomListWidget}}*\ createList();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classCustomListWidget}{CustomListWidget}}\ *listWidget;\ }
+\DoxyCodeLine{00067\ \ \ \ \ QMap<int,\ QListWidgetItem*>\ taskIndexToItemMap;\ }
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SIDEBAR\_HPP}}
+
+\end{DoxyCode}

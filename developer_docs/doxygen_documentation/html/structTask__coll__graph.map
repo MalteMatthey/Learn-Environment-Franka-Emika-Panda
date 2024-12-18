@@ -1,0 +1,9 @@
+<map id="Task" name="Task">
+<area shape="rect" id="Node000001" title="Represents a task containing multiple subtasks." alt="" coords="155,203,193,272"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,60,75"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="33,74,38,126,46,153,60,177,77,194,97,208,139,225,137,230,94,212,73,198,56,180,41,155,33,127,28,75"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="109,5,239,75"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="177,74,177,186,171,186,171,74"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="263,5,298,75"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="280,75,270,126,260,154,247,180,229,201,209,218,206,214,226,197,242,177,256,152,265,125,275,74"/>
+</map>

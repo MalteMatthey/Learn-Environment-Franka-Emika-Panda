@@ -1,0 +1,61 @@
+\doxysection{task.\+hpp}
+\hypertarget{task_8hpp_source}{}\label{task_8hpp_source}\index{task.hpp@{task.hpp}}
+\mbox{\hyperlink{task_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TASK\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TASK\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QSharedPointer>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QWeakPointer>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Forward\ declaration\ of\ Task\ struct}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTask}{Task}};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{SubtaskStatus}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}{Inactive}},\ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0ae7d31fc0602fb2ede144d18cdffd816b}{Ready}},\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a7b2f31b90fe1c2cc33a52233c1925df3}{Queued}},\ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a5bda814c4aedb126839228f1a3d92f09}{Running}}\ }
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structSubtask}{Subtask}}\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_a4fc46ff8e54ab67641df5ff45e7e0cb4}{title}};\ }
+\DoxyCodeLine{00033\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_a9b2edd425425878f6e57a2f213b1211a}{description}};\ }
+\DoxyCodeLine{00034\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_a905ed579cc13759a257c37d261141281}{file}};\ }
+\DoxyCodeLine{00035\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_adc3ab0bdda7c565666095845a3e4567f}{filePath}};\ }
+\DoxyCodeLine{00036\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_ad6350ae5d46df3d006f4f0787915ea9f}{solutionFilePath}};\ }
+\DoxyCodeLine{00037\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_ae73daaeeae0fa09de92ef428be2fdab3}{evaluationFilePath}};\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ optional\ field}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structSubtask_a69b5b90686d9e1c75b0f071a7b9dc31b}{timeoutSeconds}}\ =\ 60;\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSubtask_ae0c283c25316796864e9ef0d766acb60}{parallelizedEvaluationRequired}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSubtask_ae869bad678ab4835b24aeb56176c21aa}{reset\_robot\_before\_executing}}\ =\ \textcolor{keyword}{true};\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ internal\ fields}}
+\DoxyCodeLine{00045\ \ \ \ \ QWeakPointer<Task>\ \mbox{\hyperlink{structSubtask_a4cdfbab855cd65277e17c8975bb0d730}{parentTask}};\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0}{SubtaskStatus}}\ \mbox{\hyperlink{structSubtask_a293ddda988cb5fe92fcb5e5189b86850}{status}}\ =\ \mbox{\hyperlink{task_8hpp_a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0}{SubtaskStatus::Inactive}};\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSubtask_a0e3d8e77e26cdb58b2e9faa8ec2e1707}{hasBeenExecuted}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structSubtask_ab1e1bff66e7464efa54419b36006f1a8}{lastExecutionFailed}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00050\ \ \ \ \ QString\ \mbox{\hyperlink{structSubtask_a2c4bcefd1e42773c5e23abd9ba0b30f2}{lastExecutionError}};\ }
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structTask}{Task}}\ \{}
+\DoxyCodeLine{00062\ \ \ \ \ QString\ \mbox{\hyperlink{structTask_a0ab070dbbe73ff2a4306fe20ab75400f}{title}};\ }
+\DoxyCodeLine{00063\ \ \ \ \ QString\ \mbox{\hyperlink{structTask_a470ace63434687116684f003a27dc439}{folder}};\ }
+\DoxyCodeLine{00064\ \ \ \ \ QString\ \mbox{\hyperlink{structTask_a92a16f5ec66f7511f0d0ce0fd759bf9e}{difficulty}};\ }
+\DoxyCodeLine{00065\ \ \ \ \ QString\ \mbox{\hyperlink{structTask_a8c37303702dbbb22f7430a73f9a3ed08}{topic}};\ }
+\DoxyCodeLine{00066\ \ \ \ \ QVector<Subtask>\ \mbox{\hyperlink{structTask_a7486a61c7f0eb8a952260ffe9c2a1af3}{subtasks}};\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ optional\ field}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structTask_add2905e57d8e714693b24cc8a9148a82}{previousSubtasksRequired}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ internal\ fields}}
+\DoxyCodeLine{00072\ \ \ \ \ QString\ \mbox{\hyperlink{structTask_a6fe956adc87191ee794c5bccf68c292b}{difficultyHexColor}};\ }
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TASK\_HPP}}
+
+\end{DoxyCode}

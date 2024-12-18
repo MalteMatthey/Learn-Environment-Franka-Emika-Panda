@@ -1,0 +1,111 @@
+\doxysection{notebook\+\_\+converter.\+cpp File Reference}
+\hypertarget{notebook__converter_8cpp}{}\label{notebook__converter_8cpp}\index{notebook\_converter.cpp@{notebook\_converter.cpp}}
+{\ttfamily \#include "{}learn\+\_\+environment/notebook\+\_\+converter.\+hpp"{}}\newline
+{\ttfamily \#include $<$QFile$>$}\newline
+{\ttfamily \#include $<$QText\+Stream$>$}\newline
+{\ttfamily \#include $<$QDebug$>$}\newline
+{\ttfamily \#include $<$unordered\+\_\+map$>$}\newline
+{\ttfamily \#include $<$nlohmann/json.\+hpp$>$}\newline
+{\ttfamily \#include "{}learn\+\_\+environment/folder\+\_\+structure\+\_\+constants.\+hpp"{}}\newline
+{\ttfamily \#include $<$ros/package.\+h$>$}\newline
+{\ttfamily \#include $<$ros/ros.\+h$>$}\newline
+Include dependency graph for notebook\+\_\+converter.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{notebook__converter_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+using \mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}} = nlohmann\+::json
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a577f6caa2b74a38695dcadccd277cd41}{TASK\+\_\+\+CELL\+\_\+\+TAG}} = "{}task\+\_\+cell"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a184e7635f439bf95093b6a066ce161d7}{SOLUTION\+\_\+\+REMOVED\+\_\+\+CELL\+\_\+\+TAG}} = "{}solution\+\_\+removed\+\_\+cell"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a213a8c8a72491ee237c3ce92f92191ec}{SOLUTION\+\_\+\+CELL\+\_\+\+TAG}} = "{}solution\+\_\+cell"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a6c92986de28899546e13ab1a37bf0722}{WRITE\+\_\+\+CODE\+\_\+\+MARKER}} = "{}\#\#\#\# YOUR CODE HERE \#\#\#\#"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a8a72334e6ef797e624196b1d9e073c6e}{NOT\+\_\+\+IMPLEMENTED\+\_\+\+ERROR}} = "{}raise Not\+Implemented\+Error()"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a22b163bef7c6dc038082729221692dfa}{SOLUTION\+\_\+\+CELL\+\_\+\+HEADER}}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a0f5a0941639b66358c741284acf0dced}{SOLUTION\+\_\+\+CODE\+\_\+\+PLACEHOLDER\+\_\+\+START}} = "{}\# ↓↓↓↓ SOLUTION CODE HERE ↓↓↓↓ \#"{}
+\item 
+const QString \mbox{\hyperlink{notebook__converter_8cpp_a87d746c0d44126e9db98540148634b18}{SOLUTION\+\_\+\+CODE\+\_\+\+PLACEHOLDER\+\_\+\+END}} = "{}\# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ \#"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!json@{json}}
+\index{json@{json}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{json}{json}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491} 
+typedef nlohmann\+::json \mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}} = nlohmann\+::json}
+
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{notebook__converter_8cpp_a8a72334e6ef797e624196b1d9e073c6e}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!NOT\_IMPLEMENTED\_ERROR@{NOT\_IMPLEMENTED\_ERROR}}
+\index{NOT\_IMPLEMENTED\_ERROR@{NOT\_IMPLEMENTED\_ERROR}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{NOT\_IMPLEMENTED\_ERROR}{NOT\_IMPLEMENTED\_ERROR}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a8a72334e6ef797e624196b1d9e073c6e} 
+const QString NOT\+\_\+\+IMPLEMENTED\+\_\+\+ERROR = "{}raise Not\+Implemented\+Error()"{}}
+
+\Hypertarget{notebook__converter_8cpp_a22b163bef7c6dc038082729221692dfa}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!SOLUTION\_CELL\_HEADER@{SOLUTION\_CELL\_HEADER}}
+\index{SOLUTION\_CELL\_HEADER@{SOLUTION\_CELL\_HEADER}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_CELL\_HEADER}{SOLUTION\_CELL\_HEADER}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a22b163bef7c6dc038082729221692dfa} 
+const QString SOLUTION\+\_\+\+CELL\+\_\+\+HEADER}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{stringliteral}{"{}\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\(\backslash\)n"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#\#\#\#\ \ \ \ \ THIS\ IS\ A\ SOLUTION\ CELL.\ IT\ WILL\ NOT\ EXECUTE.\ \ \ \ \#\#\#\#\(\backslash\)n"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#\#\#\#\ YOU\ CAN\ RUN\ THE\ SOLUTION\ DIRECTLY\ WITHIN\ THE\ PLUGIN.\ \#\#\#\#\(\backslash\)n"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#\#\#\#\ \ \ \ USE\ THIS\ CELL\ AS\ INSPIRATION\ FOR\ YOUR\ OWN\ CODE.\ \ \ \#\#\#\#\(\backslash\)n"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\(\backslash\)n"{}}}
+
+\end{DoxyCode}
+\Hypertarget{notebook__converter_8cpp_a213a8c8a72491ee237c3ce92f92191ec}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!SOLUTION\_CELL\_TAG@{SOLUTION\_CELL\_TAG}}
+\index{SOLUTION\_CELL\_TAG@{SOLUTION\_CELL\_TAG}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_CELL\_TAG}{SOLUTION\_CELL\_TAG}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a213a8c8a72491ee237c3ce92f92191ec} 
+const QString SOLUTION\+\_\+\+CELL\+\_\+\+TAG = "{}solution\+\_\+cell"{}}
+
+\Hypertarget{notebook__converter_8cpp_a87d746c0d44126e9db98540148634b18}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!SOLUTION\_CODE\_PLACEHOLDER\_END@{SOLUTION\_CODE\_PLACEHOLDER\_END}}
+\index{SOLUTION\_CODE\_PLACEHOLDER\_END@{SOLUTION\_CODE\_PLACEHOLDER\_END}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_CODE\_PLACEHOLDER\_END}{SOLUTION\_CODE\_PLACEHOLDER\_END}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a87d746c0d44126e9db98540148634b18} 
+const QString SOLUTION\+\_\+\+CODE\+\_\+\+PLACEHOLDER\+\_\+\+END = "{}\# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ \#"{}}
+
+\Hypertarget{notebook__converter_8cpp_a0f5a0941639b66358c741284acf0dced}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!SOLUTION\_CODE\_PLACEHOLDER\_START@{SOLUTION\_CODE\_PLACEHOLDER\_START}}
+\index{SOLUTION\_CODE\_PLACEHOLDER\_START@{SOLUTION\_CODE\_PLACEHOLDER\_START}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_CODE\_PLACEHOLDER\_START}{SOLUTION\_CODE\_PLACEHOLDER\_START}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a0f5a0941639b66358c741284acf0dced} 
+const QString SOLUTION\+\_\+\+CODE\+\_\+\+PLACEHOLDER\+\_\+\+START = "{}\# ↓↓↓↓ SOLUTION CODE HERE ↓↓↓↓ \#"{}}
+
+\Hypertarget{notebook__converter_8cpp_a184e7635f439bf95093b6a066ce161d7}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!SOLUTION\_REMOVED\_CELL\_TAG@{SOLUTION\_REMOVED\_CELL\_TAG}}
+\index{SOLUTION\_REMOVED\_CELL\_TAG@{SOLUTION\_REMOVED\_CELL\_TAG}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_REMOVED\_CELL\_TAG}{SOLUTION\_REMOVED\_CELL\_TAG}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a184e7635f439bf95093b6a066ce161d7} 
+const QString SOLUTION\+\_\+\+REMOVED\+\_\+\+CELL\+\_\+\+TAG = "{}solution\+\_\+removed\+\_\+cell"{}}
+
+\Hypertarget{notebook__converter_8cpp_a577f6caa2b74a38695dcadccd277cd41}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!TASK\_CELL\_TAG@{TASK\_CELL\_TAG}}
+\index{TASK\_CELL\_TAG@{TASK\_CELL\_TAG}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{TASK\_CELL\_TAG}{TASK\_CELL\_TAG}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a577f6caa2b74a38695dcadccd277cd41} 
+const QString TASK\+\_\+\+CELL\+\_\+\+TAG = "{}task\+\_\+cell"{}}
+
+\Hypertarget{notebook__converter_8cpp_a6c92986de28899546e13ab1a37bf0722}\index{notebook\_converter.cpp@{notebook\_converter.cpp}!WRITE\_CODE\_MARKER@{WRITE\_CODE\_MARKER}}
+\index{WRITE\_CODE\_MARKER@{WRITE\_CODE\_MARKER}!notebook\_converter.cpp@{notebook\_converter.cpp}}
+\doxysubsubsection{\texorpdfstring{WRITE\_CODE\_MARKER}{WRITE\_CODE\_MARKER}}
+{\footnotesize\ttfamily \label{notebook__converter_8cpp_a6c92986de28899546e13ab1a37bf0722} 
+const QString WRITE\+\_\+\+CODE\+\_\+\+MARKER = "{}\#\#\#\# YOUR CODE HERE \#\#\#\#"{}}
+

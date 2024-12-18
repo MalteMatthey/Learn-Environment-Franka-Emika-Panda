@@ -1,0 +1,124 @@
+\doxysection{Subtask\+Item Class Reference}
+\hypertarget{classSubtaskItem}{}\label{classSubtaskItem}\index{SubtaskItem@{SubtaskItem}}
+
+
+Represents a UI item for a subtask.  
+
+
+
+
+{\ttfamily \#include $<$subtask\+\_\+item.\+hpp$>$}
+
+
+
+Inheritance diagram for Subtask\+Item\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classSubtaskItem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Subtask\+Item\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{classSubtaskItem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSubtaskItem_a9a41e7bf314df5a4297c68509d531423}{subtask\+Start\+Stop\+Requested}} (const \mbox{\hyperlink{structSubtask}{Subtask}} \&subtask)
+\begin{DoxyCompactList}\small\item\em Signal emitted when a start/stop request is made for the subtask. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSubtaskItem_a63e6bb32b434cf04705924c3e2cdd0db}{Subtask\+Item}} (\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}parent, \mbox{\hyperlink{structSubtask}{Subtask}} \texorpdfstring{$\ast$}{*}subtask)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classSubtaskItem}{Subtask\+Item} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSubtaskItem_a005df51b50001f3e9c95652e845cf424}{update\+UI}} (bool constructor\+Call=false)
+\begin{DoxyCompactList}\small\item\em Updates the UI elements based on the subtask\textquotesingle{}s status. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSubtaskItem_aebba84aaef3c06a0c3079cea7fcd4ba6}{set\+Task\+Manager}} (\mbox{\hyperlink{classTaskManager}{Task\+Manager}} \texorpdfstring{$\ast$}{*}manager)
+\begin{DoxyCompactList}\small\item\em Sets the \doxylink{classTaskManager}{Task\+Manager} object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a UI item for a subtask. 
+
+The \doxylink{classSubtaskItem}{Subtask\+Item} class is responsible for displaying and managing the UI elements related to a subtask. It provides functionalities to update the UI based on the subtask\textquotesingle{}s status and to handle user interactions. This is a \doxylink{classQWidget}{QWidget} designed to function as a List Item. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSubtaskItem_a63e6bb32b434cf04705924c3e2cdd0db}\index{SubtaskItem@{SubtaskItem}!SubtaskItem@{SubtaskItem}}
+\index{SubtaskItem@{SubtaskItem}!SubtaskItem@{SubtaskItem}}
+\doxysubsubsection{\texorpdfstring{SubtaskItem()}{SubtaskItem()}}
+{\footnotesize\ttfamily \label{classSubtaskItem_a63e6bb32b434cf04705924c3e2cdd0db} 
+Subtask\+Item\+::\+Subtask\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQWidget}{QWidget}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{\mbox{\hyperlink{structSubtask}{Subtask}} \texorpdfstring{$\ast$}{*}}]{subtask}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{classSubtaskItem}{Subtask\+Item} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget. \\
+\hline
+{\em subtask} & Pointer to the subtask object. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSubtaskItem_aebba84aaef3c06a0c3079cea7fcd4ba6}\index{SubtaskItem@{SubtaskItem}!setTaskManager@{setTaskManager}}
+\index{setTaskManager@{setTaskManager}!SubtaskItem@{SubtaskItem}}
+\doxysubsubsection{\texorpdfstring{setTaskManager()}{setTaskManager()}}
+{\footnotesize\ttfamily \label{classSubtaskItem_aebba84aaef3c06a0c3079cea7fcd4ba6} 
+void Subtask\+Item\+::set\+Task\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTaskManager}{Task\+Manager}} \texorpdfstring{$\ast$}{*}}]{manager}{}\end{DoxyParamCaption})}
+
+
+
+Sets the \doxylink{classTaskManager}{Task\+Manager} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the \doxylink{classTaskManager}{Task\+Manager} object. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSubtaskItem_a9a41e7bf314df5a4297c68509d531423}\index{SubtaskItem@{SubtaskItem}!subtaskStartStopRequested@{subtaskStartStopRequested}}
+\index{subtaskStartStopRequested@{subtaskStartStopRequested}!SubtaskItem@{SubtaskItem}}
+\doxysubsubsection{\texorpdfstring{subtaskStartStopRequested}{subtaskStartStopRequested}}
+{\footnotesize\ttfamily \label{classSubtaskItem_a9a41e7bf314df5a4297c68509d531423} 
+void Subtask\+Item\+::subtask\+Start\+Stop\+Requested (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structSubtask}{Subtask}} \&}]{subtask}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when a start/stop request is made for the subtask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask} & The subtask for which the request is made. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSubtaskItem_a005df51b50001f3e9c95652e845cf424}\index{SubtaskItem@{SubtaskItem}!updateUI@{updateUI}}
+\index{updateUI@{updateUI}!SubtaskItem@{SubtaskItem}}
+\doxysubsubsection{\texorpdfstring{updateUI()}{updateUI()}}
+{\footnotesize\ttfamily \label{classSubtaskItem_a005df51b50001f3e9c95652e845cf424} 
+void Subtask\+Item\+::update\+UI (\begin{DoxyParamCaption}\item[{bool}]{constructor\+Call}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Updates the UI elements based on the subtask\textquotesingle{}s status. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classSubtaskItem_a005df51b50001f3e9c95652e845cf424_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{subtask__item_8hpp}{subtask\+\_\+item.\+hpp}}\item 
+\mbox{\hyperlink{subtask__item_8cpp}{subtask\+\_\+item.\+cpp}}\end{DoxyCompactItemize}

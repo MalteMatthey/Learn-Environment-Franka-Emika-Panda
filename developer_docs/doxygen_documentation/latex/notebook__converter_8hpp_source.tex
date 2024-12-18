@@ -1,0 +1,48 @@
+\doxysection{notebook\+\_\+converter.\+hpp}
+\hypertarget{notebook__converter_8hpp_source}{}\label{notebook__converter_8hpp_source}\index{notebook\_converter.hpp@{notebook\_converter.hpp}}
+\mbox{\hyperlink{notebook__converter_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ NOTEBOOK\_CONVERTER\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ NOTEBOOK\_CONVERTER\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QDir>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QByteArray>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <nlohmann/json.hpp>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }\mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ =\ nlohmann::json;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classNotebookConverter}{NotebookConverter}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classQObject}{QObject}}\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classNotebookConverter_a11c8ed4604d4c29acd45d6225d80c464}{NotebookConverter}}(\mbox{\hyperlink{classQObject}{QObject}}\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNotebookConverter_a8b06d3bc01057ddd936977bded4297f4}{convertNotebook}}(\textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNotebookConverter_a66b007e49cfe58d279c3ac279ced7213}{processTaskPool}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNotebookConverter_a665ba1030d993bd9e165fca123d92032}{toggleSolution}}(\textcolor{keyword}{const}\ QString\ \&filePath,\ \textcolor{keyword}{const}\ QString\ \&solutionFilePath);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classNotebookConverter_aa14fbd73e3cc21866decd2e02572207d}{resetNotebook}}(\textcolor{keyword}{const}\ QString\ \&notebookPath,\ \textcolor{keyword}{const}\ QString\ \&notebookSolutionPath);}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classNotebookConverter_af64e43c667b96ba0926a715316002665}{hasSolutionCells}}(\textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ removeSolutionFromNotebook(\textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ QByteArray\ readFile(\textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ parseJson(\textcolor{keyword}{const}\ QByteArray\ \&data,\ \textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ processCells(\mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ \&notebook,\ \textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ processCell(\mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ \&cell,\ \textcolor{keyword}{const}\ QString\ \&notebookPath,\ \textcolor{keywordtype}{int}\ i);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ writeFile(\textcolor{keyword}{const}\ \mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ \&notebook,\ \textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ copyAndModifyNotebooks(\textcolor{keyword}{const}\ QDir\ \&sourceDir,\ \textcolor{keyword}{const}\ QDir\ \&destDir);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ removeSolutionCells(\textcolor{keyword}{const}\ QString\ \&notebookPath);}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ addSolutionCells(\textcolor{keyword}{const}\ QString\ \&notebookPath,\ \textcolor{keyword}{const}\ QString\ \&solutionPath);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ manipulateSolutionCellContent(\mbox{\hyperlink{notebook__converter_8cpp_a0c01dbde6677d7e4769b85716c69c491}{json}}\ \&solutionCell);}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ NOTEBOOK\_CONVERTER\_HPP}}
+
+\end{DoxyCode}

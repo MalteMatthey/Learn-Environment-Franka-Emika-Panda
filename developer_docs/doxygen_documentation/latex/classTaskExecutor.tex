@@ -1,0 +1,241 @@
+\doxysection{Task\+Executor Class Reference}
+\hypertarget{classTaskExecutor}{}\label{classTaskExecutor}\index{TaskExecutor@{TaskExecutor}}
+
+
+Executes tasks and manages their execution state.  
+
+
+
+
+{\ttfamily \#include $<$task\+\_\+executor.\+hpp$>$}
+
+
+
+Inheritance diagram for Task\+Executor\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classTaskExecutor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Task\+Executor\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classTaskExecutor__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTaskExecutor_a2b22d6b9fa450f3471de4359b6f3b131}{task\+Execution\+Started}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted when task execution starts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_ad2f2dd7e0d22d7b3bb2ec532f158bddc}{task\+Execution\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted when task execution finishes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_adeffddd301a31fe1891712d30096a468}{task\+Execution\+Failed}} (const QString \&error)
+\begin{DoxyCompactList}\small\item\em Signal emitted when task execution fails. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_a9d92d24d74615c594a578eafb6d48799}{reset\+Robot\+Started}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted when robot reset starts. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_a7fb6bb2e760b08c4816f5c48902d6498}{reset\+Robot\+Finished}} ()
+\begin{DoxyCompactList}\small\item\em Signal emitted when robot reset finishes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_a782117a9e19eff6a87255c7358e87857}{reset\+Robot\+Failed}} (const QString \&error)
+\begin{DoxyCompactList}\small\item\em Signal emitted when robot reset fails. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classTaskExecutor_ac6783ed16b392507bfaabd21422ee140}{Task\+Executor}} (\mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classTaskExecutor}{Task\+Executor} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_ac8eb8ba8a66de4a3ed3ead3ad7abab5d}{execute\+Task}} (const \mbox{\hyperlink{structSubtask}{Subtask}} \&subtask, bool start\+Solution=false)
+\begin{DoxyCompactList}\small\item\em Executes a given subtask. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_a0a0c76bf999aea855cb83a6051864e09}{force\+Stop}} ()
+\begin{DoxyCompactList}\small\item\em Forces the stop of all currently running tasks. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classTaskExecutor_ad117a059ab0c1f6d85e318f0cf4709bc}{reset\+Robot}} ()
+\begin{DoxyCompactList}\small\item\em Triggers python script to reset the robot to its initial state and removes all objects from the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Executes tasks and manages their execution state. 
+
+The \doxylink{classTaskExecutor}{Task\+Executor} class is responsible for executing tasks and managing their execution state. It interacts with \doxylink{classScriptWorker}{Script\+Worker} objects to perform the actual execution of tasks. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classTaskExecutor_ac6783ed16b392507bfaabd21422ee140}\index{TaskExecutor@{TaskExecutor}!TaskExecutor@{TaskExecutor}}
+\index{TaskExecutor@{TaskExecutor}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{TaskExecutor()}{TaskExecutor()}}
+{\footnotesize\ttfamily \label{classTaskExecutor_ac6783ed16b392507bfaabd21422ee140} 
+Task\+Executor\+::\+Task\+Executor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructs a \doxylink{classTaskExecutor}{Task\+Executor} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent \doxylink{classQObject}{QObject}. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classTaskExecutor_ac8eb8ba8a66de4a3ed3ead3ad7abab5d}\index{TaskExecutor@{TaskExecutor}!executeTask@{executeTask}}
+\index{executeTask@{executeTask}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{executeTask()}{executeTask()}}
+{\footnotesize\ttfamily \label{classTaskExecutor_ac8eb8ba8a66de4a3ed3ead3ad7abab5d} 
+void Task\+Executor\+::execute\+Task (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structSubtask}{Subtask}} \&}]{subtask}{, }\item[{bool}]{start\+Solution}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Executes a given subtask. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em subtask} & The subtask to be executed. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classTaskExecutor_a0a0c76bf999aea855cb83a6051864e09}\index{TaskExecutor@{TaskExecutor}!forceStop@{forceStop}}
+\index{forceStop@{forceStop}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{forceStop()}{forceStop()}}
+{\footnotesize\ttfamily \label{classTaskExecutor_a0a0c76bf999aea855cb83a6051864e09} 
+void Task\+Executor\+::force\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Forces the stop of all currently running tasks. 
+
+\Hypertarget{classTaskExecutor_ad117a059ab0c1f6d85e318f0cf4709bc}\index{TaskExecutor@{TaskExecutor}!resetRobot@{resetRobot}}
+\index{resetRobot@{resetRobot}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{resetRobot()}{resetRobot()}}
+{\footnotesize\ttfamily \label{classTaskExecutor_ad117a059ab0c1f6d85e318f0cf4709bc} 
+void Task\+Executor\+::reset\+Robot (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Triggers python script to reset the robot to its initial state and removes all objects from the scene. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_ad117a059ab0c1f6d85e318f0cf4709bc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_a782117a9e19eff6a87255c7358e87857}\index{TaskExecutor@{TaskExecutor}!resetRobotFailed@{resetRobotFailed}}
+\index{resetRobotFailed@{resetRobotFailed}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{resetRobotFailed}{resetRobotFailed}}
+{\footnotesize\ttfamily \label{classTaskExecutor_a782117a9e19eff6a87255c7358e87857} 
+void Task\+Executor\+::reset\+Robot\+Failed (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when robot reset fails. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error message. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_a782117a9e19eff6a87255c7358e87857_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_a7fb6bb2e760b08c4816f5c48902d6498}\index{TaskExecutor@{TaskExecutor}!resetRobotFinished@{resetRobotFinished}}
+\index{resetRobotFinished@{resetRobotFinished}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{resetRobotFinished}{resetRobotFinished}}
+{\footnotesize\ttfamily \label{classTaskExecutor_a7fb6bb2e760b08c4816f5c48902d6498} 
+void Task\+Executor\+::reset\+Robot\+Finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when robot reset finishes. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_a7fb6bb2e760b08c4816f5c48902d6498_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_a9d92d24d74615c594a578eafb6d48799}\index{TaskExecutor@{TaskExecutor}!resetRobotStarted@{resetRobotStarted}}
+\index{resetRobotStarted@{resetRobotStarted}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{resetRobotStarted}{resetRobotStarted}}
+{\footnotesize\ttfamily \label{classTaskExecutor_a9d92d24d74615c594a578eafb6d48799} 
+void Task\+Executor\+::reset\+Robot\+Started (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when robot reset starts. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_a9d92d24d74615c594a578eafb6d48799_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_adeffddd301a31fe1891712d30096a468}\index{TaskExecutor@{TaskExecutor}!taskExecutionFailed@{taskExecutionFailed}}
+\index{taskExecutionFailed@{taskExecutionFailed}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{taskExecutionFailed}{taskExecutionFailed}}
+{\footnotesize\ttfamily \label{classTaskExecutor_adeffddd301a31fe1891712d30096a468} 
+void Task\+Executor\+::task\+Execution\+Failed (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when task execution fails. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error message. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_adeffddd301a31fe1891712d30096a468_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_ad2f2dd7e0d22d7b3bb2ec532f158bddc}\index{TaskExecutor@{TaskExecutor}!taskExecutionFinished@{taskExecutionFinished}}
+\index{taskExecutionFinished@{taskExecutionFinished}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{taskExecutionFinished}{taskExecutionFinished}}
+{\footnotesize\ttfamily \label{classTaskExecutor_ad2f2dd7e0d22d7b3bb2ec532f158bddc} 
+void Task\+Executor\+::task\+Execution\+Finished (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when task execution finishes. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_ad2f2dd7e0d22d7b3bb2ec532f158bddc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classTaskExecutor_a2b22d6b9fa450f3471de4359b6f3b131}\index{TaskExecutor@{TaskExecutor}!taskExecutionStarted@{taskExecutionStarted}}
+\index{taskExecutionStarted@{taskExecutionStarted}!TaskExecutor@{TaskExecutor}}
+\doxysubsubsection{\texorpdfstring{taskExecutionStarted}{taskExecutionStarted}}
+{\footnotesize\ttfamily \label{classTaskExecutor_a2b22d6b9fa450f3471de4359b6f3b131} 
+void Task\+Executor\+::task\+Execution\+Started (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when task execution starts. 
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTaskExecutor_a2b22d6b9fa450f3471de4359b6f3b131_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{task__executor_8hpp}{task\+\_\+executor.\+hpp}}\item 
+\mbox{\hyperlink{task__executor_8cpp}{task\+\_\+executor.\+cpp}}\end{DoxyCompactItemize}

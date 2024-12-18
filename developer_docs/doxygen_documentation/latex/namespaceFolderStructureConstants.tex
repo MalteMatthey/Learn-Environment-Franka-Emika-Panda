@@ -1,0 +1,152 @@
+\doxysection{Folder\+Structure\+Constants Namespace Reference}
+\hypertarget{namespaceFolderStructureConstants}{}\label{namespaceFolderStructureConstants}\index{FolderStructureConstants@{FolderStructureConstants}}
+
+
+Contains constants related to the folder structure of the learn\+\_\+environment package.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+QString \mbox{\hyperlink{namespaceFolderStructureConstants_aa49dbebb86fde82b617e7db1193bd720}{get\+Package\+Path}} ()
+\begin{DoxyCompactList}\small\item\em Retrieves the path of the package. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_a82483c09d34f6dbea6451b921b231c5a}{CONVERTED\+\_\+\+SCRIPT\+\_\+\+PATH}} = "{}/converter/converted.\+py"{}
+\begin{DoxyCompactList}\small\item\em Path to the converted script. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_a97e2abd38a09653e626ba46a5e5e10bd}{RESET\+\_\+\+ROBOT\+\_\+\+SCRIPT\+\_\+\+PATH}} = "{}/task\+\_\+pool/reset\+\_\+robot.\+py"{}
+\begin{DoxyCompactList}\small\item\em Path to the reset robot script. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_a84dc4e92b3d05fcef00c9abb99f9f9da}{TASK\+\_\+\+DEFINITIONS\+\_\+\+PATH}} = "{}\+:/task\+\_\+pool/task\+\_\+definitions.\+json"{}
+\begin{DoxyCompactList}\small\item\em Path to the task definitions json. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_adc8fa9eae998a60723424421756bd65b}{TOPIC\+\_\+\+DEFINITIONS\+\_\+\+PATH}} = "{}\+:/task\+\_\+pool/topic\+\_\+definitions.\+json"{}
+\begin{DoxyCompactList}\small\item\em Path to the topic definitions json. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_a4a34d956c5883529b64e6bb183d768a7}{DIFFICULTY\+\_\+\+LEVELS\+\_\+\+DEFINITION\+\_\+\+PATH}} = "{}\+:/task\+\_\+pool/difficulty\+\_\+levels.\+json"{}
+\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_ae963e238a7326dd80a2401eae27c252a}{SOLUTION\+\_\+\+SCRIPTS\+\_\+\+SOURCE\+\_\+\+PATH}} = "{}/task\+\_\+pool/solution\+\_\+scripts"{}
+\begin{DoxyCompactList}\small\item\em Path to the solution scripts source directory. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_afbae3ede611451504507436474ae482e}{EVALUATION\+\_\+\+SCRIPTS\+\_\+\+SOURCE\+\_\+\+PATH}} = "{}/task\+\_\+pool/evaluation\+\_\+scripts"{}
+\begin{DoxyCompactList}\small\item\em Path to the evaluation scripts source directory. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_ac7bdb4609b31965b63ac7d3ce2b197c3}{USER\+\_\+\+WORKSPACE}} = "{}/tasks"{}
+\begin{DoxyCompactList}\small\item\em Path to the user workspace directory. Adjust it in devconatiner.\+json if changed. \end{DoxyCompactList}\item 
+const QString \mbox{\hyperlink{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9}{PACKAGE\+\_\+\+NAME}} = "{}learn\+\_\+environment"{}
+\begin{DoxyCompactList}\small\item\em Name of the package. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains constants related to the folder structure of the learn\+\_\+environment package. 
+
+This namespace provides constants for various paths used within the learn\+\_\+environment package, as well as a function to retrieve the package path. 
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceFolderStructureConstants_aa49dbebb86fde82b617e7db1193bd720}\index{FolderStructureConstants@{FolderStructureConstants}!getPackagePath@{getPackagePath}}
+\index{getPackagePath@{getPackagePath}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{getPackagePath()}{getPackagePath()}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_aa49dbebb86fde82b617e7db1193bd720} 
+QString Folder\+Structure\+Constants\+::get\+Package\+Path (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves the path of the package. 
+
+This function attempts to retrieve the path of the package using ROS package utilities. If an error occurs during retrieval, it logs a critical error message and returns an empty QString.
+
+\begin{DoxyReturn}{Returns}
+QString The path of the package or an empty QString if an error occurs. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceFolderStructureConstants_aa49dbebb86fde82b617e7db1193bd720_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceFolderStructureConstants_a82483c09d34f6dbea6451b921b231c5a}\index{FolderStructureConstants@{FolderStructureConstants}!CONVERTED\_SCRIPT\_PATH@{CONVERTED\_SCRIPT\_PATH}}
+\index{CONVERTED\_SCRIPT\_PATH@{CONVERTED\_SCRIPT\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{CONVERTED\_SCRIPT\_PATH}{CONVERTED\_SCRIPT\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_a82483c09d34f6dbea6451b921b231c5a} 
+const QString Folder\+Structure\+Constants\+::\+CONVERTED\+\_\+\+SCRIPT\+\_\+\+PATH = "{}/converter/converted.\+py"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the converted script. 
+
+\Hypertarget{namespaceFolderStructureConstants_a4a34d956c5883529b64e6bb183d768a7}\index{FolderStructureConstants@{FolderStructureConstants}!DIFFICULTY\_LEVELS\_DEFINITION\_PATH@{DIFFICULTY\_LEVELS\_DEFINITION\_PATH}}
+\index{DIFFICULTY\_LEVELS\_DEFINITION\_PATH@{DIFFICULTY\_LEVELS\_DEFINITION\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{DIFFICULTY\_LEVELS\_DEFINITION\_PATH}{DIFFICULTY\_LEVELS\_DEFINITION\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_a4a34d956c5883529b64e6bb183d768a7} 
+const QString Folder\+Structure\+Constants\+::\+DIFFICULTY\+\_\+\+LEVELS\+\_\+\+DEFINITION\+\_\+\+PATH = "{}\+:/task\+\_\+pool/difficulty\+\_\+levels.\+json"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{namespaceFolderStructureConstants_afbae3ede611451504507436474ae482e}\index{FolderStructureConstants@{FolderStructureConstants}!EVALUATION\_SCRIPTS\_SOURCE\_PATH@{EVALUATION\_SCRIPTS\_SOURCE\_PATH}}
+\index{EVALUATION\_SCRIPTS\_SOURCE\_PATH@{EVALUATION\_SCRIPTS\_SOURCE\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{EVALUATION\_SCRIPTS\_SOURCE\_PATH}{EVALUATION\_SCRIPTS\_SOURCE\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_afbae3ede611451504507436474ae482e} 
+const QString Folder\+Structure\+Constants\+::\+EVALUATION\+\_\+\+SCRIPTS\+\_\+\+SOURCE\+\_\+\+PATH = "{}/task\+\_\+pool/evaluation\+\_\+scripts"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the evaluation scripts source directory. 
+
+\Hypertarget{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9}\index{FolderStructureConstants@{FolderStructureConstants}!PACKAGE\_NAME@{PACKAGE\_NAME}}
+\index{PACKAGE\_NAME@{PACKAGE\_NAME}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{PACKAGE\_NAME}{PACKAGE\_NAME}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_aa9f54b725067dc395f26c6608161dae9} 
+const QString Folder\+Structure\+Constants\+::\+PACKAGE\+\_\+\+NAME = "{}learn\+\_\+environment"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Name of the package. 
+
+\Hypertarget{namespaceFolderStructureConstants_a97e2abd38a09653e626ba46a5e5e10bd}\index{FolderStructureConstants@{FolderStructureConstants}!RESET\_ROBOT\_SCRIPT\_PATH@{RESET\_ROBOT\_SCRIPT\_PATH}}
+\index{RESET\_ROBOT\_SCRIPT\_PATH@{RESET\_ROBOT\_SCRIPT\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{RESET\_ROBOT\_SCRIPT\_PATH}{RESET\_ROBOT\_SCRIPT\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_a97e2abd38a09653e626ba46a5e5e10bd} 
+const QString Folder\+Structure\+Constants\+::\+RESET\+\_\+\+ROBOT\+\_\+\+SCRIPT\+\_\+\+PATH = "{}/task\+\_\+pool/reset\+\_\+robot.\+py"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the reset robot script. 
+
+\Hypertarget{namespaceFolderStructureConstants_ae963e238a7326dd80a2401eae27c252a}\index{FolderStructureConstants@{FolderStructureConstants}!SOLUTION\_SCRIPTS\_SOURCE\_PATH@{SOLUTION\_SCRIPTS\_SOURCE\_PATH}}
+\index{SOLUTION\_SCRIPTS\_SOURCE\_PATH@{SOLUTION\_SCRIPTS\_SOURCE\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{SOLUTION\_SCRIPTS\_SOURCE\_PATH}{SOLUTION\_SCRIPTS\_SOURCE\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_ae963e238a7326dd80a2401eae27c252a} 
+const QString Folder\+Structure\+Constants\+::\+SOLUTION\+\_\+\+SCRIPTS\+\_\+\+SOURCE\+\_\+\+PATH = "{}/task\+\_\+pool/solution\+\_\+scripts"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the solution scripts source directory. 
+
+\Hypertarget{namespaceFolderStructureConstants_a84dc4e92b3d05fcef00c9abb99f9f9da}\index{FolderStructureConstants@{FolderStructureConstants}!TASK\_DEFINITIONS\_PATH@{TASK\_DEFINITIONS\_PATH}}
+\index{TASK\_DEFINITIONS\_PATH@{TASK\_DEFINITIONS\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{TASK\_DEFINITIONS\_PATH}{TASK\_DEFINITIONS\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_a84dc4e92b3d05fcef00c9abb99f9f9da} 
+const QString Folder\+Structure\+Constants\+::\+TASK\+\_\+\+DEFINITIONS\+\_\+\+PATH = "{}\+:/task\+\_\+pool/task\+\_\+definitions.\+json"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the task definitions json. 
+
+\Hypertarget{namespaceFolderStructureConstants_adc8fa9eae998a60723424421756bd65b}\index{FolderStructureConstants@{FolderStructureConstants}!TOPIC\_DEFINITIONS\_PATH@{TOPIC\_DEFINITIONS\_PATH}}
+\index{TOPIC\_DEFINITIONS\_PATH@{TOPIC\_DEFINITIONS\_PATH}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{TOPIC\_DEFINITIONS\_PATH}{TOPIC\_DEFINITIONS\_PATH}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_adc8fa9eae998a60723424421756bd65b} 
+const QString Folder\+Structure\+Constants\+::\+TOPIC\+\_\+\+DEFINITIONS\+\_\+\+PATH = "{}\+:/task\+\_\+pool/topic\+\_\+definitions.\+json"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the topic definitions json. 
+
+Path to the difficulty definitions json. \Hypertarget{namespaceFolderStructureConstants_ac7bdb4609b31965b63ac7d3ce2b197c3}\index{FolderStructureConstants@{FolderStructureConstants}!USER\_WORKSPACE@{USER\_WORKSPACE}}
+\index{USER\_WORKSPACE@{USER\_WORKSPACE}!FolderStructureConstants@{FolderStructureConstants}}
+\doxysubsubsection{\texorpdfstring{USER\_WORKSPACE}{USER\_WORKSPACE}}
+{\footnotesize\ttfamily \label{namespaceFolderStructureConstants_ac7bdb4609b31965b63ac7d3ce2b197c3} 
+const QString Folder\+Structure\+Constants\+::\+USER\+\_\+\+WORKSPACE = "{}/tasks"{}\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Path to the user workspace directory. Adjust it in devconatiner.\+json if changed. 
+
