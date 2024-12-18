@@ -4,13 +4,6 @@
 #include <pluginlib/class_list_macros.hpp>
 
 #include <QMainWindow>
-#include <QSplitter>
-#include <QHBoxLayout>
-
-namespace {
-    const char* CLOSE_ICON_PATH = ":/resource/icons/close.png";
-    const char* MENU_ICON_PATH = ":/resource/icons/menu.png";
-}
 
 LearnEnvironment::LearnEnvironment(QWidget *parent)
     : rviz::Panel(parent),
@@ -36,7 +29,6 @@ LearnEnvironment::~LearnEnvironment()
 }
 
 void LearnEnvironment::initialize() {
-    sidebar = new Sidebar(this);
     taskUI = new TaskUI(
         ui->subtaskListVLayout,
         ui->mainTitleLabel,
@@ -45,49 +37,23 @@ void LearnEnvironment::initialize() {
         ui->topicLabel,
         ui->nextButton,
         ui->previousButton,
-        *sidebar,
+        ui->menuButton,
+        ui->resetRobotStartButton,
+        ui->resetRobotFrame,
+        ui->centralwidget,
         this
     );
-    taskManager = new TaskManager(taskUI, ui->nextButton, ui->previousButton, ui->resetRobotFrame, this);
+    taskManager = new TaskManager(taskUI, this);
 
-    setupSplitterAndLayout();
-
-    sidebar->setVisible(false);
-
-    connect(ui->menuButton, &QPushButton::clicked, this, &LearnEnvironment::toggleSidebarVisibility);
-    connect(ui->resetRobotStartButton, &QToolButton::clicked, taskManager, &TaskManager::forceResetRobot);
+    QHBoxLayout *mainPanelLayout = new QHBoxLayout(this);
+    mainPanelLayout->addWidget(taskUI);
+    mainPanelLayout->setContentsMargins(0, 0, 0, 0);
+    setLayout(mainPanelLayout);
 
     notebookConverter->moveToThread(notebookThread);
     connect(notebookThread, &QThread::started, notebookConverter, &NotebookConverter::processTaskPool);
 
     notebookThread->start();
-}
-
-void LearnEnvironment::setupSplitterAndLayout() {
-    QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
-
-    splitter->addWidget(sidebar);
-    splitter->addWidget(ui->centralwidget);
-
-    QList<int> sizes;
-    sizes << 200 << 600;
-    splitter->setSizes(sizes);
-
-    // Set the layout to the main widget
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    mainLayout->addWidget(splitter);
-    setLayout(mainLayout);
-}
-
-void LearnEnvironment::toggleSidebarVisibility() {
-    bool isVisible = sidebar->isVisible();
-    sidebar->setVisible(!isVisible);
-
-    if (sidebar->isVisible()) {
-        ui->menuButton->setIcon(QIcon(CLOSE_ICON_PATH));
-    } else {
-        ui->menuButton->setIcon(QIcon(MENU_ICON_PATH));
-    }
 }
 
 void LearnEnvironment::load(const rviz::Config &config) {

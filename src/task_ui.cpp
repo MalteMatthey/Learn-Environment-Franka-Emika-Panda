@@ -2,7 +2,9 @@
 #include "learn_environment/subtask_item.hpp"
 
 #include <QRegExp>
+#include <QSplitter>
 #include <QDebug>
+#include <QHBoxLayout>
 
 namespace {
     const char* FOLDER_HTML_TEMPLATE = R"(
@@ -13,26 +15,48 @@ namespace {
         <p style=" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; 
             -qt-block-indent:0; text-indent:0px;"><span style="font-family:'monospace'; 
             color:'#444444';">)";
+    const char* CLOSE_ICON_PATH = ":/icons/close.png";
+    const char* MENU_ICON_PATH = ":/icons/menu.png";
+    const char* LOADING_GIF_PATH = ":/icons/loading.gif";
+    const char* START_ICON_PATH = ":/icons/play.png";
+    const char* STOP_ICON_PATH = ":/icons/stop.png";
+    const char* FAILED_ICON_PATH = ":/icons/failed.png";
+    const char* SUCCEEDED_ICON_PATH = ":/icons/succeeded.png";
+    const char* RESET_ROBOT_TEXT = "Resetting the robot to its default state...";
+    const char* RESET_ROBOT_TEXT_SCRIPTS = "Resetting the robot before script execution...";
+    const char* RESET_ROBOT_TEXT_SUCCESS = "Robot successfully reset!";
+    const char* RESET_ROBOT_TEXT_FAILED = "<b>Robot reset failed!</b>";
+    const char* STOP_RESET_ROBOT_TOOLTIP = "Cancel reset process";
+    const char* RESET_ROBOT_TOOLTIP = "Reset robot to default state";
 }
 
 TaskUI::TaskUI(QVBoxLayout *subtaskListLayout, QLabel *mainTitleLabel,
                QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel,
-               QPushButton *nextButton, QPushButton *previousButton,
-               Sidebar &sidebar, QObject *parent)
-    : QObject(parent),
-      sidebar(sidebar),
+               QPushButton *nextButton, QPushButton *previousButton, QToolButton *menuButton,
+               QToolButton *resetRobotStartButton, QFrame *resetRobotFrame, QWidget *centralwidget, QWidget *parent)
+    : QWidget(parent),
+      sidebar(new Sidebar(this)),
       subtaskListLayout(subtaskListLayout),
       mainTitleLabel(mainTitleLabel),
       difficultyLabel(difficultyLabel),
       folderLabel(folderLabel),
       topicLabel(topicLabel),
       nextButton(nextButton),
-      previousButton(previousButton)
+      previousButton(previousButton),
+      menuButton(menuButton),
+      resetRobotStartButton(resetRobotStartButton),
+      resetRobotFrame(resetRobotFrame),
+      executeResetRobotFrame(nullptr),
+      centralwidget(centralwidget)
 { }
 
 void TaskUI::setTaskManager(TaskManager *manager)
 {
     taskManager = manager;
+    connect(resetRobotStartButton, &QToolButton::clicked, taskManager, &TaskManager::forceResetRobot);
+    connect(nextButton, &QPushButton::clicked, taskManager, &TaskManager::nextTask);
+    connect(previousButton, &QPushButton::clicked, taskManager, &TaskManager::previousTask);
+    connect(this, &TaskUI::taskSelected, taskManager, &TaskManager::selectTask);
 }
 
 void TaskUI::initializeUI(const QVector<QSharedPointer<Task>> &loadedTasks)
@@ -43,9 +67,13 @@ void TaskUI::initializeUI(const QVector<QSharedPointer<Task>> &loadedTasks)
         return;
     }
 
-    sidebar.fillSidebarWithTasks(tasks);
+    sidebar->fillSidebarWithTasks(tasks);
+    sidebar->setVisible(false);
 
-    connect(&sidebar, &Sidebar::taskSelected, this, &TaskUI::taskSelected);
+    setupSplitterAndLayout();
+
+    connect(menuButton, &QPushButton::clicked, this, &TaskUI::toggleSidebarVisibility);
+    connect(sidebar, &Sidebar::taskSelected, this, &TaskUI::taskSelected);
 }
 
 void TaskUI::setTaskUI(int currentTaskIndex)
@@ -72,7 +100,7 @@ void TaskUI::setTaskUI(int currentTaskIndex)
 
     setSubtaskItems(currentTaskIndex);
 
-    sidebar.selectTask(currentTaskIndex);
+    sidebar->selectTask(currentTaskIndex);
 }
 
 void TaskUI::setSubtaskItems(int currentTaskIndex)
@@ -137,4 +165,84 @@ void TaskUI::addLineBetweenWidgets()
     layout->addWidget(line);
 
     subtaskListLayout->addWidget(container);
+}
+
+void TaskUI::setupSplitterAndLayout() {
+    QSplitter *splitter = new QSplitter(Qt::Horizontal, this);
+
+    centralwidget->setStyleSheet("border: 0; margin: 0;");
+
+    splitter->addWidget(sidebar);
+    splitter->addWidget(centralwidget);
+    splitter->setStyleSheet("border: 0; margin: 0;");
+    splitter->setContentsMargins(0, 0, 0, 0);
+
+    QList<int> sizes;
+    sizes << 200 << 600;
+    splitter->setSizes(sizes);
+
+    // Set the layout to the main widget
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout->addWidget(splitter);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    setLayout(mainLayout);
+}
+
+void TaskUI::toggleSidebarVisibility() {
+    bool isVisible = sidebar->isVisible();
+    sidebar->setVisible(!isVisible);
+
+    if (sidebar->isVisible()) {
+        menuButton->setIcon(QIcon(CLOSE_ICON_PATH));
+    } else {
+        menuButton->setIcon(QIcon(MENU_ICON_PATH));
+    }
+}
+
+void TaskUI::startedRobotResetUI(bool noSubtasksLeft) {
+    resetRobotStartButton->setIcon(QIcon(STOP_ICON_PATH));
+    resetRobotStartButton->setToolTip(STOP_RESET_ROBOT_TOOLTIP);
+
+
+    if (!executeResetRobotFrame) {
+        executeResetRobotFrame = new ExecuteFrame(resetRobotFrame);
+        QVBoxLayout *resetLayout = qobject_cast<QVBoxLayout*>(resetRobotFrame->layout());
+        if (!resetLayout) {
+            resetLayout = new QVBoxLayout(resetRobotFrame);
+            resetRobotFrame->setLayout(resetLayout);
+        }
+        if (!resetLayout) {
+            qCritical() << "Reset layout not found.";
+            return;
+        }
+        resetLayout->addWidget(executeResetRobotFrame);
+    }
+    if (!executeResetRobotFrame) {
+        qCritical() << "Execute reset robot frame not found.";
+        return;
+    }
+    executeResetRobotFrame->setImage(LOADING_GIF_PATH);
+    if (noSubtasksLeft) {
+        executeResetRobotFrame->setText(RESET_ROBOT_TEXT);
+    } else {
+        executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SCRIPTS);
+    }
+}
+
+void TaskUI::finishedRobotResetUI() {
+    resetRobotStartButton->setIcon(QIcon(START_ICON_PATH));
+    resetRobotStartButton->setToolTip(RESET_ROBOT_TOOLTIP);
+    if (executeResetRobotFrame) {
+        if (!executeResetRobotFrame->getText().contains(RESET_ROBOT_TEXT_FAILED)) {
+            executeResetRobotFrame->setImage(SUCCEEDED_ICON_PATH);
+            executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SUCCESS);
+        }
+    }
+}
+
+void TaskUI::failedRobotResetUI(const QString &error) {
+    if (executeResetRobotFrame) {
+        executeResetRobotFrame->setImage(FAILED_ICON_PATH);
+        executeResetRobotFrame->setText(QString(RESET_ROBOT_TEXT_FAILED) + "<br>" + error);
+    }
 }

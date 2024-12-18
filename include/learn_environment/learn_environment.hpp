@@ -3,7 +3,6 @@
 
 #include <rviz/panel.h>
 #include <ui_learn_environment.h>
-#include "sidebar.hpp"
 #include "task_manager.hpp"
 #include "task_ui.hpp"
 #include "notebook_converter.hpp"
@@ -54,15 +53,8 @@ public:
      */
     virtual void save(rviz::Config config) const override;
 
-private Q_SLOTS:
-    /**
-     * @brief Toggles the visibility of the sidebar.
-     */
-    void toggleSidebarVisibility();
-
 private:
     Ui::LearnEnvironment *ui; ///< Pointer to the UI object.
-    Sidebar *sidebar; ///< Pointer to the Sidebar object.
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
     TaskUI *taskUI; ///< Pointer to the TaskUI object.
     QProcess *process; ///< Pointer to the QProcess object.
@@ -74,11 +66,6 @@ private:
      * @brief Initializes the UI and the startup logic.
      */
     void initialize();
-
-    /**
-     * @brief Sets up the splitter and layout for the main window.
-     */
-    void setupSplitterAndLayout();
 };
 
 #endif // LEARN_ENVIRONMENT_HPP

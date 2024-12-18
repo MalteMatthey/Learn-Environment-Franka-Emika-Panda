@@ -3,40 +3,21 @@
 #include "learn_environment/task_parser.hpp"
 #include "learn_environment/task_executor.hpp"
 #include "learn_environment/notebook_converter.hpp"
+#include "learn_environment/folder_structure_constants.hpp"
 
 #include <QDebug>
 #include <QToolButton>
 
-namespace {
-    const char* TASK_DEFINITIONS_PATH = ":/task_pool/task_definitions.json";
-    const char* TOPIC_DEFINITIONS_PATH = ":/task_pool/topic_definitions.json";
-    const char* DIFFICULTY_LEVELS_DEFINITION_PATH = ":/task_pool/difficulty_levels.json";
-    const char* LOADING_GIF_PATH = ":/resource/icons/loading.gif";
-    const char* START_ICON_PATH = ":/resource/icons/play.png";
-    const char* STOP_ICON_PATH = ":/resource/icons/stop.png";
-    const char* FAILED_ICON_PATH = ":/resource/icons/failed.png";
-    const char* SUCCEEDED_ICON_PATH = ":/resource/icons/succeeded.png";
-    const char* RESET_ROBOT_TEXT = "Resetting the robot to its default state...";
-    const char* RESET_ROBOT_TEXT_SCRIPTS = "Resetting the robot before script execution...";
-    const char* RESET_ROBOT_TEXT_SUCCESS = "Robot successfully reset!";
-    const char* RESET_ROBOT_TEXT_FAILED = "<b>Robot reset failed!</b>";
-    const char* STOP_RESET_ROBOT_TOOLTIP = "Cancel reset process";
-    const char* RESET_ROBOT_TOOLTIP = "Reset robot to default state";
-    const char* RESET_ROBOT_START_BUTTON_NAME = "resetRobotStartButton";
-}
-
-TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QFrame *resetRobotFrame, QObject *parent)
+TaskManager::TaskManager(TaskUI *taskUI, QObject *parent)
     : QObject(parent),
       taskUI(taskUI),
       taskExecutor(new TaskExecutor(this)),
-      nextButton(nextButton),
-      previousButton(previousButton),
-      resetRobotFrame(resetRobotFrame),
-      executeResetRobotFrame(nullptr),
       currentTaskIndex(0)
 {
     TaskParser parser;
-    tasks = parser.loadTasks(TASK_DEFINITIONS_PATH, DIFFICULTY_LEVELS_DEFINITION_PATH, TOPIC_DEFINITIONS_PATH);
+    tasks = parser.loadTasks(FolderStructureConstants::TASK_DEFINITIONS_PATH, 
+                             FolderStructureConstants::DIFFICULTY_LEVELS_DEFINITION_PATH, 
+                             FolderStructureConstants::TOPIC_DEFINITIONS_PATH);
 
     if (tasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskManager initialization.";
@@ -56,12 +37,6 @@ TaskManager::TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *p
     taskUI->initializeUI(tasks);
 
     selectTask(currentTaskIndex);
-
-    connect(nextButton, &QPushButton::clicked, this, &TaskManager::onNextButtonClicked);
-    connect(previousButton, &QPushButton::clicked, this, &TaskManager::onPreviousButtonClicked);
-
-    // Connect TaskUI's taskSelected signal to the selectTask slot
-    connect(taskUI, &TaskUI::taskSelected, this, &TaskManager::selectTask);
 }
 
 void TaskManager::startStopSubtask(Subtask &subtask, bool startSolution)
@@ -132,14 +107,14 @@ void TaskManager::selectTask(int index)
     }
 }
 
-void TaskManager::onNextButtonClicked()
+void TaskManager::nextTask()
 {
     if (currentTaskIndex < tasks.size() - 1) {
         selectTask(currentTaskIndex + 1);
     }
 }
 
-void TaskManager::onPreviousButtonClicked()
+void TaskManager::previousTask()
 {
     if (currentTaskIndex > 0) {
         selectTask(currentTaskIndex - 1);
@@ -317,58 +292,19 @@ void TaskManager::onResetRobotStarted()
         return;
     }
 
-    QString message = "Robot reset started.";
     resetRobotInProgress = true;
-    
-    QToolButton* resetRobotStartButton = resetRobotFrame->findChild<QToolButton*>(RESET_ROBOT_START_BUTTON_NAME);
-    if (resetRobotStartButton) {
-        resetRobotStartButton->setIcon(QIcon(STOP_ICON_PATH));
-        resetRobotStartButton->setToolTip(STOP_RESET_ROBOT_TOOLTIP);
-    } else {
-        qCritical() << "Reset robot start button not found.";
-    }
 
-    if (!executeResetRobotFrame) {
-        executeResetRobotFrame = new ExecuteFrame(resetRobotFrame);
-        QVBoxLayout *resetLayout = qobject_cast<QVBoxLayout*>(resetRobotFrame->layout());
-        if (!resetLayout) {
-            resetLayout = new QVBoxLayout(resetRobotFrame);
-            resetRobotFrame->setLayout(resetLayout);
-        }
-        if (!resetLayout) {
-            qCritical() << "Reset layout not found.";
-            return;
-        }
-        resetLayout->addWidget(executeResetRobotFrame);
-    }
-    if (!executeResetRobotFrame) {
-        qCritical() << "Execute reset robot frame not found.";
-        return;
-    }
-    executeResetRobotFrame->setImage(LOADING_GIF_PATH);
-    if (queued_and_running_subtasks.isEmpty()) {
-        executeResetRobotFrame->setText(RESET_ROBOT_TEXT);
-    } else {
-        executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SCRIPTS);
-    }
-    logWithHashes(message);
+    bool noSubtasksLeft = queued_and_running_subtasks.isEmpty();
+    taskUI->startedRobotResetUI(noSubtasksLeft);
+
+    logWithHashes("Robot reset started.");
 }
 
 void TaskManager::onResetRobotFinished()
 {
     resetRobotInProgress = false;
-    // update UI
-    QToolButton* resetRobotStartButton = resetRobotFrame->findChild<QToolButton*>(RESET_ROBOT_START_BUTTON_NAME);
-    if (resetRobotStartButton) {
-        resetRobotStartButton->setIcon(QIcon(START_ICON_PATH));
-        resetRobotStartButton->setToolTip(RESET_ROBOT_TOOLTIP);
-    }
-    if (executeResetRobotFrame) {
-        if (!executeResetRobotFrame->getText().contains(RESET_ROBOT_TEXT_FAILED)) {
-            executeResetRobotFrame->setImage(SUCCEEDED_ICON_PATH);
-            executeResetRobotFrame->setText(RESET_ROBOT_TEXT_SUCCESS);
-        }
-    }
+    
+    taskUI->finishedRobotResetUI();
 
     initiateFirstSubtask();
 }
@@ -379,10 +315,7 @@ void TaskManager::onResetRobotFailed(const QString &error)
 
     resetRobotInProgress = false;
 
-    if (executeResetRobotFrame) {
-        executeResetRobotFrame->setImage(FAILED_ICON_PATH);
-        executeResetRobotFrame->setText(QString(RESET_ROBOT_TEXT_FAILED) + "<br>" + error);
-    }
+    taskUI->failedRobotResetUI(error);
 
     onTaskExecutionFailed(error);
 }

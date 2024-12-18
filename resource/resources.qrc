@@ -1,0 +1,17 @@
+<!DOCTYPE RCC><RCC version="1.0">
+ <qresource>
+     <file>icons/menu.png</file>
+     <file>icons/close.png</file>
+     <file>icons/help.png</file>
+     <file>icons/play.png</file>
+     <file>icons/stop.png</file>
+     <file>icons/failed.png</file>
+     <file>icons/succeeded.png</file>
+     <file>icons/loading.gif</file>
+     <file>icons/queued.gif</file>
+     
+     <file>../task_pool/task_definitions.json</file>
+     <file>../task_pool/difficulty_levels.json</file>
+     <file>../task_pool/topic_definitions.json</file>
+ </qresource>
+ </RCC>

@@ -17,13 +17,13 @@ namespace {
     const char* LINK_STYLE = "font-family:'monospace'; font-size:10pt; color:'#444444'; vertical-align:bottom;";
     const char* BODY_STYLE = "color:#444444;";
 
-    const char* START_ICON_PATH = ":/resource/icons/play.png";
-    const char* STOP_ICON_PATH = ":/resource/icons/stop.png";
-    const char* HELP_ICON_PATH = ":/resource/icons/help.png";
-    const char* LOADING_GIF_PATH = ":/resource/icons/loading.gif";
-    const char* QUEUED_GIF_PATH = ":/resource/icons/queued.gif";
-    const char* FAILED_ICON_PATH = ":/resource/icons/failed.png";
-    const char* SUCCEEDED_ICON_PATH = ":/resource/icons/succeeded.png";
+    const char* START_ICON_PATH = ":/icons/play.png";
+    const char* STOP_ICON_PATH = ":/icons/stop.png";
+    const char* HELP_ICON_PATH = ":/icons/help.png";
+    const char* LOADING_GIF_PATH = ":/icons/loading.gif";
+    const char* QUEUED_GIF_PATH = ":/icons/queued.gif";
+    const char* FAILED_ICON_PATH = ":/icons/failed.png";
+    const char* SUCCEEDED_ICON_PATH = ":/icons/succeeded.png";
 
     const char* ICON_BUTTON_STYLE = 
         "QToolButton { border: 0; padding: 0; }"
