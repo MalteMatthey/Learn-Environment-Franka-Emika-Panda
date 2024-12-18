@@ -60,7 +60,6 @@ struct Subtask {
  */
 struct Task {
     QString title; ///< The title of the task.
-    QString description; ///< The description of the task.
     QString folder; ///< The folder path of the task.
     QString difficulty; ///< The difficulty level of the task.
     QString topic; ///< The topic of the task.
