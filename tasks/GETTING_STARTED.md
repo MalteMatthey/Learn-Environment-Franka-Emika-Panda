@@ -1,5 +1,7 @@
 # Welcome to the Tutorial
 
+<img src="./../developer_docs/images/plugin.png" alt="plugin" width="600"/>
+
 To get started, follow these steps:
 
 1. **Open a Terminal in VS Code**
