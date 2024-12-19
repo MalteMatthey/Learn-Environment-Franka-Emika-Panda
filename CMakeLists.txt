@@ -80,7 +80,7 @@ set(${PROJECT_NAME}_UIS
 )
 
 set(${PROJECT_NAME}_QRC
-  resources.qrc
+  resource/resources.qrc
 )
 
 # Create header from ui file (uic)

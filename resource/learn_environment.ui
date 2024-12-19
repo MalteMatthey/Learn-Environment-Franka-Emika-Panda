@@ -139,7 +139,7 @@ QToolButton:hover { background: white; border-radius: 8px; }</string>
               </property>
               <property name="icon">
                <iconset resource="resources.qrc">
-                <normaloff>:/resource/icons/menu.png</normaloff>:/resource/icons/menu.png</iconset>
+                <normaloff>:/icons/menu.png</normaloff>:/icons/menu.png</iconset>
               </property>
               <property name="iconSize">
                <size>
@@ -336,7 +336,7 @@ QToolButton:hover { background: #e6e6e6; border-radius: 8px; }</string>
                  </property>
                  <property name="icon">
                   <iconset resource="resources.qrc">
-                   <normaloff>:/resource/icons/play.png</normaloff>:/resource/icons/play.png</iconset>
+                   <normaloff>:/icons/play.png</normaloff>:/icons/play.png</iconset>
                  </property>
                  <property name="iconSize">
                   <size>

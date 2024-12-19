@@ -88,7 +88,6 @@ QVector<QSharedPointer<Task>> TaskParser::parseTasks(const json& taskJsonData, c
         QSharedPointer<Task> task(new Task);
         try {
             task->title = QString::fromStdString(taskJson.at(TITLE_KEY).get<std::string>());
-            task->description = QString::fromStdString(taskJson.at(DESCRIPTION_KEY).get<std::string>());
             task->difficulty = QString::fromStdString(taskJson.at(DIFFICULTY_KEY).get<std::string>());
             task->folder = QString::fromStdString(taskJson.at(FOLDER_KEY).get<std::string>());
 
@@ -180,9 +179,15 @@ QVector<Subtask> TaskParser::parseSubtasks(const json& subtasksJson, QSharedPoin
             subtask.title = QString::fromStdString(subtaskJson.at(TITLE_KEY).get<std::string>());
             subtask.description = QString::fromStdString(subtaskJson.at(DESCRIPTION_KEY).get<std::string>());
             subtask.file = QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
-            subtask.filePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::USER_WORKSPACE + parentTask->folder + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
-            subtask.solutionFilePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH + parentTask->folder + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
-            subtask.evaluationFilePath = FolderStructureConstants::getPackagePath() + FolderStructureConstants::EVALUATION_SCRIPTS_SOURCE_PATH + parentTask->folder + QString::fromStdString(subtaskJson.at(EVALUATION_FILE_KEY).get<std::string>());
+            subtask.filePath = FolderStructureConstants::getPackagePath() 
+                               + FolderStructureConstants::USER_WORKSPACE + parentTask->folder 
+                               + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
+            subtask.solutionFilePath = FolderStructureConstants::getPackagePath() 
+                                       + FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH + parentTask->folder
+                                       + QString::fromStdString(subtaskJson.at(SOLUTION_FILE_KEY).get<std::string>());
+            subtask.evaluationFilePath = FolderStructureConstants::getPackagePath() 
+                                         + FolderStructureConstants::EVALUATION_SCRIPTS_SOURCE_PATH + parentTask->folder 
+                                         + QString::fromStdString(subtaskJson.at(EVALUATION_FILE_KEY).get<std::string>());
             // Optional fields
             if (subtaskJson.contains(TIMEOUT_SECONDS_KEY)) {
                 subtask.timeoutSeconds = subtaskJson.at(TIMEOUT_SECONDS_KEY).get<int>();

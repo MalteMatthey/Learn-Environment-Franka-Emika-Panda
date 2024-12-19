@@ -3,11 +3,8 @@
 
 #include "task.hpp"
 #include "task_executor.hpp"
-#include "execute_frame.hpp"
 
 #include <QObject>
-#include <QPushButton>
-#include <QFrame>
 #include <QVector>
 #include <QSharedPointer>
 
@@ -28,11 +25,9 @@ public:
     /**
      * @brief Constructs a TaskManager object.
      * @param taskUI Pointer to the TaskUI object.
-     * @param nextButton Pointer to the next button.
-     * @param previousButton Pointer to the previous button.
      * @param parent Pointer to the parent QObject.
      */
-    TaskManager(TaskUI *taskUI, QPushButton *nextButton, QPushButton *previousButton, QFrame *resetRobotFrame, QObject *parent = nullptr);
+    TaskManager(TaskUI *taskUI, QObject *parent = nullptr);
 
     /**
      * @brief Starts or stops a subtask.
@@ -49,6 +44,22 @@ public:
 
 public Q_SLOTS:
     /**
+     * @brief Slot for changing to the next task.
+     */
+    void nextTask();
+
+    /**
+     * @brief Slot for changing to the previous task.
+     */
+    void previousTask();
+
+    /**
+     * @brief Selects a task by its index.
+     * @param index The index of the task to be selected.
+     */
+    void selectTask(int index);
+
+    /**
      * @brief Starts or stops a subtask.
      * @param subtask Reference to the subtask to be started or stopped.
      */
@@ -60,21 +71,6 @@ public Q_SLOTS:
     void forceResetRobot();
 
 private Q_SLOTS:
-    /**
-     * @brief Slot for handling the next button click event.
-     */
-    void onNextButtonClicked();
-
-    /**
-     * @brief Slot for handling the previous button click event.
-     */
-    void onPreviousButtonClicked();
-
-    /**
-     * @brief Selects a task by its index.
-     * @param index The index of the task to be selected.
-     */
-    void selectTask(int index);
 
     /**
      * @brief Slot for handling the task execution started event.
@@ -111,10 +107,6 @@ private Q_SLOTS:
 private:
     TaskUI *taskUI; ///< Pointer to the TaskUI object.
     TaskExecutor *taskExecutor; ///< Pointer to the TaskExecutor object.
-    QPushButton *nextButton; ///< Pointer to the next button.
-    QPushButton *previousButton; ///< Pointer to the previous button.
-    QFrame *resetRobotFrame; ///< Pointer to the reset robot frame.
-    ExecuteFrame *executeResetRobotFrame; ///< Pointer to the execute reset robot frame.
     QVector<QSharedPointer<Task>> tasks; ///< Vector of tasks.
     QVector<Subtask*> queued_and_running_subtasks; ///< Vector of queued and running subtasks.
     int currentQueueStartSolution = false; ///< Flag indicating whether to start the solution or the users script.

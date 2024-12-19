@@ -159,7 +159,6 @@ As tasks are divided into tasks and subtasks, you need to define some fields in 
 	"tasks": [
 		{
 			"title": "ROS Basics",
-			"description": "Learn the fundamentals of ROS (Robot Operating System), including node creation, topic subscription, and communication between nodes.",
 			"folder": "/ROS/Task1",
 			"topic": "ROS",
 			"difficulty": "beginner",
@@ -197,7 +196,6 @@ The configuration will be displayed like this:
 | Field          | Description                                          | Optional/Required | Default Value |
 |----------------|------------------------------------------------------|-------------------|---------------|
 | `title`        | The title of the task                                | Required          | N/A           |
-| `description`  | A short description of the task                      | Required          | N/A           |
 | `folder`        | The relative folder path for all subtask files.<br>Format: `/YOUR_TASK_TOPIC/YOUR_TASK_NAME`, the `/` are important.<br><br> Your solution notebook will then need to be located in `/task_pool/solution_scripts/YOUR_TASK_TOPIC/YOUR_TASK_NAME` <br> Your evaluation script will then need to be located in `/task_pool/evaluation_scripts/YOUR_TASK_TOPIC/YOUR_TASK_NAME`                                  | Required          | N/A           |
 | `topic`        | The topic related to the task (all defined Topics are stored in the `/task_pool/task_definitions.json` file. Learn more on how to define topics and what they do [here](./define_topics.md).)                       | Required          | N/A           |
 | `difficulty`   | The difficulty level of the task (e.g., beginner, intermediate, advanced)<br>All defined difficulty levels are stored in the `/task_pool/difficulty_levels.json` file. Learn more on how to define difficulty levels and what they do [here](./define_difficulty_levels.md). | Required          | N/A           |

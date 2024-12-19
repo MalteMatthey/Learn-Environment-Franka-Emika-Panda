@@ -27,6 +27,24 @@ namespace FolderStructureConstants {
     inline const QString RESET_ROBOT_SCRIPT_PATH = "/task_pool/reset_robot.py";
 
     /**
+     * @var FolderStructureConstants::TASK_DEFINITIONS_PATH
+     * @brief Path to the task definitions json.
+     */
+    inline const QString TASK_DEFINITIONS_PATH = ":/task_pool/task_definitions.json";
+
+    /**
+     * @var FolderStructureConstants::TOPIC_DEFINITIONS_PATH
+     * @brief Path to the topic definitions json.
+     */
+    inline const QString TOPIC_DEFINITIONS_PATH = ":/task_pool/topic_definitions.json";
+
+    /**
+     * @var FolderStructureConstants::TOPIC_DEFINITIONS_PATH
+     * @brief Path to the difficulty definitions json.
+     */
+    inline const QString DIFFICULTY_LEVELS_DEFINITION_PATH = ":/task_pool/difficulty_levels.json";
+
+    /**
      * @var FolderStructureConstants::SOLUTION_SCRIPTS_SOURCE_PATH
      * @brief Path to the solution scripts source directory.
      */
