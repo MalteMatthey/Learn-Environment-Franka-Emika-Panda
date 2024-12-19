@@ -18,7 +18,8 @@ for i, (current, expected) in enumerate(zip(current_joint_values, expected_value
     if abs(current - expected) > error_margin:
         
         roscpp_shutdown()
-        print("false: Joint {} is not in the correct position".format(i+1))
+        print("Joint {} is not in the correct position".format(i+1))
+        print('false')
         sys.exit(0)
 
 roscpp_shutdown()

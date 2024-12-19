@@ -32,6 +32,9 @@ def checkSubscribtion():
 
     subs = [x[2] for x in subs if x[0] == topic]
 
+    if len(subs) == 0:
+        return False
+
     for sub in subs[0]:
         if re.match(pattern, sub):
             return True
@@ -67,9 +70,11 @@ if node_exist and sub_exist:
     print('true')
 
 elif not node_exist:
-    print('false: node does not exist')
+    print('node not found')
+    print('false')
 
 else:
-    print('false: subscriber does not exist')
+    print('subscriber does not exist')
+    print('false')
 
 rospy.signal_shutdown('evaluation done')

@@ -68,7 +68,7 @@ elif not node_exists:
     print('false')
 
 else:
-    print('Messages not received')
+    print('No messages received on the /chatter topic')
     print('false')
 
 
