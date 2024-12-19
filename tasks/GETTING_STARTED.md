@@ -1,7 +1,4 @@
 # Welcome to the Tutorial
-
-<img src="./../developer_docs/images/plugin.png" alt="plugin" width="600"/>
-
 To get started, follow these steps:
 
 1. **Open a Terminal in VS Code**
@@ -15,7 +12,8 @@ To get started, follow these steps:
     ```
 3. **Open RViz**
     - **Coder / Devcontainer setups:** Open [localhost:6080](http://localhost:6080/) in your browser and click `connect`. In the top bar, you should be able to select RViz, the plugin should show up there immediately.
-    - **Local setups without Devcontainer:** When executing the command above, RViz should automatically show up and display the plugin immediately. If you are on Windows or MacOS, make sure to make your display available to Docker with tools like `XLaunch` (Windows) or `XQuartz` (MacOS).
+    - **Local setups without Devcontainer:** When executing the command above, RViz should automatically show up and display the plugin immediately. If you are on Windows or MacOS, make sure to make your display available to Docker with tools like `XLaunch` (Windows) or `XQuartz` (MacOS). 
+    - <img src="./../developer_docs/images/plugin.png" alt="plugin" width="600"/>
 
 4. **Begin with the Tasks**
     - After running the command, the task files for the **tutorial will be copied into this folder**.
