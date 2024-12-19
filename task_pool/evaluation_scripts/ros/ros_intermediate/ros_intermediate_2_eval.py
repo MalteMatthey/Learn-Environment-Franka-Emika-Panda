@@ -21,7 +21,6 @@ class Eval():
         self.current_joint_values = msg
 
     def joint_trajectory_callback(self, msg):
-        rospy.loginfo('got msg')
         self.received_msg = True
 
     def evaluate_position(self, target_position):
@@ -56,7 +55,6 @@ for target_position in target_positions_sequence:
 
         if x.evaluate_position(target_position):
 
-            rospy.loginfo('position sucessful')
             sucessful_positions += 1
             break
 
@@ -72,7 +70,9 @@ if sucessful_positions == 3:
     print('true')
 
 elif not x.received_msg:
-    print('false: no message received on the topic')
+    print('no message received on the topic')
+    print('false')
 
 else:
-    print('false: position {} not reached'.format(sucessful_positions + 1))
+    print('position {} not reached'.format(sucessful_positions + 1))
+    print('false')
