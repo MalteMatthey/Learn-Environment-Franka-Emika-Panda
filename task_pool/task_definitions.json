@@ -69,6 +69,44 @@
           "description": "Implement a simple movement with MoveIt.",
           "solution_file": "/move_it_basics_2.ipynb",
           "evaluation_file": "/move_it_basics_2_eval.py"
+        },
+        {
+          "title": "Task 3 ",
+          "description": "Introduction to planning algorithms",
+          "solution_file": "/move_it_basics_3.ipynb",
+          "evaluation_file": "/move_it_basics_3_eval.py"
+        },
+        {
+          "title": "Task 4 ",
+          "description": "Query and interpret the status of the robotic arm",
+          "solution_file": "/move_it_basics_4.ipynb",
+          "evaluation_file": "/move_it_basics_4_eval.py"
+        }
+      ]
+    },
+    {
+      "title": "MoveIt Objects",
+      "folder": "/move_it/move_it_objects",
+      "topic": "MoveIt",
+      "difficulty": "beginner",
+      "subtasks": [
+        {
+          "title": "Task 1 ",
+          "description": "Create an object in moveit",
+          "solution_file": "/move_it_objects_1.ipynb",
+          "evaluation_file": "/move_it_objects_1_eval.py"
+        },
+        {
+          "title": "Task 2 ",
+          "description": "Get to know new classes for creating objects",
+          "solution_file": "/move_it_objects_2.ipynb",
+          "evaluation_file": "/move_it_objects_2_eval.py"
+        },
+        {
+          "title": "Task 3 ",
+          "description": "Understand how to remove objects from a scene",
+          "solution_file": "/move_it_objects_3.ipynb",
+          "evaluation_file": "/move_it_objects_3_eval.py"
         }
       ]
     },
@@ -83,46 +121,6 @@
           "description": "TODO: Add Subtask Description Subtask 1.",
           "solution_file": "/trajectory_controller.ipynb",
           "evaluation_file": "/trajectory_controller.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 4 (TODO: Rename)",
-      "topic": "Topic 3",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_4",
-      "subtasks": [
-        {
-          "title": "Subtask 4.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_4_1.ipynb",
-          "evaluation_file": "/exercise_4_1_eval.py"
-        },
-        {
-          "title": "Subtask 4.2 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 2.",
-          "solution_file": "/exercise_4_2.ipynb",
-          "evaluation_file": "/exercise_4_2_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 5 (TODO: Rename)",
-      "topic": "Topic 2",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_5",
-      "subtasks": [
-        {
-          "title": "Subtask 5.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_5_1.ipynb",
-          "evaluation_file": "/exercise_5_1_eval.py"
-        },
-        {
-          "title": "Subtask 5.2 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 2.",
-          "solution_file": "/exercise_5_2.ipynb",
-          "evaluation_file": "/exercise_5_2_eval.py"
         }
       ]
     },
