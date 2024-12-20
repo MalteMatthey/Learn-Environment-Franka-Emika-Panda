@@ -111,6 +111,20 @@
       ]
     },
     {
+      "title": "MoveIt Intermediate",
+      "folder": "/move_it/move_it_intermediate",
+      "topic": "MoveIt",
+      "difficulty": "intermediate",
+      "subtasks": [
+        {
+          "title": "Task 1 ",
+          "description": "move the robotic arm through a series of positions (waypoints)",
+          "solution_file": "/move_it_intermediate_1.ipynb",
+          "evaluation_file": "/move_it_intermediate_eval_1.py"
+        }
+      ]
+    },
+    {
       "title": "Trajectory Controller",
       "folder": "/controller/controller_task",
       "topic": "Controller",
@@ -121,20 +135,6 @@
           "description": "TODO: Add Subtask Description Subtask 1.",
           "solution_file": "/trajectory_controller.ipynb",
           "evaluation_file": "/trajectory_controller.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 6 (TODO: Rename)",
-      "topic": "Topic 2",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_6",
-      "subtasks": [
-        {
-          "title": "Subtask 6.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_6_1.ipynb",
-          "evaluation_file": "/exercise_6_1_eval.py"
         }
       ]
     },
