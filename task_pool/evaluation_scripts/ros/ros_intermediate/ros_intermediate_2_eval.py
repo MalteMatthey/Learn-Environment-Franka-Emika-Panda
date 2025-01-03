@@ -20,7 +20,7 @@ class Eval():
     def joint_state_callback(self, msg):
         self.current_joint_values = msg
 
-    def joint_trajectory_callback(self, msg):
+    def joint_trajectory_callback(self):
         self.received_msg = True
 
     def evaluate_position(self, target_position):
@@ -70,9 +70,9 @@ if sucessful_positions == 3:
     print('true')
 
 elif not x.received_msg:
-    print('no message received on the topic')
+    print('No message received on the topic.')
     print('false')
 
 else:
-    print('position {} not reached'.format(sucessful_positions + 1))
+    print('Position {} not reached.'.format(sucessful_positions + 1))
     print('false')

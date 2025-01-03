@@ -8,7 +8,7 @@
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Explains the ROS system and implement a simple publisher.",
+          "description": "Explains the ROS system and implement a simple Publisher.",
           "solution_file": "/ros_basics_1.ipynb",
           "evaluation_file": "/ros_basics_1_eval.py",
           "parallelized_evaluation_required": true,
@@ -16,7 +16,7 @@
         },
         {
           "title": "Task 2",
-          "description": "Implement a simple subscriber.",
+          "description": "Implement a simple Subscriber.",
           "solution_file": "/ros_basics_2.ipynb",
           "evaluation_file": "/ros_basics_2_eval.py",
           "parallelized_evaluation_required": true,
@@ -39,7 +39,7 @@
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Implement your first simple movement.",
+          "description": "Implement your first movement.",
           "solution_file": "/ros_intermediate_1.ipynb",
           "evaluation_file": "/ros_intermediate_1_eval.py"
         },
@@ -60,13 +60,13 @@
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Implement a simple movement with MoveIt.",
+          "description": "Implement a movement with the MoveIt Package.",
           "solution_file": "/move_it_basics_1.ipynb",
           "evaluation_file": "/move_it_basics_1_eval.py"
         },
         {
           "title": "Task 2",
-          "description": "Implement a simple movement with MoveIt.",
+          "description": "Move the robot to cartesian coordinates.",
           "solution_file": "/move_it_basics_2.ipynb",
           "evaluation_file": "/move_it_basics_2_eval.py"
         }

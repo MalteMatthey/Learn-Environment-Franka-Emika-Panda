@@ -70,11 +70,11 @@ if node_exist and sub_exist:
     print('true')
 
 elif not node_exist:
-    print('node not found')
+    print('Node not found.')
     print('false')
 
 else:
-    print('subscriber does not exist')
+    print('Subscriber does not exist.')
     print('false')
 
 rospy.signal_shutdown('evaluation done')
