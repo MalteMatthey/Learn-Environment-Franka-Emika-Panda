@@ -132,29 +132,9 @@
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Understand the basics of the trajectory controller",
-          "solution_file": "/trajectory_controller.ipynb",
-          "evaluation_file": "/trajectory_controller.py"
-        },
-        {
-          "title": "Task 2",
           "description": "Undersatnd the basics of the position controller",
           "solution_file": "/position_controller.ipynb",
           "evaluation_file": "/position_controller.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 7 (TODO: Rename)",
-      "topic": "fjdsfkl",
-      "difficulty": "intermediate",
-      "folder": "/intermediate/exercise_1",
-      "subtasks": [
-        {
-          "title": "Subtask 1.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_1_1.ipynb",
-          "evaluation_file": "/exercise_1_1_eval.py"
         }
       ]
     }
