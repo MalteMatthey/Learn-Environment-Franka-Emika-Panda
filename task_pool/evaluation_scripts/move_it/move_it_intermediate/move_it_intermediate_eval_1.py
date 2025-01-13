@@ -1,25 +1,23 @@
 import math
+from geometry_msgs.msg import Pose, Point, Quaternion
 import os
 import importlib.util
-from geometry_msgs.msg import Pose, Point, Quaternion
 
-# Dynamically import waypoints module
 waypoints_path = None
 for root, dirs, files in os.walk('/'):
-    if 'converted.py' in files:
-        waypoints_path = os.path.join(root, 'converted.py')
+    if 'waypoints.py' in files:
+        waypoints_path = os.path.join(root, 'waypoints.py')
         break
 
 if waypoints_path:
     spec = importlib.util.spec_from_file_location('waypoints', waypoints_path)
     waypoints_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(waypoints_module)
-    waypoints = waypoints_module.waypoints
+    waypoints_user = waypoints_module.waypoints
+    print(waypoints_user)
 else:
-    raise FileNotFoundError("The converted.py file was not found in the file system")
+    raise FileNotFoundError('waypoints.py not found')
 
-print("Waypoints:")
-print(waypoints)
 
 sol = [0.4, 0.2, 0.7, -1.0, 0.4, 0.0, 0.0]
 
@@ -39,6 +37,21 @@ pose3 = Pose(
 )
 
 target_waypoints = [pose1, pose2, pose3]
+
+waypoints = [
+    Pose(
+        position=Point(0.4, 0.0, 0.6),
+        orientation=Quaternion(-1.0, 0.4, 0.0, 0.0)
+    ),
+    Pose(
+        position=Point(0.4, 0.2, 0.6),
+        orientation=Quaternion(-1.0, 0.4, 0.0, 0.0)
+    ),
+    Pose(
+        position=Point(0.4, 0.2, 0.7),
+        orientation=Quaternion(-1.0, 0.4, 0.0, 0.0)
+    )
+]
 
 def is_close(p1, p2, tolerance=0.2):
     return abs(p1.x - p2.x) <= tolerance and abs(p1.y - p2.y) <= tolerance and abs(p1.z - p2.z) <= tolerance
