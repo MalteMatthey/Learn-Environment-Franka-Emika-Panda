@@ -128,13 +128,19 @@
       "title": "Controller Basics",
       "folder": "/controller/controller_task",
       "topic": "Controller",
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Undersatnd the basics of the position controller",
+          "description": "Understand how to switch between controllers",
+          "solution_file": "/switch_controller.ipynb",
+          "evaluation_file": "/switch_controller_eval.py"
+        },
+        {
+          "title": "Task 2",
+          "description": "Understand the basics of the position controller",
           "solution_file": "/position_controller.ipynb",
-          "evaluation_file": "/position_controller.py"
+          "evaluation_file": "/position_controller_eval.py"
         }
       ]
     }
