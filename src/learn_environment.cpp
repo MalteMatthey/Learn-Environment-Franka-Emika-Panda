@@ -1,6 +1,4 @@
-#include "learn_environment/learn_environment.hpp"
-#include "learn_environment/task_manager.hpp"
-#include "learn_environment/task_ui.hpp"
+#include "learn_environment.hpp"
 #include <pluginlib/class_list_macros.hpp>
 
 #include <QMainWindow>

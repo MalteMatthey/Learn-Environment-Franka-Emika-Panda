@@ -1,10 +1,11 @@
-#include "learn_environment/notebook_converter.hpp"
+#include "common/notebook_converter.hpp"
+#include "common/folder_structure_constants.hpp"
+
 #include <QFile>
 #include <QTextStream>
 #include <QDebug>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
-#include "learn_environment/folder_structure_constants.hpp"
 #include <ros/package.h>
 #include <ros/ros.h>
 
@@ -24,6 +25,8 @@ const QString SOLUTION_CODE_PLACEHOLDER_START = "# ↓↓↓↓ SOLUTION CODE HE
 const QString SOLUTION_CODE_PLACEHOLDER_END = "# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ #";
 
 NotebookConverter::NotebookConverter(QObject *parent) : QObject(parent) {}
+
+NotebookConverter::~NotebookConverter() {}
 
 bool NotebookConverter::convertNotebook(const QString &notebookPath) {
     QFile inputFile(notebookPath);

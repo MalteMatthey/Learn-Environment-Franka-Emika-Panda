@@ -24,6 +24,7 @@ class NotebookConverter : public QObject {
     Q_OBJECT
 public:
     explicit NotebookConverter(QObject *parent = nullptr);
+    ~NotebookConverter();
 
     /**
      * @brief Converts a Jupyter notebook to a Python script. Ignoring code cells with "solution" tag.

@@ -1,6 +1,6 @@
-#include "learn_environment/subtask_item.hpp"
-#include "learn_environment/task_manager.hpp"
-#include "learn_environment/notebook_converter.hpp"
+#include "ui/subtask_item.hpp"
+#include "task_management/task_manager.hpp"
+#include "common/notebook_converter.hpp"
 
 #include <QHBoxLayout>
 #include <QVBoxLayout>

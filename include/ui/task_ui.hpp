@@ -1,10 +1,10 @@
 #ifndef TASKUI_HPP
 #define TASKUI_HPP
 
-#include "sidebar.hpp"
-#include "task.hpp"
-#include "task_manager.hpp"
-#include "execute_frame.hpp"
+#include "ui/sidebar.hpp"
+#include "common/task.hpp"
+#include "task_management/task_manager.hpp"
+#include "ui/execute_frame.hpp"
 
 #include <QObject>
 #include <QVBoxLayout>

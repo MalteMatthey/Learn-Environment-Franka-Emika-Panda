@@ -1,8 +1,8 @@
 #ifndef TASKMANAGER_HPP
 #define TASKMANAGER_HPP
 
-#include "task.hpp"
-#include "task_executor.hpp"
+#include "common/task.hpp"
+#include "script_execution/task_executor.hpp"
 
 #include <QObject>
 #include <QVector>

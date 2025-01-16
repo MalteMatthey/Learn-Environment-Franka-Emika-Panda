@@ -1,5 +1,5 @@
-#include "learn_environment/task_parser.hpp"
-#include "learn_environment/folder_structure_constants.hpp"
+#include "task_management/task_parser.hpp"
+#include "common/folder_structure_constants.hpp"
 
 #include <QFile>
 #include <QTextStream>

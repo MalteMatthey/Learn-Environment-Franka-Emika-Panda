@@ -1,10 +1,10 @@
 #ifndef SUBTASK_ITEM_HPP
 #define SUBTASK_ITEM_HPP
 
-#include "task.hpp"
-#include "task_manager.hpp"
-#include "execute_frame.hpp"
-#include "toast.hpp"
+#include "common/task.hpp"
+#include "task_management/task_manager.hpp"
+#include "ui/execute_frame.hpp"
+#include "ui/toast.hpp"
 
 #include <QWidget>
 #include <QPushButton>

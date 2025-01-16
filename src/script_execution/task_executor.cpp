@@ -1,6 +1,6 @@
-#include "learn_environment/task_executor.hpp"
-#include "learn_environment/script_worker.hpp"
-#include "learn_environment/folder_structure_constants.hpp"
+#include "script_execution/task_executor.hpp"
+#include "script_execution/script_worker.hpp"
+#include "common/folder_structure_constants.hpp"
 
 #include <QThread>
 #include <QFile>

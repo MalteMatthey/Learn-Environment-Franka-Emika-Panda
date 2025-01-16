@@ -35,46 +35,23 @@ include_directories(
   /usr/include/nlohmann
 )
 
-set(CMAKE_AUTOMOC ON)
-
 ## Include Qt libraries, only compatible with RViz using Qt5
 find_package(Qt5 ${rviz_QT_VERSION} EXACT REQUIRED Core Widgets)
 set(QT_LIBRARIES Qt5::Widgets)
 
 add_definitions(-DQT_NO_KEYWORDS)
 
+add_subdirectory(src/task_management)
+add_subdirectory(src/ui)
+add_subdirectory(src/script_execution)
+add_subdirectory(src/common)
+
 set(${PROJECT_NAME}_HDRS
-  include/${PROJECT_NAME}/learn_environment.hpp
-  include/${PROJECT_NAME}/subtask_item.hpp
-  include/${PROJECT_NAME}/task_manager.hpp
-  include/${PROJECT_NAME}/task.hpp
-  include/${PROJECT_NAME}/custom_list_widget.hpp
-  include/${PROJECT_NAME}/sidebar.hpp
-  include/${PROJECT_NAME}/task_parser.hpp
-  include/${PROJECT_NAME}/task_executor.hpp
-  include/${PROJECT_NAME}/script_worker.hpp
-  include/${PROJECT_NAME}/process_runner.hpp
-  include/${PROJECT_NAME}/task_ui.hpp
-  include/${PROJECT_NAME}/notebook_converter.hpp
-  include/${PROJECT_NAME}/folder_structure_constants.hpp
-  include/${PROJECT_NAME}/execute_frame.hpp
-  include/${PROJECT_NAME}/toast.hpp
+  include/learn_environment.hpp
 )
 
 set(${PROJECT_NAME}_SRCS
   src/learn_environment.cpp
-  src/subtask_item.cpp
-  src/task_manager.cpp
-  src/custom_list_widget.cpp
-  src/sidebar.cpp
-  src/task_parser.cpp
-  src/task_executor.cpp
-  src/script_worker.cpp
-  src/process_runner.cpp
-  src/task_ui.cpp
-  src/notebook_converter.cpp
-  src/execute_frame.cpp
-  src/toast.cpp
 )
 
 set(${PROJECT_NAME}_UIS
@@ -103,7 +80,7 @@ add_library(learn_environment
   ${${PROJECT_NAME}_MOCS}
   ${${PROJECT_NAME}_QRC_SOURCES}
   ${${PROJECT_NAME}_UIS}
-  ${${PROJECT_NAME}_QRC} 
+  ${${PROJECT_NAME}_QRC}
 )
 
 target_link_libraries(learn_environment
@@ -112,4 +89,8 @@ target_link_libraries(learn_environment
   Qt5::Widgets
   ${QT_LIBRARIES}
   ${topic_tools_LIBRARIES}
+  task_management
+  ui
+  script_execution
+  common
 )

@@ -1,5 +1,5 @@
-#include "learn_environment/task_ui.hpp"
-#include "learn_environment/subtask_item.hpp"
+#include "ui/task_ui.hpp"
+#include "ui/subtask_item.hpp"
 
 #include <QRegExp>
 #include <QSplitter>

@@ -1,6 +1,6 @@
-#include "learn_environment/sidebar.hpp"
-#include "learn_environment/custom_list_widget.hpp"
-#include "learn_environment/task.hpp"
+#include "ui/sidebar.hpp"
+#include "ui/custom_list_widget.hpp"
+#include "common/task.hpp"
 
 #include <QFont>
 #include <QDebug>

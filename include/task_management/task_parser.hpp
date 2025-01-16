@@ -1,7 +1,7 @@
 #ifndef TASK_PARSER_HPP
 #define TASK_PARSER_HPP
 
-#include "task.hpp"
+#include "common/task.hpp"
 
 #include <QVector>
 #include <QString>

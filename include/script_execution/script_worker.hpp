@@ -6,7 +6,7 @@
 #include <QProcess>
 #include <QList>
 
-#include "notebook_converter.hpp"
+#include "common/notebook_converter.hpp"
 
 class ProcessRunner;
 

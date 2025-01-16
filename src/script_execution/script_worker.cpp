@@ -1,5 +1,5 @@
-#include "learn_environment/script_worker.hpp"
-#include "learn_environment/process_runner.hpp"
+#include "script_execution/script_worker.hpp"
+#include "script_execution/process_runner.hpp"
 
 #include <QDebug>
 #include <QFile>

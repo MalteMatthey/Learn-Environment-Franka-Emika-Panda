@@ -1,9 +1,9 @@
-#include "learn_environment/task_manager.hpp"
-#include "learn_environment/task_ui.hpp"
-#include "learn_environment/task_parser.hpp"
-#include "learn_environment/task_executor.hpp"
-#include "learn_environment/notebook_converter.hpp"
-#include "learn_environment/folder_structure_constants.hpp"
+#include "task_management/task_manager.hpp"
+#include "ui/task_ui.hpp"
+#include "task_management/task_parser.hpp"
+#include "script_execution/task_executor.hpp"
+#include "common/notebook_converter.hpp"
+#include "common/folder_structure_constants.hpp"
 
 #include <QDebug>
 #include <QToolButton>

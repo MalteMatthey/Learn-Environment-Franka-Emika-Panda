@@ -3,9 +3,9 @@
 
 #include <rviz/panel.h>
 #include <ui_learn_environment.h>
-#include "task_manager.hpp"
-#include "task_ui.hpp"
-#include "notebook_converter.hpp"
+#include "task_management/task_manager.hpp"
+#include "ui/task_ui.hpp"
+#include "common/notebook_converter.hpp"
 
 #include <QWidget>
 #include <QObject>

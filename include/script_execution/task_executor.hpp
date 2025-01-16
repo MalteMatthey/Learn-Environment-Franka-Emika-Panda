@@ -1,7 +1,7 @@
 #ifndef TASK_EXECUTOR_HPP
 #define TASK_EXECUTOR_HPP
 
-#include "task.hpp"
+#include "common/task.hpp"
 
 #include <QObject>
 #include <QString>

@@ -1,8 +1,8 @@
 #ifndef SIDEBAR_HPP
 #define SIDEBAR_HPP
 
-#include "custom_list_widget.hpp"
-#include "task.hpp"
+#include "ui/custom_list_widget.hpp"
+#include "common/task.hpp"
 
 #include <QWidget>
 #include <QVBoxLayout>
