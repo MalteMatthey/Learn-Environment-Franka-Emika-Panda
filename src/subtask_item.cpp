@@ -51,6 +51,11 @@ namespace {
     const char* HIDE_SOLUTION_TEXT = "Hide Solution";
     const char* RESET_NOTEBOOK_TEXT = "Reset Notebook";
 
+    const char* SHOWING_SOLUTION_TOAST = "Solution added to your notebook.";
+    const char* SHOWING_SOLUTION_FAILED_TOAST = "There is no solution for this task.";
+    const char* HIDE_SOLUTION_TOAST = "Solution removed from your notebook.";
+    const char* NOTEBOOK_RESET_TOAST = "Notebook has been reset.";
+
     const char* RESET_NOTEBOOK_CONFIRMATION_TEXT = "This will remove all changes made to the notebook and can't be undone. Are you sure you want to proceed?";
 }
 
@@ -61,12 +66,23 @@ SubtaskItem::SubtaskItem(QWidget *parent, Subtask *subtask)
       bodyText(subtask->description),
       subtask(subtask),
       taskManager(nullptr),
-      executeSubtaskFrame(nullptr) {
+      executeSubtaskFrame(nullptr),
+      toast(new Toast(this)) {
     
     setupItemUI(headerText, linkText, bodyText);
     updateUI(true);
     initializeHelpMenu();
     initializeStartMenu();
+
+    resizeEvent(nullptr); // Initial positioning of toast
+}
+
+void SubtaskItem::resizeEvent(QResizeEvent* event) {
+    QWidget::resizeEvent(event);
+}
+
+void SubtaskItem::showToast(const QString &message) {
+    toast->showToast(message);
 }
 
 void SubtaskItem::updateUI(bool constructorCall)
@@ -184,9 +200,27 @@ void SubtaskItem::handleStartSolution() {
 }
 
 void SubtaskItem::handleToggleSolution() {
-    if (taskManager && subtask) {
-        taskManager->toggleSolution(*subtask);
+    if (!taskManager || !subtask) {
+        return;
     }
+
+    QString notebookPath = subtask->filePath;
+    if (!QFile::exists(notebookPath)) {
+        return;
+    }
+
+    bool hadSolutionBeforeToggle = NotebookConverter::hasSolutionCells(notebookPath);
+    taskManager->toggleSolution(*subtask);
+    bool hasSolutionAfterToggle = NotebookConverter::hasSolutionCells(notebookPath);
+    
+    if (hasSolutionAfterToggle && !hadSolutionBeforeToggle) {
+        showToast(SHOWING_SOLUTION_TOAST);
+    } else if (!hasSolutionAfterToggle && !hadSolutionBeforeToggle) {
+        showToast(SHOWING_SOLUTION_FAILED_TOAST);
+    } else {
+        showToast(HIDE_SOLUTION_TOAST);
+    }
+    
     QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());
     if (menu) {
         menu->close();
@@ -204,6 +238,7 @@ void SubtaskItem::handleResetNotebook() {
         if (taskManager && subtask) {
             NotebookConverter* converter = new NotebookConverter();
             converter->resetNotebook(subtask->filePath, subtask->solutionFilePath);
+            showToast(NOTEBOOK_RESET_TOAST);
         }
     }
     QMenu* menu = qobject_cast<QMenu*>(sender()->parent()->parent());

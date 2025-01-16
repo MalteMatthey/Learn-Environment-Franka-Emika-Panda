@@ -3,6 +3,7 @@ To get started, follow these steps:
 
 1. **Open a Terminal in VS Code**
     Go to `Terminal` > `New Terminal` in the VS Code menu. The shortcut is ``Ctrl + ` ``
+    - If you don't use VS Code, open any terminal. If you installed this with a docker setup as recommended , make sure to open the terminal in the container.
 
 2. **Execute the Launch Command**
     

@@ -4,6 +4,7 @@
 #include "task.hpp"
 #include "task_manager.hpp"
 #include "execute_frame.hpp"
+#include "toast.hpp"
 
 #include <QWidget>
 #include <QPushButton>
@@ -59,7 +60,10 @@ private Q_SLOTS:
     void handleStartOwnScript();
     void handleStartSolution();
     void handleToggleSolution();
-    void handleResetNotebook();    
+    void handleResetNotebook(); 
+
+protected:
+    void resizeEvent(QResizeEvent* event) override;  
 
 private:
     /**
@@ -72,6 +76,7 @@ private:
     void initializeHelpMenu();
     void initializeStartMenu();
     void setExecutionFrame(const QString& imagePath, const QString& text);
+    void showToast(const QString &message); ///< Displays a toast message.
 
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
     Subtask *subtask; ///< Pointer to the subtask object.
@@ -89,8 +94,10 @@ private:
     QPushButton *menuToggleSolutionBtn; ///< Button to toggle the solution.
     QPushButton *menuResetNotebookBtn; ///< Button to reset the notebook.
 
-    QMenu* startMenu; ///< Menu for starting the subtask.
-    QMenu* helpMenu; ///< Menu for showing the help options.
+    QMenu *startMenu; ///< Menu for starting the subtask.
+    QMenu *helpMenu; ///< Menu for showing the help options.
+
+    Toast *toast; ///< Toast message for subtask.
 };
 
 #endif // SUBTASK_ITEM_HPP
