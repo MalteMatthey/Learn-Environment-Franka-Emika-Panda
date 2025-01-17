@@ -9,7 +9,7 @@ roscpp_initialize(sys.argv)
 rospy.init_node('move_it_basics_1_eval', anonymous=True)
 
 group = MoveGroupCommander("panda_arm")
-group.set_planner_id("RRTConnectkConfigDefault")
+group.set_planner_id("RRTConnect")
 group.set_num_planning_attempts(10)
 
 current_joint_values = group.get_current_joint_values()
