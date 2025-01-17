@@ -129,15 +129,22 @@
       "folder": "/controller/controller_task",
       "topic": "Controller",
       "difficulty": "intermediate",
+      "previous_subtasks_required": true,
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "Understand how to switch between controllers",
-          "solution_file": "/switch_controller.ipynb",
-          "evaluation_file": "/switch_controller_eval.py"
+          "description": "Understand how to stop the currently running controllers",
+          "solution_file": "/stop_controller.ipynb",
+          "evaluation_file": "/stop_controller_eval.py"
         },
         {
           "title": "Task 2",
+          "description": "Understand how to activate a controller",
+          "solution_file": "/activate_controller.ipynb",
+          "evaluation_file": "/activate_controller_eval.py"
+        },
+        {
+          "title": "Task 3",
           "description": "Understand the basics of the position controller",
           "solution_file": "/position_controller.ipynb",
           "evaluation_file": "/position_controller_eval.py"

@@ -4,8 +4,6 @@ import math
 import rospy
 from moveit_commander import MoveGroupCommander, roscpp_initialize, roscpp_shutdown
 
-rospy.loginfo("exercise_4_1_evaluation")
-
 roscpp_initialize(sys.argv)
 rospy.init_node('exercise_4_1_evaluation', anonymous=True)
 
