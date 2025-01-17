@@ -5,7 +5,7 @@ The Learn Environment for the Franka Panda Robot is a tutorial on how to program
 ![Plugin with VS Code](./developer_docs/images/plugin_with_vs_code.png)
 
 ### Install the Plugin:
-If you only want to use the plugin, the **easiest option** is to use a **devcontainer** or **Docker setup** from [this](TODO:ADD_LINK) repository.
+If you only want to use the plugin, the **easiest option** is to use a **devcontainer** or **Docker setup** from [this](https://gitlab.kit.edu/kit/aifb/BIS/lehre/seminare/programmieren_3/202425/gruppe-3/containerized-setup-learn-environment-franka-emika-panda) repository. There you can find a detailed setup instruction.
 
 Alternatively without Docker, you can implement this repository as a submodule in your catkin workspace or copy the entire plugin into your catkin workspace.
 

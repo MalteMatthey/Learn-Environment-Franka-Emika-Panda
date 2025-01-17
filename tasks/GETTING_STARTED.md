@@ -1,5 +1,5 @@
 # Welcome to the Tutorial
-**Before you start:** We recommend reading the [theoretical introduction](theoretical_introduction.md) first. 
+**Before you start:** We recommend reading the [theoretical introduction](documentation/theoretical_introduction.md) first. 
 
 **After that:** Follow these steps to start with the tasks:
 
@@ -16,7 +16,8 @@
 3. **Open RViz**
     - **Coder / Devcontainer setups:** Open [localhost:6080](http://localhost:6080/) in your browser and click `connect`. In the top bar, you should be able to select RViz, the plugin should show up there immediately.
     - **Local setups without Devcontainer:** When executing the command above, RViz should automatically show up and display the plugin immediately. If you are on Windows or MacOS, make sure to make your display available to Docker with tools like `XLaunch` (Windows) or `XQuartz` (MacOS). 
-    - <img src="./../developer_docs/images/plugin.png" alt="plugin" width="600"/>
+    
+    <img src="./documentation/images/plugin.png" alt="plugin" width="600"/>
 
 4. **Begin with the Tasks**
     - After running the command, the task files for the **tutorial will be copied into this folder**.
@@ -26,6 +27,9 @@
     - If you need help with a task, click on the `question mark` next to your current task, where you can show the solution. This will automatically add new code cells with the solution to your notebook.
 
 Familiarize yourself with RViz and start working on the tasks at your own pace!
+
+## Next Steps After the Tutorial
+Once you have completed the tutorial, you can begin working on your own projects. Refer to [this guide](./documentation/after_the_tutorial.md) for instructions on how to control the robot with your own scripts without using the tutorial plugin.
 
 ## FAQ:
 
