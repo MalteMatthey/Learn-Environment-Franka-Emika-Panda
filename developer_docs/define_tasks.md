@@ -213,5 +213,5 @@ The configuration will be displayed like this:
 | `solution_file`              | The file name of the solution notebook.<br>Format: `/your_notebook_name.ipynb` (`/` required)             | Required          | N/A           |
 | `evaluation_file`            | The file name of the evaluation script.<br>Format: `/your_eval_script_name.py` (`/` required)      | Required          | N/A           |
 | `parallelized_evaluation_required`| Whether parallelized evaluation is required for the subtask | Optional          | false         |
-| `reset_robot_before_executing`    | Whether to reset the robot before executing the subtask    | Optional          | true          |
+| `reset_robot_before_executing`    | Whether to reset the robot before executing the subtask. Note that tasks can stop controllers, that's why a reset is beneficial in many situations. Use caution when setting this to false.    | Optional          | true          |
 | `timeout_seconds`                 | The timeout duration for the subtask in seconds. Adjust this if the scripts need to run very long.            | Optional          | 60            |

@@ -69,88 +69,89 @@
           "description": "Move the robot to cartesian coordinates.",
           "solution_file": "/move_it_basics_2.ipynb",
           "evaluation_file": "/move_it_basics_2_eval.py"
+        },
+        {
+          "title": "Task 3 ",
+          "description": "Introduction to planning algorithms",
+          "solution_file": "/move_it_basics_3.ipynb",
+          "evaluation_file": "/move_it_basics_3_eval.py"
+        },
+        {
+          "title": "Task 4 ",
+          "description": "Query and interpret the status of the robotic arm",
+          "solution_file": "/move_it_basics_4.ipynb",
+          "evaluation_file": "/move_it_basics_4_eval.py"
         }
       ]
     },
     {
-      "title": "Trajectory Controller",
+      "title": "MoveIt Objects",
+      "folder": "/move_it/move_it_objects",
+      "topic": "MoveIt",
+      "difficulty": "beginner",
+      "previous_subtasks_required": true,
+      "subtasks": [
+        {
+          "title": "Task 1 ",
+          "description": "Create an object in moveit",
+          "solution_file": "/move_it_objects_1.ipynb",
+          "evaluation_file": "/move_it_objects_1_eval.py",
+          "reset_robot_before_executing": true
+        },
+        {
+          "title": "Task 2 ",
+          "description": "Get to know new classes for creating objects",
+          "solution_file": "/move_it_objects_2.ipynb",
+          "evaluation_file": "/move_it_objects_2_eval.py",
+          "reset_robot_before_executing": true
+        },
+        {
+          "title": "Task 3 ",
+          "description": "Understand how to remove objects from a scene",
+          "solution_file": "/move_it_objects_3.ipynb",
+          "evaluation_file": "/move_it_objects_3_eval.py",
+          "reset_robot_before_executing": false
+        }
+      ]
+    },
+    {
+      "title": "MoveIt Intermediate",
+      "folder": "/move_it/move_it_intermediate",
+      "topic": "MoveIt",
+      "difficulty": "intermediate",
+      "subtasks": [
+        {
+          "title": "Task 1 ",
+          "description": "move the robotic arm through a series of positions (waypoints)",
+          "solution_file": "/move_it_intermediate_1.ipynb",
+          "evaluation_file": "/move_it_intermediate_eval_1.py"
+        }
+      ]
+    },
+    {
+      "title": "Controller Basics",
       "folder": "/controller/controller_task",
       "topic": "Controller",
-      "difficulty": "beginner",
+      "difficulty": "intermediate",
+      "previous_subtasks_required": true,
       "subtasks": [
         {
           "title": "Task 1",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/trajectory_controller.ipynb",
-          "evaluation_file": "/trajectory_controller.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 4 (TODO: Rename)",
-      "topic": "Topic 3",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_4",
-      "subtasks": [
-        {
-          "title": "Subtask 4.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_4_1.ipynb",
-          "evaluation_file": "/exercise_4_1_eval.py"
+          "description": "Understand how to stop the currently running controllers",
+          "solution_file": "/stop_controller.ipynb",
+          "evaluation_file": "/stop_controller_eval.py"
         },
         {
-          "title": "Subtask 4.2 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 2.",
-          "solution_file": "/exercise_4_2.ipynb",
-          "evaluation_file": "/exercise_4_2_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 5 (TODO: Rename)",
-      "topic": "Topic 2",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_5",
-      "subtasks": [
-        {
-          "title": "Subtask 5.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_5_1.ipynb",
-          "evaluation_file": "/exercise_5_1_eval.py"
+          "title": "Task 2",
+          "description": "Understand how to activate a controller",
+          "solution_file": "/activate_controller.ipynb",
+          "evaluation_file": "/activate_controller_eval.py"
         },
         {
-          "title": "Subtask 5.2 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 2.",
-          "solution_file": "/exercise_5_2.ipynb",
-          "evaluation_file": "/exercise_5_2_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 6 (TODO: Rename)",
-      "topic": "Topic 2",
-      "difficulty": "beginner",
-      "folder": "/beginner/exercise_6",
-      "subtasks": [
-        {
-          "title": "Subtask 6.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_6_1.ipynb",
-          "evaluation_file": "/exercise_6_1_eval.py"
-        }
-      ]
-    },
-    {
-      "title": "Task 7 (TODO: Rename)",
-      "topic": "fjdsfkl",
-      "difficulty": "intermediate",
-      "folder": "/intermediate/exercise_1",
-      "subtasks": [
-        {
-          "title": "Subtask 1.1 (TODO: Rename)",
-          "description": "TODO: Add Subtask Description Subtask 1.",
-          "solution_file": "/exercise_1_1.ipynb",
-          "evaluation_file": "/exercise_1_1_eval.py"
+          "title": "Task 3",
+          "description": "Understand the basics of the position controller",
+          "solution_file": "/position_controller.ipynb",
+          "evaluation_file": "/position_controller_eval.py"
         }
       ]
     }

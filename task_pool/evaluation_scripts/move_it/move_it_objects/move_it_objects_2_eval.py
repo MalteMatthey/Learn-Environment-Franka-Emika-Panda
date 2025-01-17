@@ -7,19 +7,11 @@ rospy.init_node('verify_objects', anonymous=True)
 
 # Create an interface for interacting with the planning scene
 scene = PlanningSceneInterface()
-rospy.sleep(2)  # Allow time for the planning scene interface to initialize
+rospy.sleep(2) 
 
 
 # Define the expected pose of the target object
 def expected_target_pose():
-    """
-    Creates and returns the expected pose of the target object.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of the target.
-    """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
     pose.pose.position.x = 0.5
@@ -34,14 +26,6 @@ def expected_target_pose():
 
 # Define the expected pose of rectangle_1
 def expected_rectangle_1_pose():
-    """
-    Creates and returns the expected pose of rectangle_1.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of rectangle_1.
-    """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
     pose.pose.position.x = 0.5
@@ -56,14 +40,6 @@ def expected_rectangle_1_pose():
 
 # Define the expected pose of rectangle_2
 def expected_rectangle_2_pose():
-    """
-    Creates and returns the expected pose of rectangle_2.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of rectangle_2.
-    """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
     pose.pose.position.x = 0.0
@@ -78,23 +54,12 @@ def expected_rectangle_2_pose():
 
 # Verify if an object in the scene matches the expected pose
 def verify_object(object_name, expected_pose, tolerance=0.1):
-    """
-    Verifies whether an object exists in the scene and matches the
-    expected pose within a specified tolerance.
 
-    Args:
-        object_name (str): The name of the object to verify.
-        expected_pose (PoseStamped): The expected pose of the object.
-        tolerance (float): The maximum allowed difference between the current
-                           and expected pose values for a match.
-
-    Returns:
-        bool: True if the object exists and matches the expected pose; otherwise, False.
-    """
-    current_objects = scene.get_objects()  # Retrieve all objects currently in the scene
+    current_objects = scene.get_objects()
 
     if object_name not in current_objects:
-        rospy.logerr(f"The object '{object_name}' was not found.")  # Log an error if the object is missing
+        rospy.logerr(f"The object '{object_name}' was not found.")
+        print(f"The object '{object_name}' was not found.")
         return False
 
     # Retrieve the current pose of the object from the scene
@@ -114,12 +79,15 @@ def verify_object(object_name, expected_pose, tolerance=0.1):
     # Log results and return whether both position and orientation match
     if position_match and orientation_match:
         rospy.loginfo(f"The object '{object_name}' is in the correct position and orientation.")
+        print(f"The object '{object_name}' is in the correct position and orientation.")
         return True
     elif not position_match:
         rospy.logerr(f"The object '{object_name}' is NOT in the correct position.")
+        print(f"The object '{object_name}' is NOT in the correct position.")
         return False
     else:
         rospy.logerr(f"The object '{object_name}' is NOT in the correct orientation.")
+        print(f"The object '{object_name}' is NOT in the correct orientation.")
         return False
 
 
@@ -129,13 +97,19 @@ rectangle_1_pose = expected_rectangle_1_pose()
 rectangle_2_pose = expected_rectangle_2_pose()
 
 # Check if the target is correctly placed in the scene
-verify_object("target", target_pose)
+target_result = verify_object("target", target_pose)
 
 # Check if rectangle_1 is correctly placed in the scene
-verify_object("rectangle_1", rectangle_1_pose)
+rectangle_1_result = verify_object("rectangle_1", rectangle_1_pose)
 
 # Check if rectangle_2 is correctly placed in the scene
-verify_object("rectangle_2", rectangle_2_pose)
+rectangle_2_result = verify_object("rectangle_2", rectangle_2_pose)
+
+# Print the final result
+if target_result and rectangle_1_result and rectangle_2_result:
+    print(True)
+else:
+    print(False)
 
 # Additional objects can be added for verification as needed
 # Example:

@@ -22,10 +22,15 @@ def evaluate_scene_empty():
 
     if not current_objects:
         rospy.loginfo("The scene is empty. All objects have been successfully removed.")
+        print("The scene is empty. All objects have been successfully removed.")
+        print(True)
     else:
         rospy.logwarn("The scene is not empty. The following objects are still there:")
+        print("The scene is not empty. The following objects are still there:")
         for obj in current_objects:
             rospy.logwarn(f" - {obj}")
+            print(f" - {obj}")
+        print(False)
 
     # Shutdown ROS
     roscpp_shutdown()
