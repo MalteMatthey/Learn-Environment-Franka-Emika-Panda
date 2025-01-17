@@ -1,5 +1,7 @@
 # Welcome to the Tutorial
-To get started, follow these steps:
+**Before you start:** We recommend reading the [theoretical introduction](theoretical_introduction.md) first. 
+
+**After that:** Follow these steps to start with the tasks:
 
 1. **Open a Terminal in VS Code**
     Go to `Terminal` > `New Terminal` in the VS Code menu. The shortcut is ``Ctrl + ` ``
