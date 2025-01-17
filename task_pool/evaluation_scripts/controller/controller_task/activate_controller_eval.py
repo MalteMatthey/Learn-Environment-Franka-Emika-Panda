@@ -11,11 +11,20 @@ def evaluate_controller_activation():
     # Filter the running controllers
     running_controllers = [controller.name for controller in controllers if controller.state == 'running']
     
-    # Check if exactly one controller is running
-    assert len(running_controllers) == 1, f"Expected 1 running controller, but found {len(running_controllers)}"
-    # Check if the running controller is 'position_joint_trajectory_controller'
-    assert running_controllers[0] == 'position_joint_trajectory_controller', \
-        f"Expected 'position_joint_trajectory_controller' to be running, but found {running_controllers[0]}"
+    try:
+        # Check if exactly one controller is running
+        if len(running_controllers) != 1:
+            print(f"Expected 1 running controller, but found {len(running_controllers)}")
+            raise AssertionError(f"Expected 1 running controller, but found {len(running_controllers)}")
+        # Check if the running controller is 'position_joint_trajectory_controller'
+        if running_controllers[0] != 'position_joint_trajectory_controller':
+            print(f"Expected 'position_joint_trajectory_controller' to be running, but found {running_controllers[0]}")
+            raise AssertionError(f"Expected 'position_joint_trajectory_controller' to be running, but found {running_controllers[0]}")
+        print(True)
+    except AssertionError as e:
+        print(e)
+        print(False)
+    
 
 if __name__ == "__main__":
     evaluate_controller_activation()

@@ -10,10 +10,13 @@ def evaluate_stop_controllers():
         
         if not active_controllers:
             print("Evaluation passed: No active controllers.")
+            print(True)
         else:
             print("Evaluation failed: There are still active controllers:", active_controllers)
+            print(False)
     except rospy.ServiceException as e:
-        rospy.logerr("Service call failed: %s" % e)
+        print("Service call failed: %s" % e)
+        print(False)
 
 if __name__ == "__main__":
     evaluate_stop_controllers()

@@ -25,17 +25,15 @@ current_values = [
 
 for i, (current, expected) in enumerate(zip(current_values, expected_pose)):
     if abs(current - expected) > error_margin:
-        
         roscpp_shutdown()
-        print("hello")
         print("Orientation")
         print(current_pose.orientation.x,
-    current_pose.orientation.y,
-    current_pose.orientation.z,
-    current_pose.orientation.w)
+              current_pose.orientation.y,
+              current_pose.orientation.z,
+              current_pose.orientation.w)
         print("false, Pose component {} is not in the correct position".format(i+1))
-        sys.exit(0)
+        print(False)
 
 roscpp_shutdown()
 
-print("true")
+print(True)

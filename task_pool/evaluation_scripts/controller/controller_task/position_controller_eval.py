@@ -25,11 +25,13 @@ rospy.sleep(5)
 # Verify joint positions
 for i in range(len(target_positions)):
     if abs(current_positions[i] - target_positions[i]) > tolerance:
-        rospy.loginfo(f"Joint {i+1} is not in the target position.")
-        rospy.loginfo(current_positions)
+        print(f"Joint {i+1} is not in the target position.")
+        print(current_positions)
+        print(False)
         break
 else:
-    rospy.loginfo("All joints are in the correct positions.")
+    print("All joints are in the correct positions.")
+    print(True)
 
 # Shutdown the ROS node
 rospy.signal_shutdown("Evaluation completed")
