@@ -1,0 +1,4 @@
+<map id="TaskUI::initializeUI" name="TaskUI::initializeUI">
+<area shape="rect" id="node1" title="Initializes the UI with the loaded tasks." alt="" coords="256,5,399,32"/>
+<area shape="rect" id="node2" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="5,5,208,32"/>
+</map>

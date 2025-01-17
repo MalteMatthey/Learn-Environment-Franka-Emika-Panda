@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hasbeenexecuted_0',['hasBeenExecuted',['../structSubtask.html#a0e3d8e77e26cdb58b2e9faa8ec2e1707',1,'Subtask']]],
-  ['hassolutioncells_1',['hasSolutionCells',['../classNotebookConverter.html#af64e43c667b96ba0926a715316002665',1,'NotebookConverter']]]
+  ['getpackagepath_32',['getPackagePath',['../namespaceFolderStructureConstants.html#aa49dbebb86fde82b617e7db1193bd720',1,'FolderStructureConstants']]],
+  ['gettext_33',['getText',['../classExecuteFrame.html#a3ddc917ee39ffc1c54c491aab9ba7404',1,'ExecuteFrame']]]
 ];

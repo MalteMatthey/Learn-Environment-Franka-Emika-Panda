@@ -1,12 +1,18 @@
 var searchData=
 [
-  ['taskexecutionfailed_0',['taskExecutionFailed',['../classTaskExecutor.html#adeffddd301a31fe1891712d30096a468',1,'TaskExecutor']]],
-  ['taskexecutionfinished_1',['taskExecutionFinished',['../classTaskExecutor.html#ad2f2dd7e0d22d7b3bb2ec532f158bddc',1,'TaskExecutor']]],
-  ['taskexecutionstarted_2',['taskExecutionStarted',['../classTaskExecutor.html#a2b22d6b9fa450f3471de4359b6f3b131',1,'TaskExecutor']]],
-  ['taskexecutor_3',['TaskExecutor',['../classTaskExecutor.html#ac6783ed16b392507bfaabd21422ee140',1,'TaskExecutor']]],
-  ['taskmanager_4',['TaskManager',['../classTaskManager.html#a9c906455542360f6760169599f2640a3',1,'TaskManager']]],
-  ['taskselected_5',['taskSelected',['../classSidebar.html#ad4d587292c62ad30ac9f1feac5d39499',1,'Sidebar::taskSelected()'],['../classTaskUI.html#af43308f1438155bd927357ac93c7b9db',1,'TaskUI::taskSelected(int index)']]],
-  ['taskui_6',['TaskUI',['../classTaskUI.html#a86f09b07fe3b4fd956f8c4ab02b8fae2',1,'TaskUI']]],
-  ['timeout_7',['timeout',['../classProcessRunner.html#ae42c9c4e04890fffa674e06eedf631b3',1,'ProcessRunner']]],
-  ['togglesolution_8',['toggleSolution',['../classNotebookConverter.html#a665ba1030d993bd9e165fca123d92032',1,'NotebookConverter::toggleSolution()'],['../classTaskManager.html#a9f3de937346f77e565d555a59a8a0da0',1,'TaskManager::toggleSolution()']]]
+  ['save_239',['save',['../classLearnEnvironment.html#aa684f56e6ba08652e1ddfa47304eb449',1,'LearnEnvironment']]],
+  ['scriptworker_240',['ScriptWorker',['../classScriptWorker.html#a1eb9773d50b730f913bb60149515aef5',1,'ScriptWorker']]],
+  ['selecttask_241',['selectTask',['../classTaskManager.html#a51989e6fb895fd817286153750f07d75',1,'TaskManager::selectTask()'],['../classSidebar.html#a9b621329888b135c42333a7ce8a4cad4',1,'Sidebar::selectTask()']]],
+  ['setimage_242',['setImage',['../classExecuteFrame.html#a796e8a79e0bc372c47421617bc7c9100',1,'ExecuteFrame']]],
+  ['settaskmanager_243',['setTaskManager',['../classSubtaskItem.html#aebba84aaef3c06a0c3079cea7fcd4ba6',1,'SubtaskItem::setTaskManager()'],['../classTaskUI.html#a53f64716c6328b25e37d822e687886cf',1,'TaskUI::setTaskManager()']]],
+  ['settaskui_244',['setTaskUI',['../classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4',1,'TaskUI']]],
+  ['settext_245',['setText',['../classExecuteFrame.html#a659f12e489dcddf89818a116c1e7f742',1,'ExecuteFrame']]],
+  ['showtoast_246',['showToast',['../classToast.html#a3445e2fca773be618e5b174382ee7bc1',1,'Toast']]],
+  ['sidebar_247',['Sidebar',['../classSidebar.html#a874f7f7907a44517ee9cf9ac2c1888d7',1,'Sidebar']]],
+  ['start_248',['start',['../classProcessRunner.html#ae69a94ddf835cec0a63fe7f4fdb61934',1,'ProcessRunner']]],
+  ['startedrobotresetui_249',['startedRobotResetUI',['../classTaskUI.html#a11f88e4482442899fa19adf1f66fa030',1,'TaskUI']]],
+  ['startexecution_250',['startExecution',['../classScriptWorker.html#a501653e756b40c33f4bd37957b398de3',1,'ScriptWorker']]],
+  ['startstopsubtask_251',['startStopSubtask',['../classTaskManager.html#ac4c5170435b505415f49e40906888743',1,'TaskManager::startStopSubtask(Subtask &amp;subtask, bool startSolution=false)'],['../classTaskManager.html#a36aa4b88ce92147fc2bfe7b222e8d984',1,'TaskManager::startStopSubtask(const Subtask &amp;subtask)']]],
+  ['subtaskitem_252',['SubtaskItem',['../classSubtaskItem.html#a63e6bb32b434cf04705924c3e2cdd0db',1,'SubtaskItem']]],
+  ['subtaskstartstoprequested_253',['subtaskStartStopRequested',['../classSubtaskItem.html#a9a41e7bf314df5a4297c68509d531423',1,'SubtaskItem']]]
 ];

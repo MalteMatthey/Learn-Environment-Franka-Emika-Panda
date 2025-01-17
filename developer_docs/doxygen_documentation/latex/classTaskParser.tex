@@ -1,8 +1,8 @@
-\doxysection{Task\+Parser Class Reference}
-\hypertarget{classTaskParser}{}\label{classTaskParser}\index{TaskParser@{TaskParser}}
+\hypertarget{classTaskParser}{}\doxysection{Task\+Parser Class Reference}
+\label{classTaskParser}\index{TaskParser@{TaskParser}}
 
 
-Parses tasks and subtasks from a JSON file.  
+Parses tasks and subtasks from a J\+S\+ON file.  
 
 
 
@@ -11,51 +11,53 @@ Parses tasks and subtasks from a JSON file.
 
 
 
-Collaboration diagram for Task\+Parser\+:\nopagebreak
+Collaboration diagram for Task\+Parser\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=148pt]{classTaskParser__coll__graph}
+\includegraphics[width=163pt]{classTaskParser__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \mbox{\hyperlink{classTaskParser_a86f40497d6666a02307886ed3a4056f3}{load\+Tasks}} (const QString \&task\+Path, const QString \&difficulty\+Path, const QString \&topic\+Path)
-\begin{DoxyCompactList}\small\item\em Loads tasks with all configuration JSON files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+Q\+Vector$<$ Q\+Shared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ \mbox{\hyperlink{classTaskParser_a86f40497d6666a02307886ed3a4056f3}{load\+Tasks}} (const Q\+String \&task\+Path, const Q\+String \&difficulty\+Path, const Q\+String \&topic\+Path)
+\begin{DoxyCompactList}\small\item\em Loads tasks with all configuration J\+S\+ON files. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Parses tasks and subtasks from a JSON file. 
+Parses tasks and subtasks from a J\+S\+ON file. 
 
-The \doxylink{classTaskParser}{Task\+Parser} class is responsible for loading tasks and their subtasks from a JSON file. It provides methods to parse the JSON data and convert it into \doxylink{structTask}{Task} and \doxylink{structSubtask}{Subtask} objects. 
+The \mbox{\hyperlink{classTaskParser}{Task\+Parser}} class is responsible for loading tasks and their subtasks from a J\+S\+ON file. It provides methods to parse the J\+S\+ON data and convert it into \mbox{\hyperlink{structTask}{Task}} and \mbox{\hyperlink{structSubtask}{Subtask}} objects. 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classTaskParser_a86f40497d6666a02307886ed3a4056f3}\index{TaskParser@{TaskParser}!loadTasks@{loadTasks}}
+\mbox{\Hypertarget{classTaskParser_a86f40497d6666a02307886ed3a4056f3}\label{classTaskParser_a86f40497d6666a02307886ed3a4056f3}} 
+\index{TaskParser@{TaskParser}!loadTasks@{loadTasks}}
 \index{loadTasks@{loadTasks}!TaskParser@{TaskParser}}
 \doxysubsubsection{\texorpdfstring{loadTasks()}{loadTasks()}}
-{\footnotesize\ttfamily \label{classTaskParser_a86f40497d6666a02307886ed3a4056f3} 
-QVector$<$ QShared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ Task\+Parser\+::load\+Tasks (\begin{DoxyParamCaption}\item[{const QString \&}]{task\+Path}{, }\item[{const QString \&}]{difficulty\+Path}{, }\item[{const QString \&}]{topic\+Path}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Q\+Vector$<$ Q\+Shared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$ $>$ Task\+Parser\+::load\+Tasks (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{task\+Path,  }\item[{const Q\+String \&}]{difficulty\+Path,  }\item[{const Q\+String \&}]{topic\+Path }\end{DoxyParamCaption})}
 
 
 
-Loads tasks with all configuration JSON files. 
+Loads tasks with all configuration J\+S\+ON files. 
 
-This function reads the tasks, difficulty levels, and topic definitions from the specified JSON files. It parses the JSON data and constructs a vector of shared pointers to \doxylink{structTask}{Task} objects. The tasks are sorted based on the defined topic order from the topic definition JSON file. If any of the files cannot be opened or if there is a JSON parsing error, an empty vector is returned.
+This function reads the tasks, difficulty levels, and topic definitions from the specified J\+S\+ON files. It parses the J\+S\+ON data and constructs a vector of shared pointers to \mbox{\hyperlink{structTask}{Task}} objects. The tasks are sorted based on the defined topic order from the topic definition J\+S\+ON file. If any of the files cannot be opened or if there is a J\+S\+ON parsing error, an empty vector is returned.
 
 
 \begin{DoxyParams}{Parameters}
-{\em task\+Path} & The path to the JSON file containing the tasks. \\
+{\em task\+Path} & The path to the J\+S\+ON file containing the tasks. \\
 \hline
-{\em difficulty\+Path} & The path to the JSON file containing the difficulty levels. \\
+{\em difficulty\+Path} & The path to the J\+S\+ON file containing the difficulty levels. \\
 \hline
-{\em topic\+Path} & The path to the JSON file containing the topic definitions. \\
+{\em topic\+Path} & The path to the J\+S\+ON file containing the topic definitions. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A vector of shared pointers to the loaded tasks. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

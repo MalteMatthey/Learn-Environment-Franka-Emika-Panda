@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['_7eexecuteframe_0',['~ExecuteFrame',['../classExecuteFrame.html#a0f49e809cf1c14026958bf26d3cf399b',1,'ExecuteFrame']]],
-  ['_7elearnenvironment_1',['~LearnEnvironment',['../classLearnEnvironment.html#ad2086d08e20cef426a861e1093cfc987',1,'LearnEnvironment']]]
+  ['updatesubtaskitemsui_264',['updateSubtaskItemsUI',['../classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e',1,'TaskUI']]],
+  ['updateui_265',['updateUI',['../classSubtaskItem.html#a005df51b50001f3e9c95652e845cf424',1,'SubtaskItem']]]
 ];

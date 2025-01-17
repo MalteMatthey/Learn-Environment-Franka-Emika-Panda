@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initializeui_0',['initializeUI',['../classTaskUI.html#a62690c3b7147c20980da5c2323314025',1,'TaskUI']]]
+  ['hassolutioncells_220',['hasSolutionCells',['../classNotebookConverter.html#af64e43c667b96ba0926a715316002665',1,'NotebookConverter']]]
 ];

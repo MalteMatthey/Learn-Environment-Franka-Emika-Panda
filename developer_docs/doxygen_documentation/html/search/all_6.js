@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inactive_0',['Inactive',['../task_8hpp.html#a0beba0aab49acf65d37f2c9d8202a4c0a3cab03c00dbd11bc3569afa0748013f0',1,'task.hpp']]],
-  ['initializeui_1',['initializeUI',['../classTaskUI.html#a62690c3b7147c20980da5c2323314025',1,'TaskUI']]]
+  ['hasbeenexecuted_34',['hasBeenExecuted',['../structSubtask.html#a0e3d8e77e26cdb58b2e9faa8ec2e1707',1,'Subtask']]],
+  ['hassolutioncells_35',['hasSolutionCells',['../classNotebookConverter.html#af64e43c667b96ba0926a715316002665',1,'NotebookConverter']]]
 ];

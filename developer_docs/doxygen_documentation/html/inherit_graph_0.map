@@ -1,5 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classQFrame.html" title=" " alt="" coords="5,5,74,32"/>
-<area shape="rect" id="Node000001" href="$classExecuteFrame.html" title="A custom QFrame that displays an image and text. For logging and task execution." alt="" coords="122,5,228,32"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="89,16,121,16,121,21,89,21"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,63,32"/>
+<area shape="rect" id="node2" href="$classLearnEnvironment.html" title="A custom RViz panel for managing the learning environment." alt="" coords="111,5,252,32"/>
 </map>

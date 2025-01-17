@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user_5fworkspace_0',['USER_WORKSPACE',['../namespaceFolderStructureConstants.html#ac7bdb4609b31965b63ac7d3ce2b197c3',1,'FolderStructureConstants']]]
+  ['user_5fworkspace_304',['USER_WORKSPACE',['../namespaceFolderStructureConstants.html#a75580234ed7da00f5ee8123683e27a9e',1,'FolderStructureConstants']]]
 ];

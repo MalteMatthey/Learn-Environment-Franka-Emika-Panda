@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['outputready_0',['outputReady',['../classProcessRunner.html#ad6840bbd9e54b7c6a0678dc9c5c792d7',1,'ProcessRunner']]]
+  ['nexttask_227',['nextTask',['../classTaskManager.html#a327677e3a17f1a707095119328a96179',1,'TaskManager']]],
+  ['notebookconverter_228',['NotebookConverter',['../classNotebookConverter.html#a11c8ed4604d4c29acd45d6225d80c464',1,'NotebookConverter']]]
 ];

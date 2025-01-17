@@ -18,15 +18,16 @@ package "Script Execution" {
     class ProcessRunner
 }
 
-package "UI Components" {
+package "UI" {
 	class SubtaskItem
     class TaskUI
     class ExecuteFrame
     class Sidebar
     class CustomListWidget
+    class Toast
 }
 
-package "Utility" {
+package "Common" {
     class NotebookConverter
     class FolderStructureConstants
 }
@@ -53,6 +54,7 @@ TaskUI o-- ExecuteFrame
 TaskUI o-- Sidebar
 TaskUI *-- Task
 TaskUI o-- TaskManager
+CustomListWidget o-- Toast
 
 /' Uses relationships '/
 TaskManager ..> TaskParser : uses

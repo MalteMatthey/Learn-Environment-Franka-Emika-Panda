@@ -1,5 +1,4 @@
 <map id="TaskManager" name="TaskManager">
-<area shape="rect" id="Node000001" title="Manages tasks and their execution within the application." alt="" coords="5,123,138,341"/>
-<area shape="rect" id="Node000002" href="$classQObject.html" title=" " alt="" coords="42,5,101,75"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,90,74,123,69,123,69,90"/>
+<area shape="rect" id="node1" title="Manages tasks and their execution within the application." alt="" coords="5,131,164,311"/>
+<area shape="rect" id="node2" href="$classQObject.html" title=" " alt="" coords="47,5,122,83"/>
 </map>

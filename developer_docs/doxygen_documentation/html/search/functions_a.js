@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['previoustask_0',['previousTask',['../classTaskManager.html#a844a6313afed60e7def0f79eaeae7b9e',1,'TaskManager']]],
-  ['processrunner_1',['ProcessRunner',['../classProcessRunner.html#a8d3ba848e57c03660af7c68dcfd7e904',1,'ProcessRunner']]],
-  ['processtaskpool_2',['processTaskPool',['../classNotebookConverter.html#a66b007e49cfe58d279c3ac279ced7213',1,'NotebookConverter']]]
+  ['outputready_229',['outputReady',['../classProcessRunner.html#ad6840bbd9e54b7c6a0678dc9c5c792d7',1,'ProcessRunner']]]
 ];

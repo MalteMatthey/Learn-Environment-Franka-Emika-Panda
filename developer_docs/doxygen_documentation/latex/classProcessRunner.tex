@@ -1,5 +1,5 @@
-\doxysection{Process\+Runner Class Reference}
-\hypertarget{classProcessRunner}{}\label{classProcessRunner}\index{ProcessRunner@{ProcessRunner}}
+\hypertarget{classProcessRunner}{}\doxysection{Process\+Runner Class Reference}
+\label{classProcessRunner}\index{ProcessRunner@{ProcessRunner}}
 
 
 Manages the execution of an external process with a timeout.  
@@ -11,43 +11,45 @@ Manages the execution of an external process with a timeout.
 
 
 
-Inheritance diagram for Process\+Runner\+:\nopagebreak
+Inheritance diagram for Process\+Runner\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=172pt]{classProcessRunner__inherit__graph}
+\includegraphics[width=187pt]{classProcessRunner__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Process\+Runner\+:\nopagebreak
+Collaboration diagram for Process\+Runner\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=172pt]{classProcessRunner__coll__graph}
+\includegraphics[width=187pt]{classProcessRunner__coll__graph}
 \end{center}
 \end{figure}
-\doxysubsubsection*{Public Slots}
+\doxysubsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6}{force\+Stop}} ()
 \begin{DoxyCompactList}\small\item\em Forces the stop of the running process. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Signals}
+\doxysubsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}{finished}} (int exit\+Code, QProcess\+::\+Exit\+Status exit\+Status)
+void \mbox{\hyperlink{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}{finished}} (int exit\+Code, Q\+Process\+::\+Exit\+Status exit\+Status)
 \begin{DoxyCompactList}\small\item\em Signal emitted when the process finishes. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}{output\+Ready}} (const QString \&output)
+void \mbox{\hyperlink{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}{output\+Ready}} (const Q\+String \&output)
 \begin{DoxyCompactList}\small\item\em Signal emitted when the process produces output. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classProcessRunner_a9ad2c856469a7129c905721309620e05}{error\+Ready}} (const QString \&error)
+void \mbox{\hyperlink{classProcessRunner_a9ad2c856469a7129c905721309620e05}{error\+Ready}} (const Q\+String \&error)
 \begin{DoxyCompactList}\small\item\em Signal emitted when the process produces an error. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3}{timeout}} ()
 \begin{DoxyCompactList}\small\item\em Signal emitted when the process times out. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsubsection*{Public Member Functions}
+\doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}{Process\+Runner}} (const QString \&program, const QString\+List \&arguments, int timeout\+Seconds, \mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}parent=nullptr, QString process\+Name="{}process"{})
-\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{classProcessRunner}{Process\+Runner} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}{Process\+Runner}} (const Q\+String \&program, const Q\+String\+List \&arguments, int timeout\+Seconds, \mbox{\hyperlink{classQObject}{Q\+Object}} $\ast$parent=nullptr, Q\+String process\+Name=\char`\"{}process\char`\"{})
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classProcessRunner}{Process\+Runner}} object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}{start}} ()
 \begin{DoxyCompactList}\small\item\em Starts the execution of the process. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -55,18 +57,18 @@ void \mbox{\hyperlink{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}{star
 \doxysubsection{Detailed Description}
 Manages the execution of an external process with a timeout. 
 
-The \doxylink{classProcessRunner}{Process\+Runner} class is responsible for starting an external process, capturing its output and errors, and enforcing a timeout for its execution. 
+The \mbox{\hyperlink{classProcessRunner}{Process\+Runner}} class is responsible for starting an external process, capturing its output and errors, and enforcing a timeout for its execution. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}\index{ProcessRunner@{ProcessRunner}!ProcessRunner@{ProcessRunner}}
+\mbox{\Hypertarget{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}\label{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904}} 
+\index{ProcessRunner@{ProcessRunner}!ProcessRunner@{ProcessRunner}}
 \index{ProcessRunner@{ProcessRunner}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{ProcessRunner()}{ProcessRunner()}}
-{\footnotesize\ttfamily \label{classProcessRunner_a8d3ba848e57c03660af7c68dcfd7e904} 
-Process\+Runner\+::\+Process\+Runner (\begin{DoxyParamCaption}\item[{const QString \&}]{program}{, }\item[{const QString\+List \&}]{arguments}{, }\item[{int}]{timeout\+Seconds}{, }\item[{\mbox{\hyperlink{classQObject}{QObject}} \texorpdfstring{$\ast$}{*}}]{parent}{ = {\ttfamily nullptr}, }\item[{QString}]{process\+Name}{ = {\ttfamily "{}process"{}}}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Process\+Runner\+::\+Process\+Runner (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{program,  }\item[{const Q\+String\+List \&}]{arguments,  }\item[{int}]{timeout\+Seconds,  }\item[{\mbox{\hyperlink{classQObject}{Q\+Object}} $\ast$}]{parent = {\ttfamily nullptr},  }\item[{Q\+String}]{process\+Name = {\ttfamily \char`\"{}process\char`\"{}} }\end{DoxyParamCaption})}
 
 
 
-Constructs a \doxylink{classProcessRunner}{Process\+Runner} object. 
+Constructs a \mbox{\hyperlink{classProcessRunner}{Process\+Runner}} object. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -76,7 +78,7 @@ Constructs a \doxylink{classProcessRunner}{Process\+Runner} object.
 \hline
 {\em timeout\+Seconds} & The timeout for the process execution in seconds. \\
 \hline
-{\em parent} & Pointer to the parent \doxylink{classQObject}{QObject}. \\
+{\em parent} & Pointer to the parent \mbox{\hyperlink{classQObject}{Q\+Object}}. \\
 \hline
 {\em process\+Name} & The name of the process (for logging purposes). \\
 \hline
@@ -84,11 +86,11 @@ Constructs a \doxylink{classProcessRunner}{Process\+Runner} object.
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classProcessRunner_a9ad2c856469a7129c905721309620e05}\index{ProcessRunner@{ProcessRunner}!errorReady@{errorReady}}
+\mbox{\Hypertarget{classProcessRunner_a9ad2c856469a7129c905721309620e05}\label{classProcessRunner_a9ad2c856469a7129c905721309620e05}} 
+\index{ProcessRunner@{ProcessRunner}!errorReady@{errorReady}}
 \index{errorReady@{errorReady}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{errorReady}{errorReady}}
-{\footnotesize\ttfamily \label{classProcessRunner_a9ad2c856469a7129c905721309620e05} 
-void Process\+Runner\+::error\+Ready (\begin{DoxyParamCaption}\item[{const QString \&}]{error}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+{\footnotesize\ttfamily void Process\+Runner\+::error\+Ready (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
 
 
 
@@ -99,11 +101,11 @@ Signal emitted when the process produces an error.
 {\em error} & The error produced by the process. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}\index{ProcessRunner@{ProcessRunner}!finished@{finished}}
+\mbox{\Hypertarget{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}\label{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf}} 
+\index{ProcessRunner@{ProcessRunner}!finished@{finished}}
 \index{finished@{finished}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{finished}{finished}}
-{\footnotesize\ttfamily \label{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf} 
-void Process\+Runner\+::finished (\begin{DoxyParamCaption}\item[{int}]{exit\+Code}{, }\item[{QProcess\+::\+Exit\+Status}]{exit\+Status}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+{\footnotesize\ttfamily void Process\+Runner\+::finished (\begin{DoxyParamCaption}\item[{int}]{exit\+Code,  }\item[{Q\+Process\+::\+Exit\+Status}]{exit\+Status }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
 
 
 
@@ -116,35 +118,37 @@ Signal emitted when the process finishes.
 {\em exit\+Status} & The exit status of the process. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classProcessRunner_a76c6897c0cf00b9034e6deb9662debbf_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6}\index{ProcessRunner@{ProcessRunner}!forceStop@{forceStop}}
+\mbox{\Hypertarget{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6}\label{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6}} 
+\index{ProcessRunner@{ProcessRunner}!forceStop@{forceStop}}
 \index{forceStop@{forceStop}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{forceStop}{forceStop}}
-{\footnotesize\ttfamily \label{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6} 
-void Process\+Runner\+::force\+Stop (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+{\footnotesize\ttfamily void Process\+Runner\+::force\+Stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
 
 
 
 Forces the stop of the running process. 
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classProcessRunner_abb4be6a4283702e38a9eb7d51438efb6_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}\index{ProcessRunner@{ProcessRunner}!outputReady@{outputReady}}
+\mbox{\Hypertarget{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}\label{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7}} 
+\index{ProcessRunner@{ProcessRunner}!outputReady@{outputReady}}
 \index{outputReady@{outputReady}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{outputReady}{outputReady}}
-{\footnotesize\ttfamily \label{classProcessRunner_ad6840bbd9e54b7c6a0678dc9c5c792d7} 
-void Process\+Runner\+::output\+Ready (\begin{DoxyParamCaption}\item[{const QString \&}]{output}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+{\footnotesize\ttfamily void Process\+Runner\+::output\+Ready (\begin{DoxyParamCaption}\item[{const Q\+String \&}]{output }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
 
 
 
@@ -155,34 +159,36 @@ Signal emitted when the process produces output.
 {\em output} & The output produced by the process. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}\index{ProcessRunner@{ProcessRunner}!start@{start}}
+\mbox{\Hypertarget{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}\label{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934}} 
+\index{ProcessRunner@{ProcessRunner}!start@{start}}
 \index{start@{start}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{start()}{start()}}
-{\footnotesize\ttfamily \label{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934} 
-void Process\+Runner\+::start (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Process\+Runner\+::start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
 Starts the execution of the process. 
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classProcessRunner_ae69a94ddf835cec0a63fe7f4fdb61934_icgraph}
 \end{center}
 \end{figure}
-\Hypertarget{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3}\index{ProcessRunner@{ProcessRunner}!timeout@{timeout}}
+\mbox{\Hypertarget{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3}\label{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3}} 
+\index{ProcessRunner@{ProcessRunner}!timeout@{timeout}}
 \index{timeout@{timeout}!ProcessRunner@{ProcessRunner}}
 \doxysubsubsection{\texorpdfstring{timeout}{timeout}}
-{\footnotesize\ttfamily \label{classProcessRunner_ae42c9c4e04890fffa674e06eedf631b3} 
-void Process\+Runner\+::timeout (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+{\footnotesize\ttfamily void Process\+Runner\+::timeout (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
 
 
 
 Signal emitted when the process times out. 
 
-Here is the caller graph for this function\+:\nopagebreak
+Here is the caller graph for this function\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -14,18 +14,33 @@ The tutorial progresses through various topics and difficulty levels, so you can
 There are several systems working together in our project. Here is a brief overview of what they are and what they do.
 
 ### ROS
-ROS (Robot Operating System) is a set of software libraries and tools that can be used to create robot applications. Through this tutorial, you’ll explore the main features of ROS and its integration with the Panda robot arm.
+
+<img src="./images/ros_logo.png" alt="ros_logo" width="200"/>
+
+ROS (Robot Operating System) is a set of software libraries and tools that can be used to create robot applications. Through this tutorial, you’ll explore the main features of ROS and its integration with the Panda robot arm. This tutorial uses ROS1 (Noetic). However, please be aware that ROS2 is now available and ROS1 is approaching its end of life (EOL). Unfortunately, ROS1 and ROS2 are not compatible with each other.
 
 ### Rviz
+
+<img src="./images/plugin.png" alt="rviz_window" width="600"/>
+
 Rviz (ROS Visualization) is a 3D visualization tool for ROS that is used for debugging and understanding robot data and states. It allows the display of sensor data, such as camera images, and the visualization of robot models and trajectories. In our case, Rviz will show us the robot arm and the trajectory of its movement. Rviz itself also offers its own plugins that can help when working with the robot. Our tutorial is also a Rviz plugin.
 
 ### MoveIt
+
+<img src="./images/moveit_logo.png" alt="ros_logo" width="200"/>
+
 MoveIt is an advanced robotics manipulation framework in ROS designed for motion planning, control and simulation of robotic arms. It provides tools for kinematics, collision detection, trajectory generation and task execution, making it indispensable for creating complex robotic applications. MoveIt will be an important part of the tutorial. Therefore, we will introduce you to MoveIt within the tasks.
 
 ### Gazebo
+
+<img src="./images/gazebo.png" alt="gazebo_window" width="600"/>
+
 Gazebo is a simulation environment in which robot motions and systems can be tested virtually. In our case, the Franka Emika Panda robot arm will be simulated within Gazebo. Since not everyone always has the Panda robot arm available, we have created our tutorial for the Gazebo simulator. Nevertheless, you can of course also follow the tutorial with the real robot.
 
 ### Docker
+
+<img src="./images/docker_logo.png" alt="docker_logo" width="200"/>
+
 Docker is a containerization platform that allows you to package the tutorial’s applications and dependencies into lightweight, portable containers. It enables cross-platform accessibility, although certain features may require Linux.
 
 # Getting Started
