@@ -40,9 +40,9 @@ for i, (current, expected) in enumerate(zip(current_values, expected_pose)):
         roscpp_shutdown()
 
         print("Pose component \'{}\' is not in the correct position.".format(value_names[i]))
-        print("false")
+        print(False)
         sys.exit(0)
 
 roscpp_shutdown()
 
-print("true")
+print(True)

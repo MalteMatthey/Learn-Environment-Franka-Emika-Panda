@@ -23,9 +23,9 @@ for i, (current, expected) in enumerate(zip(current_joint_values, expected_value
         
         roscpp_shutdown()
         print('Joint {} is not in the correct position.'.format(i))
-        print('false')
+        print(False)
         sys.exit(0)
 
 roscpp_shutdown()
 
-print("true")
+print(True)

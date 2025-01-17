@@ -67,12 +67,12 @@ for target_position in target_positions_sequence:
         break
 
 if sucessful_positions == 3:
-    print('true')
+    print(True)
 
 elif not x.received_msg:
     print('No message received on the topic.')
-    print('false')
+    print(False)
 
 else:
     print('Position {} not reached.'.format(sucessful_positions + 1))
-    print('false')
+    print(False)

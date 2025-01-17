@@ -1,8 +1,10 @@
 import rospy
-from moveit_commander import PlanningSceneInterface
+from moveit_commander import PlanningSceneInterface, roscpp_shutdown, roscpp_initialize
 from geometry_msgs.msg import PoseStamped
+import sys
 
 # Initialize the ROS node for verifying objects in the scene
+roscpp_initialize(sys.argv)
 rospy.init_node('verify_objects', anonymous=True)
 
 # Create an interface for interacting with the planning scene
@@ -110,6 +112,9 @@ if target_result and rectangle_1_result and rectangle_2_result:
     print(True)
 else:
     print(False)
+
+rospy.signal_shutdown("Task completed")
+roscpp_shutdown()
 
 # Additional objects can be added for verification as needed
 # Example:

@@ -95,22 +95,19 @@
           "title": "Task 1 ",
           "description": "Create an object in moveit",
           "solution_file": "/move_it_objects_1.ipynb",
-          "evaluation_file": "/move_it_objects_1_eval.py",
-          "reset_robot_before_executing": true
+          "evaluation_file": "/move_it_objects_1_eval.py"
         },
         {
           "title": "Task 2 ",
           "description": "Get to know new classes for creating objects",
           "solution_file": "/move_it_objects_2.ipynb",
-          "evaluation_file": "/move_it_objects_2_eval.py",
-          "reset_robot_before_executing": true
+          "evaluation_file": "/move_it_objects_2_eval.py"
         },
         {
           "title": "Task 3 ",
           "description": "Understand how to remove objects from a scene",
           "solution_file": "/move_it_objects_3.ipynb",
-          "evaluation_file": "/move_it_objects_3_eval.py",
-          "reset_robot_before_executing": false
+          "evaluation_file": "/move_it_objects_3_eval.py"
         }
       ]
     },

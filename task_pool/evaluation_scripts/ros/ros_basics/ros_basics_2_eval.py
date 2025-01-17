@@ -67,14 +67,14 @@ while time.time() - t < 25:
     rate.sleep()
 
 if node_exist and sub_exist:
-    print('true')
+    print(True)
 
 elif not node_exist:
     print('Node not found.')
-    print('false')
+    print(False)
 
 else:
     print('Subscriber does not exist.')
-    print('false')
+    print(False)
 
 rospy.signal_shutdown('evaluation done')

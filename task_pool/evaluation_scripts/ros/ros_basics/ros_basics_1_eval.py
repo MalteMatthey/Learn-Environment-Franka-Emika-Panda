@@ -61,15 +61,15 @@ while time.time() - t < 25:
         
 
 if node_exists and msg_received:
-    print('true')
+    print(True)
 
 elif not node_exists:
     print('Node not found.')
-    print('false')
+    print(False)
 
 else:
     print('No messages received on the /chatter topic.')
-    print('false')
+    print(False)
 
 
 rospy.signal_shutdown('evaluation done')

@@ -121,9 +121,9 @@ The evaluation script is a Python file (`.py`, not a `.ipynb` notebook) that che
 The first option is easier to implement. However, for certain tasks, continuous monitoring of a robot's state is required (e.g., when evaluating a complete movement with specific waypoints, not just the state at the end).
 
 ### Requirements
-- At the end of the evaluation, the script must print either `true` or `false` (this should be the final output of the script).
-- Before printing `false`, it is recommended to display a helpful error message explaining the failure.
-- (Printing `true` is optional. If the script finishes without printing `false`, it will be evaluated as `true`.)
+- At the end of the evaluation, the script must print either `True` or `False` (this should be the final output of the script).
+- Before printing `False`, it is recommended to display a helpful error message explaining the failure.
+- (Printing `True` is optional. If the script finishes without printing `False`, it will be evaluated as `True`.)
 
 ### Minimal Example:
 ```python

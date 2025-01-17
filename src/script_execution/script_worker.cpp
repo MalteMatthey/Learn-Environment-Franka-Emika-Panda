@@ -116,7 +116,7 @@ void ScriptWorker::evaluateScriptInParallel() {
             QString formattedError = formatMessage(errorOutput.trimmed());
             Q_EMIT failed(formattedError.isEmpty() ? EVALUATION_SCRIPT_FAILED : EVALUATION_ERRORS + formattedError);
         }
-        if (evaluationOutput.trimmed().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
+        if (evaluationOutput.trimmed().toLower().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
             QString formattedOutput = SCRIPT_ERROR_MESSAGE + formatMessage(evaluationOutput.trimmed(), true);
             Q_EMIT failed(formattedOutput);
         }
@@ -154,7 +154,7 @@ void ScriptWorker::checkResult() {
             QString formattedError = formatMessage(errorOutput.trimmed());
             Q_EMIT failed(formattedError.isEmpty() ? RESULT_CHECK_FAILED : EVALUATION_ERRORS + formattedError);
         }
-        if (evaluationOutput.trimmed().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
+        if (evaluationOutput.trimmed().toLower().split('\n').contains(EVALUATION_FAILED_KEYWORD)) {
             QString formattedOutput = SCRIPT_ERROR_MESSAGE + formatMessage(evaluationOutput.trimmed(), true);
             Q_EMIT failed(formattedOutput);
         }
@@ -222,8 +222,8 @@ QString ScriptWorker::formatMessage(const QString &msg, bool fromEval) {
         if (trimmedLine.isEmpty()) {
             continue;
         }
-        if (fromEval && (trimmedLine == "true" 
-                      || trimmedLine == EVALUATION_FAILED_KEYWORD 
+        if (fromEval && (trimmedLine.toLower() == "true" 
+                      || trimmedLine.toLower() == EVALUATION_FAILED_KEYWORD 
                       || trimmedLine.startsWith("[ INFO]") 
                       || trimmedLine.startsWith("[ WARN]"))) {
             continue;
