@@ -9,7 +9,7 @@ rospy.init_node('verify_objects', anonymous=True)
 
 # Create an interface for interacting with the planning scene
 scene = PlanningSceneInterface()
-rospy.sleep(2)  # Allow time for the planning scene interface to initialize
+rospy.sleep(2)
 
 
 # Define the expected pose of the cylinder object
@@ -28,14 +28,6 @@ def expected_cylinder_pose():
 
 # Define the expected pose of box_1
 def expected_box_1_pose():
-    """
-    Creates and returns the expected pose of box_1.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of box_1.
-    """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
     pose.pose.position.x = 0.4
@@ -50,14 +42,6 @@ def expected_box_1_pose():
 
 # Define the expected pose of box_2
 def expected_box_2_pose():
-    """
-    Creates and returns the expected pose of box_2.
-    The pose is defined relative to the "panda_link0" frame with
-    specific position and orientation values.
-
-    Returns:
-        PoseStamped: The expected pose of box_2.
-    """
     pose = PoseStamped()
     pose.header.frame_id = "panda_link0"
     pose.pose.position.x = 1.0
@@ -70,18 +54,18 @@ def expected_box_2_pose():
     return pose
 
 
-# Verify if an object in the scene matches the expected pose
-def verify_object(object_name, expected_pose, tolerance=0.1):
-
-    current_objects = scene.get_objects()  # Retrieve all objects currently in the scene
+# Verify if an object in the scene matches the expected pose and size
+def verify_object(object_name, expected_pose, expected_size, tolerance=0.1):
+    current_objects = scene.get_objects()
 
     if object_name not in current_objects:
-        rospy.logerr(f"The object '{object_name}' was not found.")  # Log an error if the object is missing
         print(f"The object '{object_name}' was not found.")
         return False
 
-    # Retrieve the current pose of the object from the scene
-    current_pose = current_objects[object_name].pose
+    # Retrieve the current pose and size of the object from the scene
+    current_object = current_objects[object_name]
+    current_pose = current_object.pose
+    current_size = current_object.primitives[0].dimensions
 
     # Compare the object's position with the expected position
     position_match = (abs(current_pose.position.x - expected_pose.pose.position.x) < tolerance and
@@ -94,36 +78,42 @@ def verify_object(object_name, expected_pose, tolerance=0.1):
                          abs(current_pose.orientation.z - expected_pose.pose.orientation.z) < tolerance and
                          abs(current_pose.orientation.w - expected_pose.pose.orientation.w) < tolerance)
 
-    # Log results and return whether both position and orientation match
-    if position_match and orientation_match:
-        rospy.loginfo(f"The object '{object_name}' is in the correct position and orientation.")
-        print(f"The object '{object_name}' is in the correct position and orientation.")
+    # Compare the object's size with the expected size
+    size_match = all(abs(current_size[i] - expected_size[i]) < tolerance for i in range(len(expected_size)))
+
+    # Log results and return whether both position, orientation, and size match
+    if position_match and orientation_match and size_match:
+        print(f"The object '{object_name}' is in the correct position, orientation, and size.")
         return True
     elif not position_match:
-        rospy.logerr(f"The object '{object_name}' is NOT in the correct position.")
         print(f"The object '{object_name}' is NOT in the correct position.")
         return False
-    else:
-        rospy.logerr(f"The object '{object_name}' is NOT in the correct orientation.")
+    elif not orientation_match:
         print(f"The object '{object_name}' is NOT in the correct orientation.")
         return False
+    else:
+        print(f"The object '{object_name}' is NOT the correct size.")
+        return False
 
+# Define the expected size of the objects
+expected_cylinder_size = [1.0, 0.2]
+expected_box_1_size = [0.05, 0.05, 0.05]
+expected_box_2_size = [0.1, 0.1, 0.1]
 
-# Verify the positions and orientations of the expected objects
+# Verify the positions, orientations, and sizes of the expected objects
 cylinder_pose = expected_cylinder_pose()
 box_1_pose = expected_box_1_pose()
 box_2_pose = expected_box_2_pose()
 
 # Check if the cylinder is correctly placed in the scene
-cylinder_result = verify_object("cylinder", cylinder_pose)
+cylinder_result = verify_object("cylinder", cylinder_pose, expected_cylinder_size)
 
 # Check if box_1 is correctly placed in the scene
-box_1_result = verify_object("box_1", box_1_pose)
+box_1_result = verify_object("box_1", box_1_pose, expected_box_1_size)
 
 # Check if box_2 is correctly placed in the scene
-box_2_result = verify_object("box_2", box_2_pose)
+box_2_result = verify_object("box_2", box_2_pose, expected_box_2_size)
 
-# Gebe das Gesamtergebnis aus
 if cylinder_result and box_1_result and box_2_result:
     print(True)
 else:
