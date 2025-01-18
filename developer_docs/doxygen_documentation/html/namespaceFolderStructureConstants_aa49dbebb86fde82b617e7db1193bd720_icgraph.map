@@ -3,6 +3,7 @@
 <area shape="rect" id="node2" href="$classNotebookConverter.html#a8b06d3bc01057ddd936977bded4297f4" title="Converts a Jupyter notebook to a Python script. Ignoring code cells with &quot;solution&quot; tag." alt="" coords="296,5,453,47"/>
 <area shape="rect" id="node3" href="$classTaskExecutor.html#ac8eb8ba8a66de4a3ed3ead3ad7abab5d" title="Executes a given subtask." alt="" coords="277,71,472,98"/>
 <area shape="rect" id="node4" href="$classNotebookConverter.html#a66b007e49cfe58d279c3ac279ced7213" title="Modifies and copies all notebooks from task_pool to users workspace." alt="" coords="296,123,453,164"/>
-<area shape="rect" id="node5" href="$classTaskExecutor.html#ad117a059ab0c1f6d85e318f0cf4709bc" title="Triggers python script to reset the robot to its initial state and removes all objects from the scene..." alt="" coords="281,189,468,215"/>
-<area shape="rect" id="node6" href="$classTaskManager.html#a9a858cb5aae71b691204c8561322677e" title="Forces the reset of the robot to its initial state." alt="" coords="5,189,229,215"/>
+<area shape="rect" id="node6" href="$classTaskExecutor.html#ad117a059ab0c1f6d85e318f0cf4709bc" title="Triggers python script to reset the robot to its initial state and removes all objects from the scene..." alt="" coords="281,189,468,215"/>
+<area shape="rect" id="node5" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="16,130,219,157"/>
+<area shape="rect" id="node7" href="$classTaskManager.html#a9a858cb5aae71b691204c8561322677e" title="Forces the reset of the robot to its initial state." alt="" coords="5,189,229,215"/>
 </map>

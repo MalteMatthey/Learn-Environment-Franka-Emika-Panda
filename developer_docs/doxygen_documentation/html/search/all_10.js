@@ -8,7 +8,7 @@ var searchData=
   ['selecttask_83',['selectTask',['../classTaskManager.html#a51989e6fb895fd817286153750f07d75',1,'TaskManager::selectTask()'],['../classSidebar.html#a9b621329888b135c42333a7ce8a4cad4',1,'Sidebar::selectTask()']]],
   ['setimage_84',['setImage',['../classExecuteFrame.html#a796e8a79e0bc372c47421617bc7c9100',1,'ExecuteFrame']]],
   ['settaskmanager_85',['setTaskManager',['../classSubtaskItem.html#aebba84aaef3c06a0c3079cea7fcd4ba6',1,'SubtaskItem::setTaskManager()'],['../classTaskUI.html#a53f64716c6328b25e37d822e687886cf',1,'TaskUI::setTaskManager()']]],
-  ['settaskui_86',['setTaskUI',['../classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4',1,'TaskUI']]],
+  ['settaskui_86',['setTaskUI',['../classTaskUI.html#aabf06702a70eb19ebb50cb15da79e0a8',1,'TaskUI']]],
   ['settext_87',['setText',['../classExecuteFrame.html#a659f12e489dcddf89818a116c1e7f742',1,'ExecuteFrame']]],
   ['showtoast_88',['showToast',['../classToast.html#a3445e2fca773be618e5b174382ee7bc1',1,'Toast']]],
   ['sidebar_89',['Sidebar',['../classSidebar.html',1,'Sidebar'],['../classSidebar.html#a874f7f7907a44517ee9cf9ac2c1888d7',1,'Sidebar::Sidebar()']]],

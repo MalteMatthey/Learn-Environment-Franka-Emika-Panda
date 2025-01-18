@@ -24,9 +24,7 @@ const QString SOLUTION_CELL_HEADER = "##########################################
 const QString SOLUTION_CODE_PLACEHOLDER_START = "# ↓↓↓↓ SOLUTION CODE HERE ↓↓↓↓ #";
 const QString SOLUTION_CODE_PLACEHOLDER_END = "# ↑↑↑↑ SOLUTION CODE HERE ↑↑↑↑ #";
 
-NotebookConverter::NotebookConverter(QObject *parent) : QObject(parent) {}
-
-NotebookConverter::~NotebookConverter() {}
+NotebookConverter::NotebookConverter() {}
 
 bool NotebookConverter::convertNotebook(const QString &notebookPath) {
     QFile inputFile(notebookPath);

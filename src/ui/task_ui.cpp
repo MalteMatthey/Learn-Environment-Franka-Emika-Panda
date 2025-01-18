@@ -61,13 +61,12 @@ void TaskUI::setTaskManager(TaskManager *manager)
 
 void TaskUI::initializeUI(const QVector<QSharedPointer<Task>> &loadedTasks)
 {
-    tasks = loadedTasks;
-    if (tasks.isEmpty()) {
+    if (loadedTasks.isEmpty()) {
         qCritical() << "No tasks loaded. Exiting TaskUI initialization.";
         return;
     }
 
-    sidebar->fillSidebarWithTasks(tasks);
+    sidebar->fillSidebarWithTasks(loadedTasks);
     sidebar->setVisible(false);
 
     setupSplitterAndLayout();
@@ -76,7 +75,7 @@ void TaskUI::initializeUI(const QVector<QSharedPointer<Task>> &loadedTasks)
     connect(sidebar, &Sidebar::taskSelected, this, &TaskUI::taskSelected);
 }
 
-void TaskUI::setTaskUI(int currentTaskIndex)
+void TaskUI::setTaskUI(int currentTaskIndex, const QVector<QSharedPointer<Task>> &tasks)
 {
     if (tasks.isEmpty() || currentTaskIndex < 0 || currentTaskIndex >= tasks.size()) {
         qCritical() << "Invalid currentTaskIndex:" << currentTaskIndex;
@@ -98,12 +97,12 @@ void TaskUI::setTaskUI(int currentTaskIndex)
     nextButton->setEnabled(currentTaskIndex < tasks.size() - 1);
     previousButton->setEnabled(currentTaskIndex > 0);
 
-    setSubtaskItems(currentTaskIndex);
+    setSubtaskItems(currentTaskIndex, tasks);
 
     sidebar->selectTask(currentTaskIndex);
 }
 
-void TaskUI::setSubtaskItems(int currentTaskIndex)
+void TaskUI::setSubtaskItems(int currentTaskIndex, const QVector<QSharedPointer<Task>> &tasks)
 {
     if (tasks.isEmpty() || currentTaskIndex < 0 || currentTaskIndex >= tasks.size()) {
         qCritical() << "Invalid currentTaskIndex in setSubtaskItems:" << currentTaskIndex;

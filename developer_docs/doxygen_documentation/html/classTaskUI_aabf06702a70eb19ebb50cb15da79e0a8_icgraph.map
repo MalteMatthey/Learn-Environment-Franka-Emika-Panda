@@ -1,0 +1,7 @@
+<map id="TaskUI::setTaskUI" name="TaskUI::setTaskUI">
+<area shape="rect" id="node1" title="Sets the UI elements for the current task." alt="" coords="488,56,624,83"/>
+<area shape="rect" id="node2" href="$classTaskManager.html#a51989e6fb895fd817286153750f07d75" title="Selects a task by its index." alt="" coords="256,56,440,83"/>
+<area shape="rect" id="node3" href="$classTaskManager.html#a327677e3a17f1a707095119328a96179" title="Slot for changing to the next task." alt="" coords="19,5,194,32"/>
+<area shape="rect" id="node4" href="$classTaskManager.html#a844a6313afed60e7def0f79eaeae7b9e" title="Slot for changing to the previous task." alt="" coords="6,56,207,83"/>
+<area shape="rect" id="node5" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="5,107,208,133"/>
+</map>

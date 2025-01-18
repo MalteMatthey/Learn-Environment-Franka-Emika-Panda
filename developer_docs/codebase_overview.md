@@ -14,7 +14,7 @@ The `learn_environment` project is structured into several key components, each 
 - **Script Execution**:  
     Converts and executes Jupyter notebooks and other scripts.
 
-### Simplified class diagram:
+### Conceptual class diagram:
 ![class diagram](./images/class_diagram.png)
 
 ## Doxygen Documentation

@@ -95,67 +95,66 @@ $(function() {
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a8d1744a1a2a2f821afe5d06b49c6a1a1">initializeUI</a>(<span class="keyword">const</span> QVector&lt;QSharedPointer&lt;Task&gt;&gt; &amp;tasks);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4">setTaskUI</a>(<span class="keywordtype">int</span> currentTaskIndex);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e">updateSubtaskItemsUI</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a53f64716c6328b25e37d822e687886cf">setTaskManager</a>(<a class="code" href="classTaskManager.html">TaskManager</a> *manager);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a11f88e4482442899fa19adf1f66fa030">startedRobotResetUI</a>(<span class="keywordtype">bool</span> noSubtasksLeft);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a6c2ca067880d519ab255a7608a268c8f">finishedRobotResetUI</a>();</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a8cb2994522ad6b1b59383515edddead3">failedRobotResetUI</a>(<span class="keyword">const</span> QString &amp;error);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;Q_SIGNALS:</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#af43308f1438155bd927357ac93c7b9db">taskSelected</a>(<span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">private</span> Q_SLOTS:</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> toggleSidebarVisibility();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="classSidebar.html">Sidebar</a> *sidebar; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    QVBoxLayout *subtaskListLayout; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QLabel *mainTitleLabel; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QLabel *difficultyLabel; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    QLabel *folderLabel; </div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    QLabel *topicLabel; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QPushButton *nextButton; </div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    QPushButton *previousButton; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    QToolButton *menuButton; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    QToolButton *resetRobotStartButton; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="classQFrame.html">QFrame</a> *resetRobotFrame; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="classExecuteFrame.html">ExecuteFrame</a> *executeResetRobotFrame; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="classQWidget.html">QWidget</a> *centralwidget; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    QVector&lt;QSharedPointer&lt;Task&gt;&gt; tasks; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#aabf06702a70eb19ebb50cb15da79e0a8">setTaskUI</a>(<span class="keywordtype">int</span> currentTaskIndex, <span class="keyword">const</span> QVector&lt;QSharedPointer&lt;Task&gt;&gt; &amp;tasks);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e">updateSubtaskItemsUI</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a53f64716c6328b25e37d822e687886cf">setTaskManager</a>(<a class="code" href="classTaskManager.html">TaskManager</a> *manager);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a11f88e4482442899fa19adf1f66fa030">startedRobotResetUI</a>(<span class="keywordtype">bool</span> noSubtasksLeft);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a6c2ca067880d519ab255a7608a268c8f">finishedRobotResetUI</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#a8cb2994522ad6b1b59383515edddead3">failedRobotResetUI</a>(<span class="keyword">const</span> QString &amp;error);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;Q_SIGNALS:</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classTaskUI.html#af43308f1438155bd927357ac93c7b9db">taskSelected</a>(<span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">private</span> Q_SLOTS:</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">void</span> toggleSidebarVisibility();</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="classSidebar.html">Sidebar</a> *sidebar; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    QVBoxLayout *subtaskListLayout; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    QLabel *mainTitleLabel; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    QLabel *difficultyLabel; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    QLabel *folderLabel; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    QLabel *topicLabel; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    QPushButton *nextButton; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    QPushButton *previousButton; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    QToolButton *menuButton; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    QToolButton *resetRobotStartButton; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="classQFrame.html">QFrame</a> *resetRobotFrame; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="classExecuteFrame.html">ExecuteFrame</a> *executeResetRobotFrame; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="classQWidget.html">QWidget</a> *centralwidget; </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="classTaskManager.html">TaskManager</a> *taskManager; </div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> setSubtaskItems(<span class="keywordtype">int</span> currentTaskIndex);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">void</span> addLineBetweenWidgets();</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keywordtype">void</span> setupSplitterAndLayout();</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;};</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif // TASKUI_HPP</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> setSubtaskItems(<span class="keywordtype">int</span> currentTaskIndex, <span class="keyword">const</span> QVector&lt;QSharedPointer&lt;Task&gt;&gt; &amp;tasks);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">void</span> addLineBetweenWidgets();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordtype">void</span> setupSplitterAndLayout();</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;};</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#endif // TASKUI_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassQFrame_html"><div class="ttname"><a href="classQFrame.html">QFrame</a></div></div>
 <div class="ttc" id="atask_8hpp_html"><div class="ttname"><a href="task_8hpp.html">task.hpp</a></div></div>
 <div class="ttc" id="aclassTaskManager_html"><div class="ttname"><a href="classTaskManager.html">TaskManager</a></div><div class="ttdoc">Manages tasks and their execution within the application.</div><div class="ttdef"><b>Definition:</b> task_manager.hpp:20</div></div>
-<div class="ttc" id="aclassTaskUI_html_ab6f629b7a42a49b94250768fbed7f4f4"><div class="ttname"><a href="classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4">TaskUI::setTaskUI</a></div><div class="ttdeci">void setTaskUI(int currentTaskIndex)</div><div class="ttdoc">Sets the UI elements for the current task.</div></div>
+<div class="ttc" id="aclassTaskUI_html_aabf06702a70eb19ebb50cb15da79e0a8"><div class="ttname"><a href="classTaskUI.html#aabf06702a70eb19ebb50cb15da79e0a8">TaskUI::setTaskUI</a></div><div class="ttdeci">void setTaskUI(int currentTaskIndex, const QVector&lt; QSharedPointer&lt; Task &gt;&gt; &amp;tasks)</div><div class="ttdoc">Sets the UI elements for the current task.</div></div>
 <div class="ttc" id="aclassTaskUI_html_a86f09b07fe3b4fd956f8c4ab02b8fae2"><div class="ttname"><a href="classTaskUI.html#a86f09b07fe3b4fd956f8c4ab02b8fae2">TaskUI::TaskUI</a></div><div class="ttdeci">TaskUI(QVBoxLayout *subtaskListLayout, QLabel *mainTitleLabel, QLabel *difficultyLabel, QLabel *folderLabel, QLabel *topicLabel, QPushButton *nextButton, QPushButton *previousButton, QToolButton *menuButton, QToolButton *resetRobotStartButton, QFrame *resetRobotFrame, QWidget *centralwidget, QWidget *parent=nullptr)</div><div class="ttdoc">Constructs a TaskUI object.</div></div>
 <div class="ttc" id="aclassSidebar_html"><div class="ttname"><a href="classSidebar.html">Sidebar</a></div><div class="ttdoc">Represents the sidebar UI component for displaying tasks.</div><div class="ttdef"><b>Definition:</b> sidebar.hpp:22</div></div>
 <div class="ttc" id="asubtask__item_8hpp_html"><div class="ttname"><a href="subtask__item_8hpp.html">subtask_item.hpp</a></div></div>
 <div class="ttc" id="aclassSidebar_html_a9b621329888b135c42333a7ce8a4cad4"><div class="ttname"><a href="classSidebar.html#a9b621329888b135c42333a7ce8a4cad4">Sidebar::selectTask</a></div><div class="ttdeci">void selectTask(int index)</div><div class="ttdoc">Selects a task in the sidebar by its index.</div><div class="ttdef"><b>Definition:</b> sidebar.cpp:114</div></div>
-<div class="ttc" id="aclassTaskManager_html_a51989e6fb895fd817286153750f07d75"><div class="ttname"><a href="classTaskManager.html#a51989e6fb895fd817286153750f07d75">TaskManager::selectTask</a></div><div class="ttdeci">void selectTask(int index)</div><div class="ttdoc">Selects a task by its index.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:85</div></div>
+<div class="ttc" id="aclassTaskManager_html_a51989e6fb895fd817286153750f07d75"><div class="ttname"><a href="classTaskManager.html#a51989e6fb895fd817286153750f07d75">TaskManager::selectTask</a></div><div class="ttdeci">void selectTask(int index)</div><div class="ttdoc">Selects a task by its index.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:88</div></div>
 <div class="ttc" id="aclassTaskUI_html_a9f8872c2393d36d7c3e57cf7501c745e"><div class="ttname"><a href="classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e">TaskUI::updateSubtaskItemsUI</a></div><div class="ttdeci">void updateSubtaskItemsUI()</div><div class="ttdoc">Updates the UI elements for the subtasks.</div></div>
 <div class="ttc" id="aclassQWidget_html"><div class="ttname"><a href="classQWidget.html">QWidget</a></div></div>
 <div class="ttc" id="aclassTaskUI_html"><div class="ttname"><a href="classTaskUI.html">TaskUI</a></div><div class="ttdoc">Manages the user interface for tasks and subtasks.</div><div class="ttdef"><b>Definition:</b> task_ui.hpp:24</div></div>
 <div class="ttc" id="aexecute__frame_8hpp_html"><div class="ttname"><a href="execute__frame_8hpp.html">execute_frame.hpp</a></div></div>
 <div class="ttc" id="asidebar_8hpp_html"><div class="ttname"><a href="sidebar_8hpp.html">sidebar.hpp</a></div></div>
-<div class="ttc" id="aclassTaskManager_html_a9a858cb5aae71b691204c8561322677e"><div class="ttname"><a href="classTaskManager.html#a9a858cb5aae71b691204c8561322677e">TaskManager::forceResetRobot</a></div><div class="ttdeci">void forceResetRobot()</div><div class="ttdoc">Forces the reset of the robot to its initial state.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:167</div></div>
+<div class="ttc" id="aclassTaskManager_html_a9a858cb5aae71b691204c8561322677e"><div class="ttname"><a href="classTaskManager.html#a9a858cb5aae71b691204c8561322677e">TaskManager::forceResetRobot</a></div><div class="ttdeci">void forceResetRobot()</div><div class="ttdoc">Forces the reset of the robot to its initial state.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:170</div></div>
 <div class="ttc" id="aclassTaskUI_html_a6c2ca067880d519ab255a7608a268c8f"><div class="ttname"><a href="classTaskUI.html#a6c2ca067880d519ab255a7608a268c8f">TaskUI::finishedRobotResetUI</a></div><div class="ttdeci">void finishedRobotResetUI()</div><div class="ttdoc">Update the UI to show that the robot reset has finished.</div></div>
-<div class="ttc" id="aclassTaskManager_html_a327677e3a17f1a707095119328a96179"><div class="ttname"><a href="classTaskManager.html#a327677e3a17f1a707095119328a96179">TaskManager::nextTask</a></div><div class="ttdeci">void nextTask()</div><div class="ttdoc">Slot for changing to the next task.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:110</div></div>
+<div class="ttc" id="aclassTaskManager_html_a327677e3a17f1a707095119328a96179"><div class="ttname"><a href="classTaskManager.html#a327677e3a17f1a707095119328a96179">TaskManager::nextTask</a></div><div class="ttdeci">void nextTask()</div><div class="ttdoc">Slot for changing to the next task.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:113</div></div>
 <div class="ttc" id="aclassSidebar_html_ad4d587292c62ad30ac9f1feac5d39499"><div class="ttname"><a href="classSidebar.html#ad4d587292c62ad30ac9f1feac5d39499">Sidebar::taskSelected</a></div><div class="ttdeci">void taskSelected(int index)</div><div class="ttdoc">Signal emitted when a task is selected.</div></div>
 <div class="ttc" id="aclassSidebar_html_a91f8e22b1e7b6c78eda5302c6e9bcca8"><div class="ttname"><a href="classSidebar.html#a91f8e22b1e7b6c78eda5302c6e9bcca8">Sidebar::fillSidebarWithTasks</a></div><div class="ttdeci">void fillSidebarWithTasks(const QVector&lt; QSharedPointer&lt; Task &gt;&gt; &amp;tasks)</div><div class="ttdoc">Populates the sidebar with tasks.</div><div class="ttdef"><b>Definition:</b> sidebar.cpp:64</div></div>
 <div class="ttc" id="aclassExecuteFrame_html_a796e8a79e0bc372c47421617bc7c9100"><div class="ttname"><a href="classExecuteFrame.html#a796e8a79e0bc372c47421617bc7c9100">ExecuteFrame::setImage</a></div><div class="ttdeci">void setImage(const QString &amp;path)</div><div class="ttdoc">Sets the image to be displayed.</div><div class="ttdef"><b>Definition:</b> execute_frame.cpp:52</div></div>
@@ -165,7 +164,7 @@ $(function() {
 <div class="ttc" id="aclassExecuteFrame_html_a659f12e489dcddf89818a116c1e7f742"><div class="ttname"><a href="classExecuteFrame.html#a659f12e489dcddf89818a116c1e7f742">ExecuteFrame::setText</a></div><div class="ttdeci">void setText(const QString &amp;text)</div><div class="ttdoc">Sets the text to be displayed.</div><div class="ttdef"><b>Definition:</b> execute_frame.cpp:84</div></div>
 <div class="ttc" id="aclassTaskUI_html_a11f88e4482442899fa19adf1f66fa030"><div class="ttname"><a href="classTaskUI.html#a11f88e4482442899fa19adf1f66fa030">TaskUI::startedRobotResetUI</a></div><div class="ttdeci">void startedRobotResetUI(bool noSubtasksLeft)</div><div class="ttdoc">Update the UI to show that the robot reset has been started.</div></div>
 <div class="ttc" id="atask__manager_8hpp_html"><div class="ttname"><a href="task__manager_8hpp.html">task_manager.hpp</a></div></div>
-<div class="ttc" id="aclassTaskManager_html_a844a6313afed60e7def0f79eaeae7b9e"><div class="ttname"><a href="classTaskManager.html#a844a6313afed60e7def0f79eaeae7b9e">TaskManager::previousTask</a></div><div class="ttdeci">void previousTask()</div><div class="ttdoc">Slot for changing to the previous task.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:117</div></div>
+<div class="ttc" id="aclassTaskManager_html_a844a6313afed60e7def0f79eaeae7b9e"><div class="ttname"><a href="classTaskManager.html#a844a6313afed60e7def0f79eaeae7b9e">TaskManager::previousTask</a></div><div class="ttdeci">void previousTask()</div><div class="ttdoc">Slot for changing to the previous task.</div><div class="ttdef"><b>Definition:</b> task_manager.cpp:120</div></div>
 <div class="ttc" id="aclassTaskUI_html_a8d1744a1a2a2f821afe5d06b49c6a1a1"><div class="ttname"><a href="classTaskUI.html#a8d1744a1a2a2f821afe5d06b49c6a1a1">TaskUI::initializeUI</a></div><div class="ttdeci">void initializeUI(const QVector&lt; QSharedPointer&lt; Task &gt;&gt; &amp;tasks)</div><div class="ttdoc">Initializes the UI with the loaded tasks.</div></div>
 <div class="ttc" id="aclassTaskUI_html_af43308f1438155bd927357ac93c7b9db"><div class="ttname"><a href="classTaskUI.html#af43308f1438155bd927357ac93c7b9db">TaskUI::taskSelected</a></div><div class="ttdeci">void taskSelected(int index)</div><div class="ttdoc">Signal emitted when a task is selected.</div></div>
 <div class="ttc" id="aclassSubtaskItem_html_a005df51b50001f3e9c95652e845cf424"><div class="ttname"><a href="classSubtaskItem.html#a005df51b50001f3e9c95652e845cf424">SubtaskItem::updateUI</a></div><div class="ttdeci">void updateUI(bool constructorCall=false)</div><div class="ttdoc">Updates the UI elements based on the subtask's status.</div><div class="ttdef"><b>Definition:</b> subtask_item.cpp:88</div></div>

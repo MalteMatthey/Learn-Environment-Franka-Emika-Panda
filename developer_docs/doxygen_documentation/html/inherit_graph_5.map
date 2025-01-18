@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structSubtask.html" title="Represents a subtask within a task." alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node1" href="$classQWidget.html" title=" " alt="" coords="5,81,84,108"/>
+<area shape="rect" id="node2" href="$classSidebar.html" title="Represents the sidebar UI component for displaying tasks." alt="" coords="149,5,219,32"/>
+<area shape="rect" id="node3" href="$classSubtaskItem.html" title="Represents a UI item for a subtask." alt="" coords="132,56,236,83"/>
+<area shape="rect" id="node4" href="$classTaskUI.html" title="Manages the user interface for tasks and subtasks." alt="" coords="151,107,217,133"/>
+<area shape="rect" id="node5" href="$classToast.html" title=" " alt="" coords="156,157,212,184"/>
 </map>

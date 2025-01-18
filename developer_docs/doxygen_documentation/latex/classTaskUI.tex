@@ -11,8 +11,7 @@ Manages the user interface for tasks and subtasks.
 
 
 
-Inheritance diagram for Task\+UI\+:
-\nopagebreak
+Inheritance diagram for Task\+UI\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,8 +20,7 @@ Inheritance diagram for Task\+UI\+:
 \end{figure}
 
 
-Collaboration diagram for Task\+UI\+:
-\nopagebreak
+Collaboration diagram for Task\+UI\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -41,7 +39,7 @@ void \mbox{\hyperlink{classTaskUI_af43308f1438155bd927357ac93c7b9db}{task\+Selec
 \begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classTaskUI}{Task\+UI}} object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTaskUI_a8d1744a1a2a2f821afe5d06b49c6a1a1}{initialize\+UI}} (const Q\+Vector$<$ Q\+Shared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$$>$ \&tasks)
 \begin{DoxyCompactList}\small\item\em Initializes the UI with the loaded tasks. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}{set\+Task\+UI}} (int current\+Task\+Index)
+void \mbox{\hyperlink{classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8}{set\+Task\+UI}} (int current\+Task\+Index, const Q\+Vector$<$ Q\+Shared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$$>$ \&tasks)
 \begin{DoxyCompactList}\small\item\em Sets the UI elements for the current task. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classTaskUI_a9f8872c2393d36d7c3e57cf7501c745e}{update\+Subtask\+Items\+UI}} ()
 \begin{DoxyCompactList}\small\item\em Updates the UI elements for the subtasks. \end{DoxyCompactList}\item 
@@ -139,8 +137,7 @@ Initializes the UI with the loaded tasks.
 {\em tasks} & Vector of loaded tasks. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -162,19 +159,18 @@ Sets the \mbox{\hyperlink{classTaskManager}{Task\+Manager}} object.
 {\em manager} & Pointer to the \mbox{\hyperlink{classTaskManager}{Task\+Manager}} object. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{classTaskUI_a53f64716c6328b25e37d822e687886cf_icgraph}
 \end{center}
 \end{figure}
-\mbox{\Hypertarget{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}\label{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4}} 
+\mbox{\Hypertarget{classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8}\label{classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8}} 
 \index{TaskUI@{TaskUI}!setTaskUI@{setTaskUI}}
 \index{setTaskUI@{setTaskUI}!TaskUI@{TaskUI}}
 \doxysubsubsection{\texorpdfstring{setTaskUI()}{setTaskUI()}}
-{\footnotesize\ttfamily void Task\+U\+I\+::set\+Task\+UI (\begin{DoxyParamCaption}\item[{int}]{current\+Task\+Index }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Task\+U\+I\+::set\+Task\+UI (\begin{DoxyParamCaption}\item[{int}]{current\+Task\+Index,  }\item[{const Q\+Vector$<$ Q\+Shared\+Pointer$<$ \mbox{\hyperlink{structTask}{Task}} $>$$>$ \&}]{tasks }\end{DoxyParamCaption})}
 
 
 
@@ -184,13 +180,15 @@ Sets the UI elements for the current task.
 \begin{DoxyParams}{Parameters}
 {\em current\+Task\+Index} & Index of the current task. \\
 \hline
+{\em tasks} & Vector of tasks. \\
+\hline
 \end{DoxyParams}
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph}
+\includegraphics[width=350pt]{classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8_icgraph}
 \end{center}
 \end{figure}
 \mbox{\Hypertarget{classTaskUI_a11f88e4482442899fa19adf1f66fa030}\label{classTaskUI_a11f88e4482442899fa19adf1f66fa030}} 
@@ -233,8 +231,7 @@ Signal emitted when a task is selected.
 
 Updates the UI elements for the subtasks. 
 
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

@@ -76,59 +76,51 @@ $(function() {
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;ui_learn_environment.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="task__manager_8hpp.html">task_management/task_manager.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="task__ui_8hpp.html">ui/task_ui.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="notebook__converter_8hpp.html">common/notebook_converter.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QProcess&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QThread&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;QT_BEGIN_NAMESPACE</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">class </span><a class="code" href="classLearnEnvironment.html">LearnEnvironment</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;}</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;QT_END_NAMESPACE</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classLearnEnvironment.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLearnEnvironment.html">LearnEnvironment</a> : <span class="keyword">public</span> rviz::Panel</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classLearnEnvironment.html#a25d7b0bd7b4270c7c2feeab3a9450d39">LearnEnvironment</a>(<a class="code" href="classQWidget.html">QWidget</a> *parent = 0);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classLearnEnvironment.html#ad2086d08e20cef426a861e1093cfc987">~LearnEnvironment</a>();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLearnEnvironment.html#af0c2b95f5853116a09c795d33eb47d52">load</a>(<span class="keyword">const</span> rviz::Config &amp;config) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLearnEnvironment.html#aa684f56e6ba08652e1ddfa47304eb449">save</a>(rviz::Config config) <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    Ui::LearnEnvironment *ui; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="classTaskManager.html">TaskManager</a> *taskManager; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="classTaskUI.html">TaskUI</a> *taskUI; </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QProcess *process; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classNotebookConverter.html">NotebookConverter</a> *notebookConverter; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    QThread *notebookThread; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> initialize();</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif // LEARN_ENVIRONMENT_HPP</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QProcess&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;QT_BEGIN_NAMESPACE</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceUi.html">Ui</a> {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">class </span><a class="code" href="classLearnEnvironment.html">LearnEnvironment</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;QT_END_NAMESPACE</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classLearnEnvironment.html">   34</a></span>&#160;<span class="keyword">class </span><a class="code" href="classLearnEnvironment.html">LearnEnvironment</a> : <span class="keyword">public</span> rviz::Panel</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classLearnEnvironment.html#a25d7b0bd7b4270c7c2feeab3a9450d39">LearnEnvironment</a>(<a class="code" href="classQWidget.html">QWidget</a> *parent = 0);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classLearnEnvironment.html#ad2086d08e20cef426a861e1093cfc987">~LearnEnvironment</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLearnEnvironment.html#af0c2b95f5853116a09c795d33eb47d52">load</a>(<span class="keyword">const</span> rviz::Config &amp;config) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classLearnEnvironment.html#aa684f56e6ba08652e1ddfa47304eb449">save</a>(rviz::Config config) <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    Ui::LearnEnvironment *ui; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="classTaskManager.html">TaskManager</a> *taskManager; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="classTaskUI.html">TaskUI</a> *taskUI; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    QProcess *process; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> initialize();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif // LEARN_ENVIRONMENT_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
-<div class="ttc" id="aclassNotebookConverter_html"><div class="ttname"><a href="classNotebookConverter.html">NotebookConverter</a></div><div class="ttdoc">A class for converting Jupyter notebooks to Python scripts and processing task pools.</div><div class="ttdef"><b>Definition:</b> notebook_converter.hpp:23</div></div>
 <div class="ttc" id="aclassLearnEnvironment_html_a25d7b0bd7b4270c7c2feeab3a9450d39"><div class="ttname"><a href="classLearnEnvironment.html#a25d7b0bd7b4270c7c2feeab3a9450d39">LearnEnvironment::LearnEnvironment</a></div><div class="ttdeci">LearnEnvironment(QWidget *parent=0)</div><div class="ttdoc">Constructs a LearnEnvironment object.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:6</div></div>
 <div class="ttc" id="alearn__environment_8hpp_html"><div class="ttname"><a href="learn__environment_8hpp.html">learn_environment.hpp</a></div></div>
 <div class="ttc" id="aclassTaskManager_html"><div class="ttname"><a href="classTaskManager.html">TaskManager</a></div><div class="ttdoc">Manages tasks and their execution within the application.</div><div class="ttdef"><b>Definition:</b> task_manager.hpp:20</div></div>
-<div class="ttc" id="aclassLearnEnvironment_html_aa684f56e6ba08652e1ddfa47304eb449"><div class="ttname"><a href="classLearnEnvironment.html#aa684f56e6ba08652e1ddfa47304eb449">LearnEnvironment::save</a></div><div class="ttdeci">virtual void save(rviz::Config config) const override</div><div class="ttdoc">Saves user-specific settings.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:61</div></div>
+<div class="ttc" id="aclassLearnEnvironment_html_aa684f56e6ba08652e1ddfa47304eb449"><div class="ttname"><a href="classLearnEnvironment.html#aa684f56e6ba08652e1ddfa47304eb449">LearnEnvironment::save</a></div><div class="ttdeci">virtual void save(rviz::Config config) const override</div><div class="ttdoc">Saves user-specific settings.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:50</div></div>
 <div class="ttc" id="aclassQWidget_html"><div class="ttname"><a href="classQWidget.html">QWidget</a></div></div>
 <div class="ttc" id="aclassTaskUI_html"><div class="ttname"><a href="classTaskUI.html">TaskUI</a></div><div class="ttdoc">Manages the user interface for tasks and subtasks.</div><div class="ttdef"><b>Definition:</b> task_ui.hpp:24</div></div>
-<div class="ttc" id="anotebook__converter_8hpp_html"><div class="ttname"><a href="notebook__converter_8hpp.html">notebook_converter.hpp</a></div></div>
-<div class="ttc" id="aclassNotebookConverter_html_a66b007e49cfe58d279c3ac279ced7213"><div class="ttname"><a href="classNotebookConverter.html#a66b007e49cfe58d279c3ac279ced7213">NotebookConverter::processTaskPool</a></div><div class="ttdeci">void processTaskPool()</div><div class="ttdoc">Modifies and copies all notebooks from task_pool to users workspace.</div><div class="ttdef"><b>Definition:</b> notebook_converter.cpp:97</div></div>
 <div class="ttc" id="anamespaceUi_html"><div class="ttname"><a href="namespaceUi.html">Ui</a></div><div class="ttdoc">Contains classes generated by Qt's User Interface Compiler (uic) from .ui files.</div></div>
-<div class="ttc" id="aclassLearnEnvironment_html_af0c2b95f5853116a09c795d33eb47d52"><div class="ttname"><a href="classLearnEnvironment.html#af0c2b95f5853116a09c795d33eb47d52">LearnEnvironment::load</a></div><div class="ttdeci">virtual void load(const rviz::Config &amp;config) override</div><div class="ttdoc">Loads user-specific settings.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:57</div></div>
-<div class="ttc" id="aclassLearnEnvironment_html"><div class="ttname"><a href="classLearnEnvironment.html">LearnEnvironment</a></div><div class="ttdoc">A custom RViz panel for managing the learning environment.</div><div class="ttdef"><b>Definition:</b> learn_environment.hpp:36</div></div>
-<div class="ttc" id="aclassLearnEnvironment_html_ad2086d08e20cef426a861e1093cfc987"><div class="ttname"><a href="classLearnEnvironment.html#ad2086d08e20cef426a861e1093cfc987">LearnEnvironment::~LearnEnvironment</a></div><div class="ttdeci">~LearnEnvironment()</div><div class="ttdoc">Destroys the LearnEnvironment object.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:19</div></div>
+<div class="ttc" id="aclassLearnEnvironment_html_af0c2b95f5853116a09c795d33eb47d52"><div class="ttname"><a href="classLearnEnvironment.html#af0c2b95f5853116a09c795d33eb47d52">LearnEnvironment::load</a></div><div class="ttdeci">virtual void load(const rviz::Config &amp;config) override</div><div class="ttdoc">Loads user-specific settings.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:46</div></div>
+<div class="ttc" id="aclassLearnEnvironment_html"><div class="ttname"><a href="classLearnEnvironment.html">LearnEnvironment</a></div><div class="ttdoc">A custom RViz panel for managing the learning environment.</div><div class="ttdef"><b>Definition:</b> learn_environment.hpp:34</div></div>
+<div class="ttc" id="aclassLearnEnvironment_html_ad2086d08e20cef426a861e1093cfc987"><div class="ttname"><a href="classLearnEnvironment.html#ad2086d08e20cef426a861e1093cfc987">LearnEnvironment::~LearnEnvironment</a></div><div class="ttdeci">~LearnEnvironment()</div><div class="ttdoc">Destroys the LearnEnvironment object.</div><div class="ttdef"><b>Definition:</b> learn_environment.cpp:17</div></div>
 <div class="ttc" id="atask__manager_8hpp_html"><div class="ttname"><a href="task__manager_8hpp.html">task_manager.hpp</a></div></div>
 <div class="ttc" id="atask__ui_8hpp_html"><div class="ttname"><a href="task__ui_8hpp.html">task_ui.hpp</a></div></div>
 <!-- start footer part -->

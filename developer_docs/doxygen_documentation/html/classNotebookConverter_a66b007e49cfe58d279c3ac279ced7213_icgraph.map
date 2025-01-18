@@ -1,0 +1,4 @@
+<map id="NotebookConverter::processTaskPool" name="NotebookConverter::processTaskPool">
+<area shape="rect" id="node1" title="Modifies and copies all notebooks from task_pool to users workspace." alt="" coords="256,5,413,47"/>
+<area shape="rect" id="node2" href="$classTaskManager.html#a9c906455542360f6760169599f2640a3" title="Constructs a TaskManager object." alt="" coords="5,13,208,39"/>
+</map>

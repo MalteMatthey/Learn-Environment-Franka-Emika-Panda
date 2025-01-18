@@ -8,9 +8,7 @@ LearnEnvironment::LearnEnvironment(QWidget *parent)
       ui(new Ui::LearnEnvironment),
       process(new QProcess(this)),
       taskManager(nullptr),
-      taskUI(nullptr),
-      notebookConverter(new NotebookConverter()),
-      notebookThread(new QThread())
+      taskUI(nullptr)
 {
     ui->setupUi(this);
     initialize();
@@ -18,10 +16,6 @@ LearnEnvironment::LearnEnvironment(QWidget *parent)
 
 LearnEnvironment::~LearnEnvironment()
 {
-    notebookThread->quit();
-    notebookThread->wait();
-    delete notebookConverter;
-    delete notebookThread;
     delete ui;
     delete process;
 }
@@ -47,11 +41,6 @@ void LearnEnvironment::initialize() {
     mainPanelLayout->addWidget(taskUI);
     mainPanelLayout->setContentsMargins(0, 0, 0, 0);
     setLayout(mainPanelLayout);
-
-    notebookConverter->moveToThread(notebookThread);
-    connect(notebookThread, &QThread::started, notebookConverter, &NotebookConverter::processTaskPool);
-
-    notebookThread->start();
 }
 
 void LearnEnvironment::load(const rviz::Config &config) {

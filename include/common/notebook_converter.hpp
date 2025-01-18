@@ -20,11 +20,9 @@ using json = nlohmann::json;
  * The class includes methods for reading and writing files, parsing JSON content, and processing notebook cells.
  * It ensures that the structure of the notebook is preserved while removing solution code and adding necessary metadata.
  */
-class NotebookConverter : public QObject {
-    Q_OBJECT
+class NotebookConverter {
 public:
-    explicit NotebookConverter(QObject *parent = nullptr);
-    ~NotebookConverter();
+    explicit NotebookConverter();
 
     /**
      * @brief Converts a Jupyter notebook to a Python script. Ignoring code cells with "solution" tag.

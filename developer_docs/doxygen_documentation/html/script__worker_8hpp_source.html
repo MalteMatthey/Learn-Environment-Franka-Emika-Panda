@@ -126,13 +126,12 @@ $(function() {
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordtype">bool</span> evalScriptFinished; </div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    QList&lt;ProcessRunner*&gt; processRunners; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="classNotebookConverter.html">NotebookConverter</a> converter; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    QString errorOutput; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    QString evaluationOutput; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;};</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif // SCRIPT_WORKER_HPP</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    QString errorOutput; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    QString evaluationOutput; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;};</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif // SCRIPT_WORKER_HPP</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassNotebookConverter_html"><div class="ttname"><a href="classNotebookConverter.html">NotebookConverter</a></div><div class="ttdoc">A class for converting Jupyter notebooks to Python scripts and processing task pools.</div><div class="ttdef"><b>Definition:</b> notebook_converter.hpp:23</div></div>
 <div class="ttc" id="aclassProcessRunner_html_abb4be6a4283702e38a9eb7d51438efb6"><div class="ttname"><a href="classProcessRunner.html#abb4be6a4283702e38a9eb7d51438efb6">ProcessRunner::forceStop</a></div><div class="ttdeci">void forceStop()</div><div class="ttdoc">Forces the stop of the running process.</div><div class="ttdef"><b>Definition:</b> process_runner.cpp:35</div></div>
@@ -148,11 +147,11 @@ $(function() {
 <div class="ttc" id="anotebook__converter_8hpp_html"><div class="ttname"><a href="notebook__converter_8hpp.html">notebook_converter.hpp</a></div></div>
 <div class="ttc" id="aprocess__runner_8hpp_html"><div class="ttname"><a href="process__runner_8hpp.html">process_runner.hpp</a></div></div>
 <div class="ttc" id="aclassScriptWorker_html_aafadef7996317ca83dcb2605777affe2"><div class="ttname"><a href="classScriptWorker.html#aafadef7996317ca83dcb2605777affe2">ScriptWorker::forceStop</a></div><div class="ttdeci">void forceStop()</div><div class="ttdoc">Forces the stop of all running scripts.</div><div class="ttdef"><b>Definition:</b> script_worker.cpp:206</div></div>
-<div class="ttc" id="aclassNotebookConverter_html_a8b06d3bc01057ddd936977bded4297f4"><div class="ttname"><a href="classNotebookConverter.html#a8b06d3bc01057ddd936977bded4297f4">NotebookConverter::convertNotebook</a></div><div class="ttdeci">bool convertNotebook(const QString &amp;notebookPath)</div><div class="ttdoc">Converts a Jupyter notebook to a Python script. Ignoring code cells with &quot;solution&quot; tag.</div><div class="ttdef"><b>Definition:</b> notebook_converter.cpp:31</div></div>
+<div class="ttc" id="aclassNotebookConverter_html_a8b06d3bc01057ddd936977bded4297f4"><div class="ttname"><a href="classNotebookConverter.html#a8b06d3bc01057ddd936977bded4297f4">NotebookConverter::convertNotebook</a></div><div class="ttdeci">bool convertNotebook(const QString &amp;notebookPath)</div><div class="ttdoc">Converts a Jupyter notebook to a Python script. Ignoring code cells with &quot;solution&quot; tag.</div><div class="ttdef"><b>Definition:</b> notebook_converter.cpp:29</div></div>
 <div class="ttc" id="aclassProcessRunner_html_a76c6897c0cf00b9034e6deb9662debbf"><div class="ttname"><a href="classProcessRunner.html#a76c6897c0cf00b9034e6deb9662debbf">ProcessRunner::finished</a></div><div class="ttdeci">void finished(int exitCode, QProcess::ExitStatus exitStatus)</div><div class="ttdoc">Signal emitted when the process finishes.</div></div>
 <div class="ttc" id="ascript__worker_8hpp_html"><div class="ttname"><a href="script__worker_8hpp.html">script_worker.hpp</a></div></div>
 <div class="ttc" id="aclassProcessRunner_html_ae42c9c4e04890fffa674e06eedf631b3"><div class="ttname"><a href="classProcessRunner.html#ae42c9c4e04890fffa674e06eedf631b3">ProcessRunner::timeout</a></div><div class="ttdeci">void timeout()</div><div class="ttdoc">Signal emitted when the process times out.</div></div>
-<div class="ttc" id="aclassScriptWorker_html_a501653e756b40c33f4bd37957b398de3"><div class="ttname"><a href="classScriptWorker.html#a501653e756b40c33f4bd37957b398de3">ScriptWorker::startExecution</a></div><div class="ttdeci">void startExecution()</div><div class="ttdoc">Starts the execution of the scripts.</div><div class="ttdef"><b>Definition:</b> script_worker.cpp:39</div></div>
+<div class="ttc" id="aclassScriptWorker_html_a501653e756b40c33f4bd37957b398de3"><div class="ttname"><a href="classScriptWorker.html#a501653e756b40c33f4bd37957b398de3">ScriptWorker::startExecution</a></div><div class="ttdeci">void startExecution()</div><div class="ttdoc">Starts the execution of the scripts.</div><div class="ttdef"><b>Definition:</b> script_worker.cpp:38</div></div>
 <div class="ttc" id="aclassScriptWorker_html"><div class="ttname"><a href="classScriptWorker.html">ScriptWorker</a></div><div class="ttdoc">Manages the execution of scripts for tasks.</div><div class="ttdef"><b>Definition:</b> script_worker.hpp:21</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

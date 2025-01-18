@@ -107,7 +107,6 @@ private:
     bool evalScriptFinished; ///< Indicates if the evaluation script has finished.
 
     QList<ProcessRunner*> processRunners; ///< List of active ProcessRunner objects.
-    NotebookConverter converter; ///< Instance of NotebookConverter.
 
     QString errorOutput; ///< Error output from the script execution.
     QString evaluationOutput; ///< Collected output from checkResult and evaluateScriptInParallel.

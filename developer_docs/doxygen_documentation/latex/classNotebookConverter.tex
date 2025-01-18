@@ -11,30 +11,18 @@ A class for converting Jupyter notebooks to Python scripts and processing task p
 
 
 
-Inheritance diagram for Notebook\+Converter\+:
-\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=219pt]{classNotebookConverter__inherit__graph}
-\end{center}
-\end{figure}
-
-
 Collaboration diagram for Notebook\+Converter\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=219pt]{classNotebookConverter__coll__graph}
+\includegraphics[width=211pt]{classNotebookConverter__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classNotebookConverter_a11c8ed4604d4c29acd45d6225d80c464}{Notebook\+Converter}} (\mbox{\hyperlink{classQObject}{Q\+Object}} $\ast$parent=nullptr)
-\item 
-\mbox{\hyperlink{classNotebookConverter_a0703e231cd1f0ee9a37e4f0028dc7de1}{$\sim$\+Notebook\+Converter}} ()
+\mbox{\hyperlink{classNotebookConverter_a5192360fddc7dad95b2de76d4bb011b6}{Notebook\+Converter}} ()
 \item 
 bool \mbox{\hyperlink{classNotebookConverter_a8b06d3bc01057ddd936977bded4297f4}{convert\+Notebook}} (const Q\+String \&notebook\+Path)
 \begin{DoxyCompactList}\small\item\em Converts a Jupyter notebook to a Python script. Ignoring code cells with \char`\"{}solution\char`\"{} tag. \end{DoxyCompactList}\item 
@@ -59,17 +47,11 @@ The \mbox{\hyperlink{classNotebookConverter}{Notebook\+Converter}} class provide
 The class includes methods for reading and writing files, parsing J\+S\+ON content, and processing notebook cells. It ensures that the structure of the notebook is preserved while removing solution code and adding necessary metadata. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classNotebookConverter_a11c8ed4604d4c29acd45d6225d80c464}\label{classNotebookConverter_a11c8ed4604d4c29acd45d6225d80c464}} 
+\mbox{\Hypertarget{classNotebookConverter_a5192360fddc7dad95b2de76d4bb011b6}\label{classNotebookConverter_a5192360fddc7dad95b2de76d4bb011b6}} 
 \index{NotebookConverter@{NotebookConverter}!NotebookConverter@{NotebookConverter}}
 \index{NotebookConverter@{NotebookConverter}!NotebookConverter@{NotebookConverter}}
 \doxysubsubsection{\texorpdfstring{NotebookConverter()}{NotebookConverter()}}
-{\footnotesize\ttfamily Notebook\+Converter\+::\+Notebook\+Converter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classQObject}{Q\+Object}} $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
-
-\mbox{\Hypertarget{classNotebookConverter_a0703e231cd1f0ee9a37e4f0028dc7de1}\label{classNotebookConverter_a0703e231cd1f0ee9a37e4f0028dc7de1}} 
-\index{NotebookConverter@{NotebookConverter}!````~NotebookConverter@{$\sim$NotebookConverter}}
-\index{````~NotebookConverter@{$\sim$NotebookConverter}!NotebookConverter@{NotebookConverter}}
-\doxysubsubsection{\texorpdfstring{$\sim$NotebookConverter()}{~NotebookConverter()}}
-{\footnotesize\ttfamily Notebook\+Converter\+::$\sim$\+Notebook\+Converter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Notebook\+Converter\+::\+Notebook\+Converter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
 
 
@@ -110,8 +92,7 @@ Checks if the notebook contains any solution cells.
 \begin{DoxyReturn}{Returns}
 True if solution cells are present, else False. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -128,6 +109,14 @@ Here is the caller graph for this function\+:
 
 Modifies and copies all notebooks from task\+\_\+pool to users workspace. 
 
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classNotebookConverter_a66b007e49cfe58d279c3ac279ced7213_icgraph}
+\end{center}
+\end{figure}
 \mbox{\Hypertarget{classNotebookConverter_aa14fbd73e3cc21866decd2e02572207d}\label{classNotebookConverter_aa14fbd73e3cc21866decd2e02572207d}} 
 \index{NotebookConverter@{NotebookConverter}!resetNotebook@{resetNotebook}}
 \index{resetNotebook@{resetNotebook}!NotebookConverter@{NotebookConverter}}
@@ -160,8 +149,7 @@ Toggles the solution code in a Jupyter notebook.
 {\em solution\+File\+Path} & Path to the solution notebook file. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode

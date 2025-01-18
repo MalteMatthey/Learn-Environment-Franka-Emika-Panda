@@ -236,8 +236,8 @@ void SubtaskItem::handleResetNotebook() {
 
     if (ret == QMessageBox::Yes) {
         if (taskManager && subtask) {
-            NotebookConverter* converter = new NotebookConverter();
-            converter->resetNotebook(subtask->filePath, subtask->solutionFilePath);
+            NotebookConverter converter;
+            converter.resetNotebook(subtask->filePath, subtask->solutionFilePath);
             showToast(NOTEBOOK_RESET_TOAST);
         }
     }

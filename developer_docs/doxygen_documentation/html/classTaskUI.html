@@ -107,9 +107,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8d1744a1a2a2f821afe5d06b49c6a1a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTaskUI.html#a8d1744a1a2a2f821afe5d06b49c6a1a1">initializeUI</a> (const QVector&lt; QSharedPointer&lt; <a class="el" href="structTask.html">Task</a> &gt;&gt; &amp;tasks)</td></tr>
 <tr class="memdesc:a8d1744a1a2a2f821afe5d06b49c6a1a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the UI with the loaded tasks.  <a href="classTaskUI.html#a8d1744a1a2a2f821afe5d06b49c6a1a1">More...</a><br /></td></tr>
 <tr class="separator:a8d1744a1a2a2f821afe5d06b49c6a1a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6f629b7a42a49b94250768fbed7f4f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4">setTaskUI</a> (int currentTaskIndex)</td></tr>
-<tr class="memdesc:ab6f629b7a42a49b94250768fbed7f4f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the UI elements for the current task.  <a href="classTaskUI.html#ab6f629b7a42a49b94250768fbed7f4f4">More...</a><br /></td></tr>
-<tr class="separator:ab6f629b7a42a49b94250768fbed7f4f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf06702a70eb19ebb50cb15da79e0a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTaskUI.html#aabf06702a70eb19ebb50cb15da79e0a8">setTaskUI</a> (int currentTaskIndex, const QVector&lt; QSharedPointer&lt; <a class="el" href="structTask.html">Task</a> &gt;&gt; &amp;tasks)</td></tr>
+<tr class="memdesc:aabf06702a70eb19ebb50cb15da79e0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the UI elements for the current task.  <a href="classTaskUI.html#aabf06702a70eb19ebb50cb15da79e0a8">More...</a><br /></td></tr>
+<tr class="separator:aabf06702a70eb19ebb50cb15da79e0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f8872c2393d36d7c3e57cf7501c745e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e">updateSubtaskItemsUI</a> ()</td></tr>
 <tr class="memdesc:a9f8872c2393d36d7c3e57cf7501c745e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the UI elements for the subtasks.  <a href="classTaskUI.html#a9f8872c2393d36d7c3e57cf7501c745e">More...</a><br /></td></tr>
 <tr class="separator:a9f8872c2393d36d7c3e57cf7501c745e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -352,8 +352,8 @@ Here is the caller graph for this function:</div>
 
 </div>
 </div>
-<a id="ab6f629b7a42a49b94250768fbed7f4f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6f629b7a42a49b94250768fbed7f4f4">&#9670;&nbsp;</a></span>setTaskUI()</h2>
+<a id="aabf06702a70eb19ebb50cb15da79e0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf06702a70eb19ebb50cb15da79e0a8">&#9670;&nbsp;</a></span>setTaskUI()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -362,8 +362,18 @@ Here is the caller graph for this function:</div>
           <td class="memname">void TaskUI::setTaskUI </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>currentTaskIndex</em></td><td>)</td>
+          <td class="paramname"><em>currentTaskIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const QVector&lt; QSharedPointer&lt; <a class="el" href="structTask.html">Task</a> &gt;&gt; &amp;&#160;</td>
+          <td class="paramname"><em>tasks</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -372,14 +382,15 @@ Here is the caller graph for this function:</div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">currentTaskIndex</td><td>Index of the current task. </td></tr>
+    <tr><td class="paramname">tasks</td><td>Vector of tasks. </td></tr>
   </table>
   </dd>
 </dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph.png" border="0" usemap="#classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph" alt=""/></div>
-<map name="classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph" id="classTaskUI_ab6f629b7a42a49b94250768fbed7f4f4_icgraph">
+<div class="center"><img src="classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8_icgraph.png" border="0" usemap="#classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8_icgraph" alt=""/></div>
+<map name="classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8_icgraph" id="classTaskUI_aabf06702a70eb19ebb50cb15da79e0a8_icgraph">
 <area shape="rect" title="Sets the UI elements for the current task." alt="" coords="488,56,624,83"/>
 <area shape="rect" href="classTaskManager.html#a51989e6fb895fd817286153750f07d75" title="Selects a task by its index." alt="" coords="256,56,440,83"/>
 <area shape="rect" href="classTaskManager.html#a327677e3a17f1a707095119328a96179" title="Slot for changing to the next task." alt="" coords="19,5,194,32"/>

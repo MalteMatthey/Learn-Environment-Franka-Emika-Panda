@@ -14,6 +14,9 @@ TaskManager::TaskManager(TaskUI *taskUI, QObject *parent)
       taskExecutor(new TaskExecutor(this)),
       currentTaskIndex(0)
 {
+    NotebookConverter notebookConverter;
+    notebookConverter.processTaskPool();
+
     TaskParser parser;
     tasks = parser.loadTasks(FolderStructureConstants::TASK_DEFINITIONS_PATH, 
                              FolderStructureConstants::DIFFICULTY_LEVELS_DEFINITION_PATH, 
@@ -91,7 +94,7 @@ void TaskManager::selectTask(int index)
 
     if (index >= 0 && index < static_cast<int>(tasks.size())) {
         currentTaskIndex = index;
-        taskUI->setTaskUI(currentTaskIndex);
+        taskUI->setTaskUI(currentTaskIndex, tasks);
 
         // Set all subtasks status to inactive except the currentTaskIndex task
         for (int i = 0; i < tasks.size(); ++i) {

@@ -53,8 +53,9 @@ public:
     /**
      * @brief Sets the UI elements for the current task.
      * @param currentTaskIndex Index of the current task.
+     * @param tasks Vector of tasks.
      */
-    void setTaskUI(int currentTaskIndex);
+    void setTaskUI(int currentTaskIndex, const QVector<QSharedPointer<Task>> &tasks);
 
     /**
      * @brief Updates the UI elements for the subtasks.
@@ -111,14 +112,14 @@ private:
     QFrame *resetRobotFrame; ///< Pointer to the reset robot frame.
     ExecuteFrame *executeResetRobotFrame; ///< Pointer to the execute reset robot frame.
     QWidget *centralwidget; ///< Pointer to the central QWidget for the plugin.
-    QVector<QSharedPointer<Task>> tasks; ///< Vector of loaded tasks.
     TaskManager *taskManager; ///< Pointer to the TaskManager object.
 
     /**
      * @brief Sets the subtask items in the QListWidget.
      * @param currentTaskIndex Index of the current task.
+     * @param tasks Vector of tasks.
      */
-    void setSubtaskItems(int currentTaskIndex);
+    void setSubtaskItems(int currentTaskIndex, const QVector<QSharedPointer<Task>> &tasks);
 
     /**
      * @brief Adds a line between subtask widgets in the QListWidget.

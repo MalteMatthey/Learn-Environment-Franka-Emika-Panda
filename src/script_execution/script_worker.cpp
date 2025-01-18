@@ -33,8 +33,7 @@ ScriptWorker::ScriptWorker(const QString &notebookPath,
       parallelizedEvaluationRequired(parallelizedEvaluation),
       timeoutSeconds(timeout),
       mainScriptFinished(false),
-      evalScriptFinished(false),
-      converter(this) {}
+      evalScriptFinished(false) {}
 
 void ScriptWorker::startExecution() {
     if (!QFile::exists(notebookPath)) {
@@ -52,6 +51,7 @@ void ScriptWorker::startExecution() {
 
 void ScriptWorker::convertAndExecuteNotebook() {
     // qDebug() << "Converting notebook:" << notebookPath;
+    NotebookConverter converter;
     bool success = converter.convertNotebook(notebookPath);
     if (!success) {
         Q_EMIT failed(NOTEBOOK_CONVERSION_FAILED);
