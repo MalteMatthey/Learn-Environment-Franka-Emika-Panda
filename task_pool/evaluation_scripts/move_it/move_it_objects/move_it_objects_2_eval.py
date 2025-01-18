@@ -53,14 +53,12 @@ def expected_rectangle_2_pose():
     pose.pose.orientation.w = 1.0
     return pose
 
-
 # Verify if an object in the scene matches the expected pose
 def verify_object(object_name, expected_pose, tolerance=0.1):
 
     current_objects = scene.get_objects()
 
     if object_name not in current_objects:
-        rospy.logerr(f"The object '{object_name}' was not found.")
         print(f"The object '{object_name}' was not found.")
         return False
 
@@ -80,16 +78,36 @@ def verify_object(object_name, expected_pose, tolerance=0.1):
 
     # Log results and return whether both position and orientation match
     if position_match and orientation_match:
-        rospy.loginfo(f"The object '{object_name}' is in the correct position and orientation.")
         print(f"The object '{object_name}' is in the correct position and orientation.")
         return True
     elif not position_match:
-        rospy.logerr(f"The object '{object_name}' is NOT in the correct position.")
         print(f"The object '{object_name}' is NOT in the correct position.")
         return False
     else:
-        rospy.logerr(f"The object '{object_name}' is NOT in the correct orientation.")
         print(f"The object '{object_name}' is NOT in the correct orientation.")
+        return False
+
+
+# Verify if an object in the scene matches the expected size
+def verify_object_size(object_name, expected_size, tolerance=0.01):
+    current_objects = scene.get_objects()
+
+    if object_name not in current_objects:
+        print(f"The object '{object_name}' was not found.")
+        return False
+
+    # Retrieve the current size of the object from the scene
+    current_size = current_objects[object_name].primitives[0].dimensions
+
+    # Compare the object's size with the expected size
+    size_match = all(abs(current_size[i] - expected_size[i]) < tolerance for i in range(len(expected_size)))
+
+    # Log results and return whether the size matches
+    if size_match:
+        print(f"The object '{object_name}' has the correct size.")
+        return True
+    else:
+        print(f"The object '{object_name}' does NOT have the correct size.")
         return False
 
 
@@ -97,6 +115,11 @@ def verify_object(object_name, expected_pose, tolerance=0.1):
 target_pose = expected_target_pose()
 rectangle_1_pose = expected_rectangle_1_pose()
 rectangle_2_pose = expected_rectangle_2_pose()
+
+# Verify the sizes of the expected objects
+target_size = [0.02, 0.02, 0.2]
+rectangle_1_size = [0.2, 0.4, 0.4]
+rectangle_2_size = [0.4, 0.2, 0.4]
 
 # Check if the target is correctly placed in the scene
 target_result = verify_object("target", target_pose)
@@ -107,8 +130,17 @@ rectangle_1_result = verify_object("rectangle_1", rectangle_1_pose)
 # Check if rectangle_2 is correctly placed in the scene
 rectangle_2_result = verify_object("rectangle_2", rectangle_2_pose)
 
+# Check if the target has the correct size in the scene
+target_size_result = verify_object_size("target", target_size)
+
+# Check if rectangle_1 has the correct size in the scene
+rectangle_1_size_result = verify_object_size("rectangle_1", rectangle_1_size)
+
+# Check if rectangle_2 has the correct size in the scene
+rectangle_2_size_result = verify_object_size("rectangle_2", rectangle_2_size)
+
 # Print the final result
-if target_result and rectangle_1_result and rectangle_2_result:
+if target_result and rectangle_1_result and rectangle_2_result and target_size_result and rectangle_1_size_result and rectangle_2_size_result:
     print(True)
 else:
     print(False)
