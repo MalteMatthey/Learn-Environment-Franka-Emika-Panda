@@ -5,7 +5,7 @@ After you have worked through the tutorial, you will probably want to start your
 ### Launch file
 Whether with Docker or without, first you need a launch file to start the Gazebo Simulator, Rviz etc.. . A good start is this launch file:
 
-<launch>
+`<launch>
   <!-- specify the planning pipeline -->
   <arg name="pipeline" default="ompl" />
 
@@ -31,7 +31,7 @@ Whether with Docker or without, first you need a launch file to start the Gazebo
          as well as GripperCommand actions -->
     <arg name="moveit_controller_manager" value="simple" />
   </include>
-</launch>
+</launch>`
 
 This launch file should already be available from the installed systems (/root/ws_moveit/src/panda_moveit_config/launch/demo_gazebo.launch). It can be started with 
 "roslaunch panda_moveit_config demo_gazebo.launch".
