@@ -45,4 +45,4 @@ Docker is a containerization platform that allows you to package the tutorial’
 
 # Getting Started
 
-If you have built and run the Docker environment correctly, you should end up in a folder with a [GETTING_STARTED.md](GETTING_STARTED.md) file. This file describes exactly how to start the tutorial from there. There is also a FAQ below with the most frequently asked questions about the project. In case you want to further develop the tutorial yourself, for example by adding new tasks, we have a `developer_docs` folder where you can find all the important information.
+If you have built and run the Docker environment correctly, you should end up in a folder with a [GETTING_STARTED.md](../GETTING_STARTED.md) file. This file describes exactly how to start the tutorial from there. There is also a FAQ below with the most frequently asked questions about the project. In case you want to further develop the tutorial yourself, for example by adding new tasks, we have a `developer_docs` folder where you can find all the important information.
