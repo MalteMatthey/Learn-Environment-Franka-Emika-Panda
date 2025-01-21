@@ -135,20 +135,20 @@
         {
           "title": "Task 1",
           "description": "Understand how to stop the currently running controllers",
-          "solution_file": "/stop_controller.ipynb",
-          "evaluation_file": "/stop_controller_eval.py"
+          "solution_file": "/controller_task_1.ipynb",
+          "evaluation_file": "/controller_task_1_eval.py"
         },
         {
           "title": "Task 2",
           "description": "Understand how to activate a controller",
-          "solution_file": "/activate_controller.ipynb",
-          "evaluation_file": "/activate_controller_eval.py"
+          "solution_file": "/controller_task_2.ipynb",
+          "evaluation_file": "/controller_task_2_eval.py"
         },
         {
           "title": "Task 3",
           "description": "Understand the basics of the position controller",
-          "solution_file": "/position_controller.ipynb",
-          "evaluation_file": "/position_controller_eval.py"
+          "solution_file": "/controller_task_3.ipynb",
+          "evaluation_file": "/controller_task_3_eval.py"
         }
       ]
     }
