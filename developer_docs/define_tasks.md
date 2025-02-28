@@ -215,3 +215,9 @@ The configuration will be displayed like this:
 | `parallelized_evaluation_required`| Whether parallelized evaluation is required for the subtask | Optional          | false         |
 | `reset_robot_before_executing`    | Whether to reset the robot before executing the subtask. Note that tasks can stop controllers, that's why a reset is beneficial in many situations. Use caution when setting this to false.    | Optional          | true          |
 | `timeout_seconds`                 | The timeout duration for the subtask in seconds. Adjust this if the scripts need to run very long.            | Optional          | 60            |
+
+#### Activity diagram of execution flow
+
+The following activity diagram illustrates the procedure for starting a subtask and explains how the different configuration flags affect execution:
+
+![activity_diagram](images/activity_diagram_code_execution.png)
